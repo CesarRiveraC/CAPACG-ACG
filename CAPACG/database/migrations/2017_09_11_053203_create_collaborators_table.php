@@ -13,7 +13,7 @@ class CreateCollaboratorsTable extends Migration
      */
     public function up()
     {
-        Schema:create('Colaboradores', function(Blueprint $table){
+        Schema::create('Colaboradores', function(Blueprint $table){
             $table->increments('IdColaborador');
             $table->string('NombreUsuario');
             $table->string('Cedula');

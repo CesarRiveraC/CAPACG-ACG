@@ -13,13 +13,12 @@ class CreateLivestocksTable extends Migration
      */
     public function up()
     {
-        Schema:create('Semovientes',function(Blueprint $table){
+        Schema::create('Semovientes',function(Blueprint $table){
             $table->increments('IdSemoviente');
             $table->string('Placa');
             $table->string('Raza');
             $table->string('Edad');
             $table->integer('Peso');
-
         });
     }
 

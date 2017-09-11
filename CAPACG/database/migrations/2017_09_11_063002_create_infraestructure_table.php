@@ -13,14 +13,13 @@ class CreateInfraestructureTable extends Migration
      */
     public function up()
     {
-        Schema:create('Infraestructuras',function(Blueprint $table){
+        Schema::create('Infraestructuras',function(Blueprint $table){
             $table->increments('IdInfrestructura');
             $table->integer('Placa');
             $table->integer('NumeroFinca');
             $table->integer('AreaConstruccion');
             $table->integer('AreaTerreno');
-            $table->string('AñoFabricacion');
-            
+            $table->string('AñoFabricacion');            
         });
     }
 

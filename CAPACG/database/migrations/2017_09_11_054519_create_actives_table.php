@@ -13,7 +13,7 @@ class CreateActivesTable extends Migration
      */
     public function up()
     {
-        Schema:create('Activos',function(Blueprint $table){
+        Schema::create('Activos',function(Blueprint $table){
             $table->increments('id'); 
             $table->string('Placa');
             $table->text('Descripcion'); // se define de tipo text por ser la descripcion del activo
@@ -25,8 +25,6 @@ class CreateActivesTable extends Migration
             $table->string('Cedula');
             $table->binary('Foto');      // se define el campo como binario para poder almacenar la foto del activo.
             $table->integer('Estado');
-
-
         });
 
     }
@@ -38,6 +36,6 @@ class CreateActivesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema:drop('Activos');
     }
 }

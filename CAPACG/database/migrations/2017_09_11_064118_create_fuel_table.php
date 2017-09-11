@@ -13,7 +13,19 @@ class CreateFuelTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('Combustibles',function(Blueprint $table){
+            $table->increments('NoVaucher');
+            $table->double('Monto');
+            $table->integer('Numero');
+            $table->datetime('Fecha');
+            $table->string('Placa');
+            $table->string('Kilometraje');
+            $table->double('LitrosCombustible');
+            $table->string('FuncionarioQueHizoCompra');
+            $table->string('Dependencia');
+            $table->binary('Foto');
+            $table->string('CodigoDeAccionDePlanPresupuesto');
+        });
     }
 
     /**
@@ -23,6 +35,6 @@ class CreateFuelTable extends Migration
      */
     public function down()
     {
-        //
+        Schema:drop('Combustibles');
     }
 }

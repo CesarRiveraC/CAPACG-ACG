@@ -13,9 +13,12 @@ class CreateVehiclesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('Vehiculos',function(Blueprint $table){
+            $table->increments('IdVehiculo');
+            $table->string('Placa');
+            $table->integer('IdInmueble');
+        });    
     }
-
     /**
      * Reverse the migrations.
      *
@@ -23,6 +26,6 @@ class CreateVehiclesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema:drop('Vehiculos');
     }
 }

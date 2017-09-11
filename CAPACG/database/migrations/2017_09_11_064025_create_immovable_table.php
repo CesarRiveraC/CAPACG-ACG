@@ -13,7 +13,17 @@ class CreateImmovableTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('Inmuebles',function(Blueprint $table){
+            $table->increments('IdInmueble');
+            $table->string('Serie');
+          //  $table->string('Cedula'); variable definida en clase abstracta.
+          //  $table->string('Responsable'); variable no necesaria, esta definida en la clase abstracta activos.
+         //   $table->string('Color'); variable definida en clase abstracta.
+            $table->string('Dependecia');
+            $table->string('EstadoUtilizacion');
+            $table->string('EstadoFisico');
+            $table->integer('EstadoActivo');
+        });
     }
 
     /**
@@ -23,6 +33,6 @@ class CreateImmovableTable extends Migration
      */
     public function down()
     {
-        //
+        Schema;drop('Inmuebles');
     }
 }
