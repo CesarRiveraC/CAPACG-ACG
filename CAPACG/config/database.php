@@ -39,6 +39,18 @@ return [
             'prefix' => '',
         ],
 
+        'mysql' =>[
+            'driver'=> 'mysql',
+            'host' => 'localhost',
+            'database' =>'capacg-test',
+            'username' =>'root',
+            'password' => '',
+            'charset' => 'utf8',
+            'prefix' => '',
+
+        ],
+
+        /**
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -53,6 +65,8 @@ return [
             'strict' => true,
             'engine' => null,
         ],
+
+        */
 
         'pgsql' => [
             'driver' => 'pgsql',
