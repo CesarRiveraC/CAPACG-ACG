@@ -8,10 +8,43 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'CAPACG') }}</title>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+    html, body{
+        color: #229337;
+        background-color: #C3FBCD;
+    }
+    .navbar{
+            background-color: #229337 !important;
+            color: white; 
+            border-bottom: 4px solid #1F8C33;
+            box-shadow: 3px 3px 3px #7C837D;
+    }
+    .logo{
+        font-weight: bold !important;
+        
+	    font-size: 22px; color: white; text-shadow: 0px 2px 3px #171717;
+	
+	    -webkit-box-shadow: 0px 2px 3px #1F8C33;
+        -moz-box-shadow: 0px 2px 3px #1F8C33;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+    }
+    a{
+	    color: black !important;
+        
+    }
+    li a{
+	    color: black !important;
+    }
+    
+    </style>
 </head>
 <body>
     <div id="app">
@@ -28,8 +61,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a id = "logo" class="navbar-brand" href="{{ url('/') }}">
+                        <p class="logo">CAPACG</p>
                     </a>
                 </div>
 
@@ -43,8 +76,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}"> <span class="glyphicon glyphicon-log-in"></span>Iniciar Sesion</a></li>
+                            <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user">Registrar</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -56,7 +89,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                             <span class="glyphicon glyphicon-log-out"> Cerrar Sesion
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

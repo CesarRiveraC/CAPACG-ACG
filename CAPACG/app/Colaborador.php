@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Colaborador extends Model
 {
-    //
+    protected $table = 'colaboradores';
+
+    protected $fillable = [
+        'Cedula', 'Direccion', 'PuestoDeTrabajo', 'LugarDeTrabajo', 'Telefono',
+    ];
 
     public function activos()
     {
