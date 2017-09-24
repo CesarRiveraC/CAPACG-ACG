@@ -18,7 +18,7 @@ class CreateCollaborators extends Migration
              $table->integer('user_id')->unsigned()->nullable();
              $table->foreign('user_id')->references('id')->on('users');
              ///$table->string('NombreUsuario'); este campo ya no se usa, porque la relacion ahora se hace por user_id
-             $table->string('Cedula');
+             $table->string('Cedula')->unique();
              $table->text('Direccion');
              $table->string('PuestoDeTrabajo');
              $table->text('LugarDeTrabajo');

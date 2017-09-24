@@ -17,11 +17,11 @@ class CreateInfraestructure extends Migration
              $table->increments('id');
              $table->integer('activo_id')->unsigned()->nullable();
              $table->foreign('activo_id')->references('id')->on('activos');
-             $table->integer('Placa');
+             //$table->integer('Placa'); // ya no es necesario porque la relacion se hace con id
              $table->integer('NumeroFinca');
              $table->integer('AreaConstruccion');
              $table->integer('AreaTerreno');
-             $table->string('AñoFabricacion');   
+             $table->string('AnoFabricacion');   
              $table->timestamps();         
          });
      }

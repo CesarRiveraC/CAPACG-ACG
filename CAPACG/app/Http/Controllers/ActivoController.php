@@ -27,7 +27,7 @@ class ActivoController extends Controller
     {
         $activos = Activo::all();
         
-        //return view('crearActivos'); colocar el nombre de la vista
+        return view('crearActivo'); 
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Semoviente;
+use App\Activo;
 use Illuminate\Http\Request;
 
 class SemovienteController extends Controller
@@ -27,7 +28,7 @@ class SemovienteController extends Controller
     {
         $semovientes = Semoviente::all();
         
-        //return view('crearSemoviente'); colocar el nombre de la vista
+        return view('crearSemoviente'); 
     }
 
     /**
@@ -41,7 +42,22 @@ class SemovienteController extends Controller
         $this->validate(request(), [
             'Raza'=> 'required']); // agregar los damas campos requeridos
 
-        $semoviente = Semoviente::create(request()->all());
+            $activo = new Activo;
+            $activo->Placa = $request['Placa'];
+            $activo->Descripcion = $request['Descripcion'];
+            $activo->Programa = $request['Programa'];
+            $activo->SubPrograma = $request['SubPrograma'];
+            $activo->Color = $request['Color'];
+            $activo->Foto = $request['Foto'];
+            $activo->save();
+
+            $semoviente = new Semoviente;
+            $semoviente->activo_id =  $activo->id;
+            $semoviente->Raza = $request['Raza'];
+            $semoviente->Edad = $request['Edad'];
+            $semoviente->Peso = $request['Peso'];
+            $semoviente->save();
+
 			return redirect('/'); // por el momento esta asi, ya despues se manda a una vista diferente
     }
 

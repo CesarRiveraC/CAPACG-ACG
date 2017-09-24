@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activo extends Model
 {
-    //
+    protected $fillable = [
+        'Placa', 'Descripcion', 'Programa', 'SubPrograma', 'Color',
+    ];
+
     public function infraestructura()
     {
     	return $this->hasOne('App\Infraestructura');

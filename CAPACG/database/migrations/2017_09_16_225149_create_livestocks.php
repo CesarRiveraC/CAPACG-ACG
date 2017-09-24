@@ -17,7 +17,7 @@ class CreateLivestocks extends Migration
              $table->increments('id');
              $table->integer('activo_id')->unsigned()->nullable();
              $table->foreign('activo_id')->references('id')->on('activos');
-             $table->string('Placa');
+             //$table->string('Placa'); ya no es necesario porque la relacion se hace con id
              $table->string('Raza');
              $table->string('Edad');
              $table->integer('Peso');

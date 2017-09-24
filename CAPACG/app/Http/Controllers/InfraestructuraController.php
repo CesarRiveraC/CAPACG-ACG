@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Infraestructura;
+use App\Activo;
 use Illuminate\Http\Request;
+
 
 class InfraestructuraController extends Controller
 {
@@ -27,7 +29,7 @@ class InfraestructuraController extends Controller
     {
         $infraestructuras = Infraestructura::all();
         
-        //return view('crearInfraestructura'); colocar el nombre de la vista
+        return view('crearInfraestructura');
     }
 
     /**
@@ -40,9 +42,26 @@ class InfraestructuraController extends Controller
     {
         $this->validate(request(), [
             'NumeroFinca'=> 'required']); // agregar los damas campos requeridos
+        
+        $activo = new Activo;
+        $activo->Placa = $request['Placa'];
+        $activo->Descripcion = $request['Descripcion'];
+        $activo->Programa = $request['Programa'];
+        $activo->SubPrograma = $request['SubPrograma'];
+        $activo->Color = $request['Color'];
+        $activo->Foto = $request['Foto'];
+        $activo->save();
 
-        $infraestructura = Infraestructura::create(request()->all());
-			return redirect('/'); // por el momento esta asi, ya despues se manda a una vista diferente
+        $infraestructura = new Infraestructura;
+        $infraestructura->activo_id =  $activo->id;
+        $infraestructura->NumeroFinca = $request['NumeroFinca'];
+        $infraestructura->AreaConstruccion = $request['AreaConstruccion'];
+        $infraestructura->AreaTerreno = $request['AreaTerreno'];
+        $infraestructura->AnoFabricacion = $request['AnoFabricacion'];
+        $infraestructura->save();
+
+        return redirect('/'); // por el momento esta asi, ya despues se manda a una vista diferente
+            
     }
 
     /**

@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Infraestructura extends Model
 {
-    //
+    protected $fillable = [
+        'NumeroFinca', 'AreaConstruccion', 'AreaTerreno', 'AnoFabricacion',
+    ];
    
 
     public function activo()
