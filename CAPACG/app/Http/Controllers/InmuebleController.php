@@ -26,7 +26,7 @@ class InmuebleController extends Controller
     public function create()
     {
         $inmuebles = Inmueble::all();
-        
+        return view('crearInmueble');
         //return view('crearInmuebles'); colocar el nombre de la vista
     }
 
@@ -40,9 +40,27 @@ class InmuebleController extends Controller
     {
         $this->validate(request(), [
             'Serie'=> 'required']); // agregar los damas campos requeridos
+            $activo = new Activo;
+            $activo->Placa = $request['Placa'];
+            $activo->Descripcion = $request['Descripcion'];
+            $activo->Programa = $request['Programa'];
+            $activo->SubPrograma = $request['SubPrograma'];
+            $activo->Color = $request['Color'];
+            $activo->Foto = $request['Foto'];
+            $activo->save();
 
-        $inmueble = Inmueble::create(request()->all());
-			return redirect('/'); // por el momento esta asi, ya despues se manda a una vista diferente
+            $inmueble = new Inmueble;
+            $inmueble->activo_id =  $activo->id;
+            $inmueble->Serie = $request['Serie'];
+            $inmueble->Dependencia = $request['Dependencia'];
+            $inmueble->EstadoUtilizacion = $request['EstadoUtilizacion'];
+            $inmueble->EstadoFisico = $request['EstadoFisico'];
+            $inmueble->EstadoActivo = $request['EstadoActivo'];
+            $inmueble->save();
+       // $inmueble = Inmueble::create(request()->all());
+            return redirect('/'); // por el momento esta asi, ya despues se manda a una vista diferente
+            
+           
     }
 
     /**

@@ -26,8 +26,8 @@ class VehiculoController extends Controller
     public function create()
     {
         $vehiculos = Vehiculo::all();
-        
-        //return view('crearVehiculo'); colocar el nombre de la vista
+    
+        return view('crearVehiculo'); 
     }
 
     /**
@@ -40,9 +40,29 @@ class VehiculoController extends Controller
     {
         $this->validate(request(), [
             'Placa'=> 'required']); // agregar los damas campos requeridos
+            $activo = new Activo;
+            $activo->Placa = $request['Placa'];
+            $activo->Descripcion = $request['Descripcion'];
+            $activo->Programa = $request['Programa'];
+            $activo->SubPrograma = $request['SubPrograma'];
+            $activo->Color = $request['Color'];
+            $activo->Foto = $request['Foto'];
+            $activo->save();
 
-        $vehiculo = Vehiculo::create(request()->all());
-			return redirect('/'); // por el momento esta asi, ya despues se manda a una vista diferente
+            $inmueble = new Inmueble;
+            $inmueble->activo_id =  $activo->id;
+            $inmueble->Serie = $request['Serie'];
+            $inmueble->Dependencia = $request['Dependencia'];
+            $inmueble->EstadoUtilizacion = $request['EstadoUtilizacion'];
+            $inmueble->EstadoFisico = $request['EstadoFisico'];
+            $inmueble->EstadoActivo = $request['EstadoActivo'];
+            $inmueble->save();
+
+            $vehiculo = new Vehiculo;
+            $vehiculo->Placa = $request['Placa'];
+            $vehiculo->save();
+        // $vehiculo = Vehiculo::create(request()->all());
+            return redirect('/'); // por el momento esta asi, ya despues se manda a una vista 
     }
 
     /**
