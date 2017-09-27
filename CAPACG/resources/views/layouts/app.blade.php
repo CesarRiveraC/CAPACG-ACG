@@ -64,6 +64,21 @@
                     <a id = "logo" class="navbar-brand" href="{{ url('/') }}">
                         <p class="logo">CAPACG</p>
                     </a>
+
+                    <div class="navbar-brand">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"   >
+                            Activos <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/infraestructuras">Infraestructura</a></li>
+                                <li><a href="#">Inmuebles</a></li>
+                                <li><a href="/semovientes">Semovientes</a></li>
+                                <li><a href="#">Vehiculos</a></li>
+                            </ul>
+                    
+                        </li>
+                    </div>
+                    
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

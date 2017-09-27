@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Infraestructura;
 use App\Activo;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class InfraestructuraController extends Controller
 {
@@ -16,8 +16,13 @@ class InfraestructuraController extends Controller
      */
     public function index()
     {
-        $infraestructuras = Infraestructura::all();
-        return view('welcome', compact('infraestructuras')); // por mientras se manda a la vista welcome
+        $infraestructuras = DB::table('infraestructuras')
+        ->join('activos','infraestructuras.activo_id', '=','activos.id')
+        ->select('activos.*','infraestructuras.*')
+        ->get();
+
+        $infraestructurasPaginadas = $this->paginate($infraestructuras->toArray(),5);
+        return view('listainfraestructuras', ['infraestructuras' => $infraestructurasPaginadas]);
     }
 
     /**
@@ -108,4 +113,16 @@ class InfraestructuraController extends Controller
     {
         //
     }
+
+    public function paginate($items, $perPages){
+        $pageStart = \Request::get('page',1);
+        $offSet = ($pageStart * $perPages)-$perPages;
+        $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
+
+        return new \Illuminate\Pagination\LengthAwarePaginator(
+            $itemsForCurrentPage, count($items),
+            $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
+            ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
+            }
 }
