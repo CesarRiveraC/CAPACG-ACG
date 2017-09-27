@@ -59,6 +59,8 @@ class VehiculoController extends Controller
             $inmueble->save();
 
             $vehiculo = new Vehiculo;
+            
+            $inmueble->inmueble_id =  $inmueble->id;            
             $vehiculo->Placa = $request['Placa'];
             $vehiculo->save();
         // $vehiculo = Vehiculo::create(request()->all());
