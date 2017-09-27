@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Vehiculo;
+use App\Activo;
+use App\Inmueble;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VehiculoController extends Controller
 {
@@ -14,8 +17,14 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        $vehiculos = Vehiculo::all();
-        return view('welcome', compact('vehiculos')); // por mientras se manda a la vista welcome
+        $vehiculos = DB::table('vehiculos')
+        ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+        ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+        ->select('activos.*','inmuebles.*','vehiculos.*')
+        ->get();
+
+        $vehiculosPaginadas = $this->paginate($vehiculos->toArray(),5);
+        return view('listaVehiculos', ['vehiculos' => $vehiculosPaginadas]);
     }
 
     /**
@@ -60,7 +69,7 @@ class VehiculoController extends Controller
 
             $vehiculo = new Vehiculo;
             
-            $inmueble->inmueble_id =  $inmueble->id;            
+            $vehiculo->inmueble_id =  $inmueble->id;            
             $vehiculo->Placa = $request['Placa'];
             $vehiculo->save();
         // $vehiculo = Vehiculo::create(request()->all());
@@ -111,4 +120,16 @@ class VehiculoController extends Controller
     {
         //
     }
+
+    public function paginate($items, $perPages){
+        $pageStart = \Request::get('page',1);
+        $offSet = ($pageStart * $perPages)-$perPages;
+        $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
+
+        return new \Illuminate\Pagination\LengthAwarePaginator(
+            $itemsForCurrentPage, count($items),
+            $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
+            ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
+            }
 }
