@@ -22,8 +22,8 @@
                              <tr>
                                 @include('partials.thActivo')
                                 <th>Raza</th>
-                                <th>Edad</th>
-                                <th>Peso</th>
+                                <th>Opciones</th>
+                                
                              </tr>
                       </thead>
                     <tbody>
@@ -35,14 +35,18 @@
                                 <td class="info"> {{$semoviente->Programa}} </td>
                                 <td class="info"> {{$semoviente->SubPrograma}} </td>
                                 <td class="info"> {{$semoviente->Color}} </td>
-                                <td class="info"> {{$semoviente->Foto}} </td>
+                                
                                 <td class="info"> {{$semoviente->Estado}} </td>
                                 <td class="info"> {{$semoviente->Raza}} </td>
-                                <td class="info"> {{$semoviente->Edad}} </td>
-                                <td class="info"> {{$semoviente->Peso}} </td>
+                                
                                 <td class="warning"> 
                                     <a href="/archivos/{{$semoviente->id}}/eliminar" class="btn btn-danger btn-xs">
-                                    <span class="glyphicon glyphicon-remove-circle"></span> Eliminar</a>
+                                     Eliminar</a>
+
+                                     <a href="/semovientes/{{$semoviente->id}}" class="btn btn-primary btn-xs">
+                                     Detalle</a>
+                                    <a href="/semovientes/{{$semoviente->id}}/edit" class="btn btn-default btn-xs">
+                                     Editar</a>
                                 </td>
                             </tr>
                         @endforeach

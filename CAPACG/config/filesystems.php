@@ -50,7 +50,7 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('app/public/pictures'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
@@ -61,6 +61,13 @@ return [
             'secret' => env('AWS_SECRET'),
             'region' => env('AWS_REGION'),
             'bucket' => env('AWS_BUCKET'),
+        ],
+
+        'MyDiskDriver' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
         ],
 
     ],

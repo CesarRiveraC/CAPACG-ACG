@@ -14,8 +14,8 @@ class ActivoController extends Controller
      */
     public function index()
     {
-        $activos = Activo::all();
-        return view('welcome', compact('activos')); // por mientras se manda a la vista welcome
+        $activos = Activo::paginate(2);
+        return view('/activos/listar')->withActivos($activos);;
     }
 
     /**
@@ -27,7 +27,7 @@ class ActivoController extends Controller
     {
         $activos = Activo::all();
         
-        return view('crearActivo'); 
+        return view('/activo/crear'); 
     }
 
     /**
@@ -64,7 +64,11 @@ class ActivoController extends Controller
      */
     public function edit(Activo $activo)
     {
-        //
+        $activo = Activo::find($activo);
+        //$activo = Activo::firstOrFail();
+        //$activo = $activo->keyBy('id');
+        //return View::make('editarActivo')->with('Activo', $activo);
+        return view('/activo/editar',compact('activo'));
     }
 
     /**
@@ -76,7 +80,15 @@ class ActivoController extends Controller
      */
     public function update(Request $request, Activo $activo)
     {
-        //
+        $activo = Activo::find($activo->id);
+        $activo->Placa = $request['Placa'];
+        $activo->Descripcion = $request['Descripcion'];
+        $activo->Programa = $request['Programa'];
+        $activo->SubPrograma = $request['SubPrograma'];
+        $activo->Color = $request['Color'];
+        $activo->Foto = $request['Foto'];
+        $activo->save();
+        return redirect('/activos');
     }
 
     /**

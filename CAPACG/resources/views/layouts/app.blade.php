@@ -73,7 +73,7 @@
                                 <li><a href="/infraestructuras">Infraestructura</a></li>
                                 <li><a href="#">Inmuebles</a></li>
                                 <li><a href="/semovientes">Semovientes</a></li>
-                                <li><a href="#">Vehiculos</a></li>
+                                <li><a href="/vehiculos">Vehiculos</a></li>
                             </ul>
                     
                         </li>

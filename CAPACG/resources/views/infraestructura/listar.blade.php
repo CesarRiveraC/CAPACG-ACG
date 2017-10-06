@@ -12,7 +12,7 @@
             <br>
             <br>
 
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading"><h4>Infraestructuras</h4> </div>
                 <div class="panel-body">
                 {{ $infraestructuras->links() }}
@@ -22,9 +22,7 @@
                              <tr>
                                 @include('partials.thActivo')
                                 <th>Numero Finca</th>
-                                <th>Area de Construccion</th>
-                                <th>Area Terreno</th>
-                                <th>Año Fabricacion</th>
+                                <th>Opciones</th>
                              </tr>
                       </thead>
                     <tbody>
@@ -36,17 +34,22 @@
                                 <td class="info"> {{$infraestructura->Programa}} </td>
                                 <td class="info"> {{$infraestructura->SubPrograma}} </td>
                                 <td class="info"> {{$infraestructura->Color}} </td>
-                                <td class="info"> {{$infraestructura->Foto}} </td>
+                                
                                 <td class="info"> {{$infraestructura->Estado}} </td>
 
                                 <td class="info"> {{$infraestructura->NumeroFinca}} </td>
-                                <td class="info"> {{$infraestructura->AreaConstruccion}} </td>
-                                <td class="info"> {{$infraestructura->AreaTerreno}} </td>
-                                <td class="info"> {{$infraestructura->AnoFabricacion}} </td>
-                                <td class="warning"> 
+                                
+                                <td class="info"> 
                                     <a href="/archivos/{{$infraestructura->id}}/eliminar" class="btn btn-danger btn-xs">
-                                    <span class="glyphicon glyphicon-remove-circle"></span> Eliminar</a>
+                                    <span class="glyphicon glyphicon-remov-circle"></span> Eliminar</a>
+
+                                     <a href="/activos/{{$infraestructura->id}}" class="btn btn-primary btn-xs">
+                                    <span class="glyphicon glyphicon-detail-circle"></span> Detalle</a>
+                                    <a href="/activos/{{$infraestructura->id}}/edit" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-edit-circle"></span> Editar</a>
+
                                 </td>
+                               
                             </tr>
                         @endforeach
                     </tbody>

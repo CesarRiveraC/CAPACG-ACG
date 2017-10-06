@@ -6,6 +6,7 @@ use App\Infraestructura;
 use App\Activo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Storage;
 
 class InfraestructuraController extends Controller
 {
@@ -22,7 +23,7 @@ class InfraestructuraController extends Controller
         ->get();
 
         $infraestructurasPaginadas = $this->paginate($infraestructuras->toArray(),5);
-        return view('listainfraestructuras', ['infraestructuras' => $infraestructurasPaginadas]);
+        return view('/infraestructura/listar', ['infraestructuras' => $infraestructurasPaginadas]);
     }
 
     /**
@@ -34,7 +35,7 @@ class InfraestructuraController extends Controller
     {
         $infraestructuras = Infraestructura::all();
         
-        return view('crearInfraestructura');
+        return view('/infraestructura/crear');
     }
 
     /**
@@ -54,7 +55,15 @@ class InfraestructuraController extends Controller
         $activo->Programa = $request['Programa'];
         $activo->SubPrograma = $request['SubPrograma'];
         $activo->Color = $request['Color'];
-        $activo->Foto = $request['Foto'];
+        
+        if ($request->file('Foto')->isValid()){ 
+
+                $file = $request->file('Foto');  
+                $file_route = time().'_'.$file->getClientOriginalName(); 
+                Storage::disk('public')->put($file_route, file_get_contents($file->getRealPath() )); 
+                $activo->Foto = $file_route; 
+            
+                }
         $activo->save();
 
         $infraestructura = new Infraestructura;
@@ -65,7 +74,7 @@ class InfraestructuraController extends Controller
         $infraestructura->AnoFabricacion = $request['AnoFabricacion'];
         $infraestructura->save();
 
-        return redirect('/'); // por el momento esta asi, ya despues se manda a una vista diferente
+        return redirect('/infraestructuras'); // por el momento esta asi, ya despues se manda a una vista diferente
             
     }
 
@@ -86,9 +95,16 @@ class InfraestructuraController extends Controller
      * @param  \App\Infraestructura  $infraestructura
      * @return \Illuminate\Http\Response
      */
-    public function edit(Infraestructura $infraestructura)
+    public function edit(Infraestructura $id)
     {
-        //
+        $infraestructura = Infraestructura::find($id);
+        //$activo = Activo::find($infra->id);
+
+       $infraestructura = DB::table('infraestructuras')
+        ->join('activos','infraestructuras.activo_id', '=','activos.id')
+        ->select('activos.*','infraestructuras.*')
+        ->get();
+        return view('/infraestructura/editar')->with('infraestructuras', $infraestructura);
     }
 
     /**
@@ -100,7 +116,17 @@ class InfraestructuraController extends Controller
      */
     public function update(Request $request, Infraestructura $infraestructura)
     {
-        //
+        //$request = $this->getIdOfRequest($request);
+        //$infraestructura = Infraestructura::find($infraestructura);
+        $infraestructura = Infraestructura::with('Activo')->find($id);
+
+        $infraestructura->NumeroFinca = $request['NumeroFinca'];
+        $infraestructura->AreaConstruccion = $request['AreaConstruccion'];
+        $infraestructura->AreaTerreno = $request['AreaTerreno'];
+        $infraestructura->AnoFabricacion = $request['AnoFabricacion'];
+       
+        return redirect('/infraestructura/listar');
+
     }
 
     /**

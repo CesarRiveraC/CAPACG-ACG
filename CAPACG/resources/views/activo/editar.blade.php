@@ -5,12 +5,13 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Nuevo Activo</div>
+                <div class="panel-heading">Editando Activo</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="/activos">
+                    <form class="form-horizontal" method="POST" action="{{ url('/activos/'.$activo->id)}}">
+                        <input type="hidden" name="_method" value="PUT">
                         {{ csrf_field() }}
-
+                        
                         <div class="form-group{{ $errors->has('Placa') ? ' has-error' : '' }}">
                             <label for="Placa" class="col-md-4 control-label">Placa o Patrimonio</label>
 

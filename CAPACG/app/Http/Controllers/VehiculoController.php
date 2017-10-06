@@ -24,7 +24,7 @@ class VehiculoController extends Controller
         ->get();
 
         $vehiculosPaginadas = $this->paginate($vehiculos->toArray(),5);
-        return view('listaVehiculos', ['vehiculos' => $vehiculosPaginadas]);
+        return view('/vehiculo/listar', ['vehiculos' => $vehiculosPaginadas]);
     }
 
     /**
@@ -36,7 +36,7 @@ class VehiculoController extends Controller
     {
         $vehiculos = Vehiculo::all();
     
-        return view('crearVehiculo'); 
+        return view('/vehiculo/crear'); 
     }
 
     /**
@@ -73,7 +73,7 @@ class VehiculoController extends Controller
             $vehiculo->Placa = $request['Placa'];
             $vehiculo->save();
         // $vehiculo = Vehiculo::create(request()->all());
-            return redirect('/'); // por el momento esta asi, ya despues se manda a una vista 
+            return redirect('/vehiculos'); 
     }
 
     /**

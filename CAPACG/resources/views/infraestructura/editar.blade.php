@@ -5,10 +5,11 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Nueva Infraestructura</div>
+                <div class="panel-heading">Editar Infraestructura</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="/infraestructuras">
+                    <form class="form-horizontal" method="POST" action="/activos/{{$infraestructura->id}}">
+                    <input type="hidden" name="_method" value="PUT">
                         {{ csrf_field() }}
                
                         @include('partials.activo')
@@ -25,7 +26,7 @@
                             <label for="AreaConstruccion" class="col-md-4 control-label">Area de Construccion</label>
 
                             <div class="col-md-6">
-                                <input id="AreaConstruccion" type="text" class="form-control" name="AreaConstruccion" value="{{ old('AreaConstruccion') }}" required autofocus>                               
+                                <input id="AreaConstruccion" type="text" class="form-control" name="AreaConstruccion"  required autofocus>                               
                             </div>
                         </div>
 

@@ -22,7 +22,7 @@ class SemovienteController extends Controller
         ->get();
 
         $semovientesPaginados = $this->paginate($semovientes->toArray(),5);
-        return view('listaSemovientes', ['semovientes' => $semovientesPaginados]);
+        return view('/semoviente/listar', ['semovientes' => $semovientesPaginados]);
     }
 
     /**
@@ -34,7 +34,7 @@ class SemovienteController extends Controller
     {
         $semovientes = Semoviente::all();
         
-        return view('crearSemoviente'); 
+        return view('/semoviente/crear'); 
     }
 
     /**
@@ -64,7 +64,7 @@ class SemovienteController extends Controller
             $semoviente->Peso = $request['Peso'];
             $semoviente->save();
 
-			return redirect('/'); // por el momento esta asi, ya despues se manda a una vista diferente
+			return redirect('/semovientes'); // por el momento esta asi, ya despues se manda a una vista diferente
     }
 
     /**

@@ -22,11 +22,8 @@
                              <tr>
                                 @include('partials.thActivo')
                                 <th>Serie</th>
-                                <th>Dependencia</th>
-                                <th>Estado Utilizacion</th>
-                                <th>Estado Fisico</th>
-                                <th>Estado Activo</th>
-                                <th>Placa Vehiculo</th>
+                                <th>Opciones</th>
+                                
                              </tr>
                       </thead>
                     <tbody>
@@ -38,18 +35,19 @@
                                 <td class="info"> {{$vehiculo->Programa}} </td>
                                 <td class="info"> {{$vehiculo->SubPrograma}} </td>
                                 <td class="info"> {{$vehiculo->Color}} </td>
-                                <td class="info"> {{$vehiculo->Foto}} </td>
+                                
                                 <td class="info"> {{$vehiculo->Estado}} </td>
 
                                 <td class="info"> {{$vehiculo->Serie}} </td>
-                                <td class="info"> {{$vehiculo->Dependencia}} </td>
-                                <td class="info"> {{$vehiculo->EstadoUtilizacion}} </td>
-                                <td class="info"> {{$vehiculo->EstadoFisico}} </td>
-                                <td class="info"> {{$vehiculo->EstadoActivo}} </td>
-                                <td class="info"> {{$vehiculo->Placa}} </td>
-                                <td class="warning"> 
+                                
+                                <td class="info"> 
                                     <a href="/archivos/{{$vehiculo->id}}/eliminar" class="btn btn-danger btn-xs">
-                                    <span class="glyphicon glyphicon-remove-circle"></span> Eliminar</a>
+                                     Eliminar</a>
+
+                                     <a href="/semovientes/{{$vehiculo->id}}" class="btn btn-primary btn-xs">
+                                     Detalle</a>
+                                    <a href="/semovientes/{{$vehiculo->id}}/edit" class="btn btn-default btn-xs">
+                                     Editar</a>
                                 </td>
                             </tr>
                         @endforeach
