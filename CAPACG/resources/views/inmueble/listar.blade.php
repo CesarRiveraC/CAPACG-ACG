@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
 
     
-        <a class="btn btn-primary" href="/infraestructuras/create">
+        <a class="btn btn-primary" href="/inmuebles/create">
         <span class="glyphicon glyphicon-upload"></span> Crear nuevo Inmueble</a> 
        
             <br>
@@ -23,9 +23,8 @@
                                 @include('partials.thActivo')
                                 <th>Serie</th>
                                 <th>Dependencia</th>
-                                <th>Estado Utilizacion</th>
-                                <th>Estado Fisico</th>
-                                <th>Estado Activo</th>
+                                <th>Opciones</th>
+                                
                              </tr>
                       </thead>
                     <tbody>
@@ -37,17 +36,19 @@
                                 <td class="info"> {{$inmueble->Programa}} </td>
                                 <td class="info"> {{$inmueble->SubPrograma}} </td>
                                 <td class="info"> {{$inmueble->Color}} </td>
-                                <td class="info"> {{$inmueble->Foto}} </td>
+                               
                                 <td class="info"> {{$inmueble->Estado}} </td>
 
                                 <td class="info"> {{$inmueble->Serie}} </td>
                                 <td class="info"> {{$inmueble->Dependencia}} </td>
-                                <td class="info"> {{$inmueble->EstadoUtilizacion}} </td>
-                                <td class="info"> {{$inmueble->EstadoFisico}} </td>
-                                <td class="info"> {{$inmueble->EstadoActivo}} </td>
+                                
                                 <td class="warning"> 
-                                    <a href="/archivos/{{$inmueble->id}}/eliminar" class="btn btn-danger btn-xs">
-                                    <span class="glyphicon glyphicon-remove-circle"></span> Eliminar</a>
+                                    <a href="#" class="btn btn-danger btn-xs">
+                                    Eliminar</a>
+                                    <a href="/inmuebles/{{$inmueble->id}}" class="btn btn-primary btn-xs">
+                                    Detalle</a>
+                                    <a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-default btn-xs">
+                                    Editar</a>
                                 </td>
                             </tr>
                         @endforeach

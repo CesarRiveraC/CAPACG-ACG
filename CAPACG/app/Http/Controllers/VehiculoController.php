@@ -7,14 +7,11 @@ use App\Activo;
 use App\Inmueble;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Storage;
 
 class VehiculoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //
     public function index()
     {
         $vehiculos = DB::table('vehiculos')
@@ -27,11 +24,6 @@ class VehiculoController extends Controller
         return view('/vehiculo/listar', ['vehiculos' => $vehiculosPaginadas]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $vehiculos = Vehiculo::all();
@@ -39,12 +31,6 @@ class VehiculoController extends Controller
         return view('/vehiculo/crear'); 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate(request(), [
@@ -55,7 +41,16 @@ class VehiculoController extends Controller
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
-            $activo->Foto = $request['Foto'];
+            
+
+            if ($request->hasFile('Foto')){ 
+                
+                                $file = $request->file('Foto');  
+                                $file_route = time().'_'.$file->getClientOriginalName(); 
+                                Storage::disk('public')->put($file_route, file_get_contents($file->getRealPath() )); 
+                                $activo->Foto = $file_route; 
+                            
+                                }
             $activo->save();
 
             $inmueble = new Inmueble;
@@ -76,50 +71,68 @@ class VehiculoController extends Controller
             return redirect('/vehiculos'); 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Vehiculo  $vehiculo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Vehiculo $vehiculo)
-    {
-        //
+    public function show($id){
+        $vehiculo = Vehiculo::find($id);
+        $inmueble = Inmueble::find($vehiculo->inmueble_id);
+        $activo = Activo::find($inmueble->activo_id);
+        $vehiculo->inmueble()->associate($inmueble);
+        $inmueble->activo()->associate($activo);
+
+        
+        return view('/vehiculo/detalle', compact('vehiculo'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Vehiculo  $vehiculo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Vehiculo $vehiculo)
+    public function edit($id)
     {
-        //
+    	$vehiculo = Vehiculo::find($id);
+        $inmueble = Inmueble::find($vehiculo->inmueble_id);
+        $activo = Activo::find($inmueble->activo_id);
+        $vehiculo->inmueble()->associate($inmueble);
+        $inmueble->activo()->associate($activo);
+        
+        return view('/vehiculo/editar',compact('vehiculo'));
+    }
+    
+    public function update($id, Request $request)
+    {
+        $vehiculo = Vehiculo::find($id);
+        $inmueble = Inmueble::find($vehiculo->inmueble_id);
+        $activo = Activo::find($inmueble->activo_id);
+
+        $activo->Placa = request('Placa');
+        $activo->Descripcion = request('Descripcion');
+        $activo->Programa = request('Programa');
+        $activo->SubPrograma = request('SubPrograma');
+        $activo->Color = request('Color');      
+
+        if ($request->hasFile('Foto')){ 
+            Storage::delete($activo->Foto);
+
+                            $file = $request->file('Foto');  
+                            $file_route = time().'_'.$file->getClientOriginalName(); 
+                            Storage::disk('public')->put($file_route, file_get_contents($file->getRealPath() )); 
+                            $activo->Foto = $file_route; 
+                        
+        }
+        $activo->save();
+
+        $inmueble->activo_id =  $activo->id;
+        $inmueble->Serie = request('Serie');
+        $inmueble->Dependencia = request('Dependencia');
+        $inmueble->EstadoUtilizacion = request('EstadoUtilizacion');
+        $inmueble->EstadoFisico = request('EstadoFisico');
+        $inmueble->EstadoActivo = request('EstadoActivo');
+        $inmueble->save();
+
+        $vehiculo->inmueble_id =  $inmueble->id;            
+        $vehiculo->Placa = request('Placa');
+        $vehiculo->save();
+
+
+        return redirect('/vehiculos');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Vehiculo  $vehiculo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Vehiculo $vehiculo)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Vehiculo  $vehiculo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Vehiculo $vehiculo)
-    {
-        //
-    }
 
     public function paginate($items, $perPages){
         $pageStart = \Request::get('page',1);

@@ -68,12 +68,12 @@
                     <div class="navbar-brand">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"   >
-                            Activos <span class="caret"></span></a>
+                            Activos <span class="glyphicon glyphicon-menu-hamburger"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/infraestructuras">Infraestructura</a></li>
-                                <li><a href="#">Inmuebles</a></li>
-                                <li><a href="/semovientes">Semovientes</a></li>
-                                <li><a href="/vehiculos">Vehiculos</a></li>
+                                <li><a class = "glyphicon glyphicon-floppy-disk" href="/infraestructuras">Infraestructura</a></li>
+                                <li><a class="glyphicon glyphicon-lamp" href="/inmuebles">Inmuebles</a></li>
+                                <li><a class="glyphicon glyphicon-knight" href="/semovientes">Semovientes</a></li>
+                                <li><a class="glyphicon glyphicon-transport" href="/vehiculos">Vehiculos</a></li>
                             </ul>
                     
                         </li>

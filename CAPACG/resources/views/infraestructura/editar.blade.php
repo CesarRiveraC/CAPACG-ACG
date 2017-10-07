@@ -8,7 +8,7 @@
                 <div class="panel-heading">Editar Infraestructura</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="/activos/{{$infraestructura->id}}">
+                    <form class="form-horizontal" method="POST" action="/infraestructuras/{{$infraestructura->id}}" enctype="multipart/form-data" >
                     <input type="hidden" name="_method" value="PUT">
                         {{ csrf_field() }}
                
@@ -18,7 +18,7 @@
                             <label for="NumeroFinca" class="col-md-4 control-label">Numero de Finca</label>
 
                             <div class="col-md-6">
-                                <input id="NumeroFinca" type="text" class="form-control" name="NumeroFinca" value="{{ old('NumeroFinca') }}" required autofocus>    
+                                <input id="NumeroFinca" type="text" class="form-control" name="NumeroFinca" value="{{ $infraestructura->NumeroFinca }}" required autofocus>    
                             </div>
                         </div>
 
@@ -26,7 +26,7 @@
                             <label for="AreaConstruccion" class="col-md-4 control-label">Area de Construccion</label>
 
                             <div class="col-md-6">
-                                <input id="AreaConstruccion" type="text" class="form-control" name="AreaConstruccion"  required autofocus>                               
+                                <input id="AreaConstruccion" type="text" class="form-control" name="AreaConstruccion" value = "{{$infraestructura->AreaConstruccion}}"  required autofocus>                               
                             </div>
                         </div>
 
@@ -34,7 +34,7 @@
                             <label for="AreaTerreno" class="col-md-4 control-label">Area de Terreno</label>
 
                             <div class="col-md-6">
-                                <input id="AreaTerreno" type="text" class="form-control" name="AreaTerreno" value="{{ old('AreaTerreno') }}" required>                               
+                                <input id="AreaTerreno" type="text" class="form-control" name="AreaTerreno" value="{{ $infraestructura->AreaTerreno }}" required>                               
                             </div>  
                         </div>
 
@@ -44,7 +44,7 @@
                             <label for="AnoFabricacion" class="col-md-4 control-label">Año de Fabricacion</label>
 
                             <div class="col-md-6">
-                                <input id="AnoFabricacion" type="text" class="form-control" name="AnoFabricacion" value="{{ old('AnoFabricacion') }}" required>
+                                <input id="AnoFabricacion" type="text" class="form-control" name="AnoFabricacion" value="{{ $infraestructura->AnoFabricacion }}" required>
                             </div>
                         </div>
 
@@ -52,8 +52,8 @@
 
                         <div class="form-group" align = "center"></div>
                             <button type="submit" class="btn btn-success"> 
-                            <span class="glyphicon glyphicon-floppy-disk"></span> Guardar </button>
-                            <a href="/home" class="btn btn-default"> 
+                            <span class="glyphicon glyphicon-floppy-disk"></span> Editar </button>
+                            <a href="/infraestructuras" class="btn btn-default"> 
                             <span class="glyphicon glyphicon-remove"></span> Cancelar </a>
                         </div>
                     </form>

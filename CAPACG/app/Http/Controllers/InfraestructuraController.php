@@ -10,11 +10,7 @@ use Storage;
 
 class InfraestructuraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //
     public function index()
     {
         $infraestructuras = DB::table('infraestructuras')
@@ -26,11 +22,6 @@ class InfraestructuraController extends Controller
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructurasPaginadas]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $infraestructuras = Infraestructura::all();
@@ -38,12 +29,6 @@ class InfraestructuraController extends Controller
         return view('/infraestructura/crear');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate(request(), [
@@ -56,7 +41,7 @@ class InfraestructuraController extends Controller
         $activo->SubPrograma = $request['SubPrograma'];
         $activo->Color = $request['Color'];
         
-        if ($request->file('Foto')->isValid()){ 
+        if ($request->hasFile('Foto')){ 
 
                 $file = $request->file('Foto');  
                 $file_route = time().'_'.$file->getClientOriginalName(); 
@@ -78,66 +63,60 @@ class InfraestructuraController extends Controller
             
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Infraestructura  $infraestructura
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Infraestructura $infraestructura)
-    {
-        //
+    public function show($id){
+        $infraestructura = Infraestructura::find($id);
+        $activo = Activo::find($infraestructura->activo_id);
+        $infraestructura->activo()->associate($activo);
+
+        //$activo = Activo::find($id);
+        //$file = Storage::disk('MyDiskDriver')->get($activo->Foto);
+        //$activo->Foto = $File;
+        return view('/infraestructura/detalle', compact('infraestructura'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Infraestructura  $infraestructura
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Infraestructura $id)
+    public function edit($id)
+    {
+    	$infraestructura = Infraestructura::find($id);
+        $activo = Activo::find($infraestructura->activo_id);
+        $infraestructura->activo()->associate($activo);
+        //$infraestructura = DB::table('infraestructuras')
+        //->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
+        //->select('activos.*', 'infraestructuras.*')
+        //->get();
+        return view('/infraestructura/editar',compact('infraestructura'));
+    }
+    
+    public function update($id, Request $request)
     {
         $infraestructura = Infraestructura::find($id);
-        //$activo = Activo::find($infra->id);
+        $activo = Activo::find($infraestructura->activo_id);
+        $activo->Placa = request('Placa');
+        $activo->Descripcion = request('Descripcion');
+        $activo->Programa = request('Programa');
+        $activo->SubPrograma = request('SubPrograma');
+        $activo->Color = request('Color');
+        
 
-       $infraestructura = DB::table('infraestructuras')
-        ->join('activos','infraestructuras.activo_id', '=','activos.id')
-        ->select('activos.*','infraestructuras.*')
-        ->get();
-        return view('/infraestructura/editar')->with('infraestructuras', $infraestructura);
-    }
+        if ($request->hasFile('Foto')){ 
+            Storage::delete($activo->Foto);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Infraestructura  $infraestructura
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Infraestructura $infraestructura)
-    {
-        //$request = $this->getIdOfRequest($request);
-        //$infraestructura = Infraestructura::find($infraestructura);
-        $infraestructura = Infraestructura::with('Activo')->find($id);
+                            $file = $request->file('Foto');  
+                            $file_route = time().'_'.$file->getClientOriginalName(); 
+                            Storage::disk('public')->put($file_route, file_get_contents($file->getRealPath() )); 
+                            $activo->Foto = $file_route; 
+                        
+        }
 
-        $infraestructura->NumeroFinca = $request['NumeroFinca'];
-        $infraestructura->AreaConstruccion = $request['AreaConstruccion'];
-        $infraestructura->AreaTerreno = $request['AreaTerreno'];
-        $infraestructura->AnoFabricacion = $request['AnoFabricacion'];
-       
-        return redirect('/infraestructura/listar');
+        $activo->save();
 
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Infraestructura  $infraestructura
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Infraestructura $infraestructura)
-    {
-        //
+        $infraestructura->activo_id =  $activo->id;
+        $infraestructura->NumeroFinca = request('NumeroFinca');
+        $infraestructura->AreaConstruccion = request('AreaConstruccion');
+        $infraestructura->AreaTerreno = request('AreaTerreno');
+        $infraestructura->AnoFabricacion = request('AnoFabricacion');
+        $infraestructura->save();
+        return redirect('/infraestructuras');
     }
 
     public function paginate($items, $perPages){

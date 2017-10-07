@@ -2,40 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Activo;
 use App\Inmueble;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Storage;
 
 class InmuebleController extends Controller
+
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //
+
     public function index()
     {
-        $inmuebles = Inmueble::all();
-        return view('welcome', compact('inmuebles')); // por mientras se manda a la vista welcome
+        $inmuebles = DB::table('inmuebles')
+        ->join('activos','inmuebles.activo_id', '=','activos.id')
+        ->select('activos.*','inmuebles.*')
+        ->get();
+
+        $inmueblesPaginadas = $this->paginate($inmuebles->toArray(),5);
+        return view('/inmueble/listar', ['inmuebles' => $inmueblesPaginadas]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $inmuebles = Inmueble::all();
-        return view('crearInmueble');
-        //return view('crearInmuebles'); colocar el nombre de la vista
+        return view('/inmueble/crear');
+       
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate(request(), [
@@ -46,7 +41,15 @@ class InmuebleController extends Controller
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
-            $activo->Foto = $request['Foto'];
+         
+            if ($request->hasFile('Foto')){ 
+                
+                                $file = $request->file('Foto');  
+                                $file_route = time().'_'.$file->getClientOriginalName(); 
+                                Storage::disk('public')->put($file_route, file_get_contents($file->getRealPath() )); 
+                                $activo->Foto = $file_route; 
+                            
+                                }
             $activo->save();
 
             $inmueble = new Inmueble;
@@ -57,54 +60,76 @@ class InmuebleController extends Controller
             $inmueble->EstadoFisico = $request['EstadoFisico'];
             $inmueble->EstadoActivo = $request['EstadoActivo'];
             $inmueble->save();
-       // $inmueble = Inmueble::create(request()->all());
-            return redirect('/'); // por el momento esta asi, ya despues se manda a una vista diferente
+       
+            return redirect('/inmuebles'); 
             
            
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Inmueble  $inmueble
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Inmueble $inmueble)
-    {
-        //
+    public function show($id){
+
+        $inmueble = Inmueble::find($id);
+        $activo = Activo::find($inmueble->activo_id);
+        $inmueble->activo()->associate($activo);
+    
+        return view('/inmueble/detalle', compact('inmueble'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Inmueble  $inmueble
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Inmueble $inmueble)
+    public function edit($id)
     {
-        //
+    	$inmueble = Inmueble::find($id);
+        $activo = Activo::find($inmueble->activo_id);
+        $inmueble->activo()->associate($activo);
+        
+        return view('/inmueble/editar',compact('inmueble'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Inmueble  $inmueble
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Inmueble $inmueble)
+    public function update($id, Request $request)
     {
-        //
+        
+        $inmueble = Inmueble::find($id);
+        $activo = Activo::find($inmueble->activo_id);
+
+        $activo->Placa = request('Placa');
+        $activo->Descripcion = request('Descripcion');
+        $activo->Programa = request('Programa');
+        $activo->SubPrograma = request('SubPrograma');
+        $activo->Color = request('Color');      
+
+        if ($request->hasFile('Foto')){ 
+            Storage::delete($activo->Foto);
+
+                            $file = $request->file('Foto');  
+                            $file_route = time().'_'.$file->getClientOriginalName(); 
+                            Storage::disk('public')->put($file_route, file_get_contents($file->getRealPath() )); 
+                            $activo->Foto = $file_route; 
+                        
+        }
+        $activo->save();
+
+        $inmueble->activo_id =  $activo->id;
+        $inmueble->Serie = request('Serie');
+        $inmueble->Dependencia = request('Dependencia');
+        $inmueble->EstadoUtilizacion = request('EstadoUtilizacion');
+        $inmueble->EstadoFisico = request('EstadoFisico');
+        $inmueble->EstadoActivo = request('EstadoActivo');
+        $inmueble->save();    
+
+        return redirect('/inmuebles');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Inmueble  $inmueble
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Inmueble $inmueble)
-    {
-        //
-    }
+    public function paginate($items, $perPages){
+        $pageStart = \Request::get('page',1);
+        $offSet = ($pageStart * $perPages)-$perPages;
+        $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
+
+        return new \Illuminate\Pagination\LengthAwarePaginator(
+            $itemsForCurrentPage, count($items),
+            $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
+            ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+        );
+            }
+
+
 }

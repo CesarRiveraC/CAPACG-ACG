@@ -6,14 +6,12 @@ use App\Semoviente;
 use App\Activo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Storage;
 
 class SemovienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //
+
     public function index()
     {
         $semovientes = DB::table('semovientes')
@@ -25,11 +23,6 @@ class SemovienteController extends Controller
         return view('/semoviente/listar', ['semovientes' => $semovientesPaginados]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $semovientes = Semoviente::all();
@@ -37,12 +30,6 @@ class SemovienteController extends Controller
         return view('/semoviente/crear'); 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate(request(), [
@@ -54,7 +41,15 @@ class SemovienteController extends Controller
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
-            $activo->Foto = $request['Foto'];
+            
+            if ($request->hasFile('Foto')){ 
+                
+                                $file = $request->file('Foto');  
+                                $file_route = time().'_'.$file->getClientOriginalName(); 
+                                Storage::disk('public')->put($file_route, file_get_contents($file->getRealPath() )); 
+                                $activo->Foto = $file_route; 
+                            
+                                }
             $activo->save();
 
             $semoviente = new Semoviente;
@@ -67,50 +62,54 @@ class SemovienteController extends Controller
 			return redirect('/semovientes'); // por el momento esta asi, ya despues se manda a una vista diferente
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Semoviente  $semoviente
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Semoviente $semoviente)
-    {
-        //
+    public function show($id){
+        $semoviente = Semoviente::find($id);
+        $activo = Activo::find($semoviente->activo_id);
+        $semoviente->activo()->associate($activo);
+
+        
+        return view('/semoviente/detalle', compact('semoviente'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Semoviente  $semoviente
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Semoviente $semoviente)
+    public function edit($id)
     {
-        //
+    	$semoviente = Semoviente::find($id);
+        $activo = Activo::find($semoviente->activo_id);
+        $semoviente->activo()->associate($activo);
+        
+        return view('/semoviente/editar',compact('semoviente'));
+    }
+    
+    public function update($id, Request $request)
+    {
+        $semoviente = Semoviente::find($id);
+        $activo = Activo::find($semoviente->activo_id);
+        $activo->Placa = request('Placa');
+        $activo->Descripcion = request('Descripcion');
+        $activo->Programa = request('Programa');
+        $activo->SubPrograma = request('SubPrograma');
+        $activo->Color = request('Color');       
+
+        if ($request->hasFile('Foto')){ 
+            Storage::delete($activo->Foto);
+
+                            $file = $request->file('Foto');  
+                            $file_route = time().'_'.$file->getClientOriginalName(); 
+                            Storage::disk('public')->put($file_route, file_get_contents($file->getRealPath() )); 
+                            $activo->Foto = $file_route; 
+                        
+        }
+        $activo->save();
+
+        $semoviente->activo_id =  $activo->id;
+        $semoviente->Raza = request('Raza');
+        $semoviente->Edad = request('Edad');
+        $semoviente->Peso = request('Peso');
+        $semoviente->save();
+        return redirect('/semovientes');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Semoviente  $semoviente
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Semoviente $semoviente)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Semoviente  $semoviente
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Semoviente $semoviente)
-    {
-        //
-    }
 
     public function paginate($items, $perPages){
         $pageStart = \Request::get('page',1);
@@ -123,4 +122,7 @@ class SemovienteController extends Controller
             ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
         );
             }
+
+
+
 }

@@ -45,9 +45,9 @@
                       <dt>Año de Fabricacion</dt>
                       <dd>{{$infraestructura->AnoFabricacion}}</dd>
                         <br>
-                      <dt><button type="submit" class="btn btn-primary">
-                             <a href="/infraestructuras" > 
-                             Regresar </button></dt>
+                      <dt><a href="/infraestructuras" >
+                             <button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-menu-left"></span></span>
+                             Regresar </button></a></dt>
                     </dl>
                     <div class="form-group" align = "center"></div>
                             

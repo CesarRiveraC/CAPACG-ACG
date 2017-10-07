@@ -43,9 +43,9 @@
                                     <a href="/archivos/{{$infraestructura->id}}/eliminar" class="btn btn-danger btn-xs">
                                     <span class="glyphicon glyphicon-remov-circle"></span> Eliminar</a>
 
-                                     <a href="/activos/{{$infraestructura->id}}" class="btn btn-primary btn-xs">
+                                     <a href="/infraestructuras/{{$infraestructura->id}}" class="btn btn-primary btn-xs">
                                     <span class="glyphicon glyphicon-detail-circle"></span> Detalle</a>
-                                    <a href="/activos/{{$infraestructura->id}}/edit" class="btn btn-default btn-xs">
+                                    <a href="/infraestructuras/{{$infraestructura->id}}/edit" class="btn btn-default btn-xs">
                                     <span class="glyphicon glyphicon-edit-circle"></span> Editar</a>
 
                                 </td>
