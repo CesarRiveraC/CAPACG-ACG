@@ -29,7 +29,7 @@
                       <dd>{{$semoviente->activo->Color}}</dd>
                         <br>
                       <dt>Foto</dt>
-                      <dd><a  href="{{ asset('storage/pictures/'.$semoviente->activo->Foto) }}" class="test-popup-link">
+                      <dd><a  href="{{ asset('storage/pictures/'.$semoviente->activo->Foto) }}" class="test-popup-link" class="test-popup-link">
                        <img src="{{ asset('storage/pictures/'.$semoviente->activo->Foto) }}" class="img-responsive" alt="Foto" height="300" width="300"> 
                        </a></dd>
                         <br>
