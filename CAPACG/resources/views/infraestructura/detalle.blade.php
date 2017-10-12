@@ -29,7 +29,7 @@
                       <dd>{{$infraestructura->activo->Color}}</dd>
                         <br>
                       <dt>Foto</dt>
-                      <dd><a  href="{{ asset('storage/pictures/'.$infraestructura->activo->Foto) }}">
+                      <dd><a  href="{{ asset('storage/pictures/'.$infraestructura->activo->Foto) }}" class="test-popup-link">
                        <img src="{{ asset('storage/pictures/'.$infraestructura->activo->Foto) }}" class="img-responsive" alt="Foto" height="300" width="300"> 
                        </a></dd>
                         <br>
@@ -45,7 +45,7 @@
                       <dt>Año de Fabricacion</dt>
                       <dd>{{$infraestructura->AnoFabricacion}}</dd>
                         <br>
-                      <dt><a href="/infraestructuras" >
+                      <dt><a href="/infraestructuras"  >
                              <button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-menu-left"></span></span>
                              Regresar </button></a></dt>
                     </dl>
