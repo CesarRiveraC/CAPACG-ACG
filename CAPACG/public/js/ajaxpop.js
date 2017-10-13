@@ -7,6 +7,9 @@ var contador = 1;
 function main () {
    jq('.ajax-popup-link').magnificPopup({
   type: 'ajax',
+  fixedContentPos: true,
+  closeBtnInside: true,
+  closeOnBgClick: true,
  // other options
  callbacks: {
             parseAjax: function(mfpResponse) {

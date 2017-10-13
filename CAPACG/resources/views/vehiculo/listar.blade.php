@@ -44,7 +44,7 @@
                                     <a href="/archivos/{{$vehiculo->id}}/eliminar" class="btn btn-danger btn-xs">
                                      Eliminar</a>
 
-                                     <a href="/vehiculos/{{$vehiculo->id}}" class="btn btn-primary btn-xs">
+                                     <a href="/vehiculos/{{$vehiculo->id}}" class="ajax-popup-link">
                                      Detalle</a>
                                     <a href="/vehiculos/{{$vehiculo->id}}/edit" class="btn btn-default btn-xs">
                                      Editar</a>

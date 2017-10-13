@@ -45,7 +45,7 @@
                                 <td class="warning"> 
                                     <a href="#" class="btn btn-danger btn-xs">
                                     Eliminar</a>
-                                    <a href="/inmuebles/{{$inmueble->id}}" class="btn btn-primary btn-xs">
+                                    <a href="/inmuebles/{{$inmueble->id}}" class="ajax-popup-link">
                                     Detalle</a>
                                     <a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-default btn-xs">
                                     Editar</a>

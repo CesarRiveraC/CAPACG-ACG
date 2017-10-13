@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="pip">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -29,7 +29,7 @@
                       <dd>{{$vehiculo->inmueble->activo->Color}}</dd>
                         <br>
                       <dt>Foto</dt>
-                      <dd><a  href="{{ asset('storage/pictures/'.$vehiculo->inmueble->activo->Foto) }}" class="test-popup-link" >
+                      <dd><a  href="{{ asset('storage/pictures/'.$vehiculo->inmueble->activo->Foto) }}"  >
                        <img src="{{ asset('storage/pictures/'.$vehiculo->inmueble->activo->Foto) }}" class="img-responsive" alt="Foto" height="300" width="300"> 
                        </a></dd>
                         <br>
@@ -54,9 +54,8 @@
                       <dd>{{$vehiculo->Placa}}</dd>
                         <br>
 
-                      <dt><a href="/vehiculos" >
-                             <button type="submit" class="btn btn-primary" > <span class="glyphicon glyphicon-menu-left"></span></span>
-                             Regresar </button></a></dt>
+                      <dt><button title="Cerrar(Esc)" type="button" class="mfp-close" >
+                             x</button></dt>
                     </dl>
                     <div class="form-group" align = "center"></div>
                             

@@ -39,12 +39,12 @@
 
                                 <td class="info"> {{$infraestructura->NumeroFinca}} </td>
                                 
-                                <td class="info"> 
+                                <td class="warning"> 
                                     <a href="/archivos/{{$infraestructura->id}}/eliminar" class="btn btn-danger btn-xs">
                                     <span class="glyphicon glyphicon-remov-circle"></span> Eliminar</a>
 
-                                     <a href="/infraestructuras/{{$infraestructura->id}}" class="btn btn-primary btn-xs">
-                                    <span class="glyphicon glyphicon-detail-circle"></span> Detalle</a>
+                                     <a href="/infraestructuras/{{$infraestructura->id}}" class="ajax-popup-link">
+                                     Detalle</a>
                                     <a href="/infraestructuras/{{$infraestructura->id}}/edit" class="btn btn-default btn-xs">
                                     <span class="glyphicon glyphicon-edit-circle"></span> Editar</a>
 

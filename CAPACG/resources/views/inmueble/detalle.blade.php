@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="pip">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Detalle Infraestructura</div>
+                <div class="panel-heading">Detalle Inmueble</div>
 
                 <div class="panel-body">
 
@@ -29,7 +29,7 @@
                       <dd>{{$inmueble->activo->Color}}</dd>
                         <br>
                       <dt>Foto</dt>
-                      <dd><a  href="{{ asset('storage/pictures/'.$inmueble->activo->Foto) }}" class="test-popup-link" >
+                      <dd><a  href="{{ asset('storage/pictures/'.$inmueble->activo->Foto) }}"  >
                        <img src="{{ asset('storage/pictures/'.$inmueble->activo->Foto) }}" class="img-responsive" alt="Foto" height="300" width="300"> 
                        </a></dd>
                         <br>
@@ -49,9 +49,8 @@
                       <dd>{{$inmueble->EstadoActivo}}</dd>
                         <br>
                       <dt>
-                             <a href="/inmuebles" >
-                             <button type="submit" class="btn btn-primary" > <span class="glyphicon glyphicon-menu-left"></span></span>
-                             Regresar </button></a></dt>
+                             <button title="Cerrar(Esc)" type="button" class="mfp-close" >
+                             x</button></dt>
                     </dl>
                     <div class="form-group" align = "center"></div>
                             

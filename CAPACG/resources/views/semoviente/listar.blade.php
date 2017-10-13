@@ -43,7 +43,7 @@
                                     <a href="/archivos/{{$semoviente->id}}/eliminar" class="btn btn-danger btn-xs">
                                      Eliminar</a>
 
-                                     <a href="/semovientes/{{$semoviente->id}}" class="btn btn-primary btn-xs">
+                                     <a href="/semovientes/{{$semoviente->id}}" class="ajax-popup-link">
                                      Detalle</a>
                                     <a href="/semovientes/{{$semoviente->id}}/edit" class="btn btn-default btn-xs">
                                      Editar</a>

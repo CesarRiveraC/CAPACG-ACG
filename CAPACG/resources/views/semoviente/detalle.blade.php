@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="pip">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -29,7 +29,7 @@
                       <dd>{{$semoviente->activo->Color}}</dd>
                         <br>
                       <dt>Foto</dt>
-                      <dd><a  href="{{ asset('storage/pictures/'.$semoviente->activo->Foto) }}" class="test-popup-link" class="test-popup-link">
+                      <dd><a  href="{{ asset('storage/pictures/'.$semoviente->activo->Foto) }}" >
                        <img src="{{ asset('storage/pictures/'.$semoviente->activo->Foto) }}" class="img-responsive" alt="Foto" height="300" width="300"> 
                        </a></dd>
                         <br>
@@ -43,11 +43,10 @@
                       <dt>Peso</dt>
                       <dd>{{$semoviente->Peso}}</dd>
                      
-                        <br>
+                      <dt>
+                             <button title="Cerrar(Esc)" type="button" class="mfp-close" >
+                             x</button></dt>
 
-                      <dt><a href="/semovientes" >
-                             <button type="submit" class="btn btn-primary" > <span class="glyphicon glyphicon-menu-left"></span></span>
-                             Regresar </button></a></dt>
                     </dl>
                     <div class="form-group" align = "center"></div>
                             
