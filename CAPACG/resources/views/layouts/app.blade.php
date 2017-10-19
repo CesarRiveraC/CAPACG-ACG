@@ -14,6 +14,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
     <script src="{{ asset('js/ajaxpop.js') }}"></script> 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -77,13 +78,17 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"   >
                             Activos <span class="glyphicon glyphicon-menu-hamburger"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a class = "glyphicon glyphicon-floppy-disk" href="/infraestructuras">Infraestructura</a></li>
-                                <li><a class="glyphicon glyphicon-lamp" href="/inmuebles">Inmuebles</a></li>
-                                <li><a class="glyphicon glyphicon-knight" href="/semovientes">Semovientes</a></li>
-                                <li><a class="glyphicon glyphicon-transport" href="/vehiculos">Vehiculos</a></li>
+                                <li><a href="/infraestructuras"><i class="fa fa-university" aria-hidden="true"></i> Infraestructura</a></li>
+                                <li><a href="/inmuebles"><i class="fa fa-television" aria-hidden="true"></i> Inmuebles</a></li>
+                                <li><a href="/semovientes"><i class="fa fa-heartbeat" aria-hidden="true"></i> Semovientes</a></li>
+                                <li><a href="/vehiculos"><span class="fa fa-car" aria-hidden="true"></span> Vehiculos</a></li>
                             </ul>
                     
                         </li>
+                    </div>
+
+                    <div class="navbar-brand">
+                        <a href="/combustibles"><i class="fa fa-battery-full" aria-hidden="true"></i> Combustibles</a>
                     </div>
                     
                 </div>
@@ -98,8 +103,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}"> <span class="glyphicon glyphicon-log-in"></span>Iniciar Sesion</a></li>
-                            <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user">Registrar</a></li>
+                            <li><a href="{{ route('login') }}"> <i class="fa fa-sign-in" aria-hidden="true"></i> Iniciar Sesion</a></li>
+                            <li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Registrar</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -111,7 +116,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                             <span class="glyphicon glyphicon-log-out"> Cerrar Sesion
+                                             <i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesion
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
