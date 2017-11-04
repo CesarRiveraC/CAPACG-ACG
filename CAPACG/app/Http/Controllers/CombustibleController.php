@@ -12,8 +12,15 @@ class CombustibleController extends Controller
 {
     public function index()
     {
-        $combustibles = Combustible::paginate(5);
-        return view('/combustible/listar')->withCombustibles($combustibles);
+      //  $combustibles = Combustible::paginate(5);
+      $combustibles = DB::table('combustibles')
+      ->select('combustibles.*')
+      ->where('combustibles.Estado','=','1')
+      ->get();
+
+      $combustiblesPaginadas = $this->paginate($combustibles->toArray(),5);
+      return view('/combustible/listar', ['combustibles' => $combustiblesPaginadas]);
+        
     }
 
     public function create()
@@ -39,6 +46,7 @@ class CombustibleController extends Controller
         $combustible->FuncionarioQueHizoCompra = $request['FuncionarioQueHizoCompra'];
         $combustible->Dependencia = $request['Dependencia'];
         $combustible->CodigoDeAccionDePlanPresupuesto = $request['CodigoDeAccionDePlanPresupuesto'];
+        $combustible->Estado=1;
         
         if ($request->hasFile('Foto')){ 
 
@@ -107,6 +115,26 @@ class CombustibleController extends Controller
         $combustible->save();
         return redirect('/combustibles');
     }
+
+    public function change($id)
+    {
+    	$combustible = Combustible::find($id);
+              
+        return view('/combustible/cambiarEstado',compact('combustible'));
+    }
+
+    public function updatestate($id, Request $request)
+    {
+        
+        $combustible = Combustible::find($id);
+        $combustible->Estado = 0;    
+        $combustible->save();
+        return redirect('/combustibles');
+    }
+
+    
+
+
 
     public function paginate($items, $perPages){
         $pageStart = \Request::get('page',1);

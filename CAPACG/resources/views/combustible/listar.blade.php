@@ -13,7 +13,31 @@
             <br>
 
             <div class="panel panel-info">
-                <div class="panel-heading"><h4>Combustibles</h4> </div>
+<!--
+            <form class="navbar-form navbar-right " role="search">
+  <div class="form-group">
+  <div class="col-xs-3">
+  <input type="search" class="form-control" placeholder="">
+</div>
+  </div>
+  <button type="submit" class="btn btn-info btn-sm active">Buscar</button>
+</form> 
+
+
+            {!! Form::open(['route'=>'combustible.listar','method'=>'GET', 'class'=>'navbar-form pull-right']) !!}
+            <div class="form-group">
+
+            {!! Form::text('name', null,['class'=>'form-control','placeholder'=>'Buscar'])}
+            </div>
+            {!! Form::close() !!}
+                <div class="panel-heading"><h4>Combustibles</h4> 
+                -->
+                {{ Form::open('route'=>'/combustible/listar','method'=> 'GET', 'class'=> 'navbar-form pull-right') }}
+
+
+                {{ Form::close() }}
+                
+                </div>
                 <div class="panel-body">
                 {{ $combustibles->links() }}
                     <div class="table-responsive">
@@ -25,6 +49,7 @@
                                 <th>Número</th>
                                 <th>Fecha</th>
                                 <th>Kilometraje</th>
+                                <th>Opciones</th>
                              </tr>
                       </thead>
                     <tbody>
@@ -39,7 +64,7 @@
                                
 
                                 <td class="warning"> 
-                                    <a href="/archivos/{{$combustible->id}}/eliminar" class="btn btn-danger btn-xs">
+                                    <a href="/combustibles/{{$combustible->id}}/change" class="btn btn-danger btn-xs">
                                     <span class="glyphicon glyphicon-remov-circle"></span> Eliminar</a>
 
                                      <a href="/combustibles/{{$combustible->id}}" class="ajax-popup-link">

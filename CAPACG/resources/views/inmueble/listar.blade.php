@@ -43,7 +43,7 @@
                                 <td class="info"> {{$inmueble->Dependencia}} </td>
                                 
                                 <td class="warning"> 
-                                    <a href="#" class="btn btn-danger btn-xs">
+                                    <a href="/inmuebles/{{$inmueble->id}}/change" class="btn btn-danger btn-xs">
                                     Eliminar</a>
                                     <a href="/inmuebles/{{$inmueble->id}}" class="ajax-popup-link">
                                     Detalle</a>

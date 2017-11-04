@@ -15,9 +15,10 @@ class InmuebleController extends Controller
 
     public function index()
     {
-        $inmuebles = DB::table('inmuebles')
+         $inmuebles = DB::table('inmuebles')
         ->join('activos','inmuebles.activo_id', '=','activos.id')
         ->select('activos.*','inmuebles.*')
+        ->where('activos.Estado','=','1')
         ->get();
 
         $inmueblesPaginadas = $this->paginate($inmuebles->toArray(),5);
@@ -41,7 +42,8 @@ class InmuebleController extends Controller
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
-         
+            $activo->Estado = 1;
+
             if ($request->hasFile('Foto')){ 
                 
                                 $file = $request->file('Foto');  
@@ -118,6 +120,31 @@ class InmuebleController extends Controller
 
         return redirect('/inmuebles');
     }
+
+    public function change($id)
+    {
+    	$inmueble = Inmueble::find($id);
+        $activo = Activo::find($inmueble->activo_id);
+        $inmueble->activo()->associate($activo);
+        
+        return view('/inmueble/cambiarEstado',compact('inmueble'));
+    }
+
+    public function updatestate($id, Request $request)
+    {
+        
+        $inmueble = Inmueble::find($id);
+        $activo = Activo::find($inmueble->activo_id);
+      
+        $activo->Estado = 0;    
+
+       
+        $activo->save();
+
+     
+        return redirect('/inmuebles');
+    }
+
 
     public function paginate($items, $perPages){
         $pageStart = \Request::get('page',1);
