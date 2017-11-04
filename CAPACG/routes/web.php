@@ -16,7 +16,10 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('infraestructuras/excel', 'InfraestructuraController@excel');
     Route::resource('infraestructuras','InfraestructuraController');
+
     Route::resource('semovientes','SemovienteController');
 
     Route::get('combustibles/{id}/change','CombustibleController@change');
