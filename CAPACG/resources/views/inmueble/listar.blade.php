@@ -12,7 +12,7 @@
             <br>
             <br>
 
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading"><h4>Inmuebles</h4> </div>
                 <div class="panel-body">
                 {{ $inmuebles->links() }}

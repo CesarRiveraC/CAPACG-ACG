@@ -13,30 +13,7 @@
             <br>
 
             <div class="panel panel-info">
-<!--
-            <form class="navbar-form navbar-right " role="search">
-  <div class="form-group">
-  <div class="col-xs-3">
-  <input type="search" class="form-control" placeholder="">
-</div>
-  </div>
-  <button type="submit" class="btn btn-info btn-sm active">Buscar</button>
-</form> 
-
-
-            {!! Form::open(['route'=>'combustible.listar','method'=>'GET', 'class'=>'navbar-form pull-right']) !!}
-            <div class="form-group">
-
-            {!! Form::text('name', null,['class'=>'form-control','placeholder'=>'Buscar'])}
-            </div>
-            {!! Form::close() !!}
                 <div class="panel-heading"><h4>Combustibles</h4> 
-                -->
-                {{ Form::open('route'=>'/combustible/listar','method'=> 'GET', 'class'=> 'navbar-form pull-right') }}
-
-
-                {{ Form::close() }}
-                
                 </div>
                 <div class="panel-body">
                 {{ $combustibles->links() }}
