@@ -10,6 +10,11 @@ use Storage;
 
 class CombustibleController extends Controller
 {
+
+    public function __construct()
+    {   
+        $this->middleware('Administrador')->except('index');
+    }
     public function index()
     {
       //  $combustibles = Combustible::paginate(5);

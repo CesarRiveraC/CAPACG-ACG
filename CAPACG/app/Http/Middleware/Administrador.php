@@ -21,27 +21,16 @@ class Administrador
         $this->auth = $auth;
      }
 
-
     public function handle($request, Closure $next)
     {
-        switch($this->auth->user()->Rol){
-
-            case '1':
-            //se define como vacio el case cuando es true para evitr un bucle de direccionamiento...
-            break;
-            case '2':
-            // aca se va a definir el redireccionamiento para colaborador en caso que el usuario tenga los permisos de colaborador
-            //    return redirect()->to('Colaborador');
-            
-            break;
-
-
+        $usuarioActual=\Auth::user();
+        if ($usuarioActual->Rol!=1) {
+           // abort(403, 'Unauthorized action.');
+           return redirect('/mensajeRechazado');
+        } 
+        else{
+            return $next($request);                        
         }
-
-
-        return $next($request);
     }
-
-
 
 }

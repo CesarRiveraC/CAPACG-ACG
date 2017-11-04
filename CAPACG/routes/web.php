@@ -34,9 +34,17 @@ Route::group(['middleware' => 'auth'], function() {
     
     Route::resource('activos','Otro');  
     Route::resource('colaboradores','PruebaController');
+    Route::get('/mensajeRechazado', function(){
+        return view('mensajeRechazado');
+    });
   });
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 //Route::resource('activos','ActivoController');
+
+Route::group(['middleware' => 'Administrador'], function(){
+    // agregar las rutas a las que no se desea que accese un usuario que no sea administrador      
+});
+
 

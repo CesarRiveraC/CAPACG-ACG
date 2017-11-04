@@ -12,6 +12,10 @@ class ActivoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('Administrador')->except('index');
+    }
     public function index()
     {
         $activos = Activo::paginate(2);

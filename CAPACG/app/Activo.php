@@ -17,7 +17,7 @@ class Activo extends Model
 
     public function inmueble()
     {
-    	return $this->hasOne('App\Inmueble');
+    	return $this->hasOne('App\Inmueble') ->with('Administrador');
     }
 
     public function semoviente()

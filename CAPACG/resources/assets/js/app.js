@@ -20,3 +20,7 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+mix.autoload({
+    jquery: ['$', 'window.jQuery',"jQuery","window.$","jquery","window.jquery"]
+});

@@ -5,20 +5,13 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">WELCOME!</div>
-
                 <div class="panel-body">    
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
                     @endif
-                   {{--  @if($user->Rol==1)
-                   <div>
-                    Se ha logueado como administrador.
-                   </div>
-                  @endif  --}}
-                    You are logged in!
+                    No tiene suficientes permisos para acceder al recurso
                 </div>
             </div>
         </div>

@@ -12,6 +12,11 @@ class SemovienteController extends Controller
 {
     //
 
+    public function __construct()
+    {   
+        $this->middleware('Administrador')->except('index');
+    }
+
     public function index()
     {
         $semovientes = DB::table('semovientes')

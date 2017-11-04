@@ -168,6 +168,7 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        
 
         /*
          * Application Service Providers...

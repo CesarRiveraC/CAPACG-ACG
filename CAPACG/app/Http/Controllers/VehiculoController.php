@@ -12,6 +12,11 @@ use Storage;
 class VehiculoController extends Controller
 {
     //
+
+    public function __construct()
+    {   
+        $this->middleware('Administrador')->except('index');
+    }
     public function index()
     {
         $vehiculos = DB::table('vehiculos')
