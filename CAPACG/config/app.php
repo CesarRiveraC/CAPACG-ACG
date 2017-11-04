@@ -168,12 +168,9 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-<<<<<<< HEAD
         
 
-=======
         Maatwebsite\Excel\ExcelServiceProvider::class,
->>>>>>> feature22
         /*
          * Application Service Providers...
          */

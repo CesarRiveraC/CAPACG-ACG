@@ -137,7 +137,7 @@ class InfraestructuraController extends Controller
                  ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa',
                  'activos.SubPrograma','activos.Color','infraestructuras.NumeroFinca','infraestructuras.AreaConstruccion'
                  ,'infraestructuras.AreaTerreno','infraestructuras.AnoFabricacion')
-                 ->where('activos.Estado','=','1')
+                 ->where('activos.Estado','=','0') //cambiar el estado para generar el reporte
                  ->get();
  
                  $infraestructuras = json_decode(json_encode($infraestructuras),true);
