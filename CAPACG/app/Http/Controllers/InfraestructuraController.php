@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Infraestructura;
 use App\Activo;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Storage;
 
@@ -122,6 +123,31 @@ class InfraestructuraController extends Controller
         $infraestructura->save();
         return redirect('/infraestructuras');
     }
+
+    public function excel(){
+        
+ 
+         Excel::create('Laravel Excel', function($excel) {
+  
+             $excel->sheet('Activos', function($sheet) {
+  
+                 //$infraestructuras = Activo::all();
+                  $infraestructuras = DB::table('infraestructuras')
+                 ->join('activos','infraestructuras.activo_id', '=','activos.id')
+                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa',
+                 'activos.SubPrograma','activos.Color','infraestructuras.NumeroFinca','infraestructuras.AreaConstruccion'
+                 ,'infraestructuras.AreaTerreno','infraestructuras.AnoFabricacion')
+                 ->where('activos.Estado','=','1')
+                 ->get();
+ 
+                 $infraestructuras = json_decode(json_encode($infraestructuras),true);
+                 $sheet->freezeFirstRow();
+                 $sheet->fromArray($infraestructuras);
+  
+             });
+         })->export('xls');
+ 
+     }
 
     public function paginate($items, $perPages){
         $pageStart = \Request::get('page',1);

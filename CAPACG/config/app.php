@@ -168,8 +168,12 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+<<<<<<< HEAD
         
 
+=======
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+>>>>>>> feature22
         /*
          * Application Service Providers...
          */
@@ -228,6 +232,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => 'Barryvdh\DomPDF\Facade',
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 
     ],
 
