@@ -90,6 +90,11 @@
                     <div class="navbar-brand">
                         <a href="/combustibles"><i class="fa fa-battery-full" aria-hidden="true"></i> Combustibles</a>
                     </div>
+                   
+                     <div class="navbar-brand">
+                        <a href="/usuarios"><i class="fa fa-battery-full" aria-hidden="true"></i> Usuarios</a>
+                    </div>
+                   
                     
                 </div>
 

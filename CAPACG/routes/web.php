@@ -40,6 +40,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/mensajeRechazado', function(){
         return view('mensajeRechazado');
     });
+
+    Route::resource('usuarios','UsuariosController');
   });
 
 Auth::routes();

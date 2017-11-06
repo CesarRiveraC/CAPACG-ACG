@@ -4,6 +4,7 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Routing\InfraestructuraController;
+use Illuminate\Routing\UsuariosController;
 
 
 class Kernel extends HttpKernel
