@@ -76,7 +76,7 @@ class InfraestructuraController extends Controller
         //$activo = Activo::find($id);
         //$file = Storage::disk('MyDiskDriver')->get($activo->Foto);
         //$activo->Foto = $File;
-        return view('/infraestructura/detalle', compact('infraestructura'));
+        return response()->json(['infraestructura'=>$infraestructura]);
 
     }
 

@@ -42,12 +42,12 @@
                                 
                                 <td class="warning"> 
                                     <a href="/archivos/{{$infraestructura->id}}/eliminar" class="btn btn-danger btn-xs">
-                                    <span class="glyphicon glyphicon-remov-circle"></span> Eliminar</a>
+                                    Eliminar</a>
 
-                                     <a href="/infraestructuras/{{$infraestructura->id}}" class="ajax-popup-link">
+                                     <a  class="btn btn-info btn-xs detalleInfraestructura" data-infraestructura = "{{$infraestructura->id}}" >
                                      Detalle</a>
                                     <a href="/infraestructuras/{{$infraestructura->id}}/edit" class="btn btn-default btn-xs">
-                                    <span class="glyphicon glyphicon-edit-circle"></span> Editar</a>
+                                     Editar</a>
 
                                 </td>
                                
@@ -62,4 +62,6 @@
         </div>
     </div>
 </div>
+@include('modals.detalleInfraestructura')
+    <script src="{{ asset('js/infraestructura.js') }}"></script> 
 @endsection
