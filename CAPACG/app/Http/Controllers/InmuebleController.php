@@ -17,16 +17,16 @@ class InmuebleController extends Controller
         $this->middleware('Administrador')->except('index');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        
          $inmuebles = DB::table('inmuebles')
         ->join('activos','inmuebles.activo_id', '=','activos.id')
         ->select('activos.*','inmuebles.*')
         ->where('activos.Estado','=','1')
-        ->get();
-
-        $inmueblesPaginadas = $this->paginate($inmuebles->toArray(),5);
-        return view('/inmueble/listar', ['inmuebles' => $inmueblesPaginadas]);
+        ->paginate();
+      
+        return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }
 
     public function create()
@@ -147,6 +147,25 @@ class InmuebleController extends Controller
 
      
         return redirect('/inmuebles');
+    }
+
+    
+    public function search()
+    {
+
+      $q=request('search');
+      
+      $inmuebles = DB::table('inmuebles')
+      ->join('activos','inmuebles.activo_id', '=','activos.id')
+      ->select('activos.*','inmuebles.*')
+      ->where('activos.Estado','=','1')
+      ->where('activos.Placa','LIKE','%' .$q.'%')
+      ->paginate();
+    
+      return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
+    
+
+    
     }
 
 

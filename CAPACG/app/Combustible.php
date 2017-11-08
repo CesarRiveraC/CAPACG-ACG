@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Combustible extends Model
 {
@@ -20,4 +21,16 @@ class Combustible extends Model
     {
     	return $this->belongsTo('App\Colaborador');
     }
+
+    public function scopeBuscar($query, $buscar){
+        if(trim($buscar) !=""){
+            $query ->orWhere('Estado',"=",'1');
+            $query ->orWhere('NoVaucher',"LIKE","%$buscar%");
+            $query ->orWhere('Numero',"LIKE","%$buscar%");
+            
+        }
+    }
+
+
+
 }

@@ -17,14 +17,13 @@ class CombustibleController extends Controller
     }
     public function index()
     {
-      //  $combustibles = Combustible::paginate(5);
+ 
       $combustibles = DB::table('combustibles')
       ->select('combustibles.*')
       ->where('combustibles.Estado','=','1')
-      ->get();
-
-      $combustiblesPaginadas = $this->paginate($combustibles->toArray(),5);
-      return view('/combustible/listar', ['combustibles' => $combustiblesPaginadas]);
+      ->paginate();
+    
+      return view('/combustible/listar', ['combustibles' => $combustibles]);
         
     }
 
@@ -135,6 +134,25 @@ class CombustibleController extends Controller
         $combustible->Estado = 0;    
         $combustible->save();
         return redirect('/combustibles');
+    }
+
+
+    public function search()
+    {
+      $q=request('search');
+
+      if($q!=""){
+      $combustibles = DB::table('combustibles')
+      ->select('combustibles.*')
+      ->where('combustibles.Estado','=','1')
+      ->where('combustibles.NoVaucher','LIKE','%' .$q.'%')
+      ->orWhere('Numero',"LIKE",'%' .$q.'%')
+      ->paginate();
+      
+      return view('/combustible/listar', ['combustibles' => $combustibles]);
+      }else{
+     dd("No existe");
+      }
     }
 
     

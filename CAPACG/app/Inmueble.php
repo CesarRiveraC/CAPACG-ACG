@@ -17,4 +17,10 @@ class Inmueble extends Model
     {
     	return $this->belongsTo('App\Activo');
     }
+        public function scopeBuscar($query, $buscar){
+            if($buscar !=""){
+                $query ->orWhere('Serie',"LIKE","%$buscar%");
+            
+            }
+        }
 }

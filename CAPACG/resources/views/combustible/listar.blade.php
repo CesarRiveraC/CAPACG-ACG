@@ -13,7 +13,26 @@
             <br>
 
             <div class="panel panel-info">
+            
+
+     <form action="combustibles/search" class="navbar-form navbar-right" role="search" method="GET">
+    <div class="form-group">
+    <input type="text" class="form-control" name="search"  placeholder="Buscar">
+    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" ></span></button>
+    </div>
+    
+     </form>
+
+
+     <!--   <form action="combustibles/search" class="navbar-form navbar-right" role="search">
+    <div class="form-group">
+    <input type="text" class="form-control" name="search"  placeholder="Buscar">
+    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" ></span></button>
+    </div>
+    
+     </form>-->
                 <div class="panel-heading"><h4>Combustibles</h4> 
+
                 </div>
                 <div class="panel-body">
                 {{ $combustibles->links() }}
@@ -38,7 +57,7 @@
                                 <td class="info"> {{$combustible->Numero}} </td>
                                 <td class="info"> {{$combustible->Fecha}} </td>
                                 <td class="info"> {{$combustible->Kilometraje}} </td>
-                               
+                                
 
                                 <td class="warning"> 
                                     <a href="/combustibles/{{$combustible->id}}/change" class="btn btn-danger btn-xs">
@@ -48,6 +67,9 @@
                                      Detalle</a>
                                     <a href="/combustibles/{{$combustible->id}}/edit" class="btn btn-default btn-xs">
                                     <span class="glyphicon glyphicon-edit-circle"></span> Editar</a>
+                                    <a href="/combustibles/{{$combustible->id}}/edit" class="btn btn-default btn-xs">
+                                    <span class=""></span> Asignar</a>
+                                    
 
                                 </td>
                                

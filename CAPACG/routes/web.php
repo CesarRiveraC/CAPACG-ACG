@@ -21,7 +21,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('combustibles/{id}/change','CombustibleController@change');
     Route::put('combustibles/{id}/updatestate','CombustibleController@updatestate');
-
+    Route::get('combustibles/search','CombustibleController@search');
     
     Route::resource('combustibles','CombustibleController');
 
@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('inmuebles/{id}/change','InmuebleController@change');
     Route::put('inmuebles/{id}/updatestate','InmuebleController@updatestate');
+    Route::get('inmuebles/search','InmuebleController@search');
     Route::resource('inmuebles','InmuebleController');  
     
     Route::resource('activos','Otro');  

@@ -13,6 +13,16 @@
             <br>
 
             <div class="panel panel-info">
+
+            
+     <form action="inmuebles/search" class="navbar-form navbar-right" role="search">
+    <div class="form-group">
+    <input type="text" class="form-control" name="search"  placeholder="Buscar">
+    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" ></span></button>
+    </div>
+    
+     </form>
+
                 <div class="panel-heading"><h4>Inmuebles</h4> </div>
                 <div class="panel-body">
                 {{ $inmuebles->links() }}
