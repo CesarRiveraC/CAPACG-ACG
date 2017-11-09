@@ -40,8 +40,8 @@
 
                                 <td class="info"> {{$infraestructura->NumeroFinca}} </td>
                                 
-                                <td class="warning"> 
-                                    <a href="/archivos/{{$infraestructura->id}}/eliminar" class="btn btn-danger btn-xs">
+                                <td class="info"> 
+                                    <a  class="btn btn-danger btn-xs estado" data-estado ="{{$infraestructura->id}}" >
                                     Eliminar</a>
 
                                      <a  class="btn btn-info btn-xs detalleInfraestructura" data-infraestructura = "{{$infraestructura->id}}" >
@@ -62,6 +62,8 @@
         </div>
     </div>
 </div>
+@include('modals.estado')
 @include('modals.detalleInfraestructura')
+
     <script src="{{ asset('js/infraestructura.js') }}"></script> 
 @endsection

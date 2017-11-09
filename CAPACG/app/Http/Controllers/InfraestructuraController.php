@@ -126,6 +126,31 @@ class InfraestructuraController extends Controller
         return redirect('/infraestructuras');
     }
 
+    public function change($id)
+    {
+    	$infraestructura = Infraestructura::find($id);
+        $activo = Activo::find($infraestructura->activo_id);
+        $infraestructura->activo()->associate($activo);
+        
+        return response()->json(['infraestructura'=>$infraestructura]);
+        
+    }
+
+    public function updatestate($id)
+    {
+        
+        $infraestructura = Infraestructura::find($id);
+        $activo = Activo::find($infraestructura->activo_id);
+      
+        $activo->Estado = 1;    
+
+       
+        $activo->save();
+
+     
+        return redirect('/infraestructuras');
+    }
+
     public function excel(){
         
  

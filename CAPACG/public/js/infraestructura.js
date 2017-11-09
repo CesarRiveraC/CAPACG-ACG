@@ -1,8 +1,20 @@
-// $(function(){
-//     $('.detalleInfraestructura').click(function(e){
-//         $('#DetalleInfraestructura').modal();
-//     });
-// });
+ $(function(){
+     $('.estado').click(function(e){
+       
+        let id = $(this).attr('data-estado');
+        let url = `/infraestructuras/${id}/change`;
+
+        $.get(url, function (result) {
+            $('#Placa').text(result.infraestructura.activo.Placa);
+            $('#role-form').attr('action','/infraestructuras/'+result.infraestructura.id+'/updatestate');
+                    
+        }).fail(function () {
+            alert('algo salio mal');
+        });
+
+         $('#Estado').modal();
+     });
+ });
 
 $(function (){
     $('.detalleInfraestructura').click(function (e){

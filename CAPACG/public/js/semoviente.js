@@ -4,6 +4,24 @@
 //     });
 // });
 
+$(function(){
+    $('.estado').click(function(e){
+       
+       let id = $(this).attr('data-estado');
+       let url = `/semovientes/${id}/change`;
+
+       $.get(url, function (result) {
+           $('#Placa').text(result.semoviente.activo.Placa);
+           $('#role-form').attr('action','/semovientes/'+result.semoviente.id+'/updatestate');
+                   
+       }).fail(function () {
+           alert('algo salio mal');
+       });
+
+        $('#Estado').modal();
+    });
+});
+
 $(function (){
     $('.detalleSemoviente').click(function (e){
         let id = $(this).attr('data-semoviente');

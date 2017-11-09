@@ -42,7 +42,7 @@
                                 <td class="info"> {{$vehiculo->Serie}} </td>
                                 
                                 <td class="info"> 
-                                    <a href="/archivos/{{$vehiculo->id}}/eliminar" class="btn btn-danger btn-xs">
+                                    <a  class="btn btn-danger btn-xs estado" data-estado ="{{$vehiculo->id}}" >
                                      Eliminar</a>
 
                                      <a  class="btn btn-info btn-xs detalleVehiculo" data-vehiculo = "{{$vehiculo->id}}" >
@@ -61,6 +61,7 @@
         </div>
     </div>
 </div>
+@include('modals.estado')
 @include('modals.detalleVehiculo')
     <script src="{{ asset('js/vehiculo.js') }}"></script> 
 @endsection

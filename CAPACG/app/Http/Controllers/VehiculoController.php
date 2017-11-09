@@ -24,6 +24,7 @@ class VehiculoController extends Controller
         ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
         ->select('activos.*','inmuebles.*','vehiculos.*')
+        ->where('activos.Estado','=','0') //hay que definir bien cual es el que se va a utilizar
         ->paginate(10);
 
         //$vehiculosPaginadas = $this->paginate($vehiculos->toArray(),5);
@@ -140,6 +141,32 @@ class VehiculoController extends Controller
     }
 
 
+    public function change($id)
+    {
+    	$vehiculo = Vehiculo::find($id);
+        $inmueble = Inmueble::find($vehiculo->inmueble_id);
+        $activo = Activo::find($inmueble->activo_id);
+        $vehiculo->inmueble()->associate($inmueble);
+        $inmueble->activo()->associate($activo);
+        
+        return response()->json(['vehiculo'=>$vehiculo]);
+        
+    }
+
+    public function updatestate($id)
+    {
+        $vehiculo = Vehiculo::find($id);
+        $inmueble = Inmueble::find($vehiculo->inmueble_id);
+        $activo = Activo::find($inmueble->activo_id);
+      
+        $activo->Estado = 1;    
+
+       
+        $activo->save();
+
+     
+        return redirect('/vehiculos');
+    }
     public function excel(){
         
  

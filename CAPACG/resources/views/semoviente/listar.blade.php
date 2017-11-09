@@ -41,7 +41,7 @@
                                 <td class="info"> {{$semoviente->Raza}} </td>
                                 
                                 <td class="warning"> 
-                                    <a href="/archivos/{{$semoviente->id}}/eliminar" class="btn btn-danger btn-xs">
+                                    <a  class="btn btn-danger btn-xs estado" data-estado ="{{$semoviente->id}}" >
                                      Eliminar</a>
 
                                      <a  class="btn btn-info btn-xs detalleSemoviente" data-semoviente = "{{$semoviente->id}}" >
@@ -60,6 +60,7 @@
         </div>
     </div>
 </div>
+@include('modals.estado')
 @include('modals.detalleSemoviente')
     <script src="{{ asset('js/semoviente.js') }}"></script> 
 @endsection

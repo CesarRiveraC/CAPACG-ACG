@@ -1,4 +1,20 @@
+$(function(){
+    $('.estado').click(function(e){
+       
+       let id = $(this).attr('data-estado');
+       let url = `/vehiculos/${id}/change`;
 
+       $.get(url, function (result) {
+           $('#Placa').text(result.vehiculo.inmueble.activo.Placa);
+           $('#role-form').attr('action','/vehiculos/'+result.vehiculo.id+'/updatestate');
+                   
+       }).fail(function () {
+           alert('algo salio mal');
+       });
+
+        $('#Estado').modal();
+    });
+});
 
 $(function (){
     $('.detalleVehiculo').click(function (e){

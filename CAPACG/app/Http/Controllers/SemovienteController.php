@@ -117,6 +117,30 @@ class SemovienteController extends Controller
         return redirect('/semovientes');
     }
 
+    public function change($id)
+    {
+    	$semoviente = Semoviente::find($id);
+        $activo = Activo::find($semoviente->activo_id);
+        $semoviente->activo()->associate($activo);
+        
+        return response()->json(['semoviente'=>$semoviente]);
+        
+    }
+
+    public function updatestate($id)
+    {
+        
+        $semoviente = Semoviente::find($id);
+        $activo = Activo::find($semoviente->activo_id);
+      
+        $activo->Estado = 1;    
+
+       
+        $activo->save();
+
+     
+        return redirect('/semovientes');
+    }
 
     public function excel(){
         
