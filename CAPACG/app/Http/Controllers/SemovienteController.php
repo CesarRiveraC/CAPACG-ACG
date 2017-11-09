@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Semoviente;
 use App\Activo;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Storage;
 
@@ -22,10 +23,11 @@ class SemovienteController extends Controller
         $semovientes = DB::table('semovientes')
         ->join('activos','semovientes.activo_id', '=','activos.id')
         ->select('activos.*','semovientes.*')
-        ->get();
+        ->where('activos.Estado','=','0') //hay que definir bien cual es el que se va a utilizar
+        ->paginate(10);
 
-        $semovientesPaginados = $this->paginate($semovientes->toArray(),5);
-        return view('/semoviente/listar', ['semovientes' => $semovientesPaginados]);
+        
+        return view('/semoviente/listar', ['semovientes' => $semovientes]);
     }
 
     public function create()
@@ -116,17 +118,30 @@ class SemovienteController extends Controller
     }
 
 
-    public function paginate($items, $perPages){
-        $pageStart = \Request::get('page',1);
-        $offSet = ($pageStart * $perPages)-$perPages;
-        $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
-
-        return new \Illuminate\Pagination\LengthAwarePaginator(
-            $itemsForCurrentPage, count($items),
-            $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
-            ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
-        );
-            }
+    public function excel(){
+        
+ 
+         Excel::create('Reporte Semovientes', function($excel) {
+  
+             $excel->sheet('Activos', function($sheet) {
+  
+                 //$infraestructuras = Activo::all();
+                  $semovientes = DB::table('semovientes')
+                 ->join('activos','semovientes.activo_id', '=','activos.id')
+                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa',
+                 'activos.SubPrograma','activos.Color','semovientes.Raza','semovientes.Edad'
+                 ,'semovientes.Peso')
+                 ->where('activos.Estado','=','0') //cambiar el estado para generar el reporte
+                 ->get();
+ 
+                 $semovientes = json_decode(json_encode($semovientes),true);
+                 $sheet->freezeFirstRow();
+                 $sheet->fromArray($semovientes);
+  
+             });
+         })->export('xls');
+ 
+     }
 
 
 

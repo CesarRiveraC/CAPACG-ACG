@@ -21,10 +21,12 @@ class InfraestructuraController extends Controller
         $infraestructuras = DB::table('infraestructuras')
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
         ->select('activos.*','infraestructuras.*')
-        ->get();
+        ->where('activos.Estado','=','0') //hay que definir bien cual es el que se va a utilizar
+        ->paginate(10);
+        // ->get();
 
-        $infraestructurasPaginadas = $this->paginate($infraestructuras->toArray(),5);
-        return view('/infraestructura/listar', ['infraestructuras' => $infraestructurasPaginadas]);
+        // $infraestructurasPaginadas = $this->paginate($infraestructuras->toArray(),5);
+        return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
     }
 
     public function create()
@@ -127,7 +129,7 @@ class InfraestructuraController extends Controller
     public function excel(){
         
  
-         Excel::create('Laravel Excel', function($excel) {
+         Excel::create('Reporte Infraestructura', function($excel) {
   
              $excel->sheet('Activos', function($sheet) {
   
@@ -149,15 +151,15 @@ class InfraestructuraController extends Controller
  
      }
 
-    public function paginate($items, $perPages){
-        $pageStart = \Request::get('page',1);
-        $offSet = ($pageStart * $perPages)-$perPages;
-        $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
+    // public function paginate($items, $perPages){
+    //     $pageStart = \Request::get('page',1);
+    //     $offSet = ($pageStart * $perPages)-$perPages;
+    //     $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
 
-        return new \Illuminate\Pagination\LengthAwarePaginator(
-            $itemsForCurrentPage, count($items),
-            $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
-            ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
-        );
-            }
+    //     return new \Illuminate\Pagination\LengthAwarePaginator(
+    //         $itemsForCurrentPage, count($items),
+    //         $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
+    //         ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+    //     );
+    //         }
 }

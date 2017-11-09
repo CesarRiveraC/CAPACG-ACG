@@ -20,6 +20,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('infraestructuras/excel', 'InfraestructuraController@excel');
     Route::resource('infraestructuras','InfraestructuraController');
 
+    Route::get('semovientes/excel', 'SemovienteController@excel');
     Route::resource('semovientes','SemovienteController');
 
     Route::get('combustibles/{id}/change','CombustibleController@change');
@@ -28,7 +29,7 @@ Route::group(['middleware' => 'auth'], function() {
     
     Route::resource('combustibles','CombustibleController');
 
-
+    Route::get('vehiculos/excel', 'VehiculoController@excel');
     Route::resource('vehiculos','VehiculoController');
 
     Route::get('inmuebles/{id}/change','InmuebleController@change');

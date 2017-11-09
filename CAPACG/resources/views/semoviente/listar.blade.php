@@ -8,7 +8,8 @@
     
         <a class="btn btn-primary" href="/semovientes/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nuevo semoviente</a> 
-       
+        <a class="btn btn-success" href="/semovientes/excel">
+         Generar Reporte</a> 
             <br>
             <br>
 

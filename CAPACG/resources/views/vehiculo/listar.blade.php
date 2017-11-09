@@ -8,7 +8,8 @@
     
         <a class="btn btn-primary" href="/vehiculos/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Crear nuevo Vehiculo</a> 
-       
+        <a class="btn btn-success" href="/vehiculos/excel">
+         Generar Reporte</a> 
             <br>
             <br>
 

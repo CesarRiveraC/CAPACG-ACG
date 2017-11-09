@@ -6,6 +6,7 @@ use App\Vehiculo;
 use App\Activo;
 use App\Inmueble;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Storage;
 
@@ -23,10 +24,10 @@ class VehiculoController extends Controller
         ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
         ->select('activos.*','inmuebles.*','vehiculos.*')
-        ->get();
+        ->paginate(10);
 
-        $vehiculosPaginadas = $this->paginate($vehiculos->toArray(),5);
-        return view('/vehiculo/listar', ['vehiculos' => $vehiculosPaginadas]);
+        //$vehiculosPaginadas = $this->paginate($vehiculos->toArray(),5);
+        return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
     }
 
     public function create()
@@ -139,15 +140,31 @@ class VehiculoController extends Controller
     }
 
 
-    public function paginate($items, $perPages){
-        $pageStart = \Request::get('page',1);
-        $offSet = ($pageStart * $perPages)-$perPages;
-        $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
-
-        return new \Illuminate\Pagination\LengthAwarePaginator(
-            $itemsForCurrentPage, count($items),
-            $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
-            ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
-        );
-            }
+    public function excel(){
+        
+ 
+         Excel::create('Reporte Vehiculos', function($excel) {
+  
+             $excel->sheet('Activos', function($sheet) {
+  
+                 //$infraestructuras = Activo::all();
+                 $vehiculos = DB::table('vehiculos')
+                 ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+                 ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa',
+                 'activos.SubPrograma','activos.Color','inmuebles.Serie','inmuebles.Dependencia'
+                 ,'inmuebles.EstadoUtilizacion', 'inmuebles.EstadoFisico','inmuebles.EstadoActivo',
+                 'vehiculos.Placa')
+                 ->where('activos.Estado','=','0') //cambiar el estado para generar el reporte
+                 ->get();
+ 
+                 $vehiculos = json_decode(json_encode($vehiculos),true);
+                 $sheet->freezeFirstRow();
+                 $sheet->fromArray($vehiculos);
+  
+             });
+         })->export('xls');
+ 
+     }
+    
 }
