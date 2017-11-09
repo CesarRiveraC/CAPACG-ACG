@@ -1,6 +1,6 @@
 
 <!-- The Modal -->
-  <div class="modal fade" id="DetalleInfraestructura">
+  <div class="modal fade" id="DetalleVehiculo">
     <div class="modal-dialog">
       <div class="modal-content">
       
@@ -16,20 +16,28 @@
 
         @include('partials.detalle')
         
-        <dt>Numero Finca</dt>
-        <dd id="lblNumeroFinca"></dd>
+        <dt>Serie</dt>
+        <dd id="lblSerie"></dd>
         <br>
 
-        <dt>Area de Contruccion</dt>
-        <dd id="lblAreaConstruccion"></dd>
+        <dt>Dependencia</dt>
+        <dd id="lblDependencia"></dd>
         <br>
 
-        <dt>Area de Terreno</dt>
-        <dd id="lblTerreno"></dd>
+        <dt>Estado Utilizacion</dt>
+        <dd id="lblEstadoUtilizacion"></dd>
         <br>
 
-        <dt>Año de Fabricacion</dt>
-        <dd id="lblAnoFabricacion"></dd>
+        <dt>Estado Fisico</dt>
+        <dd id="lblEstadoFisico"></dd>
+        <br>
+
+        <dt>Estado Activo</dt>
+        <dd id="lblEstadoActivo"></dd>
+        <br>
+
+        <dt>Placa</dt>
+        <dd id="lblPlaca"></dd>
         <br>
 
         </div>

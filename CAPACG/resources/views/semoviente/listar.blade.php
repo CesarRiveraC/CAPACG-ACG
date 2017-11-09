@@ -43,7 +43,7 @@
                                     <a href="/archivos/{{$semoviente->id}}/eliminar" class="btn btn-danger btn-xs">
                                      Eliminar</a>
 
-                                     <a href="/semovientes/{{$semoviente->id}}" class="ajax-popup-link">
+                                     <a  class="btn btn-info btn-xs detalleSemoviente" data-semoviente = "{{$semoviente->id}}" >
                                      Detalle</a>
                                     <a href="/semovientes/{{$semoviente->id}}/edit" class="btn btn-default btn-xs">
                                      Editar</a>
@@ -59,4 +59,6 @@
         </div>
     </div>
 </div>
+@include('modals.detalleSemoviente')
+    <script src="{{ asset('js/semoviente.js') }}"></script> 
 @endsection

@@ -73,7 +73,7 @@ class SemovienteController extends Controller
         $semoviente->activo()->associate($activo);
 
         
-        return view('/semoviente/detalle', compact('semoviente'));
+        return response()->json(['semoviente'=>$semoviente]);        
 
     }
 

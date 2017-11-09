@@ -84,7 +84,7 @@ class VehiculoController extends Controller
         $inmueble->activo()->associate($activo);
 
         
-        return view('/vehiculo/detalle', compact('vehiculo'));
+        return response()->json(['vehiculo'=>$vehiculo]);        
 
     }
 

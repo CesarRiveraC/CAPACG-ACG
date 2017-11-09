@@ -44,7 +44,7 @@
                                     <a href="/archivos/{{$vehiculo->id}}/eliminar" class="btn btn-danger btn-xs">
                                      Eliminar</a>
 
-                                     <a href="/vehiculos/{{$vehiculo->id}}" class="ajax-popup-link">
+                                     <a  class="btn btn-info btn-xs detalleVehiculo" data-vehiculo = "{{$vehiculo->id}}" >
                                      Detalle</a>
                                     <a href="/vehiculos/{{$vehiculo->id}}/edit" class="btn btn-default btn-xs">
                                      Editar</a>
@@ -60,4 +60,6 @@
         </div>
     </div>
 </div>
+@include('modals.detalleVehiculo')
+    <script src="{{ asset('js/vehiculo.js') }}"></script> 
 @endsection
