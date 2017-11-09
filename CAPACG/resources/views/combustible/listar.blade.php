@@ -7,7 +7,7 @@
 
     
         <a class="btn btn-primary" href="/combustibles/create">
-        <span class="glyphicon glyphicon-upload"></span> Crear nueva Factura Combustible</a> 
+        <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Factura Combustible</a> 
        
             <br>
             <br>
@@ -18,7 +18,7 @@
      <form action="combustibles/search" class="navbar-form navbar-right" role="search" method="GET">
     <div class="form-group">
     <input type="text" class="form-control" name="search"  placeholder="Buscar">
-    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" ></span></button>
+    <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></span></button>
     </div>
     
      </form>

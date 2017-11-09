@@ -7,7 +7,7 @@
 
     
         <a class="btn btn-primary" href="/inmuebles/create">
-        <span class="glyphicon glyphicon-upload"></span> Crear nuevo Inmueble</a> 
+        <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Crear nuevo Inmueble</a> 
        
             <br>
             <br>
@@ -18,7 +18,7 @@
      <form action="inmuebles/search" class="navbar-form navbar-right" role="search">
     <div class="form-group">
     <input type="text" class="form-control" name="search"  placeholder="Buscar">
-    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" ></span></button>
+    <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
     </div>
     
      </form>

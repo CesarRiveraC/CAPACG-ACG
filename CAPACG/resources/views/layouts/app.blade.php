@@ -16,11 +16,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-    {{--  <script src="{{ asset('js/ajaxpop.js') }}"></script>   --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{--  <script src = "https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>  --}}
-    {{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">  --}}
-
     <style>
 
     
@@ -76,7 +72,7 @@
                     <div class="navbar-brand">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"   >
-                            Activos <span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                            Activos <i class="fa fa-bars" aria-hidden="true"></i></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/infraestructuras"><i class="fa fa-university" aria-hidden="true"></i> Infraestructura</a></li>
                                 <li><a href="/inmuebles"><i class="fa fa-television" aria-hidden="true"></i> Inmuebles</a></li>
@@ -92,7 +88,7 @@
                     </div>
                    
                      <div class="navbar-brand">
-                        <a href="/usuarios"><i class="fa fa-battery-full" aria-hidden="true"></i> Usuarios</a>
+                        <a href="/usuarios"><i class="fa fa-users" aria-hidden="true"></i> Usuarios</a>
                     </div>
                    
                     

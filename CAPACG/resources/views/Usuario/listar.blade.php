@@ -7,7 +7,7 @@
 
     
         <a class="btn btn-primary" href="/usuarios/create">
-        <span class="glyphicon glyphicon-upload"></span> Crear nuevo Usuario</a> 
+        <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Crear nuevo Usuario</a> 
             <br>
             <br>
 

@@ -145,9 +145,9 @@
 
                         <div class="form-group" align = "center"></div>
                             <button type="submit" class="btn btn-success"> 
-                            <span class="glyphicon glyphicon-floppy-disk"></span> Guardar </button>
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar </button>
                             <a href="/home" class="btn btn-default"> 
-                            <span class="glyphicon glyphicon-remove"></span> Cancelar </a>
+                            <i class="fa fa-times" aria-hidden="true"></i> Cancelar </a>
                         </div>
                     </form>
                 </div>

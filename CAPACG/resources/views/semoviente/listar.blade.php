@@ -7,7 +7,7 @@
 
     
         <a class="btn btn-primary" href="/semovientes/create">
-        <span class="glyphicon glyphicon-upload"></span> Crear nuevo semoviente</a> 
+        <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nuevo semoviente</a> 
        
             <br>
             <br>

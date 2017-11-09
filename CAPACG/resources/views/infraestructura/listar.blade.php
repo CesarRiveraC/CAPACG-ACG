@@ -7,7 +7,7 @@
 
     
         <a class="btn btn-primary" href="/infraestructuras/create">
-        <span class="glyphicon glyphicon-upload"></span> Crear nueva Infraestructura</a> 
+        <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Infraestructura</a> 
         <a class="btn btn-success" href="/infraestructuras/excel">
          Generar Reporte</a> 
             <br>

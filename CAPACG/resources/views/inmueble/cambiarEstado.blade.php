@@ -18,7 +18,7 @@
                             <button type="submit" class="btn btn-primary"> 
                             <span class=""></span> Eliminar </button>
                             <a href="/inmuebles" class="btn btn-default"> 
-                            <span class="glyphicon glyphicon-remove"></span> Cancelar </a>
+                            <i class="fa fa-times" aria-hidden="true"></i> Cancelar </a>
                         </div>
                     </form>
                 </div>  
