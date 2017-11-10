@@ -19,11 +19,13 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('infraestructuras/{id}/change','InfraestructuraController@change');
     Route::put('infraestructuras/{id}/updatestate','InfraestructuraController@updatestate');
+    Route::get('infraestructuras/search','InfraestructuraController@search');
     Route::get('infraestructuras/excel', 'InfraestructuraController@excel');
     Route::resource('infraestructuras','InfraestructuraController');
 
     Route::get('semovientes/{id}/change','SemovienteController@change');
     Route::put('semovientes/{id}/updatestate','SemovienteController@updatestate');
+    Route::get('semovientes/search','SemovienteController@search');
     Route::get('semovientes/excel', 'SemovienteController@excel');
     Route::resource('semovientes','SemovienteController');
 
@@ -35,6 +37,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('vehiculos/{id}/change','VehiculoController@change');
     Route::put('vehiculos/{id}/updatestate','VehiculoController@updatestate');
+    Route::get('vehiculos/search','VehiculoController@search');
     Route::get('vehiculos/excel', 'VehiculoController@excel');
     Route::resource('vehiculos','VehiculoController');
 

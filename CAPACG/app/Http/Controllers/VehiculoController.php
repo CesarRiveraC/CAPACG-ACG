@@ -24,10 +24,10 @@ class VehiculoController extends Controller
         ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
         ->select('activos.*','inmuebles.*','vehiculos.*')
-        ->where('activos.Estado','=','0') //hay que definir bien cual es el que se va a utilizar
+        ->where('activos.Estado','=','1') //hay que definir bien cual es el que se va a utilizar
         ->paginate(10);
 
-        //$vehiculosPaginadas = $this->paginate($vehiculos->toArray(),5);
+    ;
         return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
     }
 
@@ -48,7 +48,7 @@ class VehiculoController extends Controller
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
-            
+            $activo->Estado = 1;            
 
             if ($request->hasFile('Foto')){ 
                 
@@ -158,15 +158,21 @@ class VehiculoController extends Controller
         $vehiculo = Vehiculo::find($id);
         $inmueble = Inmueble::find($vehiculo->inmueble_id);
         $activo = Activo::find($inmueble->activo_id);
-      
-        $activo->Estado = 1;    
-
-       
+        $activo->Estado = 0;     
         $activo->save();
-
      
         return redirect('/vehiculos');
     }
+
+    
+    public function search(Request $request)
+    {
+        $vehiculos = Vehiculo::buscar($request->get('buscar'))
+        ->join('activos','vehiculos.activo_id', '=','activos.id')
+        ->where('activos.Estado','=','1')->paginate(10);
+        return view('vehiculo/listar',compact('vehiculos'));
+    }
+
     public function excel(){
         
  

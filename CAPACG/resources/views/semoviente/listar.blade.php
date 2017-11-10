@@ -13,7 +13,13 @@
             <br>
             <br>
 
-            <div class="panel panel-default">
+            <div class="panel panel-info">
+
+            {!! Form::open(['url' => 'semovientes/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search']) !!}
+                {!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
+                <button type="submit" class="btn btn-primary"><span class="fa fa-search" ></span></button>
+            {!! Form::close() !!}
+
                 <div class="panel-heading"><h4>Semovientes</h4> </div>
                 <div class="panel-body">
                 {{ $semovientes->links() }}
@@ -41,13 +47,10 @@
                                 <td class="info"> {{$semoviente->Raza}} </td>
                                 
                                 <td class="warning"> 
-                                    <a  class="btn btn-danger btn-xs estado" data-estado ="{{$semoviente->id}}" >
-                                     Eliminar</a>
-
-                                     <a  class="btn btn-info btn-xs detalleSemoviente" data-semoviente = "{{$semoviente->id}}" >
-                                     Detalle</a>
-                                    <a href="/semovientes/{{$semoviente->id}}/edit" class="btn btn-default btn-xs">
-                                     Editar</a>
+                                <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$semoviente->id}}" ></a>
+                                <a class="fa fa-eye btn btn-success btn-xs detalleSemoviente" data-semoviente = "{{$semoviente->id}}" ></a>
+                                <a href="/semovientes/{{$semoviente->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
+                                <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
                                 </td>
                             </tr>
                         @endforeach

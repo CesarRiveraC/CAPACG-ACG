@@ -22,7 +22,7 @@ class CombustibleController extends Controller
      $combustibles = DB::table('combustibles')
       ->select('combustibles.*')
       ->where('combustibles.Estado','=','1')
-      ->paginate();
+      ->paginate(7);
     return view('/combustible/listar', ['combustibles' => $combustibles]);
 
       
@@ -130,7 +130,8 @@ class CombustibleController extends Controller
 
     public function search(Request $request)
     {
-        $combustibles = Combustible::buscar($request->get('buscar'))->where('combustibles.Estado','=','1')->paginate();
+        $combustibles = Combustible::buscar($request->get('buscar'))
+        ->where('combustibles.Estado','=','1')->paginate(7);
         return view('combustible/listar',compact('combustibles'));
     }
 
@@ -153,21 +154,4 @@ class CombustibleController extends Controller
                      });
                  })->export('xls');
              }
-
-
-    public function paginate($items, $perPages){
-        $pageStart = \Request::get('page',1);
-        $offSet = ($pageStart * $perPages)-$perPages;
-        $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
-
-        return new \Illuminate\Pagination\LengthAwarePaginator(
-            $itemsForCurrentPage, count($items),
-            $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
-            ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
-        );
-            }
-
-
-
-
 }

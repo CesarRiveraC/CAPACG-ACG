@@ -7,10 +7,10 @@
         <input type="hidden" name="_method" value="PUT">
         {{ csrf_field() }}
         <!-- Modal Header -->
-        <div class="modal-header ">
-          <h4 class="modal-title">Eliminar activo</h4>
+        <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
+          <h4 class="modal-title">Eliminar activo</h4>
+          </div>
         
         <!-- Modal body -->
         <div class="modal-body">
@@ -20,8 +20,9 @@
                      <br>
                      <br>
                         Placa:
-                        <br>
+                        
                         <p id="Placa"></p>
+                        <br>
 
         </div>
         

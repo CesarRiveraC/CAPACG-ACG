@@ -21,11 +21,9 @@ class InfraestructuraController extends Controller
         $infraestructuras = DB::table('infraestructuras')
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
         ->select('activos.*','infraestructuras.*')
-        ->where('activos.Estado','=','0') //hay que definir bien cual es el que se va a utilizar
+        ->where('activos.Estado','=','1') 
         ->paginate(10);
-        // ->get();
-
-        // $infraestructurasPaginadas = $this->paginate($infraestructuras->toArray(),5);
+    
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
     }
 
@@ -47,6 +45,7 @@ class InfraestructuraController extends Controller
         $activo->Programa = $request['Programa'];
         $activo->SubPrograma = $request['SubPrograma'];
         $activo->Color = $request['Color'];
+        $activo->Estado = 1;
         
         if ($request->hasFile('Foto')){ 
 
@@ -138,18 +137,22 @@ class InfraestructuraController extends Controller
 
     public function updatestate($id)
     {
-        
         $infraestructura = Infraestructura::find($id);
         $activo = Activo::find($infraestructura->activo_id);
-      
-        $activo->Estado = 1;    
-
-       
+        $activo->Estado = 0; 
         $activo->save();
 
-     
         return redirect('/infraestructuras');
     }
+
+    public function search(Request $request)
+    {
+        $infraestructuras = Infraestructura::buscar($request->get('buscar'))
+        ->join('activos','infraestructuras.activo_id', '=','activos.id')
+        ->where('activos.Estado','=','1')->paginate(10);
+        return view('infraestructura/listar',compact('infraestructuras'));
+    }
+
 
     public function excel(){
         
@@ -175,16 +178,4 @@ class InfraestructuraController extends Controller
          })->export('xls');
  
      }
-
-    // public function paginate($items, $perPages){
-    //     $pageStart = \Request::get('page',1);
-    //     $offSet = ($pageStart * $perPages)-$perPages;
-    //     $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
-
-    //     return new \Illuminate\Pagination\LengthAwarePaginator(
-    //         $itemsForCurrentPage, count($items),
-    //         $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
-    //         ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
-    //     );
-    //         }
 }

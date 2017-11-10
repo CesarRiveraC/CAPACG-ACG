@@ -23,7 +23,7 @@ class SemovienteController extends Controller
         $semovientes = DB::table('semovientes')
         ->join('activos','semovientes.activo_id', '=','activos.id')
         ->select('activos.*','semovientes.*')
-        ->where('activos.Estado','=','0') //hay que definir bien cual es el que se va a utilizar
+        ->where('activos.Estado','=','1') 
         ->paginate(10);
 
         
@@ -48,6 +48,7 @@ class SemovienteController extends Controller
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
+            $activo->Estado = 1;
             
             if ($request->hasFile('Foto')){ 
                 
@@ -129,17 +130,20 @@ class SemovienteController extends Controller
 
     public function updatestate($id)
     {
-        
         $semoviente = Semoviente::find($id);
         $activo = Activo::find($semoviente->activo_id);
-      
-        $activo->Estado = 1;    
-
-       
+        $activo->Estado = 0;    
         $activo->save();
 
-     
         return redirect('/semovientes');
+    }
+
+    public function search(Request $request)
+    {
+        $semovientes = Semoviente::buscar($request->get('buscar'))
+        ->join('activos','semovientes.activo_id', '=','activos.id')
+        ->where('activos.Estado','=','1')->paginate(10);
+        return view('semoviente/listar',compact('semovientes'));
     }
 
     public function excel(){

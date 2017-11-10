@@ -14,6 +14,12 @@
             <br>
 
             <div class="panel panel-info">
+           
+            {!! Form::open(['url' => 'infraestructuras/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search']) !!}
+                {!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
+                <button type="submit" class="btn btn-primary"><span class="fa fa-search" ></span></button>
+            {!! Form::close() !!}            
+
                 <div class="panel-heading"><h4>Infraestructuras</h4> </div>
                 <div class="panel-body">
                 {{ $infraestructuras->links() }}
@@ -40,15 +46,11 @@
 
                                 <td class="info"> {{$infraestructura->NumeroFinca}} </td>
                                 
-                                <td class="info"> 
-                                    <a  class="btn btn-danger btn-xs estado" data-estado ="{{$infraestructura->id}}" >
-                                    Eliminar</a>
-
-                                     <a  class="btn btn-info btn-xs detalleInfraestructura" data-infraestructura = "{{$infraestructura->id}}" >
-                                     Detalle</a>
-                                    <a href="/infraestructuras/{{$infraestructura->id}}/edit" class="btn btn-default btn-xs">
-                                     Editar</a>
-
+                                <td class="warning"> 
+                                <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$infraestructura->id}}" ></a>
+                                <a class="fa fa-eye btn btn-success btn-xs detalleInfraestructura" data-infraestructura = "{{$infraestructura->id}}" ></a>
+                                <a href="/infraestructuras/{{$infraestructura->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
+                                <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
                                 </td>
                                
                             </tr>

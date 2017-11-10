@@ -25,7 +25,7 @@ class InmuebleController extends Controller
         ->join('activos','inmuebles.activo_id', '=','activos.id')
         ->select('activos.*','inmuebles.*')
         ->where('activos.Estado','=','1')
-        ->paginate();
+        ->paginate(7);
       
         return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }
@@ -156,7 +156,9 @@ class InmuebleController extends Controller
 
     public function search(Request $request)
     {
-        $inmuebles = Inmueble::buscar($request->get('buscar'))->join('activos','inmuebles.activo_id', '=','activos.id')->where('activos.Estado','=','1')->paginate();
+        $inmuebles = Inmueble::buscar($request->get('buscar'))
+        ->join('activos','inmuebles.activo_id', '=','activos.id')
+        ->where('activos.Estado','=','1')->paginate(7);
         return view('inmueble/listar',compact('inmuebles'));
     }
 
@@ -180,18 +182,5 @@ class InmuebleController extends Controller
          })->export('xls');
      }
     
-
-    public function paginate($items, $perPages){
-        $pageStart = \Request::get('page',1);
-        $offSet = ($pageStart * $perPages)-$perPages;
-        $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
-
-        return new \Illuminate\Pagination\LengthAwarePaginator(
-            $itemsForCurrentPage, count($items),
-            $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
-            ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
-        );
-            }
-
 
 }

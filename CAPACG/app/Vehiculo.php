@@ -17,4 +17,12 @@ class Vehiculo extends Model
     {
     	return $this->hasMany('App\Combustible');
     }
+    
+    public function scopeBuscar($query, $buscar){
+        if($buscar !=""){
+            $query-> where([['Estado', '=', '1'], ['Placa', 'LIKE', '%' .$buscar. '%']]);
+            $query-> orWhere([['Estado', '=', '1'], ['Programa', 'LIKE', '%' .$buscar. '%']]);
+                    
+        }
+    }
 }

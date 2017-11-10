@@ -23,7 +23,7 @@
 <button type="submit" class="btn btn-primary"><span class="fa fa-search" ></span></button>
             {!! Form::close() !!}
        
-                <div class="panel-heading"><h4>Combustibles</h4> 
+                <div class="panel-heading"><h4>Facturas de Combustibles</h4> 
 
                 </div>
                 <div class="panel-body">
