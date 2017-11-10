@@ -20,6 +20,6 @@
 
         <dt>Foto</dt>
         <dd >
-            <img src="" id="lblFoto" class="img-responsive" alt="Foto" height="300" width="300"> 
+            <img src="https://i0.wp.com/www.verasoul.com/wp-content/uploads/chromerror.jpg" id="lblFoto" class="img-responsive" alt="Foto" height="300" width="300"> 
         </dd>
         <br>

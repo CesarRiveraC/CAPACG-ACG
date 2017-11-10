@@ -25,9 +25,9 @@
         background-color: #C3FBCD;
     }
     .navbar{
-            background-color: #229337 !important;
+            background-color: #4CAF50 !important;
             color: white; 
-            border-bottom: 4px solid #1F8C33;
+            border-bottom: 4px ;
             box-shadow: 3px 3px 3px #7C837D;
     }
     .logo{
