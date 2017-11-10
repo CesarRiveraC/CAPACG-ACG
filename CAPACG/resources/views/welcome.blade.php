@@ -34,7 +34,7 @@ body, html {
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
-    background-image: url('https://cdn.pixabay.com/photo/2016/11/06/05/36/landscape-1802337_960_720.jpg');
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Site_of_coolness.jpg');
     min-height: 100%;
 }
 
