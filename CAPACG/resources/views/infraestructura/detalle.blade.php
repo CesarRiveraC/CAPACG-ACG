@@ -16,7 +16,7 @@
                       <dt>Placa</dt>
                       <dd>{{$infraestructura->activo->Placa}}</dd>
                       <br>
-                      <dt>Descripcion</dt>
+                      <dt>Descripción</dt>
                       <dd>{{$infraestructura->activo->Descripcion}}</dd>
                       <br>
                      <dt>Programa</dt>
@@ -33,21 +33,21 @@
                        <img src="{{ asset('storage/pictures/'.$infraestructura->activo->Foto) }}" class="img-responsive" alt="Foto" height="300" width="300"> 
                        </a></dd>
                         <br>
-                      <dt>Numero Finca</dt>
+                      <dt>Número Finca</dt>
                       <dd>{{$infraestructura->NumeroFinca}}</dd>
                         <br>
-                      <dt>Area de Contruccion</dt>
+                      <dt>Área de Contrucción</dt>
                       <dd>{{$infraestructura->AreaConstruccion}}</dd>
                         <br>
-                      <dt>Area de Terreno</dt>
+                      <dt>Área de Terreno</dt>
                       <dd>{{$infraestructura->AreaTerreno}}</dd>
                         <br>
-                      <dt>Año de Fabricacion</dt>
+                      <dt>Año de Fabricación</dt>
                       <dd>{{$infraestructura->AnoFabricacion}}</dd>
                         <br>
                       <dt>
-                             <button title="Cerrar(Esc)" type="button" class="mfp-close" >
-                             x</button></dt>
+                     <button title="Cerrar(Esc)" type="button" class="mfp-close" >
+                       x</button></dt>
                     </dl>
                     <div class="form-group" align = "center"></div>
                             

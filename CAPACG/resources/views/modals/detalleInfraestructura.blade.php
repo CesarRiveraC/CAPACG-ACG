@@ -7,7 +7,7 @@
         <!-- Modal Header -->
         <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Detalle</h4>  
+          <h4 class="modal-title">Detalle Infraestructura</h4>  
         </div>
         
         <!-- Modal body -->
@@ -16,19 +16,19 @@
 
         @include('partials.detalle')
         
-        <dt>Numero Finca</dt>
+        <dt>Número Finca</dt>
         <dd id="lblNumeroFinca"></dd>
         <br>
 
-        <dt>Area de Contruccion</dt>
+        <dt>Área de Contrucción</dt>
         <dd id="lblAreaConstruccion"></dd>
         <br>
 
-        <dt>Area de Terreno</dt>
+        <dt>Área de Terreno</dt>
         <dd id="lblTerreno"></dd>
         <br>
 
-        <dt>Año de Fabricacion</dt>
+        <dt>Año de Fabricación</dt>
         <dd id="lblAnoFabricacion"></dd>
         <br>
 

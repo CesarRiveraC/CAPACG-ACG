@@ -9,7 +9,8 @@
         <a class="btn btn-primary" href="/vehiculos/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Crear nuevo Vehiculo</a> 
         <a class="btn btn-success" href="/vehiculos/excel">
-         Generar Reporte</a> 
+        <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
+       
             <br>
             <br>
 
@@ -20,7 +21,7 @@
                 <button type="submit" class="btn btn-primary"><span class="fa fa-search" ></span></button>
             {!! Form::close() !!}
 
-                <div class="panel-heading"><h4>Vehiculos</h4> </div>
+                <div class="panel-heading"><h4>Vehículos</h4> </div>
                 <div class="panel-body">
                 {{ $vehiculos->links() }}
                     <div class="table-responsive">

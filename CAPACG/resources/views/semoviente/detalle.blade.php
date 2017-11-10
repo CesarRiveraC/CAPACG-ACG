@@ -13,10 +13,10 @@
                      
 
                      <dl class="dl-horizontal">
-                      <dt>Placa</dt>
+                      <dt>Fierrp</dt>
                       <dd>{{$semoviente->activo->Placa}}</dd>
                       <br>
-                      <dt>Descripcion</dt>
+                      <dt>Descripción</dt>
                       <dd>{{$semoviente->activo->Descripcion}}</dd>
                       <br>
                      <dt>Programa</dt>

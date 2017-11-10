@@ -100,9 +100,9 @@
 
                         <div class="form-group" align = "center"></div>
                             <button type="submit" class="btn btn-success"> 
-                            <span class="glyphicon glyphicon-floppy-disk"></span> Editar </button>
+                            <span class="fa fa-floppy-o"></span> Editar </button>
                             <a href="/combustibles" class="btn btn-default"> 
-                            <span class="glyphicon glyphicon-remove"></span> Cancelar </a>
+                            <span class="fa fa-times"></span> Cancelar </a>
                         </div>
                     </form>
                 </div>

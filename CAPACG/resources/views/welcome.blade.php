@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Welcome</title>
+<title>¡Bienvenido!</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -65,10 +65,10 @@ body, html {
     </a>
     @if (Route::has('login'))
      @if (Auth::check())
-    <a href="{{ url('/home') }}" class="w3-bar-item w3-button">HOME</a>
+    <a href="{{ url('/home') }}" class="w3-bar-item w3-button">INICIO</a>
      @else
     <a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ACG</a>
-    <a href="{{ url('/login') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> Iniciar Sesion</a>
+    <a href="{{ url('/login') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> Iniciar Sesión</a>
     <a href="{{ url('/register') }}" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> Registrar</a>
         @endif
          @endif
@@ -81,10 +81,10 @@ body, html {
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
    @if (Route::has('login'))
      @if (Auth::check())
-     <a href="{{ url('/home') }}" class="w3-bar-item w3-button">HOME</a>
+     <a href="{{ url('/home') }}" class="w3-bar-item w3-button">INICIO</a>
       @else
     <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ACG</a>
-    <a href="{{ url('/login') }}" class="w3-bar-item w3-button" >Iniciar Sesion</a>
+    <a href="{{ url('/login') }}" class="w3-bar-item w3-button" >Iniciar Sesión</a>
     <a href="{{ url('/register') }}" class="w3-bar-item w3-button" >Registrar</a>
      @endif
      @endif
@@ -101,8 +101,8 @@ body, html {
 <div class="aboutSection">
 <!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">
-  <h3 class="w3-center">Area de Conservacion Guanacaste</h3>
-  <p class="w3-center"><em>Control de Activos para el Area de Conservacion Guanacaste</em></p>
+  <h3 class="w3-center">Área de Conservación Guanacaste</h3>
+  <p class="w3-center"><em>Control de Activos para el Área de Conservación Guanacaste</em></p>
   <p>El corazón del Área de Conservación Guanacaste (ACG) comprende un solo bloque
     bio-geográco ininterrumpido de área silvestre protegida de 163,000 hectáreas, que se
     extiende desde el área marina en los alrededores del archipiélago Islas Murciélago en el

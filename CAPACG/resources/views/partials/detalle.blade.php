@@ -2,7 +2,7 @@
         <dd id="lblPlaca"></dd>
         <br>
 
-        <dt>Descripcion</dt>
+        <dt>Descripción</dt>
         <dd id="lblDescripcion"></dd>
         <br>
 

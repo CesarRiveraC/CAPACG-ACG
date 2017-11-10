@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Detalle Vehiculo</div>
+                <div class="panel-heading">Detalle Vehículo</div>
 
                 <div class="panel-body">
 
@@ -16,7 +16,7 @@
                       <dt>Placa</dt>
                       <dd>{{$vehiculo->inmueble->activo->Placa}}</dd>
                       <br>
-                      <dt>Descripcion</dt>
+                      <dt>Descripción</dt>
                       <dd>{{$vehiculo->inmueble->activo->Descripcion}}</dd>
                       <br>
                      <dt>Programa</dt>
@@ -40,17 +40,17 @@
                       <dt>Dependencia</dt>
                       <dd>{{$vehiculo->inmueble->Dependencia}}</dd>
                         <br>
-                      <dt>Estado Utilizacion</dt>
+                      <dt>Estado Utilización</dt>
                       <dd>{{$vehiculo->inmueble->EstadoUtilizacion}}</dd>
                         <br>
-                      <dt>Estado Fisico</dt>
+                      <dt>Estado Físico</dt>
                       <dd>{{$vehiculo->inmueble->EstadoFisico}}</dd>
                         <br>
                         <dt>Estado Activo</dt>
                       <dd>{{$vehiculo->inmueble->EstadoActivo}}</dd>
                         <br>
 
-                        <dt>Placa Vehiculo</dt>
+                        <dt>Placa Vehículo</dt>
                       <dd>{{$vehiculo->Placa}}</dd>
                         <br>
 

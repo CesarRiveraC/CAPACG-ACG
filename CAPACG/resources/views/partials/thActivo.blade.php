@@ -1,5 +1,5 @@
 <th>Placa</th>
-<th>Descripcion</th>
+<th>Descripción</th>
 <th>Programa</th>
 <th>SubPrograma</th>
 <th>Color</th>

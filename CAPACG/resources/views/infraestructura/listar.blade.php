@@ -8,8 +8,10 @@
     
         <a class="btn btn-primary" href="/infraestructuras/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Infraestructura</a> 
-        <a class="btn btn-success" aria-hidden="true" href="/infraestructuras/excel">
-         Generar Reporte</a> 
+        <a class="btn btn-success" href="/infraestructuras/excel">
+        <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
+      
+      
             <br>
             <br>
 
@@ -28,7 +30,7 @@
                         <thead>
                              <tr>
                                 @include('partials.thActivo')
-                                <th>Numero Finca</th>
+                                <th>Número Finca</th>
                                 <th>Opciones</th>
                              </tr>
                       </thead>
