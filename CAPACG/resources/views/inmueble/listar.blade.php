@@ -8,20 +8,19 @@
     
         <a class="btn btn-primary" href="/inmuebles/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Crear nuevo Inmueble</a> 
-       
+      
+        <a class="btn btn-success" href="/inmuebles/excel">
+        <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
+      
+      
             <br>
             <br>
 
             <div class="panel panel-info">
-
-            
-     <form action="inmuebles/search" class="navbar-form navbar-right" role="search">
-    <div class="form-group">
-    <input type="text" class="form-control" name="search"  placeholder="Buscar">
-    <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
-    </div>
-    
-     </form>
+            {!! Form::open(['url' => 'inmuebles/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search']) !!}
+            {!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
+            <button type="submit" class="btn btn-primary"><span class="fa fa-search" ></span></button>
+            {!! Form::close() !!}
 
                 <div class="panel-heading"><h4>Inmuebles</h4> </div>
                 <div class="panel-body">
@@ -31,8 +30,7 @@
                         <thead>
                              <tr>
                                 @include('partials.thActivo')
-                                <th>Serie</th>
-                                <th>Dependencia</th>
+                              
                                 <th>Opciones</th>
                                 
                              </tr>
@@ -46,19 +44,13 @@
                                 <td class="info"> {{$inmueble->Programa}} </td>
                                 <td class="info"> {{$inmueble->SubPrograma}} </td>
                                 <td class="info"> {{$inmueble->Color}} </td>
-                               
-                                <td class="info"> {{$inmueble->Estado}} </td>
-
-                                <td class="info"> {{$inmueble->Serie}} </td>
-                                <td class="info"> {{$inmueble->Dependencia}} </td>
+                               <td class="info"> {{$inmueble->Estado}} </td>
                                 
                                 <td class="warning"> 
-                                    <a href="/inmuebles/{{$inmueble->id}}/change" class="btn btn-danger btn-xs">
-                                    Eliminar</a>
-                                    <a href="/inmuebles/{{$inmueble->id}}" class="ajax-popup-link">
-                                    Detalle</a>
-                                    <a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-default btn-xs">
-                                    Editar</a>
+                                <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$inmueble->id}}" ></a>
+                                <a class="fa fa-eye btn btn-success btn-xs detalleInmueble" data-inmueble = "{{$inmueble->id}}" ></a>
+                                <a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
+                                <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -71,4 +63,7 @@
         </div>
     </div>
 </div>
+@include('modals.estado')
+@include('modals.detalleInmueble')
+    <script src="{{ asset('js/inmueble.js') }}"></script> 
 @endsection

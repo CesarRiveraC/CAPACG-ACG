@@ -8,7 +8,7 @@
     
         <a class="btn btn-primary" href="/infraestructuras/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Infraestructura</a> 
-        <a class="btn btn-success" href="/infraestructuras/excel">
+        <a class="btn btn-success" aria-hidden="true" href="/infraestructuras/excel">
          Generar Reporte</a> 
             <br>
             <br>

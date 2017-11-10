@@ -1,6 +1,6 @@
 
 <!-- The Modal -->
-  <div class="modal fade" id="DetalleSemoviente">
+<div class="modal fade" id="DetalleInmueble">
     <div class="modal-dialog">
       <div class="modal-content">
       
@@ -8,6 +8,7 @@
         <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Detalle</h4>
+          
         </div>
         
         <!-- Modal body -->
@@ -16,17 +17,25 @@
 
         @include('partials.detalle')
         
-        <dt>Raza</dt>
-        <dd id="lblRaza"></dd>
+        <dt>Número Serie:</dt>
+        <dd id="lblSerie"></dd>
         <br>
 
-        <dt>Edad</dt>
-        <dd id="lblEdad"></dd>
+        <dt>Dependencia:</dt>
+        <dd id="lblDependencia"></dd>
         <br>
 
-        <dt>Peso</dt>
-        <dd id="lblPeso"></dd>
+        <dt>Estado de Utilización:</dt>
+        <dd id="lblEstadoUtilizacion"></dd>
         <br>
+
+        <dt>Estado Físico:</dt>
+        <dd id="lblEstadoFisico"></dd>
+        <br>
+        <dt>Estado Activo:</dt>
+        <dd id="lblEstadoActivo"></dd>
+        <br>
+
 
         </div>
         

@@ -6,6 +6,7 @@ use App\Activo;
 use App\Inmueble;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use Storage;
 
 class InmuebleController extends Controller
@@ -78,9 +79,10 @@ class InmuebleController extends Controller
         $activo = Activo::find($inmueble->activo_id);
         $inmueble->activo()->associate($activo);
     
-        return view('/inmueble/detalle', compact('inmueble'));
+        return response()->json(['inmueble'=>$inmueble]);
 
     }
+
 
     public function edit($id)
     {
@@ -131,8 +133,10 @@ class InmuebleController extends Controller
         $activo = Activo::find($inmueble->activo_id);
         $inmueble->activo()->associate($activo);
         
-        return view('/inmueble/cambiarEstado',compact('inmueble'));
+        return response()->json(['inmueble'=>$inmueble]);
     }
+
+
 
     public function updatestate($id, Request $request)
     {
@@ -149,25 +153,33 @@ class InmuebleController extends Controller
         return redirect('/inmuebles');
     }
 
-    
-    public function search()
+
+    public function search(Request $request)
     {
-
-      $q=request('search');
-      
-      $inmuebles = DB::table('inmuebles')
-      ->join('activos','inmuebles.activo_id', '=','activos.id')
-      ->select('activos.*','inmuebles.*')
-      ->where('activos.Estado','=','1')
-      ->where('activos.Placa','LIKE','%' .$q.'%')
-      ->paginate();
-    
-      return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
-    
-
-    
+        $inmuebles = Inmueble::buscar($request->get('buscar'))->join('activos','inmuebles.activo_id', '=','activos.id')->where('activos.Estado','=','1')->paginate();
+        return view('inmueble/listar',compact('inmuebles'));
     }
 
+    public function excel(){
+
+         Excel::create('Reporte Inmueble', function($excel) {
+  
+             $excel->sheet('Activos', function($sheet) {   
+                  $inmuebles = DB::table('inmuebles')
+                 ->join('activos','inmuebles.activo_id', '=','activos.id')
+                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa',
+                 'activos.SubPrograma','activos.Color','inmuebles.Serie','inmuebles.Dependencia'
+                 ,'inmuebles.EstadoUtilizacion','inmuebles.EstadoFisico','inmuebles.EstadoActivo')
+                 ->where('activos.Estado','=','1') //cambiar el estado para generar el reporte
+                 ->get();
+ 
+                 $inmuebles = json_decode(json_encode($inmuebles),true);
+                 $sheet->freezeFirstRow();
+                 $sheet->fromArray($inmuebles);
+             });
+         })->export('xls');
+     }
+    
 
     public function paginate($items, $perPages){
         $pageStart = \Request::get('page',1);

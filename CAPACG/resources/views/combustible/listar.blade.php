@@ -8,29 +8,21 @@
     
         <a class="btn btn-primary" href="/combustibles/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Factura Combustible</a> 
+        <a class="btn btn-success" href="/combustibles/excel">
+        <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
        
             <br>
             <br>
 
             <div class="panel panel-info">
-            
-
-     <form action="combustibles/search" class="navbar-form navbar-right" role="search" method="GET">
-    <div class="form-group">
-    <input type="text" class="form-control" name="search"  placeholder="Buscar">
-    <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></span></button>
-    </div>
-    
-     </form>
 
 
-     <!--   <form action="combustibles/search" class="navbar-form navbar-right" role="search">
-    <div class="form-group">
-    <input type="text" class="form-control" name="search"  placeholder="Buscar">
-    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" ></span></button>
-    </div>
-    
-     </form>-->
+
+            {!! Form::open(['url' => 'combustibles/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search']) !!}
+{!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
+<button type="submit" class="btn btn-primary"><span class="fa fa-search" ></span></button>
+            {!! Form::close() !!}
+       
                 <div class="panel-heading"><h4>Combustibles</h4> 
 
                 </div>
@@ -57,20 +49,14 @@
                                 <td class="info"> {{$combustible->Numero}} </td>
                                 <td class="info"> {{$combustible->Fecha}} </td>
                                 <td class="info"> {{$combustible->Kilometraje}} </td>
+                                <td class="info"> {{$combustible->Estado}} </td>
+
                                 
-
                                 <td class="warning"> 
-                                    <a href="/combustibles/{{$combustible->id}}/change" class="btn btn-danger btn-xs">
-                                    <span class="glyphicon glyphicon-remov-circle"></span> Eliminar</a>
-
-                                     <a href="/combustibles/{{$combustible->id}}" class="ajax-popup-link">
-                                     Detalle</a>
-                                    <a href="/combustibles/{{$combustible->id}}/edit" class="btn btn-default btn-xs">
-                                    <span class="glyphicon glyphicon-edit-circle"></span> Editar</a>
-                                    <a href="/combustibles/{{$combustible->id}}/edit" class="btn btn-default btn-xs">
-                                    <span class=""></span> Asignar</a>
-                                    
-
+                                <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$combustible->id}}" ></a>
+                                <a class="fa fa-eye btn btn-success btn-xs detalleCombustible" data-combustible = "{{$combustible->id}}" ></a>
+                                <a href="/combustibles/{{$combustible->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
+                                <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
                                 </td>
                                
                             </tr>
@@ -84,4 +70,8 @@
         </div>
     </div>
 </div>
+@include('modals.estado')
+@include('modals.detalleCombustible')
+
+    <script src="{{ asset('js/combustible.js') }}"></script> 
 @endsection

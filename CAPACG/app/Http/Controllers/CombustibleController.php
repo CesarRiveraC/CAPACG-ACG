@@ -7,6 +7,7 @@ use App\Combustible;
 use App\Vehiculo;
 use Illuminate\Support\Facades\DB;
 use Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CombustibleController extends Controller
 {
@@ -15,16 +16,16 @@ class CombustibleController extends Controller
     {   
         $this->middleware('Administrador')->except('index');
     }
-    public function index()
+    public function index(Request $request)
     {
- 
-      $combustibles = DB::table('combustibles')
+
+     $combustibles = DB::table('combustibles')
       ->select('combustibles.*')
       ->where('combustibles.Estado','=','1')
       ->paginate();
-    
-      return view('/combustible/listar', ['combustibles' => $combustibles]);
-        
+    return view('/combustible/listar', ['combustibles' => $combustibles]);
+
+      
     }
 
     public function create()
@@ -62,30 +63,21 @@ class CombustibleController extends Controller
                 }
         $combustible->save();
         
-
-        
         return redirect('/combustibles'); // por el momento esta asi, ya despues se manda a una vista diferente
             
     }
 
     public function show($id){
         $combustible = Combustible::find($id);
-       // $combustible = Combustible::find($combustible->combustible_id);
-       // $combustible->combustible()->associate($vehiculo);
-
-        //$activo = Activo::find($id);
-        //$file = Storage::disk('MyDiskDriver')->get($activo->Foto);
-        //$activo->Foto = $File;
-        return view('/combustible/detalle', compact('combustible'));
+  
+        return response()->json(['combustible'=>$combustible]);
 
     }
 
     public function edit($id)
     {
     	$combustible = Combustible::find($id);
-       // $activo = Activo::find($infraestructura->activo_id);
-        //$infraestructura->activo()->associate($activo);
-       
+     
         return view('/combustible/editar',compact('combustible'));
     }
 
@@ -93,7 +85,6 @@ class CombustibleController extends Controller
     public function update($id, Request $request)
     {
         $combustible = Combustible::find($id);
-       // $activo = Activo::find($infraestructura->activo_id);
         $combustible->NoVaucher = request('NoVaucher');
         $combustible->Monto = request('Monto');
         $combustible->Numero = request('Numero');
@@ -124,7 +115,7 @@ class CombustibleController extends Controller
     {
     	$combustible = Combustible::find($id);
               
-        return view('/combustible/cambiarEstado',compact('combustible'));
+        return response()->json(['combustible'=>$combustible]);
     }
 
     public function updatestate($id, Request $request)
@@ -133,30 +124,35 @@ class CombustibleController extends Controller
         $combustible = Combustible::find($id);
         $combustible->Estado = 0;    
         $combustible->save();
-        return redirect('/combustibles');
+        return redirect('/combustibles');   
     }
 
 
-    public function search()
+    public function search(Request $request)
     {
-      $q=request('search');
-
-      if($q!=""){
-      $combustibles = DB::table('combustibles')
-      ->select('combustibles.*')
-      ->where('combustibles.Estado','=','1')
-      ->where('combustibles.NoVaucher','LIKE','%' .$q.'%')
-      ->orWhere('Numero',"LIKE",'%' .$q.'%')
-      ->paginate();
-      
-      return view('/combustible/listar', ['combustibles' => $combustibles]);
-      }else{
-     dd("No existe");
-      }
+        $combustibles = Combustible::buscar($request->get('buscar'))->where('combustibles.Estado','=','1')->paginate();
+        return view('combustible/listar',compact('combustibles'));
     }
 
     
-
+    public function excel(){
+        
+                 Excel::create('Reporte Facturas de Combustible', function($excel) {
+          
+                     $excel->sheet('Facturas', function($sheet) {   
+                          $combustibles = DB::table('combustibles')
+                          ->select('id','NoVaucher','Monto','Numero',
+                         'Fecha','Estado','Kilometraje','LitrosCombustible'
+                         ,'FuncionarioQueHizoCompra','Dependencia','Foto','CodigoDeAccionDePlanPresupuesto')
+                         ->where('Estado','=','1') //cambiar el estado para generar el reporte
+                         ->get();
+         
+                         $combustibles = json_decode(json_encode($combustibles),true);
+                         $sheet->freezeFirstRow();
+                         $sheet->fromArray($combustibles);
+                     });
+                 })->export('xls');
+             }
 
 
     public function paginate($items, $perPages){
