@@ -24,8 +24,6 @@
                                 <th>Cédula</th>
                                 <th>Dirección</th>
                                 <th>Puesto de Trabajo</th>
-                                <th>Lugar de Trabajo</th>
-                                <th>Teléfono</th> 
                                 <th>Opciones</th>
                              </tr>
                       </thead>
@@ -39,19 +37,13 @@
                                 <td class="info"> {{$colaborador->Cedula}} </td>
                                 <td class="info"> {{$colaborador->Direccion}} </td>
                                 <td class="info"> {{$colaborador->PuestoDeTrabajo}} </td>
-                                <td class="info"> {{$colaborador->LugarDeTrabajo}} </td>
-                                <td class="info"> {{$colaborador->Telefono}} </td>
-
-                                {{--  <td class="info"> {{$colaborador->Estado}} </td>  --}}
-                                
+                                                           
                                 <td class="warning"> 
-                                    <a href="/archivos/{{$colaborador->id}}/eliminar" class="btn btn-danger btn-xs">
-                                    <span class="glyphicon glyphicon-remov-circle"></span> Eliminar</a>
-
-                                     <a href="/usuarios/{{$colaborador->id}}" class="ajax-popup-link">
-                                     Detalle</a>
-                                    <a href="/usuarios/{{$colaborador->id}}/edit" class="btn btn-default btn-xs">
-                                    <span class="glyphicon glyphicon-edit-circle"></span> Editar</a>
+                                <a class="btn btn-danger btn-xs fa fa-minus estado"  ></a>
+                                <a class="fa fa-eye btn btn-success btn-xs "></a>
+                                <a href="/colaboradores/{{$colaborador->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
+                                <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
+                                </td>
 
                                 </td>
                                
