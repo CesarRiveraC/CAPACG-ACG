@@ -94,6 +94,24 @@
                             <div class="col-md-6">
                                 <input id="CodigoDeAccionDePlanPresupuesto" type="text" class="form-control" name="CodigoDeAccionDePlanPresupuesto" value="{{ $combustible->CodigoDeAccionDePlanPresupuesto }}" required>
                             </div>
+                            </div>
+
+                        <div class="form-group{{ $errors->has('Vehiculo') ? ' has-error' : '' }}">
+                        <label for="Vehiculo" class="col-md-4 control-label">Vehículo</label>
+
+                        <div class="col-md-6">
+                        <select name="Vehiculo" id="vehiculo_id" class="form-control" required>
+                                
+                            <option value="">--Escoja placa--</option>
+                            @foreach($vehiculos as $vehiculo)
+                                    <option value="{{$vehiculo['id']}}">{{$vehiculo['Placa']}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
+                            
+
+
                         </div>
 
                         

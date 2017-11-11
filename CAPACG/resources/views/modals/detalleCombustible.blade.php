@@ -55,6 +55,14 @@
         <dd id="lblCodigoDeAccionDePlanPresupuesto"></dd>
         <br>
 
+        <dt>Placa de Vehículo:</dt>
+        <dd id="lblPlaca"></dd>
+        <br>
+
+        <dt><a><a/></dt>
+        <dd id="lblVehiculo"></dd>
+        <br>
+
         </div>
         
         <!-- Modal footer -->

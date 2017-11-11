@@ -18,11 +18,7 @@
                
                      ¿Está seguro de eliminar el siguiente registro?  
                      <br>
-                     <br>
-                        Placa:
-                        
-                        <p id="Placa"></p>
-                        <br>
+                    
 
         </div>
         

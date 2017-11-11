@@ -32,6 +32,10 @@ $(function (){
            $('#lblDependencia').text(result.combustible.Dependencia);
            $('#lblFoto').attr('src',"storage/pictures/".concat(result.combustible.Foto));
            $('#lblCodigoDeAccionDePlanPresupuesto').text(result.combustible.CodigoDeAccionDePlanPresupuesto);
+           $('#lblPlaca').text(result.combustible.vehiculo.Placa);
+           $('#lblVehiculo').text('Ver datos Vehículo');
+           
+
        }).fail(function () {
         alert('¡Algo salio mal!');
        });

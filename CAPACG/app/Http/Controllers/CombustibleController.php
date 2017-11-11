@@ -31,13 +31,15 @@ class CombustibleController extends Controller
     public function create()
     {
         $combustibles = Combustible::all();
-        
-        return view('/combustible/crear');
+        $vehiculos= Vehiculo:: all();
+        return view('/combustible/crear', compact('vehiculos'));
     }
 
 
     public function store(Request $request)
     {
+
+    
         $this->validate(request(), [
             'NoVaucher'=> 'required']); // agregar los damas campos requeridos
         
@@ -61,6 +63,7 @@ class CombustibleController extends Controller
                 $combustible->Foto = $file_route; 
             
                 }
+        $combustible->vehiculo_id = $request['Vehiculo'];
         $combustible->save();
         
         return redirect('/combustibles'); // por el momento esta asi, ya despues se manda a una vista diferente
@@ -69,16 +72,24 @@ class CombustibleController extends Controller
 
     public function show($id){
         $combustible = Combustible::find($id);
-  
-        return response()->json(['combustible'=>$combustible]);
+        $vehiculo = Vehiculo::find($combustible->vehiculo_id);
+        $combustible->vehiculo()->associate($vehiculo);
+             
+        return response()->json(['combustible'=>$combustible, 'vehiculo'=> $vehiculo]);
 
     }
 
     public function edit($id)
     {
     	$combustible = Combustible::find($id);
-     
-        return view('/combustible/editar',compact('combustible'));
+       // $vehiculo=Vehiculo::find($combustible->vehiculo_id);
+        //$combustible->vehiculo()->associate($vehiculo);
+
+        /*  $activo = Activo::find($inmueble->activo_id);
+        $inmueble->activo()->associate($activo); */
+        $vehiculos= Vehiculo:: all();
+      
+        return view('/combustible/editar',compact('combustible','vehiculos'));
     }
 
         
@@ -106,7 +117,7 @@ class CombustibleController extends Controller
                             $combustible->Foto = $file_route; 
                         
         }
-
+        $combustible->vehiculo_id = $request['Vehiculo'];
         $combustible->save();
         return redirect('/combustibles');
     }
