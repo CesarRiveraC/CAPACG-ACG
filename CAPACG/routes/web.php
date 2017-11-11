@@ -53,6 +53,10 @@ Route::group(['middleware' => 'auth'], function() {
         return view('mensajeRechazado');
     });
 
+
+    // Route::get('usuarios/{id}/change','UsuariosController@change');
+    // Route::put('usuarios/{id}/updatestate','UsuariosController@updatestate');
+    // Route::get('usuarios/excel', 'UsuariosController@excel');
     Route::resource('usuarios','UsuariosController');
   });
 
