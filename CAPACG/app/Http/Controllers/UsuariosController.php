@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\user;
-use App\colaborador;
+use App\User;
+use App\Colaborador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+
+use Storage;
+
 
 class UsuariosController extends Controller
 {
@@ -49,7 +53,36 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $this-> validate(request(),[
+        //     'Nombre'=>'required',
+        //     'password' => 'required',
+        //     'password_confirmation' => 'required'
+        //     //se deben especificar el resto de campos requeridos
+        // ]);
+
+        $usuario = new User;
+        $usuario->name = $request['name'];
+        $usuario->Apellido = $request['Apellido'];
+        $usuario->email = $request['email'];
+        $usuario->password = $request['password'];   
+        $usuario->Rol = 2;
+        $usuario->Estado = 1;                
+
+        $usuario->save();
+
+        $colaborador = new Colaborador;
+        $colaborador->user_id = $usuario->id;
+        $colaborador->Cedula = $request['Cedula'];
+        $colaborador->Direccion = $request['Direccion'];
+        $colaborador->PuestoDeTrabajo = $request['PuestoDeTrabajo'];
+        $colaborador->LugarDeTrabajo = $request['LugarDeTrabajo'];
+        $colaborador->Telefono = $request['Telefono'];
+        $colaborador->Cedula = $request['Cedula'];
+        $colaborador->Estado = 1;
+        
+        $colaborador->save();
+
+        return redirect('/usuarios');
     }
 
     /**

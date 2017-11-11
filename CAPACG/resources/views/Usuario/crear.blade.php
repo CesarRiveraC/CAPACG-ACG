@@ -8,7 +8,7 @@
                 <div class="panel-heading">Nuevo Usuario</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="/Usuarios">
+                    <form class="form-horizontal" method="POST" action="/usuarios">
                         {{ csrf_field() }}
                         
                          <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
