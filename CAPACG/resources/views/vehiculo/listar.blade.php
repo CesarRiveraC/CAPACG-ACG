@@ -9,12 +9,19 @@
         <a class="btn btn-primary" href="/vehiculos/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Crear nuevo Vehiculo</a> 
         <a class="btn btn-success" href="/vehiculos/excel">
-         Generar Reporte</a> 
+        <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
+       
             <br>
             <br>
 
-            <div class="panel panel-default">
-                <div class="panel-heading"><h4>Vehiculos</h4> </div>
+            <div class="panel panel-info">
+
+            {!! Form::open(['url' => 'vehiculos/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search']) !!}
+                {!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
+                <button type="submit" class="btn btn-primary"><span class="fa fa-search" ></span></button>
+            {!! Form::close() !!}
+
+                <div class="panel-heading"><h4>Vehículos</h4> </div>
                 <div class="panel-body">
                 {{ $vehiculos->links() }}
                     <div class="table-responsive">
@@ -41,14 +48,11 @@
 
                                 <td class="info"> {{$vehiculo->Serie}} </td>
                                 
-                                <td class="info"> 
-                                    <a  class="btn btn-danger btn-xs estado" data-estado ="{{$vehiculo->id}}" >
-                                     Eliminar</a>
-
-                                     <a  class="btn btn-info btn-xs detalleVehiculo" data-vehiculo = "{{$vehiculo->id}}" >
-                                     Detalle</a>
-                                    <a href="/vehiculos/{{$vehiculo->id}}/edit" class="btn btn-default btn-xs">
-                                     Editar</a>
+                                <td class="warning"> 
+                                <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$vehiculo->id}}" ></a>
+                                <a class="fa fa-eye btn btn-success btn-xs detalleVehiculo" data-vehiculo = "{{$vehiculo->id}}" ></a>
+                                <a href="/vehiculos/{{$vehiculo->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
+                                <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
                                 </td>
                             </tr>
                         @endforeach

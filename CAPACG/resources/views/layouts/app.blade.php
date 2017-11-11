@@ -58,7 +58,7 @@
 
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="sr-only">Navegación</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -104,7 +104,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}"> <i class="fa fa-sign-in" aria-hidden="true"></i> Iniciar Sesion</a></li>
+                            <li><a href="{{ route('login') }}"> <i class="fa fa-sign-in" aria-hidden="true"></i> Iniciar Sesión</a></li>
                             <li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Registrar</a></li>
                         @else
                             <li class="dropdown">
@@ -117,7 +117,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                             <i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesion
+                                             <i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

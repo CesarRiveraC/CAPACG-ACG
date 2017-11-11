@@ -15,7 +15,7 @@
                         @include('partials.activo')
 
                         <div class="form-group{{ $errors->has('NumeroFinca') ? ' has-error' : '' }}">
-                            <label for="NumeroFinca" class="col-md-4 control-label">Numero de Finca</label>
+                            <label for="NumeroFinca" class="col-md-4 control-label">Número de Finca</label>
 
                             <div class="col-md-6">
                                 <input id="NumeroFinca" type="text" class="form-control" name="NumeroFinca" value="{{ $infraestructura->NumeroFinca }}" required autofocus>    
@@ -23,7 +23,7 @@
                         </div>
 
                          <div class="form-group{{ $errors->has('AreaConstruccion') ? ' has-error' : '' }}">
-                            <label for="AreaConstruccion" class="col-md-4 control-label">Area de Construccion</label>
+                            <label for="AreaConstruccion" class="col-md-4 control-label">Área de Construcción</label>
 
                             <div class="col-md-6">
                                 <input id="AreaConstruccion" type="text" class="form-control" name="AreaConstruccion" value = "{{$infraestructura->AreaConstruccion}}"  required autofocus>                               
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('AreaTerreno') ? ' has-error' : '' }}">
-                            <label for="AreaTerreno" class="col-md-4 control-label">Area de Terreno</label>
+                            <label for="AreaTerreno" class="col-md-4 control-label">Área de Terreno</label>
 
                             <div class="col-md-6">
                                 <input id="AreaTerreno" type="text" class="form-control" name="AreaTerreno" value="{{ $infraestructura->AreaTerreno }}" required>                               
@@ -41,7 +41,7 @@
                         
 
                         <div class="form-group{{ $errors->has('AnoFabricacion') ? ' has-error' : '' }}">
-                            <label for="AnoFabricacion" class="col-md-4 control-label">Año de Fabricacion</label>
+                            <label for="AnoFabricacion" class="col-md-4 control-label">Año de Fabricación</label>
 
                             <div class="col-md-6">
                                 <input id="AnoFabricacion" type="text" class="form-control" name="AnoFabricacion" value="{{ $infraestructura->AnoFabricacion }}" required>

@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('Cedula') ? ' has-error' : '' }}">
-                            <label for="Cedula" class="col-md-4 control-label">Cedula</label>
+                            <label for="Cedula" class="col-md-4 control-label">Cédula</label>
 
                             <div class="col-md-6">
                                 <input id="Cedula" type="text" class="form-control" name="Cedula" value="{{ old('Cedula') }}" required autofocus>
@@ -26,7 +26,7 @@
                         </div>
 
                          <div class="form-group{{ $errors->has('Direccion') ? ' has-error' : '' }}">
-                            <label for="Direccion" class="col-md-4 control-label">Direccion</label>
+                            <label for="Direccion" class="col-md-4 control-label">Dirección</label>
 
                             <div class="col-md-6">
                                 <input id="Direccion" type="text" class="form-control" name="Direccion" value="{{ old('Apellido') }}" required autofocus>

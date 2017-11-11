@@ -19,7 +19,7 @@
 
                         
                         <div class="form-group{{ $errors->has('Placa') ? ' has-error' : '' }}">
-                            <label for="Placa" class="col-md-4 control-label">Placa Vehiculo</label>
+                            <label for="Placa" class="col-md-4 control-label">Placa Vehículo</label>
 
                             <div class="col-md-6">
                                 <input id="Placa" type="text" class="form-control" name="Placa" value="{{ $vehiculo->Placa }}" required autofocus>    
@@ -31,9 +31,9 @@
 
                         <div class="form-group" align = "center"></div>
                             <button type="submit" class="btn btn-success"> 
-                            <span class="glyphicon glyphicon-floppy-disk"></span> Editar </button>
+                            <span class="fa f-floppy-o"></span> Editar </button>
                             <a href="/vehiculos" class="btn btn-default"> 
-                            <span class="glyphicon glyphicon-remove"></span> Cancelar </a>
+                            <span class="fa fa-times"></span> Cancelar </a>
                         </div>
                     </form>
                 </div>

@@ -10,17 +10,19 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="/vehiculos" enctype="multipart/form-data" >
                         {{ csrf_field() }}
-               
-                        @include('partials.activo')
-                        @include('partials.inmueble')
 
-                      <div class="form-group{{ $errors->has('Placa') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('Placa') ? ' has-error' : '' }}">
                             <label for="Placa" class="col-md-4 control-label">Placa Vehiculo</label>
 
                             <div class="col-md-6">
                                 <input id="Placa" type="text" class="form-control" name="Placa" value="{{ old('Placa') }}" required autofocus>    
                             </div>
                         </div>
+               
+                        @include('partials.activo')
+                        @include('partials.inmueble')
+
+                  
 
 
                         <div class="form-group" align = "center"></div>

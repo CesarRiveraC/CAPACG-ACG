@@ -7,7 +7,7 @@
         <!-- Modal Header -->
         <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Detalle Facturas</h4>
+        <h4 class="modal-title">Detalle Facturas de Combustible</h4>
         </div>
         
         <!-- Modal body -->
@@ -53,6 +53,14 @@
 
         <dt>Código de Acción de Plan de Presupuesto:</dt>
         <dd id="lblCodigoDeAccionDePlanPresupuesto"></dd>
+        <br>
+
+        <dt>Placa de Vehículo:</dt>
+        <dd id="lblPlaca"></dd>
+        <br>
+
+        <dt><a><a/></dt>
+        <dd id="lblVehiculo"></dd>
         <br>
 
         </div>

@@ -23,7 +23,7 @@
 <button type="submit" class="btn btn-primary"><span class="fa fa-search" ></span></button>
             {!! Form::close() !!}
        
-                <div class="panel-heading"><h4>Combustibles</h4> 
+                <div class="panel-heading"><h4>Facturas de Combustibles</h4> 
 
                 </div>
                 <div class="panel-body">
@@ -49,9 +49,7 @@
                                 <td class="info"> {{$combustible->Numero}} </td>
                                 <td class="info"> {{$combustible->Fecha}} </td>
                                 <td class="info"> {{$combustible->Kilometraje}} </td>
-                                <td class="info"> {{$combustible->Estado}} </td>
-
-                                
+                                                               
                                 <td class="warning"> 
                                 <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$combustible->id}}" ></a>
                                 <a class="fa fa-eye btn btn-success btn-xs detalleCombustible" data-combustible = "{{$combustible->id}}" ></a>

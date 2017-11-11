@@ -7,7 +7,7 @@
         <!-- Modal Header -->
         <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Detalle</h4>   
+          <h4 class="modal-title">Detalle Vehículo</h4>   
         </div>
         
         <!-- Modal body -->
@@ -24,11 +24,11 @@
         <dd id="lblDependencia"></dd>
         <br>
 
-        <dt>Estado Utilizacion</dt>
+        <dt>Estado Utilización</dt>
         <dd id="lblEstadoUtilizacion"></dd>
         <br>
 
-        <dt>Estado Fisico</dt>
+        <dt>Estado Físico</dt>
         <dd id="lblEstadoFisico"></dd>
         <br>
 
@@ -39,6 +39,7 @@
         <dt>Placa</dt>
         <dd id="lblPlaca"></dd>
         <br>
+        
 
         </div>
         
