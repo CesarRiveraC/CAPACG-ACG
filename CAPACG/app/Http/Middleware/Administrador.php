@@ -25,7 +25,6 @@ class Administrador
     {
         $usuarioActual=\Auth::user();
         if ($usuarioActual->Rol!=1) {
-           // abort(403, 'Unauthorized action.');
            return redirect('/mensajeRechazado');
         } 
         else{

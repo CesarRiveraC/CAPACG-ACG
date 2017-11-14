@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\User;
 use App\Colaborador;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -27,10 +27,9 @@ class UsuariosController extends Controller
         $colaboradores = DB::table('colaboradores')
         ->join('users','colaboradores.user_id', '=','users.id')
         ->select('users.*','colaboradores.*')
-        ->get();
-
-        $colaboradoresPaginados = $this->paginate($colaboradores->toArray(),5);
-        return view('/Usuario/listar', ['colaboradores' => $colaboradoresPaginados]);
+        ->paginate(10);
+        
+        return view('/Usuario/listar', ['colaboradores' => $colaboradores]);
     }
 
     /**
@@ -64,7 +63,7 @@ class UsuariosController extends Controller
         $usuario->name = $request['name'];
         $usuario->Apellido = $request['Apellido'];
         $usuario->email = $request['email'];
-        $usuario->password = $request['password'];   
+        $usuario->password = bcrypt($request['password']);   
         $usuario->Rol = 2;
         $usuario->Estado = 1;                
 
@@ -77,7 +76,6 @@ class UsuariosController extends Controller
         $colaborador->PuestoDeTrabajo = $request['PuestoDeTrabajo'];
         $colaborador->LugarDeTrabajo = $request['LugarDeTrabajo'];
         $colaborador->Telefono = $request['Telefono'];
-        $colaborador->Cedula = $request['Cedula'];
         $colaborador->Estado = 1;
         
         $colaborador->save();
@@ -93,7 +91,12 @@ class UsuariosController extends Controller
      */
     public function show($id)
     {
-        //
+        $colaborador = Colaborador::find($id);
+        $usuario = User::find($colaborador->user_id);
+        $colaborador->user()->associate($usuario);
+    
+        return response()->json(['colaborador'=>$colaborador]);
+
     }
 
     /**
@@ -104,7 +107,11 @@ class UsuariosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $colaborador = Colaborador::find($id);
+        $usuario = User::find($colaborador->user_id);
+        $colaborador->user()->associate($usuario);
+
+        return view('Usuario/editar',compact('colaborador'));
     }
 
     /**
@@ -125,19 +132,24 @@ class UsuariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function change($id)
     {
-        //
+    	$colaborador = Colaborador::find($id);
+        $usuario = User::find($colaborador->user_id);
+        $colaborador->user()->associate($usuario);
+        
+        return response()->json(['colaborador'=>$colaborador]);
     }
-    public function paginate($items, $perPages){
-        $pageStart = \Request::get('page',1);
-        $offSet = ($pageStart * $perPages)-$perPages;
-        $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
 
-        return new \Illuminate\Pagination\LengthAwarePaginator(
-            $itemsForCurrentPage, count($items),
-            $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
-            ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
-        );
-            }
+    // public function paginate($items, $perPages){
+    //     $pageStart = \Request::get('page',1);
+    //     $offSet = ($pageStart * $perPages)-$perPages;
+    //     $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
+
+    //     return new \Illuminate\Pagination\LengthAwarePaginator(
+    //         $itemsForCurrentPage, count($items),
+    //         $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
+    //         ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+    //     );
+    //         }
 }
