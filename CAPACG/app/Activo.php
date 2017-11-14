@@ -29,4 +29,9 @@ class Activo extends Model
     {
     	return $this->belongsTo('App\Colaborador');
     }
+
+    public function dependencia()
+    {
+    	return $this->belongsTo('App\Dependencia');
+    }
 }

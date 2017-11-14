@@ -31,6 +31,7 @@ class InfraestructuraController extends Controller
     {
         $infraestructuras = Infraestructura::all();
         
+        //return response()->json(['infraestructuras'=>$infraestructuras]);
         return view('/infraestructura/crear');
     }
 

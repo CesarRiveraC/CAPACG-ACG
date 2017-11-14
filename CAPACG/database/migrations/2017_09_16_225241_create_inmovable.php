@@ -25,6 +25,8 @@ class CreateInmovable extends Migration
              $table->string('EstadoUtilizacion');
              $table->string('EstadoFisico');
              $table->integer('EstadoActivo');
+             $table->string('Marca');
+             $table->string('Modelo');
              $table->timestamps();
          });
      }

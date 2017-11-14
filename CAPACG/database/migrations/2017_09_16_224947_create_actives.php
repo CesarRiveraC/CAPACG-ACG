@@ -17,6 +17,8 @@ class CreateActives extends Migration
              $table->increments('id'); 
              $table->integer('colaborador_id')->unsigned()->nullable();
              $table->foreign('colaborador_id')->references('id')->on('colaboradores');
+            //  $table->integer('dependencia_id')->unsigned()->nullable();
+            //  $table->foreign('dependencia_id')->references('id')->on('dependencias');
              $table->string('Placa')->unique();
              $table->string('Descripcion'); // se define de tipo text por ser la descripcion del activo
              //$table->string('Direccion'); // se refiere a la direccion del colaborador asignado al activo. esto se hace por medio de la relacion
@@ -27,6 +29,7 @@ class CreateActives extends Migration
             // $table->string('Cedula'); //este campo ya no es necesario porque la relacion se hace con id
              $table->string('Foto');      // se define el campo como binario para poder almacenar la foto del activo.
              $table->integer('Estado');
+             $table->string('TipoActivo');
              $table->timestamps();
          });
  
