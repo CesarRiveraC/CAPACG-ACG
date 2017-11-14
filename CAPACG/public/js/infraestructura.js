@@ -62,3 +62,26 @@ $(function () {
     });
   });
 
+  $(function (){
+    $('.editar').click(function (e){
+        let id = $(this).attr('data-editar');
+        let url = `/infraestructuras/${id}/edit`;
+        $.get(url, function (result) {
+            alert(result.infraestructura.activo.Placa);
+            $('#role-form1').attr('action','/infraestructuras/'+result.infraestructura.id);
+            $('#Placa1').val(result.infraestructura.activo.Placa);
+            $('#Descripcion1').val(result.infraestructura.activo.Descripcion);
+            $('#Programa1').val(result.infraestructura.activo.Programa);
+            $('#SubPrograma1').val(result.infraestructura.activo.SubPrograma);
+            $('#Color1').val(result.infraestructura.activo.Color);
+            // $('#Foto').attr('src',"storage/pictures/".concat(result.infraestructura.activo.Foto));
+            $('#NumeroFinca1').val(result.infraestructura.NumeroFinca);
+            $('#AreaConstruccion1').val(result.infraestructura.AreaConstruccion);
+            $('#AreaTerreno1').val(result.infraestructura.AreaTerreno);
+            $('#AnoFabricacion1').val(result.infraestructura.AnoFabricacion);
+        }).fail(function () {
+            alert('algo salio mal');
+        });
+        $('#Editar').modal();
+    });
+});

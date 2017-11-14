@@ -13,14 +13,14 @@ class CreateDependenciesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Dependencias',function(Blueprint $table){
-            $table->increments('id'); 
-            // $table->integer('activo_id')->unsigned()->nullable();
-            // $table->foreign('activo_id')->references('id')->on('activos');
-            $table->string('Dependencia')->unique();
+        // Schema::create('Dependencias',function(Blueprint $table){
+        //     $table->increments('id'); 
+        //     // $table->integer('activo_id')->unsigned()->nullable();
+        //     // $table->foreign('activo_id')->references('id')->on('activos');
+        //     $table->string('Dependencia')->unique();
            
-            $table->timestamps();
-        });
+        //     $table->timestamps();
+        // });
     }
 
     /**

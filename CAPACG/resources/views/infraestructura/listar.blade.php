@@ -53,7 +53,7 @@
                                 <td class="warning"> 
                                 <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$infraestructura->id}}" ></a>
                                 <a class="fa fa-eye btn btn-success btn-xs detalleInfraestructura" data-infraestructura = "{{$infraestructura->id}}" ></a>
-                                <a href="/infraestructuras/{{$infraestructura->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
+                                <a  class="btn btn-warning btn-xs fa fa-pencil editar" data-editar="{{$infraestructura->id}}"></a>
                                 <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
                                 </td>
                                
@@ -72,6 +72,7 @@
 @include('modals.detalleInfraestructura')
 @include('modals.crearInfraestructura')
 @include('modals.modalPrueba')
+@include('modals.editarInfraestructura')
 
     <script src="{{ asset('js/infraestructura.js') }}"></script> 
 @endsection
