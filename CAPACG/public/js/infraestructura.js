@@ -38,3 +38,27 @@ $(function (){
     });
 });
 
+$(function(){
+    $('.crear').click(function(e){
+      
+       let id = $(this).attr('data-crear');
+       let url = `/infraestructuras/create`;
+
+       $.get(url, function (result) {
+        //    $('#Placa').text(result.infraestructura.activo.Placa);
+           $('#role-form').attr('action','/infraestructuras/');
+                   
+       }).fail(function () {
+           alert('algo salio mal');
+       });
+
+        $('#Crear').modal();
+    });
+});
+
+$(function () {
+    $('.estado').click(function (e) {
+      $('#Crear').modal();
+    });
+  });
+

@@ -6,11 +6,13 @@
         <div class="col-md-8 col-md-offset-2">
 
     
-        <a class="btn btn-primary" href="/infraestructuras/create">
+        <a class="btn btn-primary crear" data-toggle="modal" data-target="#exampleModal" >
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Infraestructura</a> 
         <a class="btn btn-success" href="/infraestructuras/excel">
         <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
-      
+      <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#modal_Omar">
+  Launch demo modal
+</button>
       
             <br>
             <br>
@@ -68,6 +70,8 @@
 </div>
 @include('modals.estado')
 @include('modals.detalleInfraestructura')
+@include('modals.crearInfraestructura')
+@include('modals.modalPrueba')
 
     <script src="{{ asset('js/infraestructura.js') }}"></script> 
 @endsection

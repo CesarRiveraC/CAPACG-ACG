@@ -58,7 +58,7 @@
                     </form>
                 </div>
 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_Omar">
+                <button type="button" id="btn_user_reserva" class="btn btn-primary" data-toggle="modal" data-target="#modal_Omar">
   Launch demo modal
 </button>
 

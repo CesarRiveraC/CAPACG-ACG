@@ -110,7 +110,21 @@ body, html {
     Cacao y Rincón de la Vieja de la Cordillera Volcánica de Guanacaste y continuando hasta
     las tierras bajas del lado caribe de Costa Rica. <a href="#"> Ver mas..</a></p>
     <br>
-  <img  src="http://www.sinac.go.cr/ES/ac/PublishingImages/logo-area-conservacion-guana.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="a picture">
+
+    <div class="w3-row-padding w3-center w3-section">    
+        <div class="w3-col m3">
+
+            <img  src="http://www.sinac.go.cr/ES/ac/PublishingImages/logo-area-conservacion-guana.png" class="w3-image w3-opacity w3-hover-opacity-off" alt="a picture">
+        </div>
+        <div class="w3-col m3">
+            <img  src="http://www.sinac.go.cr/SiteCollectionImages/logo.jpg" class="w3-image w3-opacity w3-hover-opacity-off" alt="a picture">
+        </div>
+        <div class="w3-col m3">
+            <img  src="https://flecharoja.com/assets/images/clientes/logo-minae.svg" class="w3-image w3-opacity w3-hover-opacity-off" alt="a picture">
+        </div>
+    </div>
+  &nbsp;&nbsp;
+
   
   
 </div>
