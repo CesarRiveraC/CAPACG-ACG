@@ -17,8 +17,8 @@ class CreateActives extends Migration
              $table->increments('id'); 
              $table->integer('colaborador_id')->unsigned()->nullable();
              $table->foreign('colaborador_id')->references('id')->on('colaboradores');
-            //  $table->integer('dependencia_id')->unsigned()->nullable();
-            //  $table->foreign('dependencia_id')->references('id')->on('dependencias');
+             $table->integer('dependencia_id')->unsigned()->nullable();
+             $table->foreign('dependencia_id')->references('id')->on('dependencias');
              $table->string('Placa')->unique();
              $table->string('Descripcion'); // se define de tipo text por ser la descripcion del activo
              //$table->string('Direccion'); // se refiere a la direccion del colaborador asignado al activo. esto se hace por medio de la relacion

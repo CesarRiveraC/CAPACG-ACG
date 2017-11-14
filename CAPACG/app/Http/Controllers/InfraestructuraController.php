@@ -91,24 +91,25 @@ class InfraestructuraController extends Controller
         //->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
         //->select('activos.*', 'infraestructuras.*')
         //->get();
-        return view('/infraestructura/editar',compact('infraestructura'));
+        return response()->json(['infraestructura'=>$infraestructura]);
+        // return view('/infraestructura/editar',compact('infraestructura'));
     }
     
     public function update($id, Request $request)
     {
         $infraestructura = Infraestructura::find($id);
         $activo = Activo::find($infraestructura->activo_id);
-        $activo->Placa = request('Placa');
-        $activo->Descripcion = request('Descripcion');
-        $activo->Programa = request('Programa');
-        $activo->SubPrograma = request('SubPrograma');
-        $activo->Color = request('Color');
+        $activo->Placa = request('Placa1');
+        $activo->Descripcion = request('Descripcion1');
+        $activo->Programa = request('Programa1');
+        $activo->SubPrograma = request('SubPrograma1');
+        $activo->Color = request('Color1');
         
 
-        if ($request->hasFile('Foto')){ 
+        if ($request->hasFile('Foto1')){ 
             Storage::delete($activo->Foto);
 
-                            $file = $request->file('Foto');  
+                            $file = $request->file('Foto1');  
                             $file_route = time().'_'.$file->getClientOriginalName(); 
                             Storage::disk('public')->put($file_route, file_get_contents($file->getRealPath() )); 
                             $activo->Foto = $file_route; 
@@ -118,10 +119,10 @@ class InfraestructuraController extends Controller
         $activo->save();
 
         $infraestructura->activo_id =  $activo->id;
-        $infraestructura->NumeroFinca = request('NumeroFinca');
-        $infraestructura->AreaConstruccion = request('AreaConstruccion');
-        $infraestructura->AreaTerreno = request('AreaTerreno');
-        $infraestructura->AnoFabricacion = request('AnoFabricacion');
+        $infraestructura->NumeroFinca = request('NumeroFinca1');
+        $infraestructura->AreaConstruccion = request('AreaConstruccion1');
+        $infraestructura->AreaTerreno = request('AreaTerreno1');
+        $infraestructura->AnoFabricacion = request('AnoFabricacion1');
         $infraestructura->save();
         return redirect('/infraestructuras');
     }
