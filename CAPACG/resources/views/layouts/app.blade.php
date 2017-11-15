@@ -47,6 +47,58 @@
     li a{
 	    color: black !important;
     }
+	
+	.navbar, .dropdown-menu{
+background:rgba(255,255,255,0.25);
+border: none;
+
+}
+
+.nav>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a, .dropdown-menu>li{
+  border-bottom: 3px solid transparent;
+}
+.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  border-bottom: 3px solid transparent;
+  
+}
+.navbar a, .dropdown-menu>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .navbar-toggle{
+ color: #fff;
+}
+.dropdown-menu{
+      -webkit-box-shadow: none;
+    box-shadow:none;
+	background: white;
+}
+
+.nav li:hover:nth-child(8n+1), .nav li.active:nth-child(8n+1){
+  border-bottom: #C4E17F 3px solid;
+}
+.nav li:hover:nth-child(8n+2), .nav li.active:nth-child(8n+2){
+  border-bottom: #F7FDCA 3px solid;
+}
+.nav li:hover:nth-child(8n+3), .nav li.active:nth-child(8n+3){
+  border-bottom: #FECF71 3px solid;
+}
+.nav li:hover:nth-child(8n+4), .nav li.active:nth-child(8n+4){
+  border-bottom: #F0776C 3px solid;
+}
+.nav li:hover:nth-child(8n+5), .nav li.active:nth-child(8n+5){
+  border-bottom: #DB9DBE 3px solid;
+}
+.nav li:hover:nth-child(8n+6), .nav li.active:nth-child(8n+6){
+  border-bottom: #C49CDE 3px solid;
+}
+.nav li:hover:nth-child(8n+7), .nav li.active:nth-child(8n+7){
+  border-bottom: #669AE1 3px solid;
+}
+.nav li:hover:nth-child(8n+8), .nav li.active:nth-child(8n+8){
+  border-bottom: #62C2E4 3px solid;
+}
+
+.navbar-toggle .icon-bar{
+    color: #fff;
+    background: #fff;
+}
     
     </style>
 </head>
@@ -79,17 +131,22 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+					
                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"   >
-                            Activos <i class="fa fa-bars" aria-hidden="true"></i></a>
+                            Activos <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/infraestructuras"><i class="fa fa-university" aria-hidden="true"></i> Infraestructura</a></li>
-                                <li><a href="/inmuebles"><i class="fa fa-television" aria-hidden="true"></i> Inmuebles</a></li>
-                                <li><a href="/semovientes"><i class="fa fa-heartbeat" aria-hidden="true"></i> Semovientes</a></li>
-                                <li><a href="/vehiculos"><span class="fa fa-car" aria-hidden="true"></span> Vehiculos</a></li>
+                                <li><a tabindex="-1" href="/infraestructuras"><i class="fa fa-university" aria-hidden="true"></i> Infraestructura</a></li>
+                                <li><a tabindex="-1" href="/inmuebles"><i class="fa fa-television" aria-hidden="true"></i> Inmuebles</a></li>
+                                <li><a tabindex="-1" href="/semovientes"><i class="fa fa-heartbeat" aria-hidden="true"></i> Semovientes</a></li>
+                                <li><a tabindex="-1" href="/vehiculos"><span class="fa fa-car" aria-hidden="true"></span> Vehiculos</a></li>
+								 <li class="divider"></li>
+								<li><a tabindex="-1" href="/dependencias"><span class="fa fa-car" aria-hidden="true"></span> Dependencias</a></li>
                             </ul>
                     
                         </li>
+						
+						
 
                         <li><a href="/combustibles"><i class="fa fa-battery-full" aria-hidden="true"></i> Combustibles</a></li>
 
