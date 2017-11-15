@@ -53,18 +53,20 @@ Route::group(['middleware' => 'auth'], function() {
         return view('mensajeRechazado');
     });
 
-     Route::get('usuarios/{id}/change','UsuariosController@change');
-    // Route::put('usuarios/{id}/updatestate','UsuariosController@updatestate');
-    // Route::get('usuarios/excel', 'UsuariosController@excel');
-    Route::resource('usuarios','UsuariosController');
+    
+
+    Route::group(['middleware' => 'Administrador'], function(){
+        
+        Route::get('usuarios/{id}/change','UsuariosController@change');
+        Route::put('usuarios/{id}/updatestate','UsuariosController@updatestate');
+        Route::get('usuarios/excel', 'UsuariosController@excel');
+       Route::resource('usuarios','UsuariosController');    });
   });
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 //Route::resource('activos','ActivoController');
 
-Route::group(['middleware' => 'Administrador'], function(){
-    // agregar las rutas a las que no se desea que accese un usuario que no sea administrador      
-});
+
 
 

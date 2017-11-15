@@ -12,7 +12,7 @@
                     <input type="hidden" name="_method" value="PUT">
                         {{ csrf_field() }}
                
-                        @include('partials.CrUsuario')
+                        @include('partials.crusuario')
 
                         <div class="form-group{{ $errors->has('Cedula') ? ' has-error' : '' }}">
                             <label for="Cedula" class="col-md-4 control-label">Cédula</label>

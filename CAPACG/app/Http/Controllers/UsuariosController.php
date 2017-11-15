@@ -19,7 +19,7 @@ class UsuariosController extends Controller
      */
     public function _construct(){
 
-        $this->middleware('Administrador');
+        $this->middleware('Administrador')->except('index');
     }
 
     public function index()
@@ -111,7 +111,7 @@ class UsuariosController extends Controller
         $usuario = User::find($colaborador->user_id);
         $colaborador->user()->associate($usuario);
 
-        return view('Usuario/editar',compact('colaborador'));
+        return view('/Usuario/editar', compact('colaborador','usuario'));        
     }
 
     /**
@@ -123,7 +123,38 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //nombre apellido correo, nueva contraseña , confirmar contraseña
+        $colaborador = Colaborador::find($id);        
+        $usuario = User::find($colaborador->user_id);
+       
+
+        if (isset ( $_POST['submit']) ) 
+        { 
+           if ( $_POST['password'] == $_POST['password_confirmation']) 
+           { 
+            $usuario->name = request('name');
+            $usuario->Apellido = request('Apellido');
+            $usuario->email = request('email');
+            $usuario->password = bcrypt(request('password'));
+            //falta confirmar contrase;a
+           // $activo->remember_token = null;
+            $usuario->save();
+    
+            $colaborador->Cedula = request('Cedula');
+            $colaborador->Direccion = request('Direccion');
+            $colaborador->PuestoDeTrabajo = request('PuestoDeTrabajo');
+            $colaborador->LugarDeTrabajo = request('LugarDeTrabajo');
+            $colaborador->Telefono = request('Telefono');
+            $colaborador->save();
+            return redirect('/usuarios');
+        } 
+           else 
+           { 
+            return redirect('/mensajeRechazado');
+            
+            } 
+        }  
+        
     }
 
     /**
