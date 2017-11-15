@@ -41,7 +41,7 @@
                                 <td class="warning"> 
                                 <a class="btn btn-danger btn-xs fa fa-minus estado"  ></a>
                                 <a class="fa fa-eye btn btn-success btn-xs "></a>
-                                <a href="/colaboradores/{{$colaborador->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
+                                <a href="/usuarios/{{$colaborador->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
                                 <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
                                 </td>
 
