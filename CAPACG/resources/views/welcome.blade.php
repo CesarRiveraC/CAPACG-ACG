@@ -60,19 +60,19 @@
     extiende desde el área marina en los alrededores del archipiélago Islas Murciélago en el
     océano Pacico, pasando por la meseta de Santa Rosa hasta la cima de los volcanes Orosí,
     Cacao y Rincón de la Vieja de la Cordillera Volcánica de Guanacaste y continuando hasta
-    las tierras bajas del lado caribe de Costa Rica. <a href="#"> Ver mas..</a></p>
+    las tierras bajas del lado caribe de Costa Rica. <a href="https://www.acguanacaste.ac.cr/acg/que-es-el-acg"> Ver mas..</a></p>
     <br>
 
     <div class="w3-row-padding w3-center w3-section">    
         <div class="w3-col m3">
 
-            <img  src="http://www.sinac.go.cr/ES/ac/PublishingImages/logo-area-conservacion-guana.png" class="w3-image w3-opacity w3-hover-opacity-off" alt="a picture">
+            <img  src="http://www.sinac.go.cr/ES/ac/PublishingImages/logo-area-conservacion-guana.png" class="w3-image w3-opacity w3-hover-opacity-off" alt="Logo ACG">
         </div>
         <div class="w3-col m3">
-            <img  src="http://www.sinac.go.cr/SiteCollectionImages/logo.jpg" class="w3-image w3-opacity w3-hover-opacity-off" alt="a picture">
+            <img  src="http://www.sinac.go.cr/SiteCollectionImages/logo.jpg" class="w3-image w3-opacity w3-hover-opacity-off" alt="Logo SINAC">
         </div>
         <div class="w3-col m3">
-            <img  src="https://flecharoja.com/assets/images/clientes/logo-minae.svg" class="w3-image w3-opacity w3-hover-opacity-off" alt="a picture">
+            <img  src="https://flecharoja.com/assets/images/clientes/logo-minae.svg" class="w3-image w3-opacity w3-hover-opacity-off" alt="Logo MINAE">
         </div>
     </div>
   &nbsp;&nbsp;
