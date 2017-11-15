@@ -66,7 +66,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('usuarios/{id}/change','UsuariosController@change');
         Route::put('usuarios/{id}/updatestate','UsuariosController@updatestate');
         Route::get('usuarios/excel', 'UsuariosController@excel');
-       Route::resource('usuarios','UsuariosController');    });
+       Route::resource('usuarios','UsuariosController');    
+    });
   });
 
 Auth::routes();
