@@ -128,10 +128,10 @@ class UsuariosController extends Controller
         $usuario = User::find($colaborador->user_id);
        
 
-        if (isset ( $_POST['submit']) ) 
-        { 
-           if ( $_POST['password'] == $_POST['password_confirmation']) 
-           { 
+        // if (isset ( $_POST['submit']) ) 
+        // { 
+        //    if ( $_POST['password'] == $_POST['password_confirmation']) 
+        //    { 
             $usuario->name = request('name');
             $usuario->Apellido = request('Apellido');
             $usuario->email = request('email');
@@ -147,12 +147,12 @@ class UsuariosController extends Controller
             $colaborador->Telefono = request('Telefono');
             $colaborador->save();
             return redirect('/usuarios');
-        } 
-           else 
-           { 
-            return redirect('/mensajeRechazado');
+        // } 
+        //    else 
+        //    { 
+        //     return redirect('/mensajeRechazado');
             
-            } 
+        //     } 
         }  
         
     }
