@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Activo;
 use App\Inmueble;
+use App\Dependencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -33,7 +34,8 @@ class InmuebleController extends Controller
     public function create()
     {
         $inmuebles = Inmueble::all();
-        return view('/inmueble/crear');
+        $dependencias= Dependencia:: all();
+        return view('/inmueble/crear', compact('dependencias'));
        
     }
 
@@ -47,6 +49,7 @@ class InmuebleController extends Controller
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
+            $activo->dependencia_id = $request['Dependencia'];
             $activo->Estado = 1;
 
             if ($request->hasFile('Foto')){ 
@@ -62,7 +65,9 @@ class InmuebleController extends Controller
             $inmueble = new Inmueble;
             $inmueble->activo_id =  $activo->id;
             $inmueble->Serie = $request['Serie'];
-            $inmueble->Dependencia = $request['Dependencia'];
+            
+            $inmueble->Marca = $request['Marca'];
+            $inmueble->Modelo = $request['Modelo'];
             $inmueble->EstadoUtilizacion = $request['EstadoUtilizacion'];
             $inmueble->EstadoFisico = $request['EstadoFisico'];
             $inmueble->EstadoActivo = $request['EstadoActivo'];
@@ -119,6 +124,8 @@ class InmuebleController extends Controller
         $inmueble->activo_id =  $activo->id;
         $inmueble->Serie = request('Serie');
         $inmueble->Dependencia = request('Dependencia');
+        $inmueble->Marca = request('Marca');
+        $inmueble->Modelo = request('Modelo');
         $inmueble->EstadoUtilizacion = request('EstadoUtilizacion');
         $inmueble->EstadoFisico = request('EstadoFisico');
         $inmueble->EstadoActivo = request('EstadoActivo');
@@ -161,6 +168,19 @@ class InmuebleController extends Controller
         ->where('activos.Estado','=','1')->paginate(7);
         return view('inmueble/listar',compact('inmuebles'));
     }
+
+    public function asignar(Request $request)
+    {
+        
+         $inmuebles = DB::table('inmuebles')
+        ->join('activos','inmuebles.activo_id', '=','activos.id')
+        ->select('activos.*','inmuebles.*')
+        ->where('activos.Estado','=','1')
+        ->paginate(7);
+      
+        return view('/inmueble/asignar', ['inmuebles' => $inmuebles]);
+    }
+    
 
     public function excel(){
 

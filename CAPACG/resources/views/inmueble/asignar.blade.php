@@ -6,21 +6,16 @@
         <div class="col-lg-10 col-lg-offset-1">
 
     
-        <a class="btn btn-primary" href="/inmuebles/create">
-        <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Crear nuevo Inmueble</a> 
-      
-        <a class="btn btn-success" href="/inmuebles/excel">
-        <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
-      
+   
       
             <br>
             <br>
 
             <div class="panel panel-info">
 
-            {!! Form::open(['url' => 'inmuebles/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search']) !!}
+            {!! Form::open(['url' => '#', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search']) !!}
             {!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
-
+            
             <button type="submit" class="btn btn-primary"><span class="fa fa-search" ></span></button>
             {!! Form::close() !!}
 
@@ -31,9 +26,12 @@
                     <table class="table table-hover">
                         <thead>
                              <tr>
-                                @include('partials.thActivo')
-                              
-                             
+                             <th>Placa</th>
+                             <th>Descripción</th>
+                             <th>Programa</th>
+                             <th>SubPrograma</th>
+                             <th>Color</th>
+                             <th>Estado</th>
                                 
                              </tr>
                       </thead>
@@ -46,14 +44,7 @@
                                 <td class="info"> {{$inmueble->Programa}} </td>
                                 <td class="info"> {{$inmueble->SubPrograma}} </td>
                                 <td class="info"> {{$inmueble->Color}} </td>
-                               <td class="info"> {{$inmueble->Estado}} </td>
-                                
-                                <td class="warning"> 
-                                <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$inmueble->id}}" ></a>
-                                <a class="fa fa-eye btn btn-success btn-xs detalleInmueble" data-inmueble = "{{$inmueble->id}}" ></a>
-                                <a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
-                                <a href="/inmuebles/asignar" class="btn btn-info btn-xs fa fa-link"></a>
-                                </td>
+                                <td class="info"> {{$inmueble->Estado}} </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -65,7 +56,5 @@
         </div>
     </div>
 </div>
-@include('modals.estado')
-@include('modals.detalleInmueble')
-    <script src="{{ asset('js/inmueble.js') }}"></script> 
+
 @endsection

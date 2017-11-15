@@ -28,7 +28,9 @@ $(function (){
             $('#lblColor').text(result.inmueble.activo.Color);
             $('#lblFoto').attr('src',"storage/pictures/".concat(result.inmueble.activo.Foto));
             $('#lblSerie').text(result.inmueble.Serie);
-            $('#lblDependencia').text(result.inmueble.Dependencia);
+            //$('#lblDependencia').text(result.inmueble.activo.dependencia.Dependencia);-->
+            $('#lblModelo').text(result.inmueble.Modelo);
+            $('#lblMarca').text(result.inmueble.Marca);
             $('#lblEstadoUtilizacion').text(result.inmueble.EstadoUtilizacion);
             $('#lblEstadoFisico').text(result.inmueble.EstadoFisico);
             $('#lblEstadoActivo').text(result.inmueble.EstadoActivo);

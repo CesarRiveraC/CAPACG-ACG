@@ -32,7 +32,7 @@ $(function (){
            $('#lblDependencia').text(result.combustible.Dependencia);
            $('#lblFoto').attr('src',"storage/pictures/".concat(result.combustible.Foto));
            $('#lblCodigoDeAccionDePlanPresupuesto').text(result.combustible.CodigoDeAccionDePlanPresupuesto);
-           $('#lblPlaca').text(result.combustible.vehiculo.Placa);
+           $('#lblPlaca').text(result.combustible.inmueble.vehiculo.activo.Placa);
            $('#lblVehiculo').text('Ver datos Vehículo');
            
 

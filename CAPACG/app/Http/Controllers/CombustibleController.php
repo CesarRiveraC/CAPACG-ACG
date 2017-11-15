@@ -82,11 +82,6 @@ class CombustibleController extends Controller
     public function edit($id)
     {
     	$combustible = Combustible::find($id);
-       // $vehiculo=Vehiculo::find($combustible->vehiculo_id);
-        //$combustible->vehiculo()->associate($vehiculo);
-
-        /*  $activo = Activo::find($inmueble->activo_id);
-        $inmueble->activo()->associate($activo); */
         $vehiculos= Vehiculo:: all();
       
         return view('/combustible/editar',compact('combustible','vehiculos'));

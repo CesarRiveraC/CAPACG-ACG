@@ -29,6 +29,14 @@
         <dd id="lblEstadoUtilizacion"></dd>
         <br>
 
+        <dt>Marca:</dt>
+        <dd id="lblMarca"></dd>
+        <br>
+
+        <dt>Modelo:</dt>
+        <dd id="lblModelo"></dd>
+        <br>
+
         <dt>Estado Físico:</dt>
         <dd id="lblEstadoFisico"></dd>
         <br>

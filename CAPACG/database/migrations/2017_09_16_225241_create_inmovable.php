@@ -21,7 +21,6 @@ class CreateInmovable extends Migration
            //  $table->string('Cedula'); variable definida en clase abstracta.
            //  $table->string('Responsable'); variable no necesaria, esta definida en la clase abstracta activos.
           //   $table->string('Color'); variable definida en clase abstracta.
-             $table->string('Dependencia');
              $table->string('EstadoUtilizacion');
              $table->string('EstadoFisico');
              $table->integer('EstadoActivo');

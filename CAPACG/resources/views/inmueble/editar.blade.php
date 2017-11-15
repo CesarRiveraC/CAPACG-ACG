@@ -30,6 +30,22 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('Marca') ? ' has-error' : '' }}">
+                            <label for="Marca" class="col-md-4 control-label">Marca</label>
+
+                            <div class="col-md-6">
+                                <input id="Marca" type="text" class="form-control" name="Marca" value="{{ $inmueble->Marca }}" required autofocus>                               
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('Modelo') ? ' has-error' : '' }}">
+                            <label for="Modelo" class="col-md-4 control-label">Modelo</label>
+
+                            <div class="col-md-6">
+                                <input id="Modelo" type="text" class="form-control" name="Modelo" value="{{ $inmueble->Modelo }}" required autofocus>                               
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('EstadoUtilizacion') ? ' has-error' : '' }}">
                             <label for="EstadoUtilizacion" class="col-md-4 control-label">Estado de Utilización</label>
 

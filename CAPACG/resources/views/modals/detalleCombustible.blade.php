@@ -48,7 +48,7 @@
         <br>
 
         <dt>Foto:</dt>
-        <dd id="lblFoto"></dd>
+        <img src="https://i0.wp.com/www.verasoul.com/wp-content/uploads/chromerror.jpg" id="lblFoto" class="img-responsive" alt="Foto" height="300" width="300"> 
         <br>
 
         <dt>Código de Acción de Plan de Presupuesto:</dt>

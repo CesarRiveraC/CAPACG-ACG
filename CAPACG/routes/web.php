@@ -46,6 +46,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('inmuebles/{id}/updatestate','InmuebleController@updatestate');
     Route::get('inmuebles/search','InmuebleController@search');
     Route::resource('inmuebles','InmuebleController');  
+
+    Route::get('dependencias/{id}/change','DependenciaController@change');
+    Route::put('dependencias/{id}/updatestate','DependenciaController@updatestate');
+    Route::get('dependencias/search','DependenciaController@search');
+    Route::resource('dependencias','DependenciaController'); 
+
     
     Route::resource('activos','Otro');  
     Route::resource('colaboradores','PruebaController');
