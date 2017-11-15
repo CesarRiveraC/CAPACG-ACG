@@ -131,7 +131,7 @@ border: none;
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-					
+					 @if (Auth::check())
                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"   >
                             Activos <span class="caret"></span></a>
@@ -151,6 +151,8 @@ border: none;
                         <li><a href="/combustibles"><i class="fa fa-battery-full" aria-hidden="true"></i> Combustibles</a></li>
 
                          <li><a href="/usuarios"><i class="fa fa-users" aria-hidden="true"></i> Usuarios</a></li>
+
+                         @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
