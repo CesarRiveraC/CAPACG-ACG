@@ -137,7 +137,7 @@ class UsuariosController extends Controller
             $usuario->email = request('email');
             $usuario->password = bcrypt(request('password'));
             //falta confirmar contrase;a
-           // $activo->remember_token = null;
+            $activo->remember_token = '';
             $usuario->save();
     
             $colaborador->Cedula = request('Cedula');
@@ -171,16 +171,4 @@ class UsuariosController extends Controller
         
         return response()->json(['colaborador'=>$colaborador]);
     }
-
-    // public function paginate($items, $perPages){
-    //     $pageStart = \Request::get('page',1);
-    //     $offSet = ($pageStart * $perPages)-$perPages;
-    //     $itemsForCurrentPage = array_slice($items,$offSet, $perPages, TRUE);
-
-    //     return new \Illuminate\Pagination\LengthAwarePaginator(
-    //         $itemsForCurrentPage, count($items),
-    //         $perPages, \Illuminate\Pagination\Paginator::resolveCurrentPage(),
-    //         ['path'=> \Illuminate\Pagination\Paginator::resolveCurrentPath()]
-    //     );
-    //         }
 }
