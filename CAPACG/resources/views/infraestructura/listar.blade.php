@@ -3,16 +3,16 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-lg-10 col-lg-offset-1">
 
     
         <a class="btn btn-primary crear" data-toggle="modal" data-target="#exampleModal" >
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Infraestructura</a> 
         <a class="btn btn-success" href="/infraestructuras/excel">
         <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
-      <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#modal_Omar">
+      {{--  <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#Editar">
   Launch demo modal
-</button>
+</button>  --}}
       
             <br>
             <br>
@@ -46,7 +46,7 @@
                                 <td class="info"> {{$infraestructura->SubPrograma}} </td>
                                 <td class="info"> {{$infraestructura->Color}} </td>
                                 
-                                <td class="info"> {{$infraestructura->Estado}} </td>
+                                
 
                                 <td class="info"> {{$infraestructura->NumeroFinca}} </td>
                                 

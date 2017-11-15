@@ -39,21 +39,11 @@ $(function (){
 });
 
 $(function(){
-    $('.crear').click(function(e){
-      
-       let id = $(this).attr('data-crear');
-       let url = `/infraestructuras/create`;
-
-       $.get(url, function (result) {
-        //    $('#Placa').text(result.infraestructura.activo.Placa);
-           $('#role-form').attr('action','/infraestructuras/');
-                   
-       }).fail(function () {
-           alert('algo salio mal');
-       });
-
-        $('#Crear').modal();
-    });
+    $('#Editar').on('shown.bs.modal', function () {
+        $('#role-form1').attr('action','/infraestructuras/');
+        // $('#input').attr('value',"PUT");
+        $('#exampleModalLabel1').text("Editar");
+      });
 });
 
 $(function () {
@@ -67,8 +57,10 @@ $(function () {
         let id = $(this).attr('data-editar');
         let url = `/infraestructuras/${id}/edit`;
         $.get(url, function (result) {
-            alert(result.infraestructura.activo.Placa);
+            // alert(result.infraestructura.activo.Placa);
             $('#role-form1').attr('action','/infraestructuras/'+result.infraestructura.id);
+            $('#input').attr('value',"PUT");
+            // $('#exampleModalLabel1').text("Holis");
             $('#Placa1').val(result.infraestructura.activo.Placa);
             $('#Descripcion1').val(result.infraestructura.activo.Descripcion);
             $('#Programa1').val(result.infraestructura.activo.Programa);

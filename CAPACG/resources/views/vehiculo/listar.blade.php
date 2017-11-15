@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-lg-10 col-md-offset-1">
 
     
         <a class="btn btn-primary" href="/vehiculos/create">
@@ -44,7 +44,7 @@
                                 <td class="info"> {{$vehiculo->SubPrograma}} </td>
                                 <td class="info"> {{$vehiculo->Color}} </td>
                                 
-                                <td class="info"> {{$vehiculo->Estado}} </td>
+                                
 
                                 <td class="info"> {{$vehiculo->Serie}} </td>
                                 

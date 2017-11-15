@@ -69,8 +69,17 @@
                         <p class="logo">CAPACG</p>
                     </a>
 
-                    <div class="navbar-brand">
-                        <li class="dropdown">
+                    
+                   
+                    
+                </div>
+                    
+                   
+                     
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                       <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"   >
                             Activos <i class="fa fa-bars" aria-hidden="true"></i></a>
                             <ul class="dropdown-menu" role="menu">
@@ -81,23 +90,10 @@
                             </ul>
                     
                         </li>
-                    </div>
 
-                    <div class="navbar-brand">
-                        <a href="/combustibles"><i class="fa fa-battery-full" aria-hidden="true"></i> Combustibles</a>
-                    </div>
-                   
-                     <div class="navbar-brand">
-                        <a href="/usuarios"><i class="fa fa-users" aria-hidden="true"></i> Usuarios</a>
-                    </div>
-                   
-                    
-                </div>
+                        <li><a href="/combustibles"><i class="fa fa-battery-full" aria-hidden="true"></i> Combustibles</a></li>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
+                         <li><a href="/usuarios"><i class="fa fa-users" aria-hidden="true"></i> Usuarios</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

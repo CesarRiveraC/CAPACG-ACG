@@ -13,7 +13,7 @@
         
           <div class="form-group">
             <label for="Placa" class="col-form-label">Placa o Patrimonio:</label>
-            <input type="text" class="form-control" id="Placa" name="Placa">
+            <input type="text" class="form-control" id="Placa" name="Placa" required autofocus>
           </div>          
 
           <div class="form-group">
@@ -23,17 +23,17 @@
 
           <div class="form-group">
             <label for="Programa" class="col-form-label">Programa:</label>
-            <input type="text" class="form-control" id="Programa" name="Programa">
+            <input type="text" class="form-control" id="Programa" name="Programa" required autofocus>
           </div>
 
           <div class="form-group">
             <label for="SubPrograma" class="col-form-label">SubPrograma:</label>
-            <input type="text" class="form-control" id="SubPrograma" name="SubPrograma">
+            <input type="text" class="form-control" id="SubPrograma" name="SubPrograma" required autofocus>
           </div>
 
           <div class="form-group">
             <label for="Color" class="col-form-label">Color:</label>
-            <input type="text" class="form-control" id="Color" name="Color">
+            <input type="text" class="form-control" id="Color" name="Color" required autofocus>
           </div>
 
           <div class="form-group">
@@ -43,22 +43,22 @@
 
           <div class="form-group">
             <label for="NumeroFinca" class="col-form-label">Número de Finca:</label>
-            <input type="text" class="form-control" id="NumeroFinca" name="NumeroFinca">
+            <input type="text" class="form-control" id="NumeroFinca" name="NumeroFinca" required autofocus>
           </div>
 
           <div class="form-group">
             <label for="AreaConstruccion" class="col-form-label">Área de Construcción:</label>
-            <input type="text" class="form-control" id="AreaConstruccion" name="AreaConstruccion">
+            <input type="text" class="form-control" id="AreaConstruccion" name="AreaConstruccion" required autofocus>
           </div>
 
           <div class="form-group">
             <label for="AreaTerreno" class="col-form-label">Área de Terreno:</label>
-            <input type="text" class="form-control" id="AreaTerreno" name="AreaTerreno">
+            <input type="text" class="form-control" id="AreaTerreno" name="AreaTerreno" required autofocus>
           </div>
 
           <div class="form-group">
             <label for="AnoFabricacion" class="col-form-label">Año de Fabricación:</label>
-            <input type="text" class="form-control" id="AnoFabricacion" name="AnoFabricacion">
+            <input type="text" class="form-control" id="AnoFabricacion" name="AnoFabricacion" required autofocus>
           </div>
 
           

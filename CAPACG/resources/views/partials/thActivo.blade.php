@@ -3,4 +3,3 @@
 <th>Programa</th>
 <th>SubPrograma</th>
 <th>Color</th>
-<th>Estado</th>
