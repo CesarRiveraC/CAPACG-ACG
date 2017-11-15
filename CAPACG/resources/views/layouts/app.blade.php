@@ -17,90 +17,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     
-    html, body{
-        color: #229337;
-        background-color: #C3FBCD;
-    }
-    .navbar{
-            background-color: #4CAF50 !important;
-            color: white; 
-            border-bottom: 4px ;
-            box-shadow: 3px 3px 3px #7C837D;
-    }
-    .logo{
-        font-weight: bold !important;
-        
-	    font-size: 22px; color: white; text-shadow: 0px 2px 3px #171717;
-	
-	    -webkit-box-shadow: 0px 2px 3px #1F8C33;
-        -moz-box-shadow: 0px 2px 3px #1F8C33;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-    }
-    a{
-	    color: black !important;
-        
-    }
-    li a{
-	    color: black !important;
-    }
-	
-	.navbar, .dropdown-menu{
-background:rgba(255,255,255,0.25);
-border: none;
-
-}
-
-.nav>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a, .dropdown-menu>li{
-  border-bottom: 3px solid transparent;
-}
-.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
-  border-bottom: 3px solid transparent;
-  
-}
-.navbar a, .dropdown-menu>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .navbar-toggle{
- color: #fff;
-}
-.dropdown-menu{
-      -webkit-box-shadow: none;
-    box-shadow:none;
-	background: white;
-}
-
-.nav li:hover:nth-child(8n+1), .nav li.active:nth-child(8n+1){
-  border-bottom: #C4E17F 3px solid;
-}
-.nav li:hover:nth-child(8n+2), .nav li.active:nth-child(8n+2){
-  border-bottom: #F7FDCA 3px solid;
-}
-.nav li:hover:nth-child(8n+3), .nav li.active:nth-child(8n+3){
-  border-bottom: #FECF71 3px solid;
-}
-.nav li:hover:nth-child(8n+4), .nav li.active:nth-child(8n+4){
-  border-bottom: #F0776C 3px solid;
-}
-.nav li:hover:nth-child(8n+5), .nav li.active:nth-child(8n+5){
-  border-bottom: #DB9DBE 3px solid;
-}
-.nav li:hover:nth-child(8n+6), .nav li.active:nth-child(8n+6){
-  border-bottom: #C49CDE 3px solid;
-}
-.nav li:hover:nth-child(8n+7), .nav li.active:nth-child(8n+7){
-  border-bottom: #669AE1 3px solid;
-}
-.nav li:hover:nth-child(8n+8), .nav li.active:nth-child(8n+8){
-  border-bottom: #62C2E4 3px solid;
-}
-
-.navbar-toggle .icon-bar{
-    color: #fff;
-    background: #fff;
-}
-    
-    </style>
 </head>
 <body>
     <div id="app">
@@ -141,7 +59,7 @@ border: none;
                                 <li><a tabindex="-1" href="/semovientes"><i class="fa fa-heartbeat" aria-hidden="true"></i> Semovientes</a></li>
                                 <li><a tabindex="-1" href="/vehiculos"><span class="fa fa-car" aria-hidden="true"></span> Vehiculos</a></li>
 								 <li class="divider"></li>
-								<li><a tabindex="-1" href="/dependencias"><span class="fa fa-car" aria-hidden="true"></span> Dependencias</a></li>
+								<li><a tabindex="-1" href="/dependencias"><span class="fa fa-list-alt" aria-hidden="true"></span> Dependencias</a></li>
                             </ul>
                     
                         </li>
