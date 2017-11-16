@@ -19,6 +19,7 @@ class ActivoController extends Controller
     public function index()
     {
         $activos = Activo::paginate(2);
+        
         return view('/activos/listar')->withActivos($activos);;
     }
 
@@ -30,8 +31,8 @@ class ActivoController extends Controller
     public function create()
     {
         $activos = Activo::all();
-        
-        return view('/activo/crear'); 
+        $dependencias= Dependencia:: all();
+        return view('/activo/crear', compact('dependencias'));
     }
 
     /**

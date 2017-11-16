@@ -46,4 +46,22 @@ class DependenciaController extends Controller
 
     }
 
+    public function edit($id)
+    {
+    	$dependencia = Dependencia::find($id);
+   
+      
+        return view('/dependencia/editar',compact('dependencia'));
+    }
+
+ 
+    public function update($id, Request $request)
+    {
+        $dependencia = Dependencia::find($id);
+        $dependencia->Dependencia = request('Dependencia');
+       
+        $dependencia->save();
+        return redirect('/dependencias');
+    }
+  
 }

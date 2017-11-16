@@ -70,7 +70,6 @@
 </div>
 @include('modals.estado')
 @include('modals.detalleInfraestructura')
-@include('modals.crearInfraestructura')
 @include('modals.modalPrueba')
 @include('modals.editarInfraestructura')
 

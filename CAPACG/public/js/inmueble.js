@@ -23,6 +23,7 @@ $(function (){
         $.get(url, function (result) {
             $('#lblPlaca').text(result.inmueble.activo.Placa);
             $('#lblDescripcion').text(result.inmueble.activo.Descripcion);
+            $('#lblTipoActivo').text(result.inmueble.activo.TipoActivo)
             $('#lblPrograma').text(result.inmueble.activo.Programa);
             $('#lblSubPrograma').text(result.inmueble.activo.SubPrograma);
             $('#lblColor').text(result.inmueble.activo.Color);

@@ -32,7 +32,8 @@ $(function (){
             $('#lblEstadoUtilizacion').text(result.vehiculo.inmueble.EstadoUtilizacion);
             $('#lblEstadoFisico').text(result.vehiculo.inmueble.EstadoFisico);
             $('#lblEstadoActivo').text(result.vehiculo.inmueble.EstadoActivo);
-            $('#lblPlaca').text(result.vehiculo.Placa);
+            $('#lblPlaca').text(result.vehiculo.activo.Placa);
+            
         }).fail(function () {
             alert('algo salio mal');
         });

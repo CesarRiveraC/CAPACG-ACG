@@ -53,6 +53,8 @@
                             </div>
                         </div>
 
+                        
+
 
                         <div class="form-group">
                             <label for="Foto" class="col-md-4 control-label">Foto</label>

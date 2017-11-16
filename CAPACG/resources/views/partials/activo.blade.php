@@ -14,6 +14,21 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('TipoActivo') ? ' has-error' : '' }}">
+                            <label for="TipoActivo" class="col-md-4 control-label">Tipo</label>
+                            <div class="col-md-6">
+                            <select name="TipoActivo" id="TipoActivo" class="form-control" required>
+                                
+                            <option value="">--Escoja tipo--</option>
+                          
+                            <option value="Fundación de parques">Fundación de parques</option>
+                            <option value="SINAC">SINAC</option>
+                             
+                            </select>
+                            </div>
+                        </div>
+
+
                         <div class="form-group{{ $errors->has('Programa') ? ' has-error' : '' }}">
                             <label for="Programa" class="col-md-4 control-label">Programa</label>
 
@@ -40,6 +55,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('Dependencia') ? ' has-error' : '' }}">
+                            <label for="Dependencia" class="col-md-4 control-label">Dependencia</label>
+                            <div class="col-md-6">
+                            <select name="Dependencia" id="dependencia_id" class="form-control" required>
+                                
+                            <option value="">--Escoja dependencia--</option>
+                            @foreach($dependencias as $dependencia)
+                                    <option value="{{$dependencia['id']}}">{{$dependencia['Dependencia']}}</option>
+                                @endforeach
+                            </select>
+                            </div>
+                        </div>
+                   
 
                         <div class="form-group">
                             <label for="Foto" class="col-md-4 control-label">Foto</label>

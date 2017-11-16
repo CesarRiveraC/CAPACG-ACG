@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Vehiculo;
 use App\Activo;
 use App\Inmueble;
+use App\Dependencia;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -34,8 +35,9 @@ class VehiculoController extends Controller
     public function create()
     {
         $vehiculos = Vehiculo::all();
-    
-        return view('/vehiculo/crear'); 
+        $dependencias= Dependencia:: all();
+        return view('/vehiculo/crear', compact('dependencias'));
+       
     }
 
     public function store(Request $request)
@@ -45,6 +47,8 @@ class VehiculoController extends Controller
             $activo = new Activo;
             $activo->Placa = $request['Placa'];
             $activo->Descripcion = $request['Descripcion'];
+            $activo->dependencia_id = $request['Dependencia'];
+            $activo->TipoActivo = $request['TipoActivo'];
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
@@ -63,7 +67,6 @@ class VehiculoController extends Controller
             $inmueble = new Inmueble;
             $inmueble->activo_id =  $activo->id;
             $inmueble->Serie = $request['Serie'];
-            $inmueble->Dependencia = $request['Dependencia'];
             $inmueble->EstadoUtilizacion = $request['EstadoUtilizacion'];
             $inmueble->EstadoFisico = $request['EstadoFisico'];
             $inmueble->EstadoActivo = $request['EstadoActivo'];
@@ -97,8 +100,10 @@ class VehiculoController extends Controller
         $activo = Activo::find($inmueble->activo_id);
         $vehiculo->inmueble()->associate($inmueble);
         $inmueble->activo()->associate($activo);
+        $dependencias= Dependencia:: all();
         
-        return view('/vehiculo/editar',compact('vehiculo'));
+        return view('/vehiculo/editar',compact('vehiculo','dependencias'));
+    
     }
     
     public function update($id, Request $request)
@@ -109,6 +114,8 @@ class VehiculoController extends Controller
 
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
+        $activo->TipoActivo = request('TipoActivo');
+        $activo->dependencia_id = request('Dependencia');
         $activo->Programa = request('Programa');
         $activo->SubPrograma = request('SubPrograma');
         $activo->Color = request('Color');      
@@ -126,7 +133,6 @@ class VehiculoController extends Controller
 
         $inmueble->activo_id =  $activo->id;
         $inmueble->Serie = request('Serie');
-        $inmueble->Dependencia = request('Dependencia');
         $inmueble->EstadoUtilizacion = request('EstadoUtilizacion');
         $inmueble->EstadoFisico = request('EstadoFisico');
         $inmueble->EstadoActivo = request('EstadoActivo');

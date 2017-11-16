@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Semoviente;
 use App\Activo;
+use App\Dependencia;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -33,8 +34,9 @@ class SemovienteController extends Controller
     public function create()
     {
         $semovientes = Semoviente::all();
-        
-        return view('/semoviente/crear'); 
+        $dependencias= Dependencia:: all();
+        return view('/semoviente/crear', compact('dependencias'));
+    
     }
 
     public function store(Request $request)
@@ -45,6 +47,8 @@ class SemovienteController extends Controller
             $activo = new Activo;
             $activo->Placa = $request['Placa'];
             $activo->Descripcion = $request['Descripcion'];
+            $activo->dependencia_id = $request['Dependencia'];
+            $activo->TipoActivo = $request['TipoActivo'];
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
@@ -85,8 +89,10 @@ class SemovienteController extends Controller
     	$semoviente = Semoviente::find($id);
         $activo = Activo::find($semoviente->activo_id);
         $semoviente->activo()->associate($activo);
-        
-        return view('/semoviente/editar',compact('semoviente'));
+        $dependencias= Dependencia:: all();
+    
+        return view('/semoviente/editar',compact('semoviente','dependencias'));
+   
     }
     
     public function update($id, Request $request)
@@ -95,8 +101,10 @@ class SemovienteController extends Controller
         $activo = Activo::find($semoviente->activo_id);
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
+        $activo->TipoActivo = request('TipoActivo');
         $activo->Programa = request('Programa');
         $activo->SubPrograma = request('SubPrograma');
+        $activo->dependencia_id = request('Dependencia');
         $activo->Color = request('Color');       
 
         if ($request->hasFile('Foto')){ 

@@ -6,6 +6,10 @@
         <dd id="lblDescripcion"></dd>
         <br>
 
+        <dt>Tipo</dt>
+        <dd id="lblTipoActivo"></dd>
+        <br>
+
         <dt>Programa</dt>
         <dd id="lblPrograma"></dd>
         <br>

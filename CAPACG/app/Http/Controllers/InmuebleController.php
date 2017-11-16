@@ -46,6 +46,7 @@ class InmuebleController extends Controller
             $activo = new Activo;
             $activo->Placa = $request['Placa'];
             $activo->Descripcion = $request['Descripcion'];
+            $activo->TipoActivo = $request['TipoActivo'];
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
@@ -93,9 +94,10 @@ class InmuebleController extends Controller
     {
     	$inmueble = Inmueble::find($id);
         $activo = Activo::find($inmueble->activo_id);
+        $dependencias= Dependencia:: all();
         $inmueble->activo()->associate($activo);
         
-        return view('/inmueble/editar',compact('inmueble'));
+        return view('/inmueble/editar',compact('inmueble','dependencias'));
     }
 
     public function update($id, Request $request)
@@ -107,9 +109,10 @@ class InmuebleController extends Controller
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
         $activo->Programa = request('Programa');
+        $activo->TipoActivo = request('TipoActivo');
         $activo->SubPrograma = request('SubPrograma');
         $activo->Color = request('Color');      
-
+        $activo->dependencia_id = request('Dependencia');
         if ($request->hasFile('Foto')){ 
             Storage::delete($activo->Foto);
 
@@ -123,7 +126,6 @@ class InmuebleController extends Controller
 
         $inmueble->activo_id =  $activo->id;
         $inmueble->Serie = request('Serie');
-        $inmueble->Dependencia = request('Dependencia');
         $inmueble->Marca = request('Marca');
         $inmueble->Modelo = request('Modelo');
         $inmueble->EstadoUtilizacion = request('EstadoUtilizacion');

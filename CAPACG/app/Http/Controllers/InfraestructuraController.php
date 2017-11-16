@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Infraestructura;
 use App\Activo;
+use App\Dependencia;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -30,9 +31,11 @@ class InfraestructuraController extends Controller
     public function create()
     {
         $infraestructuras = Infraestructura::all();
+        $dependencias= Dependencia:: all();
+        return view('/infraestructura/crear', compact('dependencias'));
         
         //return response()->json(['infraestructuras'=>$infraestructuras]);
-        return view('/infraestructura/crear');
+       
     }
 
     public function store(Request $request)

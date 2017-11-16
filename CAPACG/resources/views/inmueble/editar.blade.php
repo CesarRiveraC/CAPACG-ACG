@@ -22,13 +22,6 @@
                             </div>
                         </div>
 
-                         <div class="form-group{{ $errors->has('Dependencia') ? ' has-error' : '' }}">
-                            <label for="Dependencia" class="col-md-4 control-label">Dependencia</label>
-
-                            <div class="col-md-6">
-                                <input id="Dependencia" type="text" class="form-control" name="Dependencia" value="{{ $inmueble->Dependencia }}" required autofocus>                               
-                            </div>
-                        </div>
 
                         <div class="form-group{{ $errors->has('Marca') ? ' has-error' : '' }}">
                             <label for="Marca" class="col-md-4 control-label">Marca</label>
