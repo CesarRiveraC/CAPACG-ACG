@@ -84,7 +84,8 @@ class InmuebleController extends Controller
         $inmueble = Inmueble::find($id);
         $activo = Activo::find($inmueble->activo_id);
         $inmueble->activo()->associate($activo);
-    
+        $dependencia = Dependencia::find($activo->dependencia_id);
+        $activo->dependencia()->associate($dependencia);
         return response()->json(['inmueble'=>$inmueble]);
 
     }
