@@ -32,9 +32,9 @@ class InfraestructuraController extends Controller
     {
         $infraestructuras = Infraestructura::all();
         $dependencias= Dependencia:: all();
-        return view('/infraestructura/crear', compact('dependencias'));
+        //return view('/infraestructura/crear', compact('dependencias'));
         
-        //return response()->json(['infraestructuras'=>$infraestructuras]);
+        return response()->json(['dependencias'=>$dependencias]);
        
     }
 

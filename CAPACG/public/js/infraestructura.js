@@ -39,10 +39,18 @@ $(function (){
 });
 
 $(function(){
-    $('#Editar').on('shown.bs.modal', function () {
-        $('#role-form1').attr('action','/infraestructuras/');
-        // $('#input').attr('value',"PUT");
-        $('#exampleModalLabel1').text("Editar");
+    $('#exampleModal').on('shown.bs.modal', function () {
+        let id = $(this).attr('data-estado');
+        let url = `/infraestructuras/create`;
+
+        $.get(url, function (result) {
+            //$('#Placa').text(result.dependencias.Dependencia);
+            //$('#role-form').attr('action','/infraestructuras/'+result.infraestructura.id+'/updatestate');
+                    
+        }).fail(function () {
+            alert('algo salio mal');
+        });
+
       });
 });
 

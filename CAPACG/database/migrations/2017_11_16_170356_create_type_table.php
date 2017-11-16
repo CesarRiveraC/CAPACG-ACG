@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDependenciesTable extends Migration
+class CreateTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,14 +15,6 @@ class CreateDependenciesTable extends Migration
     {
         //El metodo que crea esta tabla se encuentra en el archivo create_collaborators_table
         //esto debido a la referencia que tiene con activos
-        // Schema::create('Dependencias',function(Blueprint $table){
-        //     $table->increments('id'); 
-        //     // $table->integer('activo_id')->unsigned()->nullable();
-        //     // $table->foreign('activo_id')->references('id')->on('activos');
-        //     $table->string('Dependencia')->unique();
-           
-        //     $table->timestamps();
-        // });
     }
 
     /**

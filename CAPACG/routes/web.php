@@ -52,6 +52,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('dependencias/search','DependenciaController@search');
     Route::resource('dependencias','DependenciaController'); 
 
+    Route::get('tipos/{id}/change','TipoController@change');
+    Route::put('tipos/{id}/updatestate','TipoController@updatestate');
+    Route::get('tipos/search','TipoController@search');
+    Route::resource('tipos','TipoController'); 
+
     
     Route::resource('activos','Otro');  
     Route::resource('colaboradores','PruebaController');

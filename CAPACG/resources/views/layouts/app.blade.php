@@ -56,10 +56,11 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a tabindex="-1" href="/infraestructuras"><i class="fa fa-university" aria-hidden="true"></i> Infraestructura</a></li>
                                 <li><a tabindex="-1" href="/inmuebles"><i class="fa fa-television" aria-hidden="true"></i> Inmuebles</a></li>
-                                <li><a tabindex="-1" href="/semovientes"><i class="fa fa-heartbeat" aria-hidden="true"></i> Semovientes</a></li>
+                                <li><a tabindex="-1" href="/semovientes"><i class="fa fa-bug" aria-hidden="true"></i> Semovientes</a></li>
                                 <li><a tabindex="-1" href="/vehiculos"><span class="fa fa-car" aria-hidden="true"></span> Vehiculos</a></li>
 								 <li class="divider"></li>
 								<li><a tabindex="-1" href="/dependencias"><span class="fa fa-list-alt" aria-hidden="true"></span> Dependencias</a></li>
+                                <li><a tabindex="-1" href="/tipos"><span class="fa fa-clone" aria-hidden="true"></span> Tipos de activo</a></li>
                             </ul>
                     
                         </li>

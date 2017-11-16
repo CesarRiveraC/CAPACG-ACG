@@ -35,6 +35,14 @@ class CreateCollaborators extends Migration
            
             $table->timestamps();
         });
+
+        Schema::create('Tipos',function(Blueprint $table){
+            $table->increments('id'); 
+            
+            $table->string('Tipo')->unique();
+           
+            $table->timestamps();
+        });
      }
      /**
       * Reverse the migrations.
@@ -44,6 +52,8 @@ class CreateCollaborators extends Migration
      public function down()
      {
          Schema::drop('Colaboradores');
+         Schema::drop('Dependencias');
+         Schema::drop('Tipos');
      }
  
 }

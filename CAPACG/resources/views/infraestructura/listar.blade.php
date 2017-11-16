@@ -10,9 +10,7 @@
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Infraestructura</a> 
         <a class="btn btn-success" href="/infraestructuras/excel">
         <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
-      {{--  <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#Editar">
-  Launch demo modal
-</button>  --}}
+     
       
             <br>
             <br>
