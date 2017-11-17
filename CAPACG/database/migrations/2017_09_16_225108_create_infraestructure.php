@@ -33,6 +33,6 @@ class CreateInfraestructure extends Migration
       */
      public function down()
      {
-         Schema::drop('Infraestructuras');
+         Schema::dropIfExists('Infraestructuras');
      }
 }

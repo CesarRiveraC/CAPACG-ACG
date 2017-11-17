@@ -39,17 +39,85 @@ $(function (){
 });
 
 $(function(){
-    $('#exampleModal').on('shown.bs.modal', function () {
-        let id = $(this).attr('data-estado');
-        let url = `/infraestructuras/create`;
+    $('.crear').click(function (e) {
+        
+        alert('que ha pasao');
 
-        $.get(url, function (result) {
-            //$('#Placa').text(result.dependencias.Dependencia);
-            //$('#role-form').attr('action','/infraestructuras/'+result.infraestructura.id+'/updatestate');
+        console.log(e);
+        
+                //var id_categoria = e.target.value;
+                
+                //ajax
+        
+                $.get('/infraestructuras/create/',function(data){
+        
+                    // $('#slt-cursos').empty();
+        
+                    $('#slt-cursos').append("<option value='' disabled selected style='display:none;'>Seleccione una marca</option>");
+                    alert(data.dependencias[0].Dependencia);
+                     var cont = 0;
+                     var model = $('#slt-cursos');
+                     model.empty();
+                     $.each(data, function(index, element){
+                         console.log(element);
+                         cont = element.length;
+                         console.log(cont);
+                         //model.append('<option value="'+element[0].id+'">'+element[0].Dependencia+'</option>');
+                     });
+                    // alert(cont);
+                    for (var i = 0, l = cont; i< l; i++){
+                        //console.log(item);
+                        $('#slt-cursos').append('<option value="'+data.dependencias[i].id+'">'+data.dependencias[i].Dependencia+'</option>');
+
+                       
+                    }
+                    // $.each(data,function(key,value){
+                        
+                    //     console.log(value);
+                    // $('#slt-cursos').append('<option value="'+value[0].id+'">'+value[0].Dependencia+'</option>');
+                        
+                    // });
+                });
+        //let id = $(this).attr('data-estado');
+        // let url = `/infraestructuras/create`;
+
+        // $.get(url, function (result) {
+        //     $('#slt-cursos').append("<option value='' disabled selected style='display:none;'>Seleccione un munipio</option>");
+        //     alert(result.Dependencia.id);       
+        //     $.each(rta, function (index, value) {
+        //                 alert('entro al each');
+        //                 $('#slt-cursos').append("<option value='" + result.dependencia.id + "'>" + result.Dependencia + "</option>");
+        //             });
                     
-        }).fail(function () {
-            alert('algo salio mal');
-        });
+        // }).fail(function () {
+        //     alert('algo salio mal');
+        // });
+        // $.ajax({
+        //     url: "{{ url('infraestructuras/create') }}",
+        //     type: 'get',
+        //     dataType: 'json',
+        //     data: {"dep": $dependencias.val()},
+            
+        //     success: function (rta) {
+        //         alert('entro a rta');
+        //         $('#slt-cursos').empty();
+        //         $('#slt-cursos').append("<option value='' disabled selected style='display:none;'>Seleccione un munipio</option>");
+        //         $.each(rta, function (index, value) {
+        //             alert('entro al each');
+        //             $('#slt-cursos').append("<option value='" + index + "'>" + value + "</option>");
+        //         });
+        //     }
+        // });
+        // let id = $(this).attr('data-estado');
+        // let url = `/infraestructuras/create`;
+
+        // $.get(url, function (result) {
+        //     //$('#Placa').text(result.dependencias.Dependencia);
+        //     //$('#role-form').attr('action','/infraestructuras/'+result.infraestructura.id+'/updatestate');
+                    
+        // }).fail(function () {
+        //     alert('algo salio mal');
+        // });
 
       });
 });

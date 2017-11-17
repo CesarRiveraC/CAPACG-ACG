@@ -37,6 +37,6 @@ class CreateInmovable extends Migration
       */
      public function down()
      {
-         Schema::drop('Inmuebles');
+         Schema::dropIfExists('Inmuebles');
      }
 }

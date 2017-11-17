@@ -44,7 +44,7 @@ class CreateActives extends Migration
       */
      public function down()
      {
-         Schema::drop('Activos');
+         Schema::dropIfExists('Activos');
      }
  
 }

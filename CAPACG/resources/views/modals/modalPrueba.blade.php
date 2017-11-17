@@ -40,15 +40,12 @@
             <label for="Foto" class="col-form-label">Foto:</label>
             <input type="file" class="form-control" id="Foto" name="Foto">
           </div>
-          @if(!empty($dependencias))
-         <option value="">--Escoja dependencia--</option>
-                            @foreach($dependencias as $dependencia)
-                                    <option value="{{$dependencia['id']}}">{{$dependencia['Dependencia']}}</option>
-                                @endforeach
-                            </select>
-                            </div>
-                        </div>
-          @endif
+          <div class="form-group">
+        <div class="form-group">
+            <label>Cursos asignados</label>
+            <select id="slt-cursos" class="form-control"></select>
+            </div>        
+        </div>
 
           <div class="form-group">
             <label for="NumeroFinca" class="col-form-label">Número de Finca:</label>

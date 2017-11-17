@@ -30,10 +30,10 @@ class InfraestructuraController extends Controller
 
     public function create()
     {
-        $infraestructuras = Infraestructura::all();
+        //$infraestructuras = Infraestructura::all();
         $dependencias= Dependencia:: all();
         //return view('/infraestructura/crear', compact('dependencias'));
-        
+        //return ( json_encode ($dependencias));
         return response()->json(['dependencias'=>$dependencias]);
        
     }

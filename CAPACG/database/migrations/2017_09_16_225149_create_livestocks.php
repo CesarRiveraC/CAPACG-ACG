@@ -33,6 +33,6 @@ class CreateLivestocks extends Migration
      public function down()
      {
          
-         Schema::drop('Semovientes');
+         Schema::dropIfExists('Semovientes');
      }
 }

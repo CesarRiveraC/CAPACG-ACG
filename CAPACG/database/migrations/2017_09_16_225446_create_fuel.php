@@ -45,6 +45,6 @@ class CreateFuel extends Migration
       */
      public function down()
      {
-         Schema::drop('Combustibles');
+         Schema::dropIfExists('Combustibles');
      }
 }

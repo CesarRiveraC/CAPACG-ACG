@@ -51,9 +51,9 @@ class CreateCollaborators extends Migration
       */
      public function down()
      {
-         Schema::drop('Colaboradores');
-         Schema::drop('Dependencias');
-         Schema::drop('Tipos');
+         Schema::dropIfExists('Colaboradores');
+         Schema::dropIfExists('Dependencias');
+         Schema::dropIfExists('Tipos');
      }
  
 }
