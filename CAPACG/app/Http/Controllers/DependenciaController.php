@@ -24,9 +24,10 @@ class DependenciaController extends Controller
 
     public function create()
     {
-        $depedencias = Dependencia::all();
+        $dependencias = Dependencia::all();
         
-        return view('/dependencia/crear'); 
+        return response()->json(['dependencias'=>$dependencias]);
+        //return view('/dependencia/crear'); 
     }
 
     public function store(Request $request)

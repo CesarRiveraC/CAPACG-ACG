@@ -25,6 +25,8 @@ $(function (){
             $('#lblDescripcion').text(result.infraestructura.activo.Descripcion);
             $('#lblPrograma').text(result.infraestructura.activo.Programa);
             $('#lblSubPrograma').text(result.infraestructura.activo.SubPrograma);
+            $('#lblDependencia').text(result.infraestructura.activo.dependencia.Dependencia);
+            $('#lblTipoActivo').text(result.infraestructura.activo.tipo.Tipo);
             $('#lblColor').text(result.infraestructura.activo.Color);
             $('#lblFoto').attr('src',"storage/pictures/".concat(result.infraestructura.activo.Foto));
             $('#lblNumeroFinca').text(result.infraestructura.NumeroFinca);
@@ -43,81 +45,56 @@ $(function(){
         
         alert('que ha pasao');
 
-        console.log(e);
+        console.log(e);                        
         
-                //var id_categoria = e.target.value;
-                
-                //ajax
-        
-                $.get('/infraestructuras/create/',function(data){
+                $.get('/dependencias/create/',function(data){
         
                     // $('#slt-cursos').empty();
         
-                    $('#slt-cursos').append("<option value='' disabled selected style='display:none;'>Seleccione una marca</option>");
+                    $('#Dependencia').append("<option value='' disabled selected style='display:none;'>Seleccione una dependencia</option>");
                     alert(data.dependencias[0].Dependencia);
                      var cont = 0;
                      var model = $('#slt-cursos');
                      model.empty();
+                    
                      $.each(data, function(index, element){
                          console.log(element);
                          cont = element.length;
                          console.log(cont);
-                         //model.append('<option value="'+element[0].id+'">'+element[0].Dependencia+'</option>');
+                        
                      });
                     // alert(cont);
                     for (var i = 0, l = cont; i< l; i++){
                         //console.log(item);
-                        $('#slt-cursos').append('<option value="'+data.dependencias[i].id+'">'+data.dependencias[i].Dependencia+'</option>');
-
-                       
+                        $('#Dependencia').append('<option value="'+data.dependencias[i].id+'">'+data.dependencias[i].Dependencia+'</option>');                       
                     }
-                    // $.each(data,function(key,value){
-                        
-                    //     console.log(value);
-                    // $('#slt-cursos').append('<option value="'+value[0].id+'">'+value[0].Dependencia+'</option>');
-                        
-                    // });
+                   
                 });
-        //let id = $(this).attr('data-estado');
-        // let url = `/infraestructuras/create`;
-
-        // $.get(url, function (result) {
-        //     $('#slt-cursos').append("<option value='' disabled selected style='display:none;'>Seleccione un munipio</option>");
-        //     alert(result.Dependencia.id);       
-        //     $.each(rta, function (index, value) {
-        //                 alert('entro al each');
-        //                 $('#slt-cursos').append("<option value='" + result.dependencia.id + "'>" + result.Dependencia + "</option>");
-        //             });
+        
+        
+                $.get('/tipos/create/',function(data){
                     
-        // }).fail(function () {
-        //     alert('algo salio mal');
-        // });
-        // $.ajax({
-        //     url: "{{ url('infraestructuras/create') }}",
-        //     type: 'get',
-        //     dataType: 'json',
-        //     data: {"dep": $dependencias.val()},
-            
-        //     success: function (rta) {
-        //         alert('entro a rta');
-        //         $('#slt-cursos').empty();
-        //         $('#slt-cursos').append("<option value='' disabled selected style='display:none;'>Seleccione un munipio</option>");
-        //         $.each(rta, function (index, value) {
-        //             alert('entro al each');
-        //             $('#slt-cursos').append("<option value='" + index + "'>" + value + "</option>");
-        //         });
-        //     }
-        // });
-        // let id = $(this).attr('data-estado');
-        // let url = `/infraestructuras/create`;
-
-        // $.get(url, function (result) {
-        //     //$('#Placa').text(result.dependencias.Dependencia);
-        //     //$('#role-form').attr('action','/infraestructuras/'+result.infraestructura.id+'/updatestate');
+                                // $('#slt-cursos').empty();
                     
-        // }).fail(function () {
-        //     alert('algo salio mal');
-        // });
+                                $('#Tipo').append("<option value='' disabled selected style='display:none;'>Seleccione el tipo de activo</option>");
+                                alert(data.tipos[0].Tipo);
+                                 var cont = 0;
+                                 var model = $('#slt-cursos');
+                                 model.empty();
+                                
+                                 $.each(data, function(index, element){
+                                     console.log(element);
+                                     cont = element.length;
+                                     console.log(cont);
+                                    
+                                 });
+                                // alert(cont);
+                                for (var i = 0, l = cont; i< l; i++){
+                                    //console.log(item);
+                                    $('#Tipo').append('<option value="'+data.tipos[i].id+'">'+data.tipos[i].Tipo+'</option>');                       
+                                }
+                               
+                });                    
 
       });
 });

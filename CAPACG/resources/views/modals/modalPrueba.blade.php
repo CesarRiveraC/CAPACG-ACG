@@ -32,6 +32,13 @@
           </div>
 
           <div class="form-group">
+        <div class="form-group">
+            <label>Tipo de activo</label>
+            <select id="Tipo" name="Tipo" class="form-control"></select>
+            </div>        
+        </div>
+
+          <div class="form-group">
             <label for="Color" class="col-form-label">Color:</label>
             <input type="text" class="form-control" id="Color" name="Color" required autofocus>
           </div>
@@ -40,10 +47,11 @@
             <label for="Foto" class="col-form-label">Foto:</label>
             <input type="file" class="form-control" id="Foto" name="Foto">
           </div>
+
           <div class="form-group">
         <div class="form-group">
-            <label>Cursos asignados</label>
-            <select id="slt-cursos" class="form-control"></select>
+            <label>Dependencia:</label>
+            <select id="Dependencia" name="Dependencia" class="form-control"></select>
             </div>        
         </div>
 

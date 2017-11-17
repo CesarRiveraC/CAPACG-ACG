@@ -21,4 +21,12 @@ class TipoController extends Controller
       
         return view('/tipo/listar', compact('tipos'));
     }
+
+    public function create()
+    {
+        $tipos = Tipo::all();
+        
+        return response()->json(['tipos'=>$tipos]);
+        //return view('/dependencia/crear'); 
+    }
 }

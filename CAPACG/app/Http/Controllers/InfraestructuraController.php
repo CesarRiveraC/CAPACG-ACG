@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Infraestructura;
 use App\Activo;
 use App\Dependencia;
+use App\Tipo;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -22,10 +23,14 @@ class InfraestructuraController extends Controller
         $infraestructuras = DB::table('infraestructuras')
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
         ->select('activos.*','infraestructuras.*')
-        ->where('activos.Estado','=','1') 
+        ->where('activos.Estado','=', '1') 
         ->paginate(10);
     
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
+    }
+
+    public function filter(Request $request, $filtro){
+
     }
 
     public function create()
@@ -50,6 +55,8 @@ class InfraestructuraController extends Controller
         $activo->SubPrograma = $request['SubPrograma'];
         $activo->Color = $request['Color'];
         $activo->Estado = 1;
+        $activo->dependencia_id = $request['Dependencia'];
+        $activo->tipo_id = $request['Tipo'];
         
         if ($request->hasFile('Foto')){ 
 
@@ -77,10 +84,10 @@ class InfraestructuraController extends Controller
         $infraestructura = Infraestructura::find($id);
         $activo = Activo::find($infraestructura->activo_id);
         $infraestructura->activo()->associate($activo);
-
-        //$activo = Activo::find($id);
-        //$file = Storage::disk('MyDiskDriver')->get($activo->Foto);
-        //$activo->Foto = $File;
+        $dependencia = Dependencia::find($activo->dependencia_id);
+        $activo->dependencia()->associate($dependencia);
+        $tipo = Tipo::find($activo->tipo_id);
+        $activo->tipo()->associate($tipo);
         return response()->json(['infraestructura'=>$infraestructura]);
 
     }

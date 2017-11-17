@@ -34,4 +34,8 @@ class Activo extends Model
     {
     	return $this->belongsTo('App\Dependencia');
     }
+    public function tipo()
+    {
+    	return $this->belongsTo('App\Tipo');
+    }
 }

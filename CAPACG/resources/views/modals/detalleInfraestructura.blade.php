@@ -16,6 +16,12 @@
 
         @include('partials.detalle')
         
+        <dt>Dependencia:</dt>
+        <dd id="lblDependencia"></dd>
+        <br>
+
+        
+
         <dt>Número Finca</dt>
         <dd id="lblNumeroFinca"></dd>
         <br>
