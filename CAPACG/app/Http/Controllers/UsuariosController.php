@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Validator;
+
 
 use Storage;
 
@@ -52,35 +54,45 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        // $this-> validate(request(),[
-        //     'Nombre'=>'required',
-        //     'password' => 'required',
-        //     'password_confirmation' => 'required'
-        //     //se deben especificar el resto de campos requeridos
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|min:6',
+            'password_confirmation' => 'same:password',            
+        ]);
+ 
+        if ($validator->fails()) {
+            return redirect('usuarios/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else{
 
-        $usuario = new User;
-        $usuario->name = $request['name'];
-        $usuario->Apellido = $request['Apellido'];
-        $usuario->email = $request['email'];
-        $usuario->password = bcrypt($request['password']);   
-        $usuario->Rol = 2;
-        $usuario->Estado = 1;                
+            $usuario = new User;
+            $usuario->name = $request['name'];
+            $usuario->Apellido = $request['Apellido'];
+            $usuario->email = $request['email'];
+            $usuario->password = bcrypt($request['password']);   
+            $usuario->Rol = 2;
+            $usuario->Estado = 1;                
+    
+            $usuario->save();
+    
+            $colaborador = new Colaborador;
+            $colaborador->user_id = $usuario->id;
+            $colaborador->Cedula = $request['Cedula'];
+            $colaborador->Direccion = $request['Direccion'];
+            $colaborador->PuestoDeTrabajo = $request['PuestoDeTrabajo'];
+            $colaborador->LugarDeTrabajo = $request['LugarDeTrabajo'];
+            $colaborador->Telefono = $request['Telefono'];
+            $colaborador->Estado = 1;
+            
+            $colaborador->save();
+    
+            return redirect('/usuarios');
 
-        $usuario->save();
 
-        $colaborador = new Colaborador;
-        $colaborador->user_id = $usuario->id;
-        $colaborador->Cedula = $request['Cedula'];
-        $colaborador->Direccion = $request['Direccion'];
-        $colaborador->PuestoDeTrabajo = $request['PuestoDeTrabajo'];
-        $colaborador->LugarDeTrabajo = $request['LugarDeTrabajo'];
-        $colaborador->Telefono = $request['Telefono'];
-        $colaborador->Estado = 1;
-        
-        $colaborador->save();
+        }
 
-        return redirect('/usuarios');
+       
     }
 
     /**
@@ -110,8 +122,8 @@ class UsuariosController extends Controller
         $colaborador = Colaborador::find($id);
         $usuario = User::find($colaborador->user_id);
         $colaborador->user()->associate($usuario);
-
-        return view('/Usuario/editar', compact('colaborador','usuario'));        
+        
+         return view('/Usuario/editar', compact('colaborador','usuario'));        
     }
 
     /**
@@ -123,21 +135,19 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //nombre apellido correo, nueva contraseña , confirmar contraseña
+
+
         $colaborador = Colaborador::find($id);        
         $usuario = User::find($colaborador->user_id);
        
 
-        // if (isset ( $_POST['submit']) ) 
-        // { 
-        //    if ( $_POST['password'] == $_POST['password_confirmation']) 
-        //    { 
+        
             $usuario->name = request('name');
             $usuario->Apellido = request('Apellido');
             $usuario->email = request('email');
             $usuario->password = bcrypt(request('password'));
             //falta confirmar contrase;a
-            $activo->remember_token = '';
+           // $activo->remember_token = '';
             $usuario->save();
     
             $colaborador->Cedula = request('Cedula');
@@ -170,5 +180,20 @@ class UsuariosController extends Controller
         $colaborador->user()->associate($usuario);
         
         return response()->json(['colaborador'=>$colaborador]);
+    }
+
+    public function updatestate($id, Request $request)
+    {
+        
+        $colaborador = Colaborador::find($id);
+        $usuario = User::find($colaborador->user_id);
+      
+        $usuario->Estado = 0;
+        $colaborador->Estado = 0;    
+       
+        $colaborador -> save();
+        $usuario->save();
+
+        return redirect('/usuarios');
     }
 }

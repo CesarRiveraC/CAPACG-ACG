@@ -77,7 +77,9 @@ return [
     |
     */
 
-    'locale' => 'en',
+    // 'locale' => 'en',
+    'locale' => 'es',
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -168,6 +170,8 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Laraveles\Spanish\SpanishServiceProvider::class,
+        
         
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
@@ -180,6 +184,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+
 
     ],
 

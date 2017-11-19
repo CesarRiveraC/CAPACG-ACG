@@ -142,11 +142,19 @@
                                 <input id="Telefono" type="text" class="form-control" name="Telefono" required>
                             </div>
                         </div>
-
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+                @endif
                         <div class="form-group" align = "center"></div>
                             <button type="submit" class="btn btn-success"> 
                             <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar </button>
-                            <a href="/home" class="btn btn-default"> 
+                            <a href="/usuarios" class="btn btn-default"> 
                             <i class="fa fa-times" aria-hidden="true"></i> Cancelar </a>
                         </div>
                     </form>

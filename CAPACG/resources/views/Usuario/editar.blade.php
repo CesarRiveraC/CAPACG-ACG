@@ -60,7 +60,7 @@
                         <div class="form-group" align = "center"></div>
                             <button type="submit" class="btn btn-success"> 
                             <i class="fa fa-floppy-o" aria-hidden="true"></i> Editar </button>
-                            <a href="/colaboradores" class="btn btn-default"> 
+                            <a href="/usuarios" class="btn btn-default"> 
                             <i class="fa fa-times" aria-hidden="true"></i> Cancelar </a>
                         </div>
                     </form>
@@ -69,4 +69,5 @@
         </div>
     </div>
 </div>
+
 @endsection
