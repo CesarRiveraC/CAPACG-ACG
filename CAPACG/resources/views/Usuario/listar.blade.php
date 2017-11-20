@@ -22,7 +22,6 @@
                              <tr>
                                 @include('partials.usuario')
                                 <th>Cédula</th>
-                                <th>Dirección</th>
                                 <th>Puesto de Trabajo</th>
                                 <th>Opciones</th>
                              </tr>
@@ -35,7 +34,6 @@
                                 <td class="info"> {{$colaborador->Apellido}} </td>
                                 <td class="info"> {{$colaborador->email}} </td>
                                 <td class="info"> {{$colaborador->Cedula}} </td>
-                                <td class="info"> {{$colaborador->Direccion}} </td>
                                 <td class="info"> {{$colaborador->PuestoDeTrabajo}} </td>
                                                            
                                 <td class="warning"> 

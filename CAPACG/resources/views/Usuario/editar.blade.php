@@ -22,14 +22,6 @@
                             </div>
                         </div>
 
-                         <div class="form-group{{ $errors->has('Direccion') ? ' has-error' : '' }}">
-                            <label for="Direccion" class="col-md-4 control-label">Dirección</label>
-
-                            <div class="col-md-6">
-                                <input id="Direccion" type="text" class="form-control" name="Direccion" value = "{{$colaborador->Direccion}}"  required autofocus>                               
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('PuestoDeTrabajo') ? ' has-error' : '' }}">
                             <label for="PuestoDeTrabajo" class="col-md-4 control-label">Puesto de Trabajo</label>
 
@@ -37,8 +29,6 @@
                                 <input id="PuestodeTrabajo" type="text" class="form-control" name="PuestoDeTrabajo" value="{{ $colaborador->PuestoDeTrabajo }}" required>                               
                             </div>  
                         </div>
-
-                        
 
                         <div class="form-group{{ $errors->has('LugarDeTrabajo') ? ' has-error' : '' }}">
                             <label for="LugarDeTrabajo" class="col-md-4 control-label">Lugar de Trabajo</label>

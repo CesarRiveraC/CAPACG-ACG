@@ -33,9 +33,6 @@
                       <dt>Cédula</dt>
                       <dd>{{$colaborador->Cedula}}</dd>
                         <br>
-                      <dt>Dirección</dt>
-                      <dd>{{$colaborador->Direccion}}</dd>
-                        <br>
                       <dt>Puesto de trabajo</dt>
                       <dd>{{$colaborador->PuestoDeTrabajo}}</dd>
                         <br>

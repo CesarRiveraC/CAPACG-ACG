@@ -10,7 +10,6 @@ $(function (){
             $('#lblEstado').text(result.colaborador.user.Estado);
            // $('#lblFoto').attr('src',"storage/pictures/".concat(result.colaborador.Foto));
             $('#lblCedula').text(result.colaborador.Cedula);
-            $('#lblDireccion').text(result.colaborador.Direccion);
             $('#lblPuestoDeTrabajo').text(result.colaborador.PuestoDeTrabajo);
             $('#lblLugarDeTrabajo').text(result.colaborador.LugarDeTrabajo);
             $('#lblTelefono').text(result.colaborador.Telefono);
