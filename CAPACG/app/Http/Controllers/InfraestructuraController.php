@@ -24,13 +24,75 @@ class InfraestructuraController extends Controller
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
         ->select('activos.*','infraestructuras.*')
         ->where('activos.Estado','=', '1') 
-        ->paginate(10);
+        ->paginate(4);
     
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
     }
 
-    public function filter(Request $request, $filtro){
+    public function filter(){
+        //$fitro = $request['TipoActivo'];
+        // $name = $request->input('TipoActivo');
+        // $activo = new Activo;
+        // $activo->Estado = request('TipoActivo');
+        $infraestructuras = DB::table('infraestructuras')
+        ->join('activos','infraestructuras.activo_id', '=','activos.id')
+        
+        ->where('activos.Estado','=', '0')  
+        //->where('activos.Estado','LIKE', '%' .$activo->Estado. '%' )
+        
+        ->paginate(2);
+        //return response()->json(['activo'=>$name]);
+        return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
+    }
 
+    public function filterDependencia(Request $request){
+        
+        $name = $request->input('DependenciaFiltrar');
+       
+        $infraestructuras = DB::table('infraestructuras')
+        ->join('activos','infraestructuras.activo_id', '=','activos.id')
+        
+        ->where('activos.dependencia_id','=', $name)  
+        //->where('activos.Estado','LIKE', '%' .$activo->Estado. '%' )
+        
+        ->paginate(2);
+        //return response()->json(['activo'=>$name]);
+        return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
+    }
+
+    public function filterTipo(Request $request){
+        
+        $name = $request->input('TipoFiltrar');
+       
+        $infraestructuras = DB::table('infraestructuras')
+        ->join('activos','infraestructuras.activo_id', '=','activos.id')
+        
+        ->where('activos.tipo_id','=', $name)  
+       
+        
+        ->paginate(2);
+        
+        return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
+    }
+
+    public function filterDate(Request $request){
+        
+        $desde = $request->input('Desde');
+        $hasta = $request->input('Hasta');
+       
+        $infraestructuras = DB::table('infraestructuras')
+        ->join('activos','infraestructuras.activo_id', '=','activos.id')
+        
+        ->whereBetween('activos.created_at',[$desde,$hasta])  
+       
+        
+        ->paginate(2);
+        if(count($infraestructuras)>0){
+            return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);  
+        }
+        else return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras])
+        ->withMessage('No se han encontrado registros para las fechas indicadas');  
+        
     }
 
     public function create()
@@ -76,7 +138,7 @@ class InfraestructuraController extends Controller
         $infraestructura->AnoFabricacion = $request['AnoFabricacion'];
         $infraestructura->save();
 
-        return redirect('/infraestructuras'); // por el momento esta asi, ya despues se manda a una vista diferente
+        return redirect('/infraestructuras')->with('errormsj','Infraestructura correctamente creada'); 
             
     }
 
@@ -161,7 +223,7 @@ class InfraestructuraController extends Controller
     {
         $infraestructuras = Infraestructura::buscar($request->get('buscar'))
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
-        ->where('activos.Estado','=','1')->paginate(10);
+        ->where('activos.Estado','=','1')->paginate(1);
         return view('infraestructura/listar',compact('infraestructuras'));
     }
 

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@if(session()->has('msj'))
+    <div class="alert alert-success" role="alert">{{ session('msj') }}</div>
+@endif
 <div class="container">
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
@@ -8,9 +11,46 @@
     
         <a class="btn btn-primary crear" data-toggle="modal" data-target="#exampleModal" >
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Infraestructura</a> 
-        <a class="btn btn-success" href="/infraestructuras/excel">
+        <a class="btn btn-success" href="/infraestructuras/filter">
         <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
-     
+
+        <div class="btn-group">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filtrar Infraestructuras
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a class="btn btn-default " href="/infraestructuras">
+            <i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a></li>
+
+            <li><a class="btn btn-default filtrar" href="/infraestructuras/filter">
+            <i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a></li>
+
+            <li><a class="btn btn-default filtarDependencia" data-toggle="modal" data-target="#FiltrarDependencia">
+            <span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a></li>
+
+            <li><a class="btn btn-default filtrarTipo" data-toggle="modal" data-target="#FiltrarTipo">
+            <span class="fa fa-clone" aria-hidden="true"></span> Tipo</a></li>
+
+            <li><a class="btn btn-default filtrarFecha" data-toggle="modal" data-target="#FiltrarFecha">
+            <i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a></li>
+            
+        </ul>
+        </div>
+       
+            {{--  <form class="navbar-form navbar-left"  role="search" action="/infraestructuras/filter">        
+                            
+                            <select name="TipoActivo" name="TipoActivo" class="form-control" id="TipoActivo"  required>
+                                
+                            <option value="0">--Escoja tipo--</option>
+                          
+                            <option value="2">Activos</option>
+                            <option value="1">SINAC</option>
+                            <option value="3">3</option>
+                             
+                            </select>
+                            
+            
+                <button type="submit" class="btn btn-default">Filtrar</button>
+                </form>  --}}
       
             <br>
             <br>
@@ -23,8 +63,9 @@
             {!! Form::close() !!}            
 
                 <div class="panel-heading"><h4>Infraestructuras</h4> </div>
+                
                 <div class="panel-body">
-                {{ $infraestructuras->links() }}
+                {{ $infraestructuras->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta']))->links() }}
                     <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -49,9 +90,14 @@
                                 <td class="info"> {{$infraestructura->NumeroFinca}} </td>
                                 
                                 <td class="warning"> 
-                                <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$infraestructura->id}}" ></a>
-                                <a class="fa fa-eye btn btn-success btn-xs detalleInfraestructura" data-infraestructura = "{{$infraestructura->id}}" ></a>
-                                <a  class="btn btn-warning btn-xs fa fa-pencil editar" data-editar="{{$infraestructura->id}}"></a>
+                                <a class="btn btn-danger btn-xs estado" data-estado ="{{$infraestructura->id}}" >
+                                Eliminar <i class="fa fa-minus" aria-hidden="true"></i></a>
+
+                                <a class="btn btn-success btn-xs detalleInfraestructura" data-infraestructura = "{{$infraestructura->id}}" >
+                                Detalle <i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                <a  class="btn btn-warning btn-xs editar" data-editar="{{$infraestructura->id}}">
+                                Editar <i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
                                 </td>
                                
@@ -70,6 +116,10 @@
 @include('modals.detalleInfraestructura')
 @include('modals.modalPrueba')
 @include('modals.editarInfraestructura')
+@include('modals.filtrar')
+@include('modals.filtrarDependencia')
+@include('modals.filtrarTipo')
+@include('modals.filtrarFecha')
 
     <script src="{{ asset('js/infraestructura.js') }}"></script> 
 @endsection

@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function() {
 
+    Route::get('infraestructuras/filterDate','InfraestructuraController@filterDate');
+    Route::get('infraestructuras/filterTipo','InfraestructuraController@filterTipo');
+    Route::get('infraestructuras/filterDependencia','InfraestructuraController@filterDependencia');
+    Route::get('infraestructuras/filter','InfraestructuraController@filter');
     Route::get('infraestructuras/{id}/change','InfraestructuraController@change');
     Route::put('infraestructuras/{id}/updatestate','InfraestructuraController@updatestate');
     Route::get('infraestructuras/search','InfraestructuraController@search');

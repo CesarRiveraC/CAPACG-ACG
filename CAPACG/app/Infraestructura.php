@@ -24,4 +24,12 @@ class Infraestructura extends Model
         }
     }
 
+    public function filtrar($query, $buscar){
+        if($buscar !=""){
+            $query-> where([['Estado', '=' .$buscar]]);
+            // $query-> orWhere([['Estado', '=', '1'], ['Programa', 'LIKE', '%' .$buscar. '%']]);
+                    
+        }
+    }
+
 }

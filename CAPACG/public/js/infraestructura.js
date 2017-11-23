@@ -43,29 +43,28 @@ $(function (){
 $(function(){
     $('.crear').click(function (e) {
         
-        alert('que ha pasao');
+        
 
         console.log(e);                        
         
                 $.get('/dependencias/create/',function(data){
         
-                    // $('#slt-cursos').empty();
+                    $('#Dependencia').empty();
         
                     $('#Dependencia').append("<option value='' disabled selected style='display:none;'>Seleccione una dependencia</option>");
-                    alert(data.dependencias[0].Dependencia);
-                     var cont = 0;
-                     var model = $('#slt-cursos');
-                     model.empty();
                     
+                    
+                    
+                     var cont = 0;  
                      $.each(data, function(index, element){
-                         console.log(element);
-                         cont = element.length;
-                         console.log(cont);
                         
-                     });
-                    // alert(cont);
+                        cont = element.length;
+                        
+                     
+                    });                                      
+                  
                     for (var i = 0, l = cont; i< l; i++){
-                        //console.log(item);
+                        
                         $('#Dependencia').append('<option value="'+data.dependencias[i].id+'">'+data.dependencias[i].Dependencia+'</option>');                       
                     }
                    
@@ -74,28 +73,96 @@ $(function(){
         
                 $.get('/tipos/create/',function(data){
                     
-                                // $('#slt-cursos').empty();
+                                $('#Tipo').empty();
                     
                                 $('#Tipo').append("<option value='' disabled selected style='display:none;'>Seleccione el tipo de activo</option>");
-                                alert(data.tipos[0].Tipo);
-                                 var cont = 0;
-                                 var model = $('#slt-cursos');
-                                 model.empty();
-                                
+                                                                  
+                                 var cont = 0;  
                                  $.each(data, function(index, element){
-                                     console.log(element);
-                                     cont = element.length;
-                                     console.log(cont);
                                     
-                                 });
-                                // alert(cont);
+                                    cont = element.length;
+                                    
+                                 
+                                });                                                                                                                               
                                 for (var i = 0, l = cont; i< l; i++){
-                                    //console.log(item);
+                                    
                                     $('#Tipo').append('<option value="'+data.tipos[i].id+'">'+data.tipos[i].Tipo+'</option>');                       
                                 }
+
+                                data=null;
                                
                 });                    
 
+      });
+});
+
+$(function(){
+    $('.filtarDependencia').click(function (e) {
+        
+        
+
+        console.log(e);                        
+        
+                $.get('/dependencias/create/',function(data){
+        
+                    $('#DependenciaFiltrar').empty();
+        
+                    $('#DependenciaFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione una dependencia</option>");
+                    
+                    
+                    
+                     var cont = 0;  
+                     $.each(data, function(index, element){
+                        
+                        cont = element.length;
+                        
+                     
+                    });                                      
+                  
+                    for (var i = 0, l = cont; i< l; i++){
+                        
+                        $('#DependenciaFiltrar').append('<option value="'+data.dependencias[i].id+'">'+data.dependencias[i].Dependencia+'</option>');                       
+                    }
+                   
+                });
+        
+        
+               
+      });
+});
+
+$(function(){
+    $('.filtrarTipo').click(function (e) {
+        
+        
+
+        console.log(e);                        
+        
+                $.get('/tipos/create/',function(data){
+        
+                    $('#TipoFiltrar').empty();
+        
+                    $('#TipoFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Tipo</option>");
+                    
+                    
+                    
+                     var cont = 0;  
+                     $.each(data, function(index, element){
+                        
+                        cont = element.length;
+                        
+                     
+                    });                                      
+                  
+                    for (var i = 0, l = cont; i< l; i++){
+                        
+                        $('#TipoFiltrar').append('<option value="'+data.tipos[i].id+'">'+data.tipos[i].Tipo+'</option>');                       
+                    }
+                   
+                });
+        
+        
+               
       });
 });
 
