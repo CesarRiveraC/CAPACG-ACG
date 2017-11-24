@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Tipo;
 
@@ -13,13 +13,11 @@ class TipoController extends Controller
     }
     public function index(Request $request)
     {
-        
-         $tipos = Tipo::all();
-        
-        
-          
-      
-        return view('/tipo/listar', compact('tipos'));
+        $tipos = DB::table('tipos')
+        ->select('tipos.*')
+        ->where('tipos.Estado','=','1')
+        ->paginate(7);
+      return view('/tipo/listar', ['tipos' => $tipos]);
     }
 
     public function create()
@@ -27,6 +25,53 @@ class TipoController extends Controller
         $tipos = Tipo::all();
         
         return response()->json(['tipos'=>$tipos]);
-        //return view('/dependencia/crear'); 
-    }
+          }
+
+
+        public function store(Request $request)
+        {
+            $tipos = new Tipo;
+            $tipos->Tipo =  $request['Tipo'];
+            $tipos->Estado = 1    ;  
+            $tipos->save();
+            return redirect('/tipos'); 
+        }
+    
+    
+        public function edit($id)
+        {
+            $tipo = Tipo::find($id);
+        
+            return response()->json(['tipo'=>$tipo]);
+        }
+    
+    
+        public function update($id, Request $request)
+        {
+            $tipo = Tipo::find($id);
+            $tipo->Tipo = request('Tipo');
+            
+            $tipo->save();
+            return redirect('/tipos');
+        }
+    
+        public function change($id)
+        {
+            $tipo = Tipo::find($id);
+                
+            return response()->json(['tipo'=>$tipo]);
+        }
+    
+        public function updatestate($id, Request $request)
+        {
+            
+            $tipo = Tipo::find($id);
+            $tipo->Estado = 0;    
+            $tipo->save();
+            return redirect('/tipos');   
+        }
+
+
+
+
 }

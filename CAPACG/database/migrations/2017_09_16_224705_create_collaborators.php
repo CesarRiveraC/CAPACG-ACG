@@ -32,6 +32,7 @@ class CreateCollaborators extends Migration
             // $table->integer('activo_id')->unsigned()->nullable();
             // $table->foreign('activo_id')->references('id')->on('activos');
             $table->string('Dependencia')->unique();
+            $table->integer('Estado');
            
             $table->timestamps();
         });
@@ -40,6 +41,7 @@ class CreateCollaborators extends Migration
             $table->increments('id'); 
             
             $table->string('Tipo')->unique();
+            $table->integer('Estado');
            
             $table->timestamps();
         });

@@ -49,7 +49,7 @@
                             
                                 
                                 <td class="warning"> 
-                                <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$inmueble->id}}" ></a>
+                                <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$inmueble->id}}" ></a>
                                 <a class="fa fa-eye btn btn-success btn-xs detalleInmueble" data-inmueble = "{{$inmueble->id}}" ></a>
                                 <a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
                                 <a href="/inmuebles/asignar" class="btn btn-info btn-xs fa fa-child"></a>

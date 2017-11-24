@@ -15,10 +15,6 @@
 
             <div class="panel panel-info">
 
-            <!-- {!! Form::open(['url' => 'dependencias/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search']) !!}
-            {!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
-            <button type="submit" class="btn btn-primary"><span class="fa fa-search" ></span></button>
-            {!! Form::close() !!} -->
        
                 <div class="panel-heading"><h4>Dependencias</h4> 
 
@@ -30,7 +26,7 @@
                         <thead>
                              <tr>
                                 <th>Nombre</th>
-                               
+                             
                                 <th>Opciones</th>
                              </tr>
                       </thead>
@@ -39,11 +35,12 @@
                         @foreach ($dependencias as $dependencia)
                             <tr>
                                 <td class="info"> {{$dependencia->Dependencia}} </td>
+                            
 
                                 <td class="warning"> 
-                                <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$dependencia->id}}" ></a>
-                                <a class="fa fa-eye btn btn-success btn-xs " data-dependencia = "{{$dependencia->id}}" ></a>
-                                <a href="/dependencias/{{$dependencia->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
+                                <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$dependencia->id}}" ></a>
+                               
+                                <a  class="btn btn-warning btn-xs fa fa-pencil editar" data-editar="{{$dependencia->id}}"></a>
                                
                                 </td>
                                                                                         
@@ -61,5 +58,8 @@
     </div>
 </div>
 @include('modals.estado')
+@include('modals.editarDependencia')
 @include('modals.crearDependencia')
+
+<script src="{{ asset('js/dependencia.js') }}"></script> 
 @endsection

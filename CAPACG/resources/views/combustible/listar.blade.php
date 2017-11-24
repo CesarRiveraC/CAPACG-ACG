@@ -51,7 +51,7 @@
                                 <td class="info"> {{$combustible->Kilometraje}} </td>
                                                                
                                 <td class="warning"> 
-                                <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$combustible->id}}" ></a>
+                                <a class="btn btn-danger btn-xs fa fa-trash estado" data-estado ="{{$combustible->id}}" ></a>
                                 <a class="fa fa-eye btn btn-success btn-xs detalleCombustible" data-combustible = "{{$combustible->id}}" ></a>
                                 <a href="/combustibles/{{$combustible->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
                                 <a href="#" class="btn btn-info btn-xs fa fa-link"></a>

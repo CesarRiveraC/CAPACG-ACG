@@ -13,13 +13,12 @@ class DependenciaController extends Controller
     }
     public function index(Request $request)
     {
-        
-         $dependencias = Dependencia::all();
-        
-        
-          
-      
-        return view('/dependencia/listar', compact('dependencias'));
+                
+    $dependencias = DB::table('dependencias')
+    ->select('dependencias.*')
+    ->where('dependencias.Estado','=','1')
+    ->paginate(7);
+  return view('/dependencia/listar', ['dependencias' => $dependencias]);
     }
 
     public function create()
@@ -27,32 +26,23 @@ class DependenciaController extends Controller
         $dependencias = Dependencia::all();
         
         return response()->json(['dependencias'=>$dependencias]);
-        //return view('/dependencia/crear'); 
+
     }
 
     public function store(Request $request)
     {
         $dependencia = new Dependencia;
         $dependencia->Dependencia =  $request['Dependencia'];
-        
+        $dependencia->Estado = 1    ;  
         $dependencia->save();
         return redirect('/dependencias'); 
-    }
-
-    public function show($id){
-        $dependencia = Dependencia::find($id);
-     
-             
-        return response()->json(['dependencia'=>$dependencia]);
-
     }
 
     public function edit($id)
     {
     	$dependencia = Dependencia::find($id);
    
-      
-        return view('/dependencia/editar',compact('dependencia'));
+        return response()->json(['dependencia'=>$dependencia]);
     }
 
  
@@ -63,6 +53,22 @@ class DependenciaController extends Controller
        
         $dependencia->save();
         return redirect('/dependencias');
+    }
+
+    public function change($id)
+    {
+    	$dependencia = Dependencia::find($id);
+              
+        return response()->json(['dependencia'=>$dependencia]);
+    }
+
+    public function updatestate($id, Request $request)
+    {
+        
+        $dependencia = Dependencia::find($id);
+        $dependencia->Estado = 0;    
+        $dependencia->save();
+        return redirect('/dependencias');   
     }
   
 }
