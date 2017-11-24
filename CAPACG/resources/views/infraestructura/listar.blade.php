@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-@if(session()->has('msj'))
-    <div class="alert alert-success" role="alert">{{ session('msj') }}</div>
-@endif
+
 <div class="container">
+
+
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
-
+   @include('partials.message')
     
         <a class="btn btn-primary crear" data-toggle="modal" data-target="#exampleModal" >
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Infraestructura</a> 
-        <a class="btn btn-success" href="/infraestructuras/filter">
+        <a class="btn btn-success" href="/infraestructuras/excel">
         <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
 
         <div class="btn-group">
@@ -122,4 +122,10 @@
 @include('modals.filtrarFecha')
 
     <script src="{{ asset('js/infraestructura.js') }}"></script> 
+    <script type="text/javascript">
+setTimeout(function(){
+    $('#mensaje').fadeOut('fast');
+}, 2000);
+    
+</script>
 @endsection

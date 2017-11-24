@@ -90,8 +90,10 @@ class InfraestructuraController extends Controller
         if(count($infraestructuras)>0){
             return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);  
         }
-        else return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras])
-        ->withMessage('No se han encontrado registros para las fechas indicadas');  
+        else return 
+        //response()->json(['infraestructuras' => $infraestructuras]);
+        view('/infraestructura/listar', ['infraestructuras' => $infraestructuras])
+        ->with('error','No se han encontrado registros para las fechas indicadas'); 
         
     }
 
@@ -138,7 +140,7 @@ class InfraestructuraController extends Controller
         $infraestructura->AnoFabricacion = $request['AnoFabricacion'];
         $infraestructura->save();
 
-        return redirect('/infraestructuras')->with('errormsj','Infraestructura correctamente creada'); 
+        return redirect('/infraestructuras')->with('message','Infraestructura correctamente creada'); 
             
     }
 
