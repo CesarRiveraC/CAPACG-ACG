@@ -3,7 +3,14 @@
 @section('content')
 
 <div class="container">
-
+@include('modals.estado')
+@include('modals.detalleInfraestructura')
+@include('modals.modalPrueba')
+@include('modals.editarInfraestructura')
+@include('modals.filtrar')
+@include('modals.filtrarDependencia')
+@include('modals.filtrarTipo')
+@include('modals.filtrarFecha')
 
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
@@ -65,7 +72,7 @@
                 <div class="panel-heading"><h4>Infraestructuras</h4> </div>
                 
                 <div class="panel-body">
-                {{ $infraestructuras->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta']))->links() }}
+                
                     <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -106,20 +113,13 @@
                     </tbody>
                   </table>
                 </div>
-              
-                </div>
-            </div>
+              {{ $infraestructuras->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta']))->links() }}
+                </div> <!-- cierre de panel info -->
+            </div> <!-- cierre de panel body-->
         </div>
-    </div>
-</div>
-@include('modals.estado')
-@include('modals.detalleInfraestructura')
-@include('modals.modalPrueba')
-@include('modals.editarInfraestructura')
-@include('modals.filtrar')
-@include('modals.filtrarDependencia')
-@include('modals.filtrarTipo')
-@include('modals.filtrarFecha')
+        </div>
+        </div>
+
 
     <script src="{{ asset('js/infraestructura.js') }}"></script> 
     <script type="text/javascript">

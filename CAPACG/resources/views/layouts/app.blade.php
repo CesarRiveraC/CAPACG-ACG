@@ -107,6 +107,8 @@
         </nav>
 
         @yield('content')
+    
+        @include('partials.footerAbsolute')
     </div>
 
     <!-- Scripts -->
