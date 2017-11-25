@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Validator;
+
 
 use Storage;
 
@@ -52,37 +54,65 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        // $this-> validate(request(),[
-        //     'Nombre'=>'required',
-        //     'password' => 'required',
-        //     'password_confirmation' => 'required'
-        //     //se deben especificar el resto de campos requeridos
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'Apellido' => 'required',
+            'email' => 'required|unique:users,email',                        
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|same:password',
+            'Cedula' => 'required|unique:colaboradores,Cedula',
+            'PuestoDeTrabajo' => 'required',
+            'LugarDeTrabajo' => 'required',         
+            
+            
+        ],
+    
+        $messages = [
+            'name.required' => 'Debe definir el nombre de usuario.',
+            'Apellido.required' => 'Debe definir el Apellido del usuario.',
+            'email.required' => 'Debe definir el correo electronico del usuario.',                        
+            'email.unique' => 'El correo electrónico ya está en uso.',            
+            'password.required' => 'Debe definir una contraseña.',
+            'password.min' => 'La contraseña debe tener al menos 6 carácteres.',            
+            'password_confirmation.required' => 'Debe confirmar la contraseña',
+            'password_confirmation.same' => 'Las contraseñas no coinciden, inténtalo de nuevo.',
+            'Cedula.required' => 'Debe definir el numero de cédula.',
+            'Cedula.unique' => 'La cédula ya ha sido registrada',
+            'PuestoDeTrabajo.required' => 'Debe definir un puesto de trabajo.',
+            'LugarDeTrabajo.required' => 'Debe definir un lugar de trabajo.',
+            
+        ]
+    );
 
-        $usuario = new User;
-        $usuario->name = $request['name'];
-        $usuario->Apellido = $request['Apellido'];
-        $usuario->email = $request['email'];
-        $usuario->password = bcrypt($request['password']);   
-        $usuario->Rol = 2;
-        $usuario->Estado = 1;                
-
-        $usuario->save();
-
-        $colaborador = new Colaborador;
-        $colaborador->user_id = $usuario->id;
-        $colaborador->Cedula = $request['Cedula'];
-        $colaborador->Direccion = $request['Direccion'];
-        $colaborador->PuestoDeTrabajo = $request['PuestoDeTrabajo'];
-        $colaborador->LugarDeTrabajo = $request['LugarDeTrabajo'];
-        $colaborador->Telefono = $request['Telefono'];
-        $colaborador->Estado = 1;
-        
-        $colaborador->save();
-
-        return redirect('/usuarios');
+        if ($validator->fails()) {
+            return redirect('usuarios/create')
+                        ->withInput()
+                        ->withErrors($validator);
+        }
+        else{
+            $usuario = new User;
+            $usuario->name = $request['name'];
+            $usuario->Apellido = $request['Apellido'];
+            $usuario->email = $request['email'];
+            $usuario->password = bcrypt($request['password']);   
+            $usuario->Rol = 2;
+            $usuario->Estado = 1;                
+    
+            $usuario->save();
+    
+            $colaborador = new Colaborador;
+            $colaborador->user_id = $usuario->id;
+            $colaborador->Cedula = $request['Cedula'];
+            $colaborador->PuestoDeTrabajo = $request['PuestoDeTrabajo'];
+            $colaborador->LugarDeTrabajo = $request['LugarDeTrabajo'];
+            $colaborador->Telefono = $request['Telefono'];
+            $colaborador->Estado = 1;
+            
+            $colaborador->save();
+    
+            return redirect('/usuarios');
+        }
     }
-
     /**
      * Display the specified resource.
      *
@@ -110,8 +140,8 @@ class UsuariosController extends Controller
         $colaborador = Colaborador::find($id);
         $usuario = User::find($colaborador->user_id);
         $colaborador->user()->associate($usuario);
-
-        return view('/Usuario/editar', compact('colaborador','usuario'));        
+        
+         return view('/Usuario/editar', compact('colaborador','usuario'));        
     }
 
     /**
@@ -123,37 +153,60 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //nombre apellido correo, nueva contraseña , confirmar contraseña
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'Apellido' => 'required',
+            'email' => 'required|unique:users,email',                        
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|same:password',
+            'Cedula' => 'required|unique:colaboradores,Cedula',
+            'PuestoDeTrabajo' => 'required',
+            'LugarDeTrabajo' => 'required',         
+            
+        ],
+    
+        $messages = [
+            'name.required' => 'Debe definir el nombre de usuario.',
+            'Apellido.required' => 'Debe definir el Apellido del usuario.',
+            'email.required' => 'Debe definir el correo electronico del usuario.',                        
+            'email.unique' => 'El correo electrónico ya está en uso.',            
+            'password.required' => 'Debe definir una contraseña.',
+            'password.min' => 'La contraseña debe tener al menos 6 carácteres.',            
+            'password_confirmation.required' => 'Debe confirmar la contraseña',
+            'password_confirmation.same' => 'Las contraseñas no coinciden, inténtalo de nuevo.',
+            'Cedula.required' => 'Debe definir el numero de cédula.',
+            'Cedula.unique' => 'La cédula ya ha sido registrada',
+            'PuestoDeTrabajo.required' => 'Debe definir un puesto de trabajo.',
+            'LugarDeTrabajo.required' => 'Debe definir un lugar de trabajo.',
+            
+        ]
+    );
+ 
+        if ($validator->fails()) {
+            return redirect('usuarios/editar')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else{
+
+
         $colaborador = Colaborador::find($id);        
         $usuario = User::find($colaborador->user_id);
-       
+        
+        $usuario->name = request('name');
+        $usuario->Apellido = request('Apellido');
+        $usuario->email = request('email');
+        $usuario->password = bcrypt(request('password'));
+        $usuario->save();
+        $colaborador->Cedula = request('Cedula');
+        $colaborador->PuestoDeTrabajo = request('PuestoDeTrabajo');
+        $colaborador->LugarDeTrabajo = request('LugarDeTrabajo');
+        $colaborador->Telefono = request('Telefono');
+        $colaborador->save();
 
-        // if (isset ( $_POST['submit']) ) 
-        // { 
-        //    if ( $_POST['password'] == $_POST['password_confirmation']) 
-        //    { 
-            $usuario->name = request('name');
-            $usuario->Apellido = request('Apellido');
-            $usuario->email = request('email');
-            $usuario->password = bcrypt(request('password'));
-            //falta confirmar contrase;a
-            $activo->remember_token = '';
-            $usuario->save();
-    
-            $colaborador->Cedula = request('Cedula');
-            $colaborador->Direccion = request('Direccion');
-            $colaborador->PuestoDeTrabajo = request('PuestoDeTrabajo');
-            $colaborador->LugarDeTrabajo = request('LugarDeTrabajo');
-            $colaborador->Telefono = request('Telefono');
-            $colaborador->save();
             return redirect('/usuarios');
-        // } 
-        //    else 
-        //    { 
-        //     return redirect('/mensajeRechazado');
-            
-        //     } 
-        // }  
+        }
         
     }
 
@@ -170,5 +223,20 @@ class UsuariosController extends Controller
         $colaborador->user()->associate($usuario);
         
         return response()->json(['colaborador'=>$colaborador]);
+    }
+
+    public function updatestate($id, Request $request)
+    {
+        
+        $colaborador = Colaborador::find($id);
+        $usuario = User::find($colaborador->user_id);
+      
+        $usuario->Estado = 0;
+        $colaborador->Estado = 0;    
+       
+        $colaborador -> save();
+        $usuario->save();
+
+        return redirect('/usuarios');
     }
 }

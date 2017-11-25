@@ -9,7 +9,7 @@ class Colaborador extends Model
     protected $table = 'colaboradores';
 
     protected $fillable = [
-        'Cedula', 'Direccion', 'PuestoDeTrabajo', 'LugarDeTrabajo', 'Telefono',
+        'Cedula', 'PuestoDeTrabajo', 'LugarDeTrabajo', 'Telefono',
     ];
 
     public function activos()

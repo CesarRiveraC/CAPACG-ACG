@@ -44,10 +44,11 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
+                                 @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>
+                                    {{ $errors->first('email') }}
+                                        </strong>
                                     </span>
                                 @endif
                             </div>
@@ -60,20 +61,28 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
-
                                 @if ($errors->has('password'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>
+                                    {{ $errors->first('password') }}
+                                        </strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                             <label for="password-confirm" class="col-md-4 control-label">Confirmar Contraseña</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                 @if ($errors->has('password_confirmation'))
+                                    <span class="help-block">
+                                        <strong>
+                                    {{ $errors->first('password_confirmation') }}
+                                        </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -86,20 +95,6 @@
                                 @if ($errors->has('Cedula'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('Cedula') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                         <div class="form-group{{ $errors->has('Direccion') ? ' has-error' : '' }}">
-                            <label for="Direccion" class="col-md-4 control-label">Direccion</label>
-
-                            <div class="col-md-6">
-                                <input id="Direccion" type="text" class="form-control" name="Direccion" value="{{ old('Apellido') }}" required autofocus>
-
-                                @if ($errors->has('Direccion'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('Direccion') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -142,11 +137,10 @@
                                 <input id="Telefono" type="text" class="form-control" name="Telefono" required>
                             </div>
                         </div>
-
                         <div class="form-group" align = "center"></div>
-                            <button type="submit" class="btn btn-success"> 
+                            <button type="submit" formnovalidate class="btn btn-success"> 
                             <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar </button>
-                            <a href="/home" class="btn btn-default"> 
+                            <a href="/usuarios" class="btn btn-default"> 
                             <i class="fa fa-times" aria-hidden="true"></i> Cancelar </a>
                         </div>
                     </form>
