@@ -183,6 +183,65 @@ class InmuebleController extends Controller
       
         return view('/inmueble/asignar', ['inmuebles' => $inmuebles]);
     }
+
+    
+    public function filter(){
+     
+        $inmuebles = DB::table('inmuebles')
+        ->join('activos','inmuebles.activo_id', '=','activos.id')
+        ->where('activos.Estado','=', '0')  
+        ->paginate(2);
+ 
+        return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
+    }
+
+    public function filterDependencia(Request $request){
+        
+        $name = $request->input('DependenciaFiltrar');
+        $inmuebles = DB::table('inmuebles')
+        ->join('activos','inmuebles.activo_id', '=','activos.id')
+        ->where('activos.dependencia_id','=', $name)  
+        ->paginate(2);
+        
+        return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
+    }
+
+    public function filterTipo(Request $request){
+        
+        $name = $request->input('TipoFiltrar');
+       
+        $inmuebles = DB::table('inmuebles')
+        ->join('activos','inmuebles.activo_id', '=','activos.id')
+        
+        ->where('activos.tipo_id','=', $name)  
+       
+        
+        ->paginate(2);
+        
+        return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
+    }
+
+    public function filterDate(Request $request){
+        
+        $desde = $request->input('Desde');
+        $hasta = $request->input('Hasta');
+       
+        $inmuebles = DB::table('inmuebles')
+        ->join('activos','inmuebles.activo_id', '=','activos.id')
+        
+        ->whereBetween('activos.created_at',[$desde,$hasta])  
+       
+        
+        ->paginate(2);
+        if(count($inmuebles)>0){
+            return view('/inmueble/listar', ['inmuebles' => $inmuebles]);  
+        }
+        else return 
+        
+        view('/inmueble/listar', ['inmuebles' => $inmuebles])
+        ->with('error','No se han encontrado registros para las fechas indicadas'); 
+        
+    }
     
 
     public function excel(){

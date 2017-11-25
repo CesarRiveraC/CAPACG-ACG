@@ -24,7 +24,7 @@
         <div class="btn-group">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filtrar Infraestructuras
         <span class="caret"></span></button>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" role="menu">
             <li><a class="btn btn-default " href="/infraestructuras">
             <i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a></li>
 

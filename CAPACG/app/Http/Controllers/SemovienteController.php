@@ -154,6 +154,65 @@ class SemovienteController extends Controller
         return view('semoviente/listar',compact('semovientes'));
     }
 
+
+
+     
+    public function filter(){
+        
+           $semovientes = DB::table('semovientes')
+           ->join('activos','semovientes.activo_id', '=','activos.id')
+           ->where('activos.Estado','=', '0')  
+           ->paginate(2);
+    
+           return view('/semoviente/listar', ['semovientes' => $semovientes]);
+       }
+   
+       public function filterDependencia(Request $request){
+           
+           $name = $request->input('DependenciaFiltrar');
+           $semovientes = DB::table('semovientes')
+           ->join('activos','semovientes.activo_id', '=','activos.id')
+           ->where('activos.dependencia_id','=', $name)  
+           ->paginate(2);
+           
+           return view('/semoviente/listar', ['semovientes' => $inmuebles]);
+       }
+   
+       public function filterTipo(Request $request){
+           
+           $name = $request->input('TipoFiltrar');
+          
+           $semovientes = DB::table('semovientes')
+           ->join('activos','semovientes.activo_id', '=','activos.id')   
+           ->where('activos.tipo_id','=', $name)  
+           ->paginate(2);
+           
+           return view('/semoviente/listar', ['semovientes' => $semovientes]);
+       }
+   
+       public function filterDate(Request $request){
+           
+           $desde = $request->input('Desde');
+           $hasta = $request->input('Hasta');
+          
+           $semovientes = DB::table('semovientes')
+           ->join('activos','semovientes.activo_id', '=','activos.id')
+           
+           ->whereBetween('activos.created_at',[$desde,$hasta])  
+          
+           
+           ->paginate(2);
+           if(count($semovientes)>0){
+               return view('/semoviente/listar', ['semovientes' => $semovientes]);  
+           }
+           else return 
+           
+           view('/semoviente/listar', ['semovientes' => $semovientes])
+           ->with('error','No se han encontrado registros para las fechas indicadas'); 
+           
+       }
+       
+
     public function excel(){
         
  

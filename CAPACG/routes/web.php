@@ -27,6 +27,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('infraestructuras/excel', 'InfraestructuraController@excel');
     Route::resource('infraestructuras','InfraestructuraController');
 
+
+
+    Route::get('semovientes/filterDate','SemovienteController@filterDate');
+    Route::get('semovientes/filterTipo','SemovienteController@filterTipo');
+    Route::get('semovientes/filterDependencia','SemovienteController@filterDependencia');
+    Route::get('semovientes/filter','SemovienteController@filter');
     Route::get('semovientes/{id}/change','SemovienteController@change');
     Route::put('semovientes/{id}/updatestate','SemovienteController@updatestate');
     Route::get('semovientes/search','SemovienteController@search');
@@ -39,12 +45,20 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('combustibles/excel', 'CombustibleController@excel');
     Route::resource('combustibles','CombustibleController');
 
+    Route::get('vehiculos/filterDate','VehiculoController@filterDate');
+    Route::get('vehiculos/filterTipo','VehiculoController@filterTipo');
+    Route::get('vehiculos/filterDependencia','VehiculoController@filterDependencia');
+    Route::get('vehiculos/filter','VehiculoController@filter');
     Route::get('vehiculos/{id}/change','VehiculoController@change');
     Route::put('vehiculos/{id}/updatestate','VehiculoController@updatestate');
     Route::get('vehiculos/search','VehiculoController@search');
     Route::get('vehiculos/excel', 'VehiculoController@excel');
     Route::resource('vehiculos','VehiculoController');
 
+    Route::get('inmuebles/filterDate','InmuebleController@filterDate');
+    Route::get('inmuebles/filterTipo','InmuebleController@filterTipo');
+    Route::get('inmuebles/filterDependencia','InmuebleController@filterDependencia');
+    Route::get('inmuebles/filter','InmuebleController@filter');
     Route::get('inmuebles/excel', 'InmuebleController@excel');
     Route::get('inmuebles/{id}/change','InmuebleController@change');
     Route::put('inmuebles/{id}/updatestate','InmuebleController@updatestate');

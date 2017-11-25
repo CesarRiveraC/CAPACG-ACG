@@ -179,6 +179,60 @@ class VehiculoController extends Controller
         return view('vehiculo/listar',compact('vehiculos'));
     }
 
+    public function filter(){
+ 
+      
+        $vehiculos = DB::table('vehiculos')
+        ->join('inmuebles','inmuebles.activo_id', '=','activos.id')
+        ->where('inmuebles.activos.Estado','=', '0')  
+        ->paginate(2);
+ 
+        return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
+    }
+
+    public function filterDependencia(Request $request){
+        
+        $name = $request->input('DependenciaFiltrar');
+       
+        $vehiculos = DB::table('vehiculos')
+        ->join('activos','vehiculos.activo_id', '=','activos.id')
+        ->where('activos.dependencia_id','=', $name)   
+        ->paginate(2);
+        
+        return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
+    }
+
+    public function filterTipo(Request $request){
+        
+        $name = $request->input('TipoFiltrar');
+       
+        $infraestructuras = DB::table('vehiculos')
+        ->join('activos','vehiculos.activo_id', '=','activos.id')
+        ->where('activos.tipo_id','=', $name)  
+        ->paginate(2);
+        
+        return view('/vehiculos/listar', ['vehiculos' => $vehiculos]);
+    }
+
+    public function filterDate(Request $request){
+        
+        $desde = $request->input('Desde');
+        $hasta = $request->input('Hasta');
+       
+        $infraestructuras = DB::table('vehiculos')
+        ->join('activos','vehiculos.activo_id', '=','activos.id')
+        ->whereBetween('activos.created_at',[$desde,$hasta])  
+        ->paginate(2);
+        if(count($vehiculos)>0){
+            return view('/vehiculos/listar', ['vehiculos' => $vehiculos]);  
+        }
+        else return 
+       
+        view('/vehiculo/listar', ['vehiculos' => $vehiculos])
+        ->with('error','No se han encontrado registros para las fechas indicadas'); 
+        
+    }
+
     public function excel(){
         
  
