@@ -91,6 +91,14 @@
   <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>Arriba</a>
   
   <p>CAPACG</p>
+  <div class="w3-xlarge w3-section">
+    <a href="https://www.facebook.com/ACG.CR"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+    <a href="https://plus.google.com/u/0/108989919407702501124/posts"><i class="fa fa-google-plus w3-hover-opacity"></i></a>
+    <a href="http://www.youtube.com/videosacg"><i class="fa fa-youtube w3-hover-opacity"></i></a>
+    <a href="https://www.acguanacaste.ac.cr/noticias?format=feed&type=rss"><i class="fa fa-rss-p w3-hover-opacity"></i></a>
+    <a href="https://twitter.com/ACGuanacaste"><i class="fa fa-twitter w3-hover-opacity"></i></a>
+    
+  </div>
 </footer>
  
 
