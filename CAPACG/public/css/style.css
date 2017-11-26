@@ -7,6 +7,7 @@
         min-height: 100%;
         position: relative;
     }
+    /* body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;} */
     body{
       /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/pool_table.png"); */
       /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/dust_scratches.png"); */
@@ -114,23 +115,17 @@ border: none;
   
 }
 
-#img-infraestructura:hover{
-	background: #812323;
+#img-infraestructura, #img-inmueble, #img-semoviente, #img-combustible, 
+#img-combustible, #img-usuario, #img-vehiculo{
+	display:block;
+  margin:0 auto 0 auto;
 
 }
-#img-inmueble:hover{
-	background: #167521;
-}
-#img-semoviente:hover{
-	background: #2884A8;
-}
-#img-vehiculo.p4:hover{
-	background: #2D8C1E;
-}
-#img-combustible:hover{
-	background: #7196D7;
-}
 
+.my-5 {
+  margin-top: 3px !important;
+  margin-bottom: 3px !important;
+}
  /* #footerAbsolute {
   position: absolute;
   
@@ -169,11 +164,23 @@ border: none;
   color: black;
 }
 
-#homeContent{
+#homeContentCol{
   background-color: white !important;
+  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png");
+  /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/lightpaperfibers.png"); */
+  /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/extra_clean_paper.png"); */
+  /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png"); */
   /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/pool_table.png"); */
   /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/concrete-texture.png"); */
 }
 .jumbotron{
-  background-color:white !important;
+  /* background-color:white !important; */
+  /* background: url("https://udenarperiodico.com/wp-content/uploads/2016/04/07-udenar-periodico-bosque-seco.jpg"); */
+  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png");
+}
+#homeInfraestructura{
+  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png");
+}
+#homeContent{
+  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png");
 }

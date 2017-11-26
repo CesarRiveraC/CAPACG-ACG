@@ -101,9 +101,9 @@ class InfraestructuraController extends Controller
     {
         //$infraestructuras = Infraestructura::all();
         $dependencias= Dependencia:: all();
-        //return view('/infraestructura/crear', compact('dependencias'));
+        return view('/infraestructura/crear', compact('dependencias'));
         //return ( json_encode ($dependencias));
-        return response()->json(['dependencias'=>$dependencias]);
+        //return response()->json(['dependencias'=>$dependencias]);
        
     }
 

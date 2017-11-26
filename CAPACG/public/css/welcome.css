@@ -1,46 +1,80 @@
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
-body, html {
-    height: 100%;
-    color: #777;
+body {
+    font: 20px Montserrat, sans-serif;
     line-height: 1.8;
-   
+    color: #f5f6f7;
+}
+p {font-size: 16px;}
+.margin {margin-bottom: 45px;}
+.bg-1{
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-1 { 
+    background-image: url('https://www.acguanacaste.ac.cr/images/phocagallery/galeria-general/thumbs/phoca_thumb_l_img_9186.jpg');
 
+      
+    min-height: 700px;
+    
+    color: #ffffff;
 }
-.aboutSection{
-     background-color: #C3FBCD;
-}
-#footer{
-     background-color: #4CAF50 !important;
-}
-#capacg{
-   color: green;
-}
-/* Create a Parallax Effect */
-.bgimg-1, .bgimg-2, .bgimg-3 {
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-/* First image (Logo. Full height) */
-.bgimg-1 {
-    background-image: url('https://www.acguanacaste.ac.cr/images/imagenes-articulos/acg/Vista-Bosque-humedo-Cacao-pablo-v.jpg');
-    min-height: 100%;
+.bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: black;
+    background: url("https://www.toptal.com/designers/subtlepatterns/patterns/congruent_pentagon.png");
 }
 
-
-
-.w3-wide {letter-spacing: 10px;}
-.w3-hover-opacity {cursor: pointer;}
-
-/* Turn off parallax scrolling for tablets and phones */
+.bg-4 { 
+    /*background-color: #2f2f2f;  Black Gray */
+    color: black;
+    background-color: #4CAF50;
+}
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+#logo{
+  background-color: #4CAF50 !important;
+  padding: 5px;
+  margin: 10px;
+  border: 8px;
+}
+#link{
+  color: black;
+}
+.nav-tabs li a {
+    color: #777;
+}
+.navbar {
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 0;
+    background-color: #4CAF50;
+    border: 0;
+    font-size: 11px !important;
+    letter-spacing: 4px;
+    opacity: 0.9;
+}
+.navbar li a, .navbar .navbar-brand { 
+    color: #d5d5d5 !important;
+}
+.navbar-nav li a:hover {
+    color: #fff !important;
+}
+.navbar-nav li.active a {
+    color: #fff !important;
+    background-color: #29292c !important;
+}
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
 @media only screen and (max-device-width: 1024px) {
-    .bgimg-1, .bgimg-2, .bgimg-3 {
-        background-attachment: scroll;
-    }
-    #about{
-     background-color: #C3FBCD;
+  .bg-1 {
+      background-attachment: scroll;
+  }
 }
 
+#img{
+    display:block;
+    margin:0 auto 0 auto;
 }
