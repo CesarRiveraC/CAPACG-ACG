@@ -49,7 +49,7 @@ class TipoController extends Controller
         public function update($id, Request $request)
         {
             $tipo = Tipo::find($id);
-            $tipo->Tipo = request('Tipo');
+            $tipo->Tipo = request('Tipo1');
             
             $tipo->save();
             return redirect('/tipos');

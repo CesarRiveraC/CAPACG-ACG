@@ -49,7 +49,7 @@ class DependenciaController extends Controller
     public function update($id, Request $request)
     {
         $dependencia = Dependencia::find($id);
-        $dependencia->Dependencia = request('Dependencia');
+        $dependencia->Dependencia = request('Dependencia1');
        
         $dependencia->save();
         return redirect('/dependencias');
