@@ -88,7 +88,7 @@ class CombustibleController extends Controller
         $combustible->Kilometraje = $request['Kilometraje'];
         $combustible->LitrosCombustible = $request['LitrosCombustible'];
         $combustible->FuncionarioQueHizoCompra = $request['FuncionarioQueHizoCompra'];
-        $combustible->Dependencia = $request['Dependencia'];
+        $combustible->dependencia_id = request('Dependencia');
         $combustible->CodigoDeAccionDePlanPresupuesto = $request['CodigoDeAccionDePlanPresupuesto'];
         $combustible->Estado=1;
         
@@ -171,7 +171,7 @@ class CombustibleController extends Controller
         $combustible->Kilometraje = request('Kilometraje');
         $combustible->LitrosCombustible = request('LitrosCombustible');
         $combustible->FuncionarioQueHizoCompra = request('FuncionarioQueHizoCompra');
-        $combustible->Dependencia = request('Dependencia');
+        $combustible->dependencia_id = request('Dependencia');
         $combustible->CodigoDeAccionDePlanPresupuesto = request('CodigoDeAccionDePlanPresupuesto');
         
         

@@ -21,8 +21,10 @@ class Vehiculo extends Model
     public function scopeBuscar($query, $buscar){
         if($buscar !=""){
             $query-> where([['Estado', '=', '1'], ['Placa', 'LIKE', '%' .$buscar. '%']]);
-            $query-> orWhere([['Estado', '=', '1'], ['Programa', 'LIKE', '%' .$buscar. '%']]);
-                    
+            $query-> orWhere([['Estado', '=', '1'], ['Descripcion', 'LIKE', '%' .$buscar. '%']]);
+            $query-> orWhere([['Estado', '=', '1'], ['Modelo', 'LIKE', '%' .$buscar. '%']]);
+            $query-> orWhere([['Estado', '=', '1'], ['Marca', 'LIKE', '%' .$buscar. '%']]); 
+            $query-> orWhere([['Estado', '=', '1'], ['Serie', 'LIKE', '%' .$buscar. '%']]);       
         }
     }
 }

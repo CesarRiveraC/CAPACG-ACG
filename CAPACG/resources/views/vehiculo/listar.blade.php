@@ -71,10 +71,10 @@
                                 <td class="info"> {{$vehiculo->Serie}} </td>
                                 
                                 <td class="warning"> 
-                                <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$vehiculo->id}}" ></a>
-                                <a class="fa fa-eye btn btn-success btn-xs detalleVehiculo" data-vehiculo = "{{$vehiculo->id}}" ></a>
-                                <a href="/vehiculos/{{$vehiculo->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
-                                <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
+                                <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$vehiculo->id}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar"></a>
+                                <a class="fa fa-eye btn btn-success btn-xs detalleVehiculo" data-vehiculo = "{{$vehiculo->id}}" data-toggle="tooltip" data-placement="bottom" title="Ver"></a>
+                                <a href="/vehiculos/{{$vehiculo->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"data-toggle="tooltip" data-placement="bottom" title="Editar"></a>
+                                <a href="#" class="btn btn-info btn-xs fa fa-link"data-toggle="tooltip" data-placement="bottom" title="Asignar Responsable"></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -101,4 +101,9 @@ setTimeout(function(){
 }, 2000);
     
 </script>
+<script type="text/javascript">
+    $(function(){
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
 @endsection

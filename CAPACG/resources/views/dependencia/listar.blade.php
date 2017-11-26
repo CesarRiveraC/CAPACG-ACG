@@ -38,9 +38,9 @@
                             
 
                                 <td class="warning"> 
-                                <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$dependencia->id}}" ></a>
+                                <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$dependencia->id}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar"></a>
                                
-                                <a  class="btn btn-warning btn-xs fa fa-pencil editar" data-editar="{{$dependencia->id}}"></a>
+                                <a  class="btn btn-warning btn-xs fa fa-pencil editar" data-editar="{{$dependencia->id}}" data-toggle="tooltip" data-placement="bottom" title="Editar"></a>
                                
                                 </td>
                                                                                         
@@ -62,4 +62,9 @@
 @include('modals.crearDependencia')
 
 <script src="{{ asset('js/dependencia.js') }}"></script> 
+<script type="text/javascript">
+    $(function(){
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
 @endsection

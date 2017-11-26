@@ -30,8 +30,7 @@ class Combustible extends Model
         if(trim($buscar) !=""){
         
            $query-> where([['Estado', '=', '1'], ['NoVaucher', 'LIKE', '%' .$buscar. '%']]);
-           $query-> orWhere([['Estado', '=', '1'], ['Numero', 'LIKE', '%' .$buscar. '%']]);
-           $query-> orWhere([['Estado', '=', '1'], ['Monto', 'LIKE', '%' .$buscar. '%']]);
+          
                
         }
         

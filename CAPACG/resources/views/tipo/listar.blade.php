@@ -37,8 +37,8 @@
                                 <td class="info"> {{$tipo->Tipo}} </td>
 
                                 <td class="warning"> 
-                                <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$tipo->id}}" ></a>
-                                <a  class="btn btn-warning btn-xs fa fa-pencil editar" data-editar="{{$tipo->id}}"></a>
+                                <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$tipo->id}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar"></a>
+                                <a  class="btn btn-warning btn-xs fa fa-pencil editar" data-editar="{{$tipo->id}}"data-toggle="tooltip" data-placement="bottom" title="Editar"></a>
                                
                                 </td>
                                                                                         
@@ -59,4 +59,9 @@
 @include('modals.crearTipo')
 @include('modals.editarTipo')
 <script src="{{ asset('js/tipo.js') }}"></script> 
+<script type="text/javascript">
+    $(function(){
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
 @endsection
