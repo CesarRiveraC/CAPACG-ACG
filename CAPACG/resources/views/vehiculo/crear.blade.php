@@ -16,6 +16,12 @@
 
                             <div class="col-md-6">
                                 <input id="Placa" type="text" class="form-control" name="Placa" value="{{ old('Placa') }}" required autofocus>    
+                           
+                                @if ($errors->has('Placa'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Placa') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                
@@ -26,7 +32,7 @@
 
 
                         <div class="form-group" align = "center"></div>
-                            <button type="submit" class="btn btn-success"> 
+                            <button type="submit" formnovalidate class="btn btn-success" class="btn btn-success"> 
                             <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar </button>
                             <a href="/vehiculos" class="btn btn-default"> 
                             <i class="fa fa-times" aria-hidden="true"></i> Cancelar </a>

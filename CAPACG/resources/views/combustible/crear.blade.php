@@ -16,6 +16,12 @@
 
                             <div class="col-md-6">
                                 <input id="NoVaucher" type="text" class="form-control" name="NoVaucher" value="{{ old('NoVaucher') }}" required autofocus>    
+                            
+                                @if ($errors->has('NoVaucher'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('NoVaucher') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -24,6 +30,11 @@
 
                             <div class="col-md-6">
                                 <input id="Monto" type="text" class="form-control" name="Monto" value="{{ old('Monto') }}" required autofocus>                               
+                                @if ($errors->has('Monto'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Monto') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -32,6 +43,11 @@
 
                             <div class="col-md-6">
                                 <input id="Numero" type="text" class="form-control" name="Numero" value="{{ old('Numero') }}" required>                               
+                                @if ($errors->has('Numero'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Numero') }}</strong>
+                                    </span>
+                                @endif 
                             </div>  
                         </div>
 
@@ -42,6 +58,11 @@
 
                             <div class="col-md-6">
                                 <input id="Fecha" type="date" class="form-control" name="Fecha" value="{{ old('Fecha') }}" required>
+                                @if ($errors->has('Fecha'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Fecha') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -50,6 +71,12 @@
 
                             <div class="col-md-6">
                                 <input id="Kilometraje" type="text" class="form-control" name="Kilometraje" value="{{ old('Kilometraje') }}" required>
+                                @if ($errors->has('Kilometraje'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Kilometraje') }}</strong>
+                                    </span>
+                                @endif
+                           
                             </div>
                         </div>
 
@@ -58,6 +85,11 @@
 
                             <div class="col-md-6">
                                 <input id="LitrosCombustible" type="text" class="form-control" name="LitrosCombustible" value="{{ old('LitrosCombustible') }}" required>
+                                @if ($errors->has('LitrosCombustible'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('LitrosCombustible') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -66,17 +98,37 @@
 
                             <div class="col-md-6">
                                 <input id="FuncionarioQueHizoCompra" type="text" class="form-control" name="FuncionarioQueHizoCompra" value="{{ old('FuncionarioQueHizoCompra') }}" required>
+                                @if ($errors->has('FuncionarioQueHizoCompra'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('FuncionarioQueHizoCompra') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
 
-                         <div class="form-group{{ $errors->has('Dependencia') ? ' has-error' : '' }}">
-                            <label for="Dependencia" class="col-md-4 control-label">Dependencia</label>
+                       
+                     
 
-                            <div class="col-md-6">
-                                <input id="Dependencia" type="text" class="form-control" name="Dependencia" value="{{ old('Dependencia') }}" required>
-                            </div>
-                        </div> 
+                        <div class="form-group{{ $errors->has('Dependencia') ? ' has-error' : '' }}">
+                        <label for="Dependencia" class="col-md-4 control-label">Dependencia</label>
+                        <div class="col-md-6">
+                        <select name="Dependencia" id="dependencia_id" class="form-control" required>
+                            
+                        <option value="">--Escoja dependencia--</option>
+                        @foreach($dependencias as $dependencia)
+                                <option value="{{$dependencia['id']}}">{{$dependencia['Dependencia']}}</option>
+                            @endforeach
+                        </select>
+
+                        
+                        @if ($errors->has('Dependencia'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('Dependencia') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div> 
 
                         <div class="form-group">
                             <label for="Foto" class="col-md-4 control-label">Foto</label>
@@ -90,6 +142,11 @@
                             <div class="col-md-6">
                                 <input id="CodigoDeAccionDePlanPresupuesto" type="text" class="form-control" name="CodigoDeAccionDePlanPresupuesto" value="{{ old('CodigoDeAccionDePlanPresupuesto') }}" required>
                            
+                                @if ($errors->has('CodigoDeAccionDePlanPresupuesto'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('CodigoDeAccionDePlanPresupuesto') }}</strong>
+                                </span>
+                            @endif
                             </div>
                         </div>
 
@@ -103,13 +160,17 @@
                                     <option value="{{$vehiculo['id']}}">{{$vehiculo['Placa']}}</option>
                                 @endforeach
                             </select>
-                           
+                            @if ($errors->has('Vehiculo'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('Vehiculo') }}</strong>
+                                </span>
+                            @endif
                             </div>
                         </div>
                       
 
                         <div class="form-group" align = "center"></div>
-                            <button type="submit" class="btn btn-success"> 
+                            <button type="submit" formnovalidate class="btn btn-success"  class="btn btn-success"> 
                             <i class="fa fa-floppy-o" aria-hidden="true"></i></span> Guardar </button>
                             <a href="/combustibles" class="btn btn-default"> 
                             <i class="fa fa-times" aria-hidden="true"></i> Cancelar </a>

@@ -21,6 +21,10 @@ class Combustible extends Model
     {
     	return $this->belongsTo('App\Colaborador');
     }
+    public function dependencia()
+    {
+    	return $this->belongsTo('App\Dependencia');
+    }
 
     public function scopeBuscar($query, $buscar){
         if(trim($buscar) !=""){

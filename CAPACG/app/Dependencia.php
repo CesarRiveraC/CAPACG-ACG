@@ -14,4 +14,8 @@ class Dependencia extends Model
     {
     	return $this->hasOne('App\Activo');
     }
+    public function dependencia()
+    {
+    	return $this->hasOne('App\Dependencia');
+    }
 }

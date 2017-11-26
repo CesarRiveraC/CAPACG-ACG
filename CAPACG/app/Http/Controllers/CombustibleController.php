@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Combustible;
 use App\Vehiculo;
+use App\Dependencia;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -30,18 +32,53 @@ class CombustibleController extends Controller
 
     public function create()
     {
+   
+
         $combustibles = Combustible::all();
         $vehiculos= Vehiculo:: all();
-        return view('/combustible/crear', compact('vehiculos'));
+        $dependencias= Dependencia:: all();
+        return view('/combustible/crear', compact('vehiculos','dependencias'));
     }
 
 
     public function store(Request $request)
     {
 
+        $validator = Validator::make($request->all(), [
+            'NoVaucher' => 'required:unique:combustible,NoVaucher',
+            'Monto' => 'required',
+            'Numero' => 'required',                        
+            'Fecha' => 'required',
+            'Kilometraje' => 'required',
+            'LitrosCombustible' => 'required',
+            'FuncionarioQueHizoCompra' => 'required',
+            'Dependencia' => 'required',         
+            'CodigoDeAccionDePlanPresupuesto' => 'required',
+            'Vehiculo' => 'required',        
+                       
+        ],
     
-        $this->validate(request(), [
-            'NoVaucher'=> 'required']); // agregar los damas campos requeridos
+        $messages = [
+            'NoVaucher.required' => 'Debe definir el No Vaucher',
+            'NoVaucher.unique' => 'Este número ya está en uso', 
+            'Monto.required' => 'Debe definir el monto',
+            'Fecha.required' => 'Debe definir la fecha',                        
+            'Kilometraje.required' => 'Debe definir el kilometraje',            
+            'LitrosCombustible.required' => 'Debe definir los litros de combustible',
+            'FuncionarioQueHizoCompra.required' => 'Debe definir el funcionario que hizo la compra',            
+            'Dependencia.required' => 'Debe definir la dependencia',
+            'CodigoDeAccionDePlanPresupuesto.required' => 'Debe definir el código de acción de plan de presupuesto',
+            'Vehiculo.required' => 'Debe definir el vehículo',
+           
+            
+        ]
+    );
+    if ($validator->fails()) {
+        return redirect('combustibles/create')
+                    ->withInput()
+                    ->withErrors($validator);
+    }
+    else{
         
         $combustible = new Combustible;
         $combustible->NoVaucher = $request['NoVaucher'];
@@ -68,7 +105,7 @@ class CombustibleController extends Controller
         
         return redirect('/combustibles'); // por el momento esta asi, ya despues se manda a una vista diferente
             
-    }
+    }}
 
     public function show($id){
         $combustible = Combustible::find($id);
@@ -90,6 +127,42 @@ class CombustibleController extends Controller
         
     public function update($id, Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'NoVaucher' => 'required:unique:combustible,NoVaucher',
+            'Monto' => 'required',
+            'Numero' => 'required',                        
+            'Fecha' => 'required',
+            'Kilometraje' => 'required',
+            'LitrosCombustible' => 'required',
+            'FuncionarioQueHizoCompra' => 'required',
+            'Dependencia' => 'required',         
+            'CodigoDeAccionDePlanPresupuesto' => 'required',
+            'Vehiculo' => 'required',        
+                       
+        ],
+    
+        $messages = [
+            'NoVaucher.required' => 'Debe definir el No Vaucher',
+            'NoVaucher.unique' => 'Este número ya está en uso', 
+            'Monto.required' => 'Debe definir el monto',
+            'Fecha.required' => 'Debe definir la fecha',                        
+            'Kilometraje.required' => 'Debe definir el kilometraje',            
+            'LitrosCombustible.required' => 'Debe definir los litros de combustible',
+            'FuncionarioQueHizoCompra.required' => 'Debe definir el funcionario que hizo la compra',            
+            'Dependencia.required' => 'Debe definir la dependencia',
+            'CodigoDeAccionDePlanPresupuesto.required' => 'Debe definir el código de acción de plan de presupuesto',
+            'Vehiculo.required' => 'Debe definir el vehículo',
+           
+            
+        ]
+    );
+    if ($validator->fails()) {
+        return redirect('combustibles/edit')
+                    ->withInput()
+                    ->withErrors($validator);
+    }
+    else{
         $combustible = Combustible::find($id);
         $combustible->NoVaucher = request('NoVaucher');
         $combustible->Monto = request('Monto');
@@ -116,6 +189,8 @@ class CombustibleController extends Controller
         $combustible->save();
         return redirect('/combustibles');
     }
+
+}
 
     public function change($id)
     {

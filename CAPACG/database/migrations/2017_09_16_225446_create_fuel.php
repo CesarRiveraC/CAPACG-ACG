@@ -22,6 +22,9 @@ class CreateFuel extends Migration
              $table->integer('colaborador_id')->unsigned()->nullable();
              $table->foreign('colaborador_id')->references('id')->on('colaboradores');
  
+             $table->integer('dependencia_id')->unsigned()->nullable();
+             $table->foreign('dependencia_id')->references('id')->on('dependencias');
+
              $table->string('NoVaucher');
              $table->double('Monto');
              $table->integer('Numero');
@@ -31,7 +34,6 @@ class CreateFuel extends Migration
              $table->string('Kilometraje');
              $table->double('LitrosCombustible');
              $table->string('FuncionarioQueHizoCompra');
-             $table->string('Dependencia');
              $table->binary('Foto');
              $table->string('CodigoDeAccionDePlanPresupuesto');
              $table->timestamps();

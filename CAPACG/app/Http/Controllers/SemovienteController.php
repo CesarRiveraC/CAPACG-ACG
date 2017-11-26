@@ -6,6 +6,7 @@ use App\Semoviente;
 use App\Activo;
 use App\Dependencia;
 use App\Tipo;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -43,8 +44,42 @@ class SemovienteController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate(request(), [
-            'Raza'=> 'required']); // agregar los damas campos requeridos
+        $validator = Validator::make($request->all(), [
+            'Placa' => 'required:unique:inmuebles,Placa',
+            'Descripcion' => 'required',
+            'TipoActivo' => 'required',                        
+            'Programa' => 'required',
+            'SubPrograma' => 'required',
+            'Color' => 'required',
+            'Dependencia' => 'required',
+            'Raza' => 'required',         
+            'Edad' => 'required',
+            'Peso' => 'required',        
+           
+        ],
+    
+        $messages = [
+            'Placa.required' => 'Debe definir el fierro',
+            'Placa.unique' => 'La placa ya está en uso', 
+            'Descripcion.required' => 'Debe definir la descripción',
+            'TipoActivo.required' => 'Debe definir la categoría del activo',                        
+            'Programa.required' => 'Debe definir el programa',            
+            'SubPrograma.required' => 'Debe definir el subprograma',
+            'Color.required' => 'Debe definir el color',            
+            'Dependencia.required' => 'Debe definir la dependencia',
+            'Raza.required' => 'Debe definir la raza',
+            'Edad.required' => 'Debe definir la edad',
+            'Peso.required' => 'Debe definir el peso',
+        ]
+    );
+
+
+    if ($validator->fails()) {
+        return redirect('semovientes/create')
+                    ->withInput()
+                    ->withErrors($validator);
+    }
+    else{
 
             $activo = new Activo;
             $activo->Placa = $request['Placa'];
@@ -74,7 +109,7 @@ class SemovienteController extends Controller
             $semoviente->save();
 
 			return redirect('/semovientes'); // por el momento esta asi, ya despues se manda a una vista diferente
-    }
+    }}
 
     public function show($id){
         $semoviente = Semoviente::find($id);
@@ -100,6 +135,41 @@ class SemovienteController extends Controller
     
     public function update($id, Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'Placa' => 'required',
+            'Descripcion' => 'required',
+            'TipoActivo' => 'required',                        
+            'Programa' => 'required',
+            'Subprograma' => 'required',
+            'Color' => 'required',
+            'Dependencia' => 'required',
+            'Raza' => 'required',         
+            'Edad' => 'required',
+            'Peso' => 'required',        
+           
+        ],
+    
+        $messages = [
+            'Placa.required' => 'Debe definir el fierro', 
+            'Descripcion.required' => 'Debe definir la descripción',
+            'TipoActivo.required' => 'Debe definir la categoría del activo',                        
+            'Programa.required' => 'Debe definir el programa',            
+            'Subprograma.required' => 'Debe definir el subprograma',
+            'Color.required' => 'Debe definir el color',            
+            'Dependencia.required' => 'Debe definir la dependencia',
+            'Raza.required' => 'Debe definir la raza',
+            'Edad.required' => 'Debe definir la edad',
+            'Peso.required' => 'Debe definir el peso',
+        ]
+    );
+
+
+    if ($validator->fails()) {
+        return redirect('semovientes/edit')
+                    ->withInput()
+                    ->withErrors($validator);
+    }
+    else{
         $semoviente = Semoviente::find($id);
         $activo = Activo::find($semoviente->activo_id);
         $activo->Placa = request('Placa');
@@ -127,6 +197,7 @@ class SemovienteController extends Controller
         $semoviente->Peso = request('Peso');
         $semoviente->save();
         return redirect('/semovientes');
+    }
     }
 
     public function change($id)
@@ -223,7 +294,6 @@ class SemovienteController extends Controller
   
              $excel->sheet('Activos', function($sheet) {
   
-                 //$infraestructuras = Activo::all();
                   $semovientes = DB::table('semovientes')
                  ->join('activos','semovientes.activo_id', '=','activos.id')
                  ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa',

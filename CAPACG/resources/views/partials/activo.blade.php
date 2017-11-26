@@ -3,14 +3,27 @@
 
                             <div class="col-md-6">
                                 <input id="Placa" type="text" class="form-control" name="Placa" value="{{ old('Placa') }}" required autofocus>    
+
+                                
+                                @if ($errors->has('Placa'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Placa') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                          <div class="form-group{{ $errors->has('Descripcion') ? ' has-error' : '' }}">
-                            <label for="Discripcion" class="col-md-4 control-label">Descripción</label>
+                            <label for="Descripcion" class="col-md-4 control-label">Descripción</label>
 
                             <div class="col-md-6">
                                 <input id="Descripcion" type="text" class="form-control" name="Descripcion" value="{{ old('Descripcion') }}" required autofocus>                               
+                           
+                                @if ($errors->has('Descripcion'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Descripcion') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -24,6 +37,13 @@
                                 <option value="{{$tipo['id']}}">{{$tipo['Tipo']}}</option>
                             @endforeach
                         </select>
+
+                        
+                        @if ($errors->has('TipoActivo'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('TipoActivo') }}</strong>
+                                    </span>
+                                @endif
                         </div>
                     </div>
 
@@ -32,26 +52,47 @@
 
                             <div class="col-md-6">
                                 <input id="Programa" type="text" class="form-control" name="Programa" value="{{ old('Programa') }}" required>                               
+                           
+                                @if ($errors->has('Programa'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Programa') }}</strong>
+                                    </span>
+                                @endif
+                           
                             </div>
                         </div>
-
-                        
 
                         <div class="form-group{{ $errors->has('SubPrograma') ? ' has-error' : '' }}">
                             <label for="SubPrograma" class="col-md-4 control-label">SubPrograma</label>
 
                             <div class="col-md-6">
-                                <input id="SubPrograma" type="text" class="form-control" name="SubPrograma" required>
+                                <input id="SubPrograma" type="text" class="form-control" name="SubPrograma" value="{{ old('SubPrograma') }}" required>                               
+                           
+                                @if ($errors->has('SubPrograma'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('SubPrograma') }}</strong>
+                                    </span>
+                                @endif
+                           
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('Color') ? ' has-error' : '' }}">
                             <label for="Color" class="col-md-4 control-label">Color</label>
 
                             <div class="col-md-6">
-                                <input id="Color" type="text" class="form-control" name="Color" required>
+                                <input id="Color" type="text" class="form-control" name="Color" value="{{ old('Color') }}" required>                               
+                           
+                                @if ($errors->has('Color'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Color') }}</strong>
+                                    </span>
+                                @endif
+                           
                             </div>
-                        </div>
+                        </div>   
+
+                     
 
                         <div class="form-group{{ $errors->has('Dependencia') ? ' has-error' : '' }}">
                             <label for="Dependencia" class="col-md-4 control-label">Dependencia</label>
@@ -63,6 +104,13 @@
                                     <option value="{{$dependencia['id']}}">{{$dependencia['Dependencia']}}</option>
                                 @endforeach
                             </select>
+
+                            
+                            @if ($errors->has('Dependencia'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Dependencia') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                    

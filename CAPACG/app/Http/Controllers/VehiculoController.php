@@ -7,6 +7,7 @@ use App\Activo;
 use App\Inmueble;
 use App\Dependencia;
 use App\Tipo;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -44,8 +45,52 @@ class VehiculoController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate(request(), [
-            'Placa'=> 'required']); // agregar los damas campos requeridos
+        $validator = Validator::make($request->all(), [
+            'Placa' => 'required:unique:inmuebles,Placa',
+            'Descripcion' => 'required',
+            'TipoActivo' => 'required',                        
+            'Programa' => 'required',
+            'SubPrograma' => 'required',
+            'Color' => 'required',
+            'Dependencia' => 'required',
+            'Serie' => 'required',         
+            'Marca' => 'required',
+            'Modelo' => 'required',        
+            'EstadoUtilizacion' => 'required', 
+            'EstadoFisico' => 'required',  
+            'EstadoActivo' => 'required',   
+            'EstadoActivo' => 'required',   
+            'Placa' => 'required',     
+            
+        ],
+    
+        $messages = [
+            'Placa.required' => 'Debe definir la placa',
+            'Placa.unique' => 'La placa ya está en uso', 
+            'Descripcion.required' => 'Debe definir la descripción',
+            'TipoActivo.required' => 'Debe definir la categoría del activo',                        
+            'Programa.required' => 'Debe definir el programa',            
+            'SubPrograma.required' => 'Debe definir el subprograma',
+            'Color.required' => 'Debe definir el color',            
+            'Dependencia.required' => 'Debe definir la dependencia',
+            'Serie.required' => 'Debe definir la serie',
+            'Marca.required' => 'Debe definir la marca',
+            'Modelo.required' => 'Debe definir el modelo',
+            'EstadoUtilizacion.required' => 'Debe definir el estado de utilización',
+            'EstadoFisico.required' => 'Debe definir el estado físico',
+            'EstadoActivo.required' => 'Debe definir el estado del activo',
+            'Placa.required' => 'Debe definir la placa del vehículo',
+            
+        ]
+    );
+
+
+    if ($validator->fails()) {
+        return redirect('vehiculos/create')
+                    ->withInput()
+                    ->withErrors($validator);
+    }
+    else{
             $activo = new Activo;
             $activo->Placa = $request['Placa'];
             $activo->Descripcion = $request['Descripcion'];
@@ -79,10 +124,10 @@ class VehiculoController extends Controller
             $vehiculo->inmueble_id =  $inmueble->id;            
             $vehiculo->Placa = $request['Placa'];
             $vehiculo->save();
-        // $vehiculo = Vehiculo::create(request()->all());
+   
             return redirect('/vehiculos'); 
     }
-
+    }
     public function show($id){
         $vehiculo = Vehiculo::find($id);
         $inmueble = Inmueble::find($vehiculo->inmueble_id);
@@ -111,6 +156,41 @@ class VehiculoController extends Controller
     
     public function update($id, Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'Placa' => 'required',
+            'Descripcion' => 'required',
+            'TipoActivo' => 'required',                        
+            'Programa' => 'required',
+            'Subprograma' => 'required',
+            'Color' => 'required',
+            'Dependecnia' => 'required',
+            'Raza' => 'required',         
+            'Edad' => 'required',
+            'Peso' => 'required',        
+           
+        ],
+    
+        $messages = [
+            'Placa.required' => 'Debe definir la placa',
+            'Descripcion.required' => 'Debe definir la descripción',
+            'TipoActivo.required' => 'Debe definir la categoría del activo',                        
+            'Programa.required' => 'Debe definir el programa',            
+            'Subprograma.required' => 'Debe definir el subprograma',
+            'Color.required' => 'Debe definir el color',            
+            'Dependencia.required' => 'Debe definir la dependencia',
+            'Raza.required' => 'Debe definir la raza',
+            'Edad.required' => 'Debe definir la edad',
+            'Peso.required' => 'Debe definir el peso',
+        ]
+    );
+
+
+    if ($validator->fails()) {
+        return redirect('vehiculos/edit')
+                    ->withInput()
+                    ->withErrors($validator);
+    }
+    else{
         $vehiculo = Vehiculo::find($id);
         $inmueble = Inmueble::find($vehiculo->inmueble_id);
         $activo = Activo::find($inmueble->activo_id);
@@ -146,7 +226,7 @@ class VehiculoController extends Controller
         $vehiculo->save();
 
 
-        return redirect('/vehiculos');
+        return redirect('/vehiculos');}
     }
 
 

@@ -117,7 +117,7 @@
                         
 
                         <div class="form-group" align = "center"></div>
-                            <button type="submit" class="btn btn-success"> 
+                            <button type="submit" formnovalidate class="btn btn-success" class="btn btn-success"> 
                             <span class="fa fa-floppy-o"></span> Editar </button>
                             <a href="/combustibles" class="btn btn-default"> 
                             <span class="fa fa-times"></span> Cancelar </a>

@@ -71,7 +71,7 @@
                                 <td class="info"> {{$semoviente->Raza}} </td>
                                 
                                 <td class="warning"> 
-                                <a class="btn btn-danger btn-xs fa fa-minus estado" data-estado ="{{$semoviente->id}}" ></a>
+                                <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$semoviente->id}}" ></a>
                                 <a class="fa fa-eye btn btn-success btn-xs detalleSemoviente" data-semoviente = "{{$semoviente->id}}" ></a>
                                 <a href="/semovientes/{{$semoviente->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil"></a>
                                 <a href="#" class="btn btn-info btn-xs fa fa-link"></a>

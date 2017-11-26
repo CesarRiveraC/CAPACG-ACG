@@ -6,6 +6,7 @@ use App\Activo;
 use App\Inmueble;
 use App\Dependencia;
 use App\Tipo;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -43,8 +44,50 @@ class InmuebleController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate(request(), [
-            'Serie'=> 'required']); // agregar los damas campos requeridos
+
+        $validator = Validator::make($request->all(), [
+            'Placa' => 'required:unique:inmuebles,Placa',
+            'Descripcion' => 'required',
+            'TipoActivo' => 'required',                        
+            'Programa' => 'required',
+            'SubPrograma' => 'required',
+            'Color' => 'required',
+            'Dependencia' => 'required',
+            'Serie' => 'required',         
+            'Marca' => 'required',
+            'Modelo' => 'required',        
+            'EstadoUtilizacion' => 'required', 
+            'EstadoFisico' => 'required',  
+            'EstadoActivo' => 'required',         
+            
+        ],
+    
+        $messages = [
+            'Placa.required' => 'Debe definir la placa',
+            'Placa.unique' => 'La placa ya está en uso', 
+            'Descripcion.required' => 'Debe definir la descripción',
+            'TipoActivo.required' => 'Debe definir la categoría del activo',                        
+            'Programa.required' => 'Debe definir el programa',            
+            'SubPrograma.required' => 'Debe definir el subprograma',
+            'Color.required' => 'Debe definir el color',            
+            'Dependencia.required' => 'Debe definir la dependencia',
+            'Serie.required' => 'Debe definir la serie',
+            'Marca.required' => 'Debe definir la marca',
+            'Modelo.required' => 'Debe definir el modelo',
+            'EstadoUtilizacion.required' => 'Debe definir el estado de utilización',
+            'EstadoFisico.required' => 'Debe definir el estado físico',
+            'EstadoActivo.required' => 'Debe definir el estado del activo',
+            
+        ]
+    );
+
+
+    if ($validator->fails()) {
+        return redirect('inmuebles/create')
+                    ->withInput()
+                    ->withErrors($validator);
+    }
+    else{
             $activo = new Activo;
             $activo->Placa = $request['Placa'];
             $activo->Descripcion = $request['Descripcion'];
@@ -78,7 +121,7 @@ class InmuebleController extends Controller
        
             return redirect('/inmuebles'); 
             
-           
+           }
     }
 
     public function show($id){
@@ -106,6 +149,48 @@ class InmuebleController extends Controller
 
     public function update($id, Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'Placa' => 'required:unique',
+            'Descripcion' => 'required',
+            'TipoActivo' => 'required',                        
+            'Programa' => 'required',
+            'SubPrograma' => 'required',
+            'Color' => 'required',
+            'Dependencia' => 'required',
+            'Serie' => 'required',         
+            'Marca' => 'required',
+            'Modelo' => 'required',        
+            'EstadoUtilizacion' => 'required', 
+            'EstadoFisico' => 'required',  
+            'EstadoActivo' => 'required',         
+            
+        ],
+    
+        $messages = [
+            'Placa.required' => 'Debe definir la placa',
+            'Descripcion.required' => 'Debe definir la descripción',
+            'TipoActivo.required' => 'Debe definir la categoría del activo',                        
+            'Programa.required' => 'Debe definir el programa',            
+            'SubPrograma.required' => 'Debe definir el subprograma',
+            'Color.required' => 'Debe definir el color',            
+            'Dependencia.required' => 'Debe definir la dependencia',
+            'Serie.required' => 'Debe definir la serie',
+            'Marca.required' => 'Debe definir la marca',
+            'Modelo.required' => 'Debe definir el modelo',
+            'EstadoUtilizacion.required' => 'Debe definir el estado de utilización',
+            'EstadoFisico.required' => 'Debe definir el estado físico',
+            'EstadoActivo.required' => 'Debe definir el estado del activo',
+            
+        ]
+    );
+
+
+    if ($validator->fails()) {
+        return redirect('inmuebles/edit')
+                    ->withInput()
+                    ->withErrors($validator);
+    }
+    else{
         
         $inmueble = Inmueble::find($id);
         $activo = Activo::find($inmueble->activo_id);
@@ -137,7 +222,7 @@ class InmuebleController extends Controller
         $inmueble->EstadoActivo = request('EstadoActivo');
         $inmueble->save();    
 
-        return redirect('/inmuebles');
+        return redirect('/inmuebles');}
     }
 
     public function change($id)
