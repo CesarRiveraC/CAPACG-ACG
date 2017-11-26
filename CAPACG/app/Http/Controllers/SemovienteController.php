@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Semoviente;
 use App\Activo;
 use App\Dependencia;
+use App\Tipo;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,8 @@ class SemovienteController extends Controller
     {
         $semovientes = Semoviente::all();
         $dependencias= Dependencia:: all();
-        return view('/semoviente/crear', compact('dependencias'));
+        $tipos= Tipo:: all();
+        return view('/semoviente/crear', compact('dependencias','tipos'));
     
     }
 
@@ -90,8 +92,9 @@ class SemovienteController extends Controller
         $activo = Activo::find($semoviente->activo_id);
         $semoviente->activo()->associate($activo);
         $dependencias= Dependencia:: all();
+        $tipos= Tipo:: all();
     
-        return view('/semoviente/editar',compact('semoviente','dependencias'));
+        return view('/semoviente/editar',compact('semoviente','dependencias','tipos'));
    
     }
     

@@ -6,6 +6,7 @@ use App\Vehiculo;
 use App\Activo;
 use App\Inmueble;
 use App\Dependencia;
+use App\Tipo;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -36,7 +37,8 @@ class VehiculoController extends Controller
     {
         $vehiculos = Vehiculo::all();
         $dependencias= Dependencia:: all();
-        return view('/vehiculo/crear', compact('dependencias'));
+        $tipos= Tipo:: all();
+        return view('/vehiculo/crear', compact('dependencias','tipos'));
        
     }
 
@@ -101,8 +103,9 @@ class VehiculoController extends Controller
         $vehiculo->inmueble()->associate($inmueble);
         $inmueble->activo()->associate($activo);
         $dependencias= Dependencia:: all();
+        $tipos= Tipo:: all();
         
-        return view('/vehiculo/editar',compact('vehiculo','dependencias'));
+        return view('/vehiculo/editar',compact('vehiculo','dependencias','tipos'));
     
     }
     

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Activo;
 use App\Inmueble;
 use App\Dependencia;
+use App\Tipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -35,7 +36,8 @@ class InmuebleController extends Controller
     {
         $inmuebles = Inmueble::all();
         $dependencias= Dependencia:: all();
-        return view('/inmueble/crear', compact('dependencias'));
+        $tipos= Tipo:: all();
+        return view('/inmueble/crear', compact('dependencias','tipos'));
        
     }
 
@@ -46,7 +48,7 @@ class InmuebleController extends Controller
             $activo = new Activo;
             $activo->Placa = $request['Placa'];
             $activo->Descripcion = $request['Descripcion'];
-            $activo->TipoActivo = $request['TipoActivo'];
+            $activo->tipoActivo_id = $request['TipoActivo'];
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
@@ -96,9 +98,10 @@ class InmuebleController extends Controller
     	$inmueble = Inmueble::find($id);
         $activo = Activo::find($inmueble->activo_id);
         $dependencias= Dependencia:: all();
+        $tipos= Tipo:: all();
         $inmueble->activo()->associate($activo);
         
-        return view('/inmueble/editar',compact('inmueble','dependencias'));
+        return view('/inmueble/editar',compact('inmueble','dependencias','tipos'));
     }
 
     public function update($id, Request $request)

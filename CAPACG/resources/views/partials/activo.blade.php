@@ -15,19 +15,17 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('TipoActivo') ? ' has-error' : '' }}">
-                            <label for="TipoActivo" class="col-md-4 control-label">Tipo</label>
-                            <div class="col-md-6">
-                            <select name="TipoActivo" id="TipoActivo" class="form-control" required>
-                                
-                            <option value="">--Escoja tipo--</option>
-                          
-                            <option value="Fundación de parques">Fundación de parques</option>
-                            <option value="SINAC">SINAC</option>
-                             
-                            </select>
-                            </div>
+                        <label for="TipoActivo" class="col-md-4 control-label">Categoría</label>
+                        <div class="col-md-6">
+                        <select name="TipoActivo" id="tipoActivo_id" class="form-control" required>
+                            
+                        <option value="">--Escoja categoría--</option>
+                        @foreach($tipos as $tipo)
+                                <option value="{{$tipo['id']}}">{{$tipo['Tipo']}}</option>
+                            @endforeach
+                        </select>
                         </div>
-
+                    </div>
 
                         <div class="form-group{{ $errors->has('Programa') ? ' has-error' : '' }}">
                             <label for="Programa" class="col-md-4 control-label">Programa</label>
