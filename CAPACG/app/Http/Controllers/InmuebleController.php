@@ -199,7 +199,7 @@ class InmuebleController extends Controller
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
         $activo->Programa = request('Programa');
-        $activo->tipo_id = $request['TipoActivo'];
+        $activo->tipo_id = request('TipoActivo');
         $activo->SubPrograma = request('SubPrograma');
         $activo->Color = request('Color');      
         $activo->dependencia_id = request('Dependencia');

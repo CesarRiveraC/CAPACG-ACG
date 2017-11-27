@@ -47,7 +47,7 @@ class VehiculoController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'Placa' => 'required|unique:activos,Placa',
-            'Placa' => 'required|unique:vehiculo,Placa',
+            'Placa' => 'required|unique:vehiculos,Placa',
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
@@ -198,7 +198,7 @@ class VehiculoController extends Controller
 
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
-        $activo->tipo_id = $request['TipoActivo'];
+        $activo->tipo_id = request('TipoActivo');
         $activo->dependencia_id = request('Dependencia');
         $activo->Programa = request('Programa');
         $activo->SubPrograma = request('SubPrograma');

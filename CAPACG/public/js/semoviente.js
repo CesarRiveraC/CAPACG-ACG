@@ -92,8 +92,7 @@ $(function(){
                     $('#TipoFiltrar').empty();
         
                     $('#TipoFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Tipo</option>");
-                    
-                    $('#form-tipo').atrr('action','/semovientes/filterTipo');
+                   
                     
                     
                      var cont = 0;  

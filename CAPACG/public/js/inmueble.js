@@ -54,6 +54,7 @@ $(function(){
         
                     $('#DependenciaFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione una dependencia</option>");
    
+                  
                      var cont = 0;  
                      $.each(data, function(index, element){
                         
@@ -84,9 +85,7 @@ $(function(){
                     $('#TipoFiltrar').empty();
         
                     $('#TipoFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Tipo</option>");                
-                    
-               
-
+                   
                     var cont = 0;  
                      $.each(data, function(index, element){
                         
