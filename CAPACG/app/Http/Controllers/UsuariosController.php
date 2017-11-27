@@ -28,6 +28,7 @@ class UsuariosController extends Controller
         $colaboradores = DB::table('colaboradores')
         ->join('users','colaboradores.user_id', '=','users.id')
         ->select('users.*','colaboradores.*')
+        ->where('users.Estado','=','1') 
         ->paginate(10);
         
         return view('/Usuario/listar', ['colaboradores' => $colaboradores]);
@@ -109,7 +110,7 @@ class UsuariosController extends Controller
             
             $colaborador->save();
     
-            return redirect('/usuarios');
+            return redirect('/usuarios')->with('message','Usuario correctamente creado'); 
         }
     }
     /**
@@ -204,7 +205,7 @@ class UsuariosController extends Controller
         $colaborador->Telefono = request('Telefono');
         $colaborador->save();
 
-            return redirect('/usuarios');
+            return redirect('/usuarios')->with('message','Usuario correctamente editado'); 
         }
         
     }
@@ -238,4 +239,28 @@ class UsuariosController extends Controller
 
         return redirect('/usuarios');
     }
+
+
+    public function search(Request $request)
+    {
+        // $colaboradores = DB::buscar($request->get('buscar'))
+      
+        // ->join('users','colaboradores.user_id', '=','users.id')
+        // ->select('users.*','colaboradores.*')
+        // ->where('users.Estado','=','0') 
+        // ->paginate(20);
+        // return view('Usuario/listar',compact('colaboradores'));
+    }
+
+        
+    public function filter(){
+        $colaboradores = DB::table('colaboradores')
+        ->join('users','colaboradores.user_id', '=','users.id')
+        ->select('users.*','colaboradores.*')
+        ->where('users.Estado','=','0') 
+        ->paginate(20);
+        
+        return view('/Usuario/listar', ['colaboradores' => $colaboradores]);
+       }
+   
 }

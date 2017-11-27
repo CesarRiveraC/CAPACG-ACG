@@ -108,7 +108,7 @@ class SemovienteController extends Controller
             $semoviente->Peso = $request['Peso'];
             $semoviente->save();
 
-			return redirect('/semovientes')->with('message','Activo Semoviente correctamente creado'); // por el momento esta asi, ya despues se manda a una vista diferente
+			return redirect('/semovientes')->with('message','Activo Semoviente correctamente creado'); 
     }}
 
     public function show($id){

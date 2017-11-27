@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
     <div class="col-lg-10 col-lg-offset-1">
-@include('partials.message')
+
 <div class="col-md-8">
         <a class="btn btn-primary my-5" href="/combustibles/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Factura Combustible</a> 
@@ -16,6 +16,7 @@
         </div>
             <br>
             <br>
+            @include('partials.message')
 
             <div class="panel panel-info">
 
@@ -53,7 +54,7 @@
                                 <td class="info"> {{$combustible->Fecha}} </td>
                                 <td class="info"> {{$combustible->Kilometraje}} </td>
                                                                
-                                <td class="warning"> 
+                                <td class="warning col-xs-2 col-xs-offset-2 "> 
                                 <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$combustible->id}}"  data-toggle="tooltip" data-placement="bottom" title="Eliminar"></a>
                                 <a class="fa fa-eye btn btn-success btn-xs detalleCombustible" data-combustible = "{{$combustible->id}}" data-toggle="tooltip" data-placement="bottom" title="Ver"></a>
                                 <a href="/combustibles/{{$combustible->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom" title="Editar"></a>

@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
-        @include('partials.message')
+      
       
         <div class="col-md-8">
         <a class="btn btn-primary my-5" href="/inmuebles/create">
@@ -42,6 +42,7 @@
         </div>
             <br>
             <br>
+              @include('partials.message')
 
             <div class="panel panel-info">
 
@@ -75,7 +76,7 @@
                                 <td class="info"> {{$inmueble->Color}} </td>
                             
                                 
-                                <td class="warning"> 
+                                <td class="warning col-xs-2 col-xs-offset-2 "> 
                                 <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar"></a>
                                 <a class="fa fa-eye btn btn-success btn-xs detalleInmueble" data-inmueble = "{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom" title="Ver"></a>
                                 <a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom" title="Editar"></a>

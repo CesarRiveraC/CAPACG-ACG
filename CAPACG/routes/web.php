@@ -85,7 +85,8 @@ Route::group(['middleware' => 'auth'], function() {
     
 
     Route::group(['middleware' => 'Administrador'], function(){
-        
+        Route::get('usuarios/search','UsuariosController@search');
+        Route::get('usuarios/filter','UsuariosController@filter');
         Route::get('usuarios/{id}/change','UsuariosController@change');
         Route::put('usuarios/{id}/updatestate','UsuariosController@updatestate');
         Route::get('usuarios/excel', 'UsuariosController@excel');

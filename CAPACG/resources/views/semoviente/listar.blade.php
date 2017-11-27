@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-    @include('partials.message')
+  
  
         <div class="col-lg-10 col-lg-offset-1">
 
@@ -39,6 +39,7 @@
         </div>
             <br>
             <br>
+            @include('partials.message')
 
             <div class="panel panel-info">
 
@@ -73,7 +74,7 @@
                                 
                                 <td class="info"> {{$semoviente->Raza}} </td>
                                 
-                                <td class="warning"> 
+                                <td class="warning col-xs-2 col-xs-offset-2 "> 
                                 <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$semoviente->id}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar" ></a>
                                 <a class="fa fa-eye btn btn-success btn-xs detalleSemoviente" data-semoviente = "{{$semoviente->id}}" data-toggle="tooltip" data-placement="bottom" title="Ver"></a>
                                 <a href="/semovientes/{{$semoviente->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom" title="Editar"></a>
