@@ -7,7 +7,7 @@
  
         <div class="col-lg-10 col-lg-offset-1">
 
-    
+        <div class="col-md-8">
         <a class="btn btn-primary my-5" href="/semovientes/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nuevo semoviente</a> 
         <a class="btn btn-success my-5" href="/semovientes/excel">
@@ -33,7 +33,10 @@
             
         </ul>
         </div>
-      
+        </div>
+        <div class="col-md-3 pull-right"><a class="href my-5" href="/home">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
+        </div>
             <br>
             <br>
 
@@ -81,7 +84,9 @@
                     </tbody>
                   </table>
                 </div>
-              
+                <div class="col-md-8">{{ $semovientes->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta']))->links() }}</div>
+                <div class="col-md-3 pull-right"><br><a class="href" href="/home">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a></div>
                 </div>
             </div>
         </div>

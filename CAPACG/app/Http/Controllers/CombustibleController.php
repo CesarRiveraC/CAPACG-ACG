@@ -103,8 +103,7 @@ class CombustibleController extends Controller
         $combustible->vehiculo_id = $request['Vehiculo'];
         $combustible->save();
         
-        return redirect('/combustibles'); // por el momento esta asi, ya despues se manda a una vista diferente
-            
+        return redirect('/combustibles')->with('message','Factura combustible correctamente creado');
     }}
 
     public function show($id){
@@ -188,7 +187,7 @@ class CombustibleController extends Controller
         }
         $combustible->vehiculo_id = $request['Vehiculo'];
         $combustible->save();
-        return redirect('/combustibles');
+        return redirect('/combustibles')->with('message','Factura combustible correctamente editado');
     }
 
 }

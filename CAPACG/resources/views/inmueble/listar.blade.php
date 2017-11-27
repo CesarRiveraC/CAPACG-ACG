@@ -8,7 +8,7 @@
         <div class="col-lg-10 col-lg-offset-1">
         @include('partials.message')
       
-    
+        <div class="col-md-8">
         <a class="btn btn-primary my-5" href="/inmuebles/create">
         <i class="fa fa-plus-circle " aria-hidden="true"></i></span> Crear nuevo Inmueble</a> 
       
@@ -35,6 +35,10 @@
             <i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a></li>
             
         </ul>
+        </div>
+        </div>
+        <div class="col-md-3 pull-right"><a class="href my-5" href="/home">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
         </div>
             <br>
             <br>
@@ -82,7 +86,9 @@
                     </tbody>
                   </table>
                 </div>
-              
+                <div class="col-md-8">{{ $inmuebles->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta']))->links() }}</div>
+                <div class="col-md-3 pull-right"><br><a class="href" href="/home">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a></div>
                 </div>
             </div>
         </div>

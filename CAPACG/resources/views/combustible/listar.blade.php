@@ -3,14 +3,17 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-
-    
+    <div class="col-lg-10 col-lg-offset-1">
+@include('partials.message')
+<div class="col-md-8">
         <a class="btn btn-primary my-5" href="/combustibles/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Factura Combustible</a> 
         <a class="btn btn-success my-5" href="/combustibles/excel">
         <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
-       
+       </div>
+       <div class="col-md-3 pull-right"><a class="href my-5" href="/home">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
+        </div>
             <br>
             <br>
 
@@ -62,7 +65,8 @@
                     </tbody>
                   </table>
                 </div>
-              
+                <div class="col-md-3 pull-right"><br><a class="href" href="/home">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a></div>
                 </div>
             </div>
         </div>

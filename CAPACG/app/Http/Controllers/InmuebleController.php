@@ -120,7 +120,7 @@ class InmuebleController extends Controller
             $inmueble->EstadoActivo = $request['EstadoActivo'];
             $inmueble->save();
        
-            return redirect('/inmuebles'); 
+            return redirect('/inmuebles')->with('message','Activo Inmueble correctamente creado');
             
            }
     }
@@ -224,7 +224,7 @@ class InmuebleController extends Controller
         $inmueble->EstadoActivo = request('EstadoActivo');
         $inmueble->save();    
 
-        return redirect('/inmuebles');
+        return redirect('/inmuebles')->with('message','Activo Inmueble correctamente editado');
         }
     }
 
