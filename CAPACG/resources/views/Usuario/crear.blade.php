@@ -135,6 +135,11 @@
 
                             <div class="col-md-6">
                                 <input id="Telefono" type="text" class="form-control" name="Telefono" required>
+                                 @if ($errors->has('Telefono'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Telefono') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group" align = "center"></div>

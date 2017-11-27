@@ -19,6 +19,11 @@
 
                             <div class="col-md-6">
                                 <input id="Cedula" type="text" class="form-control" name="Cedula" value="{{ $colaborador->Cedula }}" required autofocus>    
+                                 @if ($errors->has('Cedula'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Cedula') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -26,7 +31,12 @@
                             <label for="PuestoDeTrabajo" class="col-md-4 control-label">Puesto de Trabajo</label>
 
                             <div class="col-md-6">
-                                <input id="PuestodeTrabajo" type="text" class="form-control" name="PuestoDeTrabajo" value="{{ $colaborador->PuestoDeTrabajo }}" required>                               
+                                <input id="PuestodeTrabajo" type="text" class="form-control" name="PuestoDeTrabajo" value="{{ $colaborador->PuestoDeTrabajo }}" required>      
+                                @if ($errors->has('PuestodeTrabajo'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('PuestodeTrabajo') }}</strong>
+                                    </span>
+                                @endif                         
                             </div>  
                         </div>
 
@@ -35,6 +45,11 @@
 
                             <div class="col-md-6">
                                 <input id="LugarDeTrabajo" type="text" class="form-control" name="LugarDeTrabajo" value="{{ $colaborador->LugarDeTrabajo }}" required>
+                                 @if ($errors->has('LugarDeTrabajo'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('LugarDeTrabajo') }}</strong>
+                                    </span>
+                                @endif  
                             </div>
                         </div>
 
@@ -43,12 +58,17 @@
 
                             <div class="col-md-6">
                                 <input id="Telefono" type="text" class="form-control" name="Telefono" value="{{ $colaborador->Telefono }}" required>
+                                @if ($errors->has('Telefono'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Telefono') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         
 
                         <div class="form-group" align = "center"></div>
-                            <button type="submit" class="btn btn-success"> 
+                            <button type="submit" formnovalidate class="btn btn-success"> 
                             <i class="fa fa-floppy-o" aria-hidden="true"></i> Editar </button>
                             <a href="/usuarios" class="btn btn-default"> 
                             <i class="fa fa-times" aria-hidden="true"></i> Cancelar </a>

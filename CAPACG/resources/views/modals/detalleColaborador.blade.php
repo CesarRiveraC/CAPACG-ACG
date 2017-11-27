@@ -37,11 +37,7 @@
         <dt>Cédula:</dt>
         <dd id="lblCedula"></dd>
         <br>
-
-        <dt>Dirección:</dt>
-        <dd id="lblDireccion"></dd>
-        <br>
-
+        
         <dt>Puesto de trabajo:</dt>
         <dd id="lblPuestoDeTrabajo"></dd>
         <br>

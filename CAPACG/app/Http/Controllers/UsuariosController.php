@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 
-
 use Storage;
 
 
@@ -152,15 +151,17 @@ class UsuariosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {         
+        $colaborador = Colaborador::find($id);        
+        $usuario = User::find($colaborador->user_id);
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'Apellido' => 'required',
-            'email' => 'required|unique:users,email',                        
+            'email' => 'required|unique:users,email,'.$usuario->id,                      
             'password' => 'required|min:6',
             'password_confirmation' => 'required|same:password',
-            'Cedula' => 'required|unique:colaboradores,Cedula',
+            'Cedula' => 'required|unique:colaboradores,Cedula,' .$colaborador->id,
             'PuestoDeTrabajo' => 'required',
             'LugarDeTrabajo' => 'required',         
             
@@ -176,24 +177,22 @@ class UsuariosController extends Controller
             'password_confirmation.required' => 'Debe confirmar la contraseña',
             'password_confirmation.same' => 'Las contraseñas no coinciden, inténtalo de nuevo.',
             'Cedula.required' => 'Debe definir el numero de cédula.',
-            'Cedula.unique' => 'La cédula ya ha sido registrada',
+           // 'Cedula.unique' => 'La cédula ya ha sido registrada',
             'PuestoDeTrabajo.required' => 'Debe definir un puesto de trabajo.',
             'LugarDeTrabajo.required' => 'Debe definir un lugar de trabajo.',
             
         ]
     );
  
-        if ($validator->fails()) {
-            return redirect('usuarios/editar')
+        if ($validator->fails()) { 
+            return redirect()->back()
                         ->withErrors($validator)
                         ->withInput();
         }
         else{
+    $colaborador = Colaborador::find($id);        
+    $usuario = User::find($colaborador->user_id);
 
-
-        $colaborador = Colaborador::find($id);        
-        $usuario = User::find($colaborador->user_id);
-        
         $usuario->name = request('name');
         $usuario->Apellido = request('Apellido');
         $usuario->email = request('email');

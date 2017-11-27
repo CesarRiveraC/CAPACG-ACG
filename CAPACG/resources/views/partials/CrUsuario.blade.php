@@ -2,7 +2,12 @@
                             <label for="name" class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ $usuario->name }}" required autofocus>    
+                                <input id="name" type="text" class="form-control" name="name" value="{{ $usuario->name }}" required autofocus> 
+                                 @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif   
                             </div>
                         </div>
 
@@ -10,7 +15,12 @@
                             <label for="Apellido" class="col-md-4 control-label">Apellido</label>
 
                             <div class="col-md-6">
-                                <input id="Apellido" type="text" class="form-control" name="Apellido" value="{{ $usuario->Apellido }}" required autofocus>    
+                                <input id="Apellido" type="text" class="form-control" name="Apellido" value="{{ $usuario->Apellido }}" required autofocus>  
+                                 @if ($errors->has('Apellido'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Apellido') }}</strong>
+                                    </span>
+                                @endif  
                             </div>
                         </div>
 
@@ -44,11 +54,16 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                             <label for="password_confirmation" class="col-md-4 control-label">Confirmar Contraseña</label>
 
                             <div class="col-md-6">
                                 <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
