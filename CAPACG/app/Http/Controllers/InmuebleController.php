@@ -44,9 +44,10 @@ class InmuebleController extends Controller
 
     public function store(Request $request)
     {
+        
 
         $validator = Validator::make($request->all(), [
-            'Placa' => 'required:unique:inmuebles,Placa',
+            'Placa' => 'required|unique:activos,Placa',
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
@@ -149,8 +150,12 @@ class InmuebleController extends Controller
 
     public function update($id, Request $request)
     {
+
+        $inmueble = Inmueble::find($id);
+        $activo = Activo::find($inmueble->activo_id);
+
         $validator = Validator::make($request->all(), [
-            'Placa' => 'required',
+            'Placa' => 'required|unique:activos,Placa,'.$activo->id,
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
@@ -168,6 +173,7 @@ class InmuebleController extends Controller
     
         $messages = [
             'Placa.required' => 'Debe definir la placa',
+            'Placa.unique' => 'La placa ya está en uso', 
             'Descripcion.required' => 'Debe definir la descripción',
             'TipoActivo.required' => 'Debe definir la categoría del activo',                        
             'Programa.required' => 'Debe definir el programa',            
@@ -186,15 +192,11 @@ class InmuebleController extends Controller
 
 
     if ($validator->fails()) {
-        return redirect('inmuebles/edit')
-                    ->withInput()
-                    ->withErrors($validator);
+       return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
     }
     else{
-        
-        $inmueble = Inmueble::find($id);
-        $activo = Activo::find($inmueble->activo_id);
-
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
         $activo->Programa = request('Programa');
@@ -222,7 +224,8 @@ class InmuebleController extends Controller
         $inmueble->EstadoActivo = request('EstadoActivo');
         $inmueble->save();    
 
-        return redirect('/inmuebles');}
+        return redirect('/inmuebles');
+        }
     }
 
     public function change($id)

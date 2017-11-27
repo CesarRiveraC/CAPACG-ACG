@@ -120,16 +120,18 @@ class CombustibleController extends Controller
     {
     	$combustible = Combustible::find($id);
         $vehiculos= Vehiculo:: all();
-      
-        return view('/combustible/editar',compact('combustible','vehiculos'));
+        $dependencias= Dependencia:: all();
+        return view('/combustible/editar',compact('combustible','vehiculos', 'dependencias'));
     }
 
         
     public function update($id, Request $request)
     {
+        
+        $combustible = Combustible::find($id);
 
         $validator = Validator::make($request->all(), [
-            'NoVaucher' => 'required:unique:combustible,NoVaucher',
+            'NoVaucher' => 'required|unique:combustibles,NoVaucher,'.$combustible->id,
             'Monto' => 'required',
             'Numero' => 'required',                        
             'Fecha' => 'required',
@@ -144,8 +146,8 @@ class CombustibleController extends Controller
     
         $messages = [
             'NoVaucher.required' => 'Debe definir el No Vaucher',
-            'NoVaucher.unique' => 'Este número ya está en uso', 
             'Monto.required' => 'Debe definir el monto',
+            'Numero.required' => 'Debe definir el numero',
             'Fecha.required' => 'Debe definir la fecha',                        
             'Kilometraje.required' => 'Debe definir el kilometraje',            
             'LitrosCombustible.required' => 'Debe definir los litros de combustible',
@@ -158,12 +160,11 @@ class CombustibleController extends Controller
         ]
     );
     if ($validator->fails()) {
-        return redirect('combustibles/edit')
-                    ->withInput()
-                    ->withErrors($validator);
+        return redirect()->back()
+        ->withErrors($validator)
+        ->withInput();
     }
     else{
-        $combustible = Combustible::find($id);
         $combustible->NoVaucher = request('NoVaucher');
         $combustible->Monto = request('Monto');
         $combustible->Numero = request('Numero');

@@ -135,9 +135,11 @@ class SemovienteController extends Controller
     
     public function update($id, Request $request)
     {
-       
+        $semoviente = Semoviente::find($id);
+        $activo = Activo::find($semoviente->activo_id);
+
         $validator = Validator::make($request->all(), [
-            'Placa' => 'required',
+            'Placa' => 'required|unique:activos,Placa,'.$activo->id,
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
@@ -147,12 +149,12 @@ class SemovienteController extends Controller
             'Raza' => 'required',         
             'Edad' => 'required',
             'Peso' => 'required',        
-                    
-            
+           
         ],
     
         $messages = [
-            'Placa.required' => 'Debe definir la placa', 
+            'Placa.required' => 'Debe definir el fierro',
+            'Placa.unique' => 'La placa ya está en uso', 
             'Descripcion.required' => 'Debe definir la descripción',
             'TipoActivo.required' => 'Debe definir la categoría del activo',                        
             'Programa.required' => 'Debe definir el programa',            
@@ -162,21 +164,16 @@ class SemovienteController extends Controller
             'Raza.required' => 'Debe definir la raza',
             'Edad.required' => 'Debe definir la edad',
             'Peso.required' => 'Debe definir el peso',
-     
-            
         ]
     );
 
-
-    if ($validator->fails()) {
-        return redirect('semovientes/edit')
-                    ->withInput()
-                    ->withErrors($validator);
+    if ($validator->fails()) { 
+        return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
     }
     else{
         
-        $semoviente = Semoviente::find($id);
-        $activo = Activo::find($semoviente->activo_id);
 
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
@@ -203,9 +200,10 @@ class SemovienteController extends Controller
        
         $semoviente->save();    
 
-        return redirect('/semovientes');}
-    
+        return redirect('/semovientes');
+        }
     }
+   
 
     public function change($id)
     {
