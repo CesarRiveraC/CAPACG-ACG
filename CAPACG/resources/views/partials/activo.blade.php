@@ -30,7 +30,7 @@
                         <div class="form-group{{ $errors->has('TipoActivo') ? ' has-error' : '' }}">
                         <label for="TipoActivo" class="col-md-4 control-label">Categoría</label>
                         <div class="col-md-6">
-                        <select name="TipoActivo" id="tipoActivo_id" class="form-control" required>
+                        <select name="TipoActivo" id="tipo_id" class="form-control" required>
                             
                         <option value="">--Escoja categoría--</option>
                         @foreach($tipos as $tipo)

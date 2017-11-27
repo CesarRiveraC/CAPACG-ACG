@@ -84,7 +84,10 @@ $(function(){
                     $('#TipoFiltrar').empty();
         
                     $('#TipoFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Tipo</option>");                
-                     var cont = 0;  
+                    
+               
+
+                    var cont = 0;  
                      $.each(data, function(index, element){
                         
                         cont = element.length;

@@ -6,7 +6,7 @@
         <dd id="lblDescripcion"></dd>
         <br>
 
-        <dt>Tipo</dt>
+        <dt>Categoria</dt>
         <dd id="lblTipoActivo"></dd>
         <br>
 

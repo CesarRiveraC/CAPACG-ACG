@@ -3,7 +3,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
 
-      <form role="search" action="/infraestructuras/filterDate">
+      <form role="search" action="" id="form-fecha">
 
         <!-- Modal Header -->
         <div class="modal-header">

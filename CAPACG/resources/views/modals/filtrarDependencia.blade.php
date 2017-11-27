@@ -3,7 +3,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
 
-      <form role="search" action="/infraestructuras/filterDependencia">
+      <form role="search" action="" id="form-dependencia">
         
         
         <!-- Modal Header -->

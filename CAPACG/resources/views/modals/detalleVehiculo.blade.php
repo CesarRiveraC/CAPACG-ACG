@@ -37,7 +37,7 @@
         <br>
 
         <dt>Placa</dt>
-        <dd id="lblPlaca"></dd>
+        <dd id="lblPlaca1"></dd>
         <br>
         
 

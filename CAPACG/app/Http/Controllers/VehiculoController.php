@@ -46,7 +46,8 @@ class VehiculoController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'Placa' => 'required:unique:inmuebles,Placa',
+            'Placa' => 'required|unique:activos,Placa',
+            'Placa' => 'required|unique:vehiculo,Placa',
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
@@ -95,7 +96,7 @@ class VehiculoController extends Controller
             $activo->Placa = $request['Placa'];
             $activo->Descripcion = $request['Descripcion'];
             $activo->dependencia_id = $request['Dependencia'];
-            $activo->TipoActivo = $request['TipoActivo'];
+            $activo->tipo_id = $request['TipoActivo'];
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
@@ -197,7 +198,7 @@ class VehiculoController extends Controller
 
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
-        $activo->TipoActivo = request('TipoActivo');
+        $activo->tipo_id = $request['TipoActivo'];
         $activo->dependencia_id = request('Dependencia');
         $activo->Programa = request('Programa');
         $activo->SubPrograma = request('SubPrograma');

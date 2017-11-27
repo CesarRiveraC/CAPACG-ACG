@@ -45,7 +45,7 @@ class SemovienteController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'Placa' => 'required:unique:inmuebles,Placa',
+            'Placa' => 'required|unique:activos,Placa',
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
@@ -85,7 +85,7 @@ class SemovienteController extends Controller
             $activo->Placa = $request['Placa'];
             $activo->Descripcion = $request['Descripcion'];
             $activo->dependencia_id = $request['Dependencia'];
-            $activo->TipoActivo = $request['TipoActivo'];
+            $activo->tipo_id = $request['TipoActivo'];
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
@@ -174,7 +174,7 @@ class SemovienteController extends Controller
         $activo = Activo::find($semoviente->activo_id);
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
-        $activo->TipoActivo = request('TipoActivo');
+        $activo->tipo_id = request('TipoActivo');
         $activo->Programa = request('Programa');
         $activo->SubPrograma = request('SubPrograma');
         $activo->dependencia_id = request('Dependencia');

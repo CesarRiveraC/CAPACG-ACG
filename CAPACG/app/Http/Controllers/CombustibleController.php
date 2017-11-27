@@ -45,7 +45,7 @@ class CombustibleController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'NoVaucher' => 'required:unique:combustible,NoVaucher',
+            'NoVaucher' => 'required|unique:combustibles,NoVaucher',
             'Monto' => 'required',
             'Numero' => 'required',                        
             'Fecha' => 'required',
