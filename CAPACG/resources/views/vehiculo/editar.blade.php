@@ -13,7 +13,7 @@
                         {{ csrf_field() }}
                
                         <div class="form-group{{ $errors->has('Placa') ? ' has-error' : '' }}">
-                            <label for="Placa" class="col-md-4 control-label">Fierro</label>
+                            <label for="Placa" class="col-md-4 control-label">Placa</label>
 
                             <div class="col-md-6">
                                 <input id="Placa" type="text" class="form-control" name="Placa" value="{{ $vehiculo->inmueble->activo->Placa }}" required autofocus>    
@@ -226,14 +226,14 @@
                         
 
                         
-                        <div class="form-group{{ $errors->has('Placa') ? ' has-error' : '' }}">
-                            <label for="Placa" class="col-md-4 control-label">Placa Vehículo</label>
+                        <div class="form-group{{ $errors->has('Placa1') ? ' has-error' : '' }}">
+                            <label for="Placa1" class="col-md-4 control-label">Placa Vehículo</label>
 
                             <div class="col-md-6">
-                                <input id="Placa" type="text" class="form-control" name="Placa" value="{{ $vehiculo->Placa }}" required autofocus>    
-                                @if ($errors->has('Placa'))
+                                <input id="Placa1" type="text" class="form-control" name="Placa1" value="{{ $vehiculo->Placa}}" required autofocus>    
+                                @if ($errors->has('Placa1'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('Placa') }}</strong>
+                                        <strong>{{ $errors->first('Placa1') }}</strong>
                                     </span>
                                 @endif
                             </div>

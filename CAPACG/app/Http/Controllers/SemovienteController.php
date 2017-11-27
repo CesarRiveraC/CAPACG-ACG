@@ -27,7 +27,7 @@ class SemovienteController extends Controller
         ->join('activos','semovientes.activo_id', '=','activos.id')
         ->select('activos.*','semovientes.*')
         ->where('activos.Estado','=','1') 
-        ->paginate(10);
+        ->paginate(20);
 
         
         return view('/semoviente/listar', ['semovientes' => $semovientes]);
@@ -135,33 +135,37 @@ class SemovienteController extends Controller
     
     public function update($id, Request $request)
     {
+       
         $validator = Validator::make($request->all(), [
             'Placa' => 'required',
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
-            'Subprograma' => 'required',
+            'SubPrograma' => 'required',
             'Color' => 'required',
             'Dependencia' => 'required',
             'Raza' => 'required',         
             'Edad' => 'required',
             'Peso' => 'required',        
-           
+                    
+            
         ],
     
         $messages = [
-            'Placa.required' => 'Debe definir el fierro', 
+            'Placa.required' => 'Debe definir la placa', 
             'Descripcion.required' => 'Debe definir la descripción',
             'TipoActivo.required' => 'Debe definir la categoría del activo',                        
             'Programa.required' => 'Debe definir el programa',            
-            'Subprograma.required' => 'Debe definir el subprograma',
+            'SubPrograma.required' => 'Debe definir el subprograma',
             'Color.required' => 'Debe definir el color',            
             'Dependencia.required' => 'Debe definir la dependencia',
             'Raza.required' => 'Debe definir la raza',
             'Edad.required' => 'Debe definir la edad',
             'Peso.required' => 'Debe definir el peso',
-            ]
-        );
+     
+            
+        ]
+    );
 
 
     if ($validator->fails()) {
@@ -170,16 +174,17 @@ class SemovienteController extends Controller
                     ->withErrors($validator);
     }
     else{
+        
         $semoviente = Semoviente::find($id);
         $activo = Activo::find($semoviente->activo_id);
+
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
-        $activo->tipo_id = request('TipoActivo');
         $activo->Programa = request('Programa');
+        $activo->tipo_id = request('TipoActivo');
         $activo->SubPrograma = request('SubPrograma');
+        $activo->Color = request('Color');      
         $activo->dependencia_id = request('Dependencia');
-        $activo->Color = request('Color');       
-
         if ($request->hasFile('Foto')){ 
             Storage::delete($activo->Foto);
 
@@ -195,9 +200,11 @@ class SemovienteController extends Controller
         $semoviente->Raza = request('Raza');
         $semoviente->Edad = request('Edad');
         $semoviente->Peso = request('Peso');
-        $semoviente->save();
-        return redirect('/semovientes');
-    }
+       
+        $semoviente->save();    
+
+        return redirect('/semovientes');}
+    
     }
 
     public function change($id)
@@ -224,7 +231,7 @@ class SemovienteController extends Controller
     {
         $semovientes = Semoviente::buscar($request->get('buscar'))
         ->join('activos','semovientes.activo_id', '=','activos.id')
-        ->where('activos.Estado','=','1')->paginate(10);
+        ->where('activos.Estado','=','1')->paginate(20);
         return view('semoviente/listar',compact('semovientes'));
     }
 
@@ -236,7 +243,7 @@ class SemovienteController extends Controller
            $semovientes = DB::table('semovientes')
            ->join('activos','semovientes.activo_id', '=','activos.id')
            ->where('activos.Estado','=', '0')  
-           ->paginate(2);
+           ->paginate(20);
     
            return view('/semoviente/listar', ['semovientes' => $semovientes]);
        }
@@ -247,9 +254,9 @@ class SemovienteController extends Controller
            $semovientes = DB::table('semovientes')
            ->join('activos','semovientes.activo_id', '=','activos.id')
            ->where('activos.dependencia_id','=', $name)  
-           ->paginate(2);
+           ->paginate(20);
            
-           return view('/semoviente/listar', ['semovientes' => $inmuebles]);
+           return view('/semoviente/listar', ['semovientes' => $semovientes]);
        }
    
        public function filterTipo(Request $request){
@@ -259,7 +266,7 @@ class SemovienteController extends Controller
            $semovientes = DB::table('semovientes')
            ->join('activos','semovientes.activo_id', '=','activos.id')   
            ->where('activos.tipo_id','=', $name)  
-           ->paginate(2);
+           ->paginate(20);
            
            return view('/semoviente/listar', ['semovientes' => $semovientes]);
        }
@@ -271,11 +278,8 @@ class SemovienteController extends Controller
           
            $semovientes = DB::table('semovientes')
            ->join('activos','semovientes.activo_id', '=','activos.id')
-           
-           ->whereBetween('activos.created_at',[$desde,$hasta])  
-          
-           
-           ->paginate(2);
+           ->whereBetween('activos.created_at',[$desde,$hasta])   
+           ->paginate(20);
            if(count($semovientes)>0){
                return view('/semoviente/listar', ['semovientes' => $semovientes]);  
            }
@@ -296,7 +300,7 @@ class SemovienteController extends Controller
   
                   $semovientes = DB::table('semovientes')
                  ->join('activos','semovientes.activo_id', '=','activos.id')
-                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa',
+                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa','activos.tipo_id','activos.dependencia_id',
                  'activos.SubPrograma','activos.Color','semovientes.Raza','semovientes.Edad'
                  ,'semovientes.Peso')
                  ->where('activos.Estado','=','0') //cambiar el estado para generar el reporte

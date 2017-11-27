@@ -54,6 +54,7 @@ $(function(){
         
                     $('#DependenciaFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione una dependencia</option>");
    
+                    $('#form-dependencia').attr('action','/inmuebles/filterDependencia');
                   
                      var cont = 0;  
                      $.each(data, function(index, element){
@@ -86,6 +87,7 @@ $(function(){
         
                     $('#TipoFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Tipo</option>");                
                    
+                   $('#form-tipo').attr('action','/inmuebles/filterTipo');
                     var cont = 0;  
                      $.each(data, function(index, element){
                         
@@ -103,5 +105,15 @@ $(function(){
         
                
       });
+});
+
+$(function(){
+    $('.filtrarFecha').click(function(e){
+      
+        $('#form-fecha').attr('action','/inmuebles/filterDate');
+
+      
+
+    });
 });
 

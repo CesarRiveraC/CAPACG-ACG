@@ -51,7 +51,9 @@ $(function(){
                     $('#DependenciaFiltrar').empty();
         
                     $('#DependenciaFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione una dependencia</option>");
-                     var cont = 0;  
+                    
+                    $('#form-dependencia').attr('action','/vehiculos/filterDependencia');
+                    var cont = 0;  
                      $.each(data, function(index, element){
                         
                         cont = element.length;  
@@ -79,6 +81,7 @@ $(function(){
         
                     $('#TipoFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Tipo</option>");
         
+                    $('#form-tipo').attr('action','/vehiculos/filterTipo');
                      var cont = 0;  
                      $.each(data, function(index, element){
                         
@@ -95,4 +98,12 @@ $(function(){
         
                
       });
+});
+
+$(function(){
+    $('.filtrarFecha').click(function(e){
+      
+        $('#form-fecha').attr('action','/vehiculos/filterDate');
+
+    });
 });

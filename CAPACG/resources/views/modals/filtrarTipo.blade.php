@@ -3,7 +3,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
 
-      <form role="search" id="form-tipo" action="" >
+      <form role="search"action="" id="form-tipo"  >
         
      
         <!-- Modal Header -->

@@ -28,7 +28,7 @@ class InmuebleController extends Controller
         ->join('activos','inmuebles.activo_id', '=','activos.id')
         ->select('activos.*','inmuebles.*')
         ->where('activos.Estado','=','1')
-        ->paginate(7);
+        ->paginate(20);
       
         return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }
@@ -150,7 +150,7 @@ class InmuebleController extends Controller
     public function update($id, Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'Placa' => 'required:unique',
+            'Placa' => 'required',
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
@@ -168,7 +168,6 @@ class InmuebleController extends Controller
     
         $messages = [
             'Placa.required' => 'Debe definir la placa',
-            'Placa.unique' => 'La placa ya está en uso', 
             'Descripcion.required' => 'Debe definir la descripción',
             'TipoActivo.required' => 'Debe definir la categoría del activo',                        
             'Programa.required' => 'Debe definir el programa',            
@@ -257,7 +256,7 @@ class InmuebleController extends Controller
     {
         $inmuebles = Inmueble::buscar($request->get('buscar'))
         ->join('activos','inmuebles.activo_id', '=','activos.id')
-        ->where('activos.Estado','=','1')->paginate(7);
+        ->where('activos.Estado','=','1')->paginate(20);
         return view('inmueble/listar',compact('inmuebles'));
     }
 
@@ -279,7 +278,7 @@ class InmuebleController extends Controller
         $inmuebles = DB::table('inmuebles')
         ->join('activos','inmuebles.activo_id', '=','activos.id')
         ->where('activos.Estado','=', '0')  
-        ->paginate(2);
+        ->paginate(20);
  
         return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }
@@ -290,7 +289,7 @@ class InmuebleController extends Controller
         $inmuebles = DB::table('inmuebles')
         ->join('activos','inmuebles.activo_id', '=','activos.id')
         ->where('activos.dependencia_id','=', $name)  
-        ->paginate(2);
+        ->paginate(20);
         
         return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }
@@ -305,7 +304,7 @@ class InmuebleController extends Controller
         ->where('activos.tipo_id','=', $name)  
        
         
-        ->paginate(2);
+        ->paginate(20);
         
         return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }
@@ -321,7 +320,7 @@ class InmuebleController extends Controller
         ->whereBetween('activos.created_at',[$desde,$hasta])  
        
         
-        ->paginate(2);
+        ->paginate(20);
         if(count($inmuebles)>0){
             return view('/inmueble/listar', ['inmuebles' => $inmuebles]);  
         }
@@ -340,8 +339,8 @@ class InmuebleController extends Controller
              $excel->sheet('Activos', function($sheet) {   
                   $inmuebles = DB::table('inmuebles')
                  ->join('activos','inmuebles.activo_id', '=','activos.id')
-                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa',
-                 'activos.SubPrograma','activos.Color','inmuebles.Serie','inmuebles.Dependencia'
+                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa','activos.tipo_id','activos.dependencia_id',
+                 'activos.SubPrograma','activos.Color','inmuebles.Serie'
                  ,'inmuebles.EstadoUtilizacion','inmuebles.EstadoFisico','inmuebles.EstadoActivo')
                  ->where('activos.Estado','=','1') //cambiar el estado para generar el reporte
                  ->get();

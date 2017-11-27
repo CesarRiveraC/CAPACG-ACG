@@ -28,7 +28,7 @@ class VehiculoController extends Controller
         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
         ->select('activos.*','inmuebles.*','vehiculos.*')
         ->where('activos.Estado','=','1') //hay que definir bien cual es el que se va a utilizar
-        ->paginate(10);
+        ->paginate(20);
 
     ;
         return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
@@ -154,81 +154,52 @@ class VehiculoController extends Controller
         return view('/vehiculo/editar',compact('vehiculo','dependencias','tipos'));
     
     }
-    
-    public function update($id, Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'Placa' => 'required',
-            'Descripcion' => 'required',
-            'TipoActivo' => 'required',                        
-            'Programa' => 'required',
-            'Subprograma' => 'required',
-            'Color' => 'required',
-            'Dependecnia' => 'required',
-            'Raza' => 'required',         
-            'Edad' => 'required',
-            'Peso' => 'required',        
+  
+        public function update($id, Request $request)
+        {
            
-        ],
+            $vehiculo = Vehiculo::find($id);
+            $inmueble = Inmueble::find($vehiculo->inmueble_id);
+            $activo = Activo::find($inmueble->activo_id);
     
-        $messages = [
-            'Placa.required' => 'Debe definir la placa',
-            'Descripcion.required' => 'Debe definir la descripción',
-            'TipoActivo.required' => 'Debe definir la categoría del activo',                        
-            'Programa.required' => 'Debe definir el programa',            
-            'Subprograma.required' => 'Debe definir el subprograma',
-            'Color.required' => 'Debe definir el color',            
-            'Dependencia.required' => 'Debe definir la dependencia',
-            'Raza.required' => 'Debe definir la raza',
-            'Edad.required' => 'Debe definir la edad',
-            'Peso.required' => 'Debe definir el peso',
-        ]
-    );
-
-
-    if ($validator->fails()) {
-        return redirect('vehiculos/edit')
-                    ->withInput()
-                    ->withErrors($validator);
-    }
-    else{
-        $vehiculo = Vehiculo::find($id);
-        $inmueble = Inmueble::find($vehiculo->inmueble_id);
-        $activo = Activo::find($inmueble->activo_id);
-
-        $activo->Placa = request('Placa');
-        $activo->Descripcion = request('Descripcion');
-        $activo->tipo_id = request('TipoActivo');
-        $activo->dependencia_id = request('Dependencia');
-        $activo->Programa = request('Programa');
-        $activo->SubPrograma = request('SubPrograma');
-        $activo->Color = request('Color');      
-
-        if ($request->hasFile('Foto')){ 
-            Storage::delete($activo->Foto);
-
-                            $file = $request->file('Foto');  
-                            $file_route = time().'_'.$file->getClientOriginalName(); 
-                            Storage::disk('public')->put($file_route, file_get_contents($file->getRealPath() )); 
-                            $activo->Foto = $file_route; 
-                        
-        }
-        $activo->save();
-
-        $inmueble->activo_id =  $activo->id;
-        $inmueble->Serie = request('Serie');
-        $inmueble->EstadoUtilizacion = request('EstadoUtilizacion');
-        $inmueble->EstadoFisico = request('EstadoFisico');
-        $inmueble->EstadoActivo = request('EstadoActivo');
-        $inmueble->save();
-
-        $vehiculo->inmueble_id =  $inmueble->id;            
-        $vehiculo->Placa = request('Placa');
-        $vehiculo->save();
-
-
-        return redirect('/vehiculos');}
-    }
+            $activo->Placa = request('Placa');
+            $activo->Descripcion = request('Descripcion');
+            $activo->Programa = request('Programa');
+            $activo->tipo_id = request('TipoActivo');
+            $activo->SubPrograma = request('SubPrograma');
+            $activo->Color = request('Color');      
+            $activo->dependencia_id = request('Dependencia');
+            if ($request->hasFile('Foto')){ 
+                Storage::delete($activo->Foto);
+    
+                                $file = $request->file('Foto');  
+                                $file_route = time().'_'.$file->getClientOriginalName(); 
+                                Storage::disk('public')->put($file_route, file_get_contents($file->getRealPath() )); 
+                                $activo->Foto = $file_route; 
+                            
+            }
+            $activo->save();
+    
+            $inmueble->activo_id =  $activo->id;
+            $inmueble->Serie = request('Serie');
+            $inmueble->Marca = request('Marca');
+            $inmueble->Modelo = request('Modelo');
+            $inmueble->EstadoUtilizacion = request('EstadoUtilizacion');
+            $inmueble->EstadoFisico = request('EstadoFisico');
+            $inmueble->EstadoActivo = request('EstadoActivo');
+            $inmueble->save();   
+    
+            $vehiculo->inmueble_id =  $inmueble->id;            
+            $vehiculo->Placa = request('Placa1');
+            $vehiculo->save();
+    
+           
+            return redirect('/vehiculos');
+           }
+    
+    
+    
+    
 
 
     public function change($id)
@@ -269,7 +240,7 @@ class VehiculoController extends Controller
         $vehiculos = DB::table('vehiculos')
         ->join('inmuebles','inmuebles.activo_id', '=','activos.id')
         ->where('inmuebles.activos.Estado','=', '0')  
-        ->paginate(2);
+        ->paginate(20);
  
         return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
     }
@@ -281,7 +252,7 @@ class VehiculoController extends Controller
         $vehiculos = DB::table('vehiculos')
         ->join('activos','vehiculos.activo_id', '=','activos.id')
         ->where('activos.dependencia_id','=', $name)   
-        ->paginate(2);
+        ->paginate(20);
         
         return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
     }
@@ -293,7 +264,7 @@ class VehiculoController extends Controller
         $infraestructuras = DB::table('vehiculos')
         ->join('activos','vehiculos.activo_id', '=','activos.id')
         ->where('activos.tipo_id','=', $name)  
-        ->paginate(2);
+        ->paginate(20);
         
         return view('/vehiculos/listar', ['vehiculos' => $vehiculos]);
     }
@@ -306,7 +277,7 @@ class VehiculoController extends Controller
         $infraestructuras = DB::table('vehiculos')
         ->join('activos','vehiculos.activo_id', '=','activos.id')
         ->whereBetween('activos.created_at',[$desde,$hasta])  
-        ->paginate(2);
+        ->paginate(20);
         if(count($vehiculos)>0){
             return view('/vehiculos/listar', ['vehiculos' => $vehiculos]);  
         }
@@ -328,7 +299,7 @@ class VehiculoController extends Controller
                  $vehiculos = DB::table('vehiculos')
                  ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
                  ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa',
+                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa','activos.tipo_id','activos.dependencia_id',
                  'activos.SubPrograma','activos.Color','inmuebles.Serie','inmuebles.Dependencia'
                  ,'inmuebles.EstadoUtilizacion', 'inmuebles.EstadoFisico','inmuebles.EstadoActivo',
                  'vehiculos.Placa')
