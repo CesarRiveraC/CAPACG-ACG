@@ -168,6 +168,7 @@ class InmuebleController extends Controller
     
         $messages = [
             'Placa.required' => 'Debe definir la placa',
+            'Placa.unique' => 'La placa ya está en uso', 
             'Descripcion.required' => 'Debe definir la descripción',
             'TipoActivo.required' => 'Debe definir la categoría del activo',                        
             'Programa.required' => 'Debe definir el programa',            

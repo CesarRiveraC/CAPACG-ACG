@@ -160,8 +160,8 @@ class SemovienteController extends Controller
             'Raza.required' => 'Debe definir la raza',
             'Edad.required' => 'Debe definir la edad',
             'Peso.required' => 'Debe definir el peso',
-        ]
-    );
+            ]
+        );
 
 
     if ($validator->fails()) {

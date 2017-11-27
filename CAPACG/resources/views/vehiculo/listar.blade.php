@@ -7,12 +7,12 @@
         <div class="col-lg-10 col-md-offset-1">
 
     
-        <a class="btn btn-primary" href="/vehiculos/create">
+        <a class="btn btn-primary my-5" href="/vehiculos/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Crear nuevo Vehiculo</a> 
-        <a class="btn btn-success" href="/vehiculos/excel">
+        <a class="btn btn-success my-5" href="/vehiculos/excel">
         <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
         <div class="btn-group">
-        <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">Filtrar Vehiculos
+        <button class="btn btn-warning dropdown-toggle my-5" type="button" data-toggle="dropdown">Filtrar Vehiculos
         <span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu">
             <li><a class="btn btn-default " href="/vehiculos">

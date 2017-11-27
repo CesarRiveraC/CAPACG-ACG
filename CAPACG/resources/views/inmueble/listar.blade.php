@@ -9,14 +9,14 @@
         @include('partials.message')
       
     
-        <a class="btn btn-primary" href="/inmuebles/create">
-        <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Crear nuevo Inmueble</a> 
+        <a class="btn btn-primary my-5" href="/inmuebles/create">
+        <i class="fa fa-plus-circle " aria-hidden="true"></i></span> Crear nuevo Inmueble</a> 
       
-        <a class="btn btn-success" href="/inmuebles/excel">
+        <a class="btn btn-success my-5" href="/inmuebles/excel">
         <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
         
-        <div class="btn-group">
-        <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">Filtrar Inmuebles
+        <div class="btn-group ">
+        <button class="btn btn-warning dropdown-toggle my-5" type="button" data-toggle="dropdown">Filtrar Inmuebles
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
             <li><a class="btn btn-default " href="/inmuebles">

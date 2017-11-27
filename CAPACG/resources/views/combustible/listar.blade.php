@@ -6,9 +6,9 @@
         <div class="col-md-8 col-md-offset-2">
 
     
-        <a class="btn btn-primary" href="/combustibles/create">
+        <a class="btn btn-primary my-5" href="/combustibles/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Factura Combustible</a> 
-        <a class="btn btn-success" href="/combustibles/excel">
+        <a class="btn btn-success my-5" href="/combustibles/excel">
         <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
        
             <br>
