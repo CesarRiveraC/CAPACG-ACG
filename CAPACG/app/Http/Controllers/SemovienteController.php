@@ -126,10 +126,12 @@ class SemovienteController extends Controller
     	$semoviente = Semoviente::find($id);
         $activo = Activo::find($semoviente->activo_id);
         $semoviente->activo()->associate($activo);
-        $dependencias= Dependencia:: all();
-        $tipos= Tipo:: all();
+        $Dependencias= Dependencia:: all();
+        $dependencias= Dependencia::find($activo->dependencia_id);
+        $Tipos= Tipo:: all();
+        $tipos= Tipo:: find($activo->tipo_id);;
     
-        return view('/semoviente/editar',compact('semoviente','dependencias','tipos'));
+        return view('/semoviente/editar',compact('semoviente','dependencias','tipos','Dependencias','Tipos'));
    
     }
     

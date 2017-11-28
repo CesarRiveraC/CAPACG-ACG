@@ -46,9 +46,11 @@
                         <div class="col-md-6">
                         <select name="TipoActivo" id="tipoActivo_id" class="form-control" required>
                             
-                        <option value="">--Escoja categoría--</option>
-                        @foreach($tipos as $tipo)
-                                <option value="{{$tipo['id']}}">{{$tipo['Tipo']}}</option>
+                        <option value="{{ $tipos->id }}">{{$tipos->Tipo}}</option>
+                        @foreach($Tipos as $tipo)
+                                                
+                        <option value="{{$tipo['id']}}">{{$tipo['Tipo']}}</option>
+                        
                             @endforeach
                         </select>
 
@@ -111,11 +113,15 @@
                         <div class="form-group{{ $errors->has('Dependencia') ? ' has-error' : '' }}">
                             <label for="Dependencia" class="col-md-4 control-label">Dependencia</label>
                             <div class="col-md-6">
-                            <select name="Dependencia" id="dependencia_id" class="form-control"value="{{$inmueble->activo->dependencia->Dependencia}}" required>
+                            <select name="Dependencia" id="dependencia_id" class="form-control" required>
                                 
-                            <option value="">--Escoja dependencia--</option>
-                            @foreach($dependencias as $dependencia)
-                                    <option value="{{$dependencia['id']}}">{{$dependencia['Dependencia']}}</option>
+                            <option value="{{ $dependencias->id }}">{{$dependencias->Dependencia}}</option>
+                            @foreach($Dependencias as $dependencia)
+
+                          
+                            <option value="{{$dependencia['id']}}">{{$dependencia['Dependencia']}}</option>
+                         
+                                  
                                 @endforeach
                             </select>
 

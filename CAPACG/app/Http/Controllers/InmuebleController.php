@@ -28,7 +28,7 @@ class InmuebleController extends Controller
         ->join('activos','inmuebles.activo_id', '=','activos.id')
         ->select('activos.*','inmuebles.*')
         ->where('activos.Estado','=','1')
-        ->paginate(2);
+        ->paginate(20);
       
         return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }
@@ -141,11 +141,13 @@ class InmuebleController extends Controller
     {
     	$inmueble = Inmueble::find($id);
         $activo = Activo::find($inmueble->activo_id);
-        $dependencias= Dependencia:: all();
-        $tipos= Tipo:: all();
+        $Dependencias= Dependencia:: all();
+        $dependencias= Dependencia::find($activo->dependencia_id);
+        $Tipos= Tipo:: all();
+        $tipos= Tipo:: find($activo->dependencia_id);;
         $inmueble->activo()->associate($activo);
         
-        return view('/inmueble/editar',compact('inmueble','dependencias','tipos'));
+        return view('/inmueble/editar',compact('inmueble','dependencias','tipos','Dependencias','Tipos'));
     }
 
     public function update($id, Request $request)
@@ -338,11 +340,13 @@ class InmuebleController extends Controller
     public function excel(){
 
          Excel::create('Reporte Inmueble', function($excel) {
+             
   
              $excel->sheet('Activos', function($sheet) {   
                   $inmuebles = DB::table('inmuebles')
                  ->join('activos','inmuebles.activo_id', '=','activos.id')
-                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa','activos.tipo_id','activos.dependencia_id',
+                 
+                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa','tipos.Tipo','activos.dependencia_id',
                  'activos.SubPrograma','activos.Color','inmuebles.Serie'
                  ,'inmuebles.EstadoUtilizacion','inmuebles.EstadoFisico','inmuebles.EstadoActivo')
                  ->where('activos.Estado','=','1') //cambiar el estado para generar el reporte
