@@ -50,7 +50,8 @@
 
                 <div class="panel-heading"><h4>Semovientes</h4> </div>
                 <div class="panel-body">
-                {{ $semovientes->links() }}
+                <p>Hay {{$semovientes->total()}} registros</p> 
+               
                     <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>

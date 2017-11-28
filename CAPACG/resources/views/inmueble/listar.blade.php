@@ -53,8 +53,10 @@
             {!! Form::close() !!}
 
                 <div class="panel-heading"><h4>Inmuebles</h4> </div>
+                   
                 <div class="panel-body">
-                {{ $inmuebles->links() }}
+                <p>Hay {{$inmuebles->total()}} registros</p> 
+           
                     <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>

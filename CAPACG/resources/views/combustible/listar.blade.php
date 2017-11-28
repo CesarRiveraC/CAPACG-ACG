@@ -31,7 +31,8 @@
 
                 </div>
                 <div class="panel-body">
-                {{ $combustibles->links() }}
+                <p>Hay {{$combustibles->total()}} registros</p> 
+          
                     <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>

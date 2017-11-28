@@ -28,7 +28,7 @@ class InmuebleController extends Controller
         ->join('activos','inmuebles.activo_id', '=','activos.id')
         ->select('activos.*','inmuebles.*')
         ->where('activos.Estado','=','1')
-        ->paginate(20);
+        ->paginate(2);
       
         return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }
