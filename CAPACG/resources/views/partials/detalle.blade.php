@@ -9,6 +9,10 @@
         <dt>Categoria</dt>
         <dd id="lblTipoActivo"></dd>
         <br>
+        
+        <dt>Dependencia:</dt>
+        <dd id="lblDependencia"></dd>
+        <br>
 
         <dt>Programa</dt>
         <dd id="lblPrograma"></dd>

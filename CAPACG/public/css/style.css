@@ -117,14 +117,49 @@ border: none;
 
 #img-infraestructura, #img-inmueble, #img-semoviente, #img-combustible, 
 #img-combustible, #img-usuario, #img-vehiculo{
-	display:block;
-  margin:0 auto 0 auto;
+	/* display:block;
+  margin:0 auto 0 auto; */
 
+height: 200px;
+  width: 200px;
 }
 
 .my-5 {
   margin-top: 3px !important;
   margin-bottom: 3px !important;
+}
+.thumbnail {
+  padding: 0 0 15px 0;
+  border: none;
+  border-radius: 0;
+  /* height: 200px;
+  width: 200px; */
+}
+.thumbnail p {
+  margin-top: 15px;
+  color: #555;
+}
+.hbtn {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #f1f1f1;
+  border-radius: 0;
+  transition: .2s;
+}
+.hbtn:hover, .hbtn:focus {
+  border: 1px solid #333;
+  background-color: #fff;
+  color: #000;
+}
+.person {
+  border: 10px solid transparent;
+  /* margin-bottom: 25px; */
+  width: 80%;
+  height: 80%;
+  opacity: 0.7;
+}
+.person:hover {
+  border-color: #f1f1f1;
 }
  /* #footerAbsolute {
   position: absolute;
@@ -166,7 +201,7 @@ border: none;
 
 #homeContentCol{
   background-color: white !important;
-  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png");
+  /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png"); */
   /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/lightpaperfibers.png"); */
   /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/extra_clean_paper.png"); */
   /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png"); */
@@ -176,11 +211,11 @@ border: none;
 .jumbotron{
   /* background-color:white !important; */
   /* background: url("https://udenarperiodico.com/wp-content/uploads/2016/04/07-udenar-periodico-bosque-seco.jpg"); */
-  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png");
+  /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png"); */
 }
 #homeInfraestructura{
-  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png");
+  /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png"); */
 }
 #homeContent{
-  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png");
+  /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png"); */
 }

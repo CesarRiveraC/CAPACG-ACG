@@ -19,11 +19,7 @@
         
         <dt>Número Serie:</dt>
         <dd id="lblSerie"></dd>
-        <br>
-
-        <dt>Dependencia:</dt>
-        <dd id="lblDependencia"></dd>
-        <br>
+        <br>        
 
         <dt>Estado de Utilización:</dt>
         <dd id="lblEstadoUtilizacion"></dd>

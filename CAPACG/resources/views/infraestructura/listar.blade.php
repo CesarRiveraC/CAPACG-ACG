@@ -16,7 +16,7 @@
         <div class="col-lg-10 col-lg-offset-1">
    @include('partials.message')
         <div class="col-md-8">
-        <a class="btn btn-primary my-5" href="infraestructuras/create" >
+        <a class="btn btn-primary my-5" href="/infraestructuras/create" >
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Infraestructura</a> 
         <a class="btn btn-success my-5" href="/infraestructuras/excel">
         <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
@@ -106,7 +106,7 @@
                                 <a class="btn btn-success btn-xs detalleInfraestructura" data-infraestructura = "{{$infraestructura->id}}" >
                                 Detalle <i class="fa fa-eye" aria-hidden="true"></i></a>
 
-                                <a  class="btn btn-warning btn-xs editar" data-editar="{{$infraestructura->id}}">
+                                <a  class="btn btn-warning btn-xs editar" href="/infraestructuras/{{$infraestructura->id}}/edit">
                                 Editar <i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
                                 </td>

@@ -26,8 +26,12 @@ $(function (){
             $('#lblPrograma').text(result.vehiculo.inmueble.activo.Programa);
             $('#lblSubPrograma').text(result.vehiculo.inmueble.activo.SubPrograma);
             $('#lblColor').text(result.vehiculo.inmueble.activo.Color);
+            $('#lblDependencia').text(result.vehiculo.inmueble.activo.dependencia.Dependencia);
+            $('#lblTipoActivo').text(result.vehiculo.inmueble.activo.tipo.Tipo);
             $('#lblFoto').attr('src',"storage/pictures/".concat(result.vehiculo.inmueble.activo.Foto));
             $('#lblSerie').text(result.vehiculo.inmueble.Serie);
+            $('#lblModelo').text(result.vehiculo.inmueble.Modelo);
+            $('#lblMarca').text(result.vehiculo.inmueble.Marca);
             $('#lblDependencia').text(result.vehiculo.inmueble.Dependencia);
             $('#lblEstadoUtilizacion').text(result.vehiculo.inmueble.EstadoUtilizacion);
             $('#lblEstadoFisico').text(result.vehiculo.inmueble.EstadoFisico);
@@ -35,7 +39,7 @@ $(function (){
             $('#lblPlaca1').text(result.vehiculo.Placa);
             
         }).fail(function () {
-            alert('algo salio mal');
+            alert('Algo salio mal');
         });
         $('#DetalleVehiculo').modal();
     });

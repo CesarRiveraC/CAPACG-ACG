@@ -19,13 +19,18 @@
         <dt>Serie</dt>
         <dd id="lblSerie"></dd>
         <br>
-
-        <dt>Dependencia</dt>
-        <dd id="lblDependencia"></dd>
-        <br>
+        
 
         <dt>Estado Utilización</dt>
         <dd id="lblEstadoUtilizacion"></dd>
+        <br>
+
+        <dt>Marca:</dt>
+        <dd id="lblMarca"></dd>
+        <br>
+
+        <dt>Modelo:</dt>
+        <dd id="lblModelo"></dd>
         <br>
 
         <dt>Estado Físico</dt>

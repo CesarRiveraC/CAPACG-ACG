@@ -133,9 +133,13 @@ class VehiculoController extends Controller
         $vehiculo = Vehiculo::find($id);
         $inmueble = Inmueble::find($vehiculo->inmueble_id);
         $activo = Activo::find($inmueble->activo_id);
+        $dependencia= Dependencia::find($activo->dependencia_id);
+        $tipo= Tipo::find($activo->tipo_id);
+
         $vehiculo->inmueble()->associate($inmueble);
         $inmueble->activo()->associate($activo);
-
+        $activo->dependencia()->associate($dependencia);
+        $activo->tipo()->associate($tipo);
         
         return response()->json(['vehiculo'=>$vehiculo]);        
 
@@ -229,7 +233,8 @@ class VehiculoController extends Controller
     public function search(Request $request)
     {
         $vehiculos = Vehiculo::buscar($request->get('buscar'))
-        ->join('activos','vehiculos.activo_id', '=','activos.id')
+        ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+        ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
         ->where('activos.Estado','=','1')->paginate(10);
         return view('vehiculo/listar',compact('vehiculos'));
     }
@@ -238,7 +243,8 @@ class VehiculoController extends Controller
  
       
         $vehiculos = DB::table('vehiculos')
-        ->join('inmuebles','inmuebles.activo_id', '=','activos.id')
+        ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+        ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
         ->where('inmuebles.activos.Estado','=', '0')  
         ->paginate(20);
  
@@ -250,7 +256,8 @@ class VehiculoController extends Controller
         $name = $request->input('DependenciaFiltrar');
        
         $vehiculos = DB::table('vehiculos')
-        ->join('activos','vehiculos.activo_id', '=','activos.id')
+        ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+        ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
         ->where('activos.dependencia_id','=', $name)   
         ->paginate(20);
         
@@ -261,8 +268,9 @@ class VehiculoController extends Controller
         
         $name = $request->input('TipoFiltrar');
        
-        $infraestructuras = DB::table('vehiculos')
-        ->join('activos','vehiculos.activo_id', '=','activos.id')
+        $vehiculos = DB::table('vehiculos')
+        ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+        ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
         ->where('activos.tipo_id','=', $name)  
         ->paginate(20);
         
@@ -275,7 +283,8 @@ class VehiculoController extends Controller
         $hasta = $request->input('Hasta');
        
         $infraestructuras = DB::table('vehiculos')
-        ->join('activos','vehiculos.activo_id', '=','activos.id')
+        ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+        ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
         ->whereBetween('activos.created_at',[$desde,$hasta])  
         ->paginate(20);
         if(count($vehiculos)>0){
