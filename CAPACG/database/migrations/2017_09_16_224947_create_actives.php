@@ -23,7 +23,7 @@ class CreateActives extends Migration
              $table->foreign('tipo_id')->references('id')->on('tipos');
              $table->string('Placa')->unique();
              $table->string('Descripcion'); // se define de tipo text por ser la descripcion del activo
-             //$table->string('Direccion'); // se refiere a la direccion del colaborador asignado al activo. esto se hace por medio de la relacion
+             $table->integer('Identificador');
              $table->string('Programa');
              $table->string('SubPrograma');
              $table->string('Color');

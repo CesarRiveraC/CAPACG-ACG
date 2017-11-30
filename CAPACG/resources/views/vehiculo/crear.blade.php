@@ -11,15 +11,15 @@
                     <form class="form-horizontal" method="POST" action="/vehiculos" enctype="multipart/form-data" >
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('Placa1') ? ' has-error' : '' }}">
-                            <label for="Placa1" class="col-md-4 control-label">Placa Vehiculo</label>
+                        <div class="form-group{{ $errors->has('PlacaVehiculo') ? ' has-error' : '' }}">
+                            <label for="PlacaVehiculo" class="col-md-4 control-label">Placa Vehiculo</label>
 
                             <div class="col-md-6">
-                                <input id="Placa1" type="text" class="form-control" name="Placa1" value="{{ old('Placa1') }}" required autofocus>    
+                                <input id="PlacaVehiculo" type="text" class="form-control" name="PlacaVehiculo" value="{{ old('PlacaVehiculo') }}" required autofocus>    
                            
-                                @if ($errors->has('Placa1'))
+                                @if ($errors->has('PlacaVehiculo'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('Placa1') }}</strong>
+                                        <strong>{{ $errors->first('PlacaVehiculo') }}</strong>
                                     </span>
                                 @endif
                             </div>

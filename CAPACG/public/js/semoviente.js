@@ -32,13 +32,15 @@ $(function (){
             $('#lblPrograma').text(result.semoviente.activo.Programa);
             $('#lblSubPrograma').text(result.semoviente.activo.SubPrograma);
             $('#lblColor').text(result.semoviente.activo.Color);
+            $('#lblDependencia').text(result.semoviente.activo.dependencia.Dependencia);
+            $('#lblTipoActivo').text(result.semoviente.activo.tipo.Tipo);
             $('#lblFoto').attr('src',"storage/pictures/".concat(result.semoviente.activo.Foto));
             $('#lblRaza').text(result.semoviente.Raza);
             $('#lblEdad').text(result.semoviente.Edad);
             $('#lblPeso').text(result.semoviente.Peso);
-            // $('#lblAnoFabricacion').text(result.semoviente.AnoFabricacion);
+            
         }).fail(function () {
-            alert('algo salio mal');
+            alert('Algo salio mal');
         });
         $('#DetalleSemoviente').modal();
     });

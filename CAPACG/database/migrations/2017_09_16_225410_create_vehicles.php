@@ -19,7 +19,7 @@ class CreateVehicles extends Migration
              $table->foreign('inmueble_id')->references('id')->on('inmuebles');
              //$table->integer('inmueble_id')->unsigned()->nullable();
              //$table->foreign('inmueble_id')->references('id')->on('inmuebles');
-             $table->string('Placa');
+             $table->string('PlacaVehiculo');
              $table->timestamps();
             
          });    

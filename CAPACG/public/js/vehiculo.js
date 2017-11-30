@@ -36,7 +36,7 @@ $(function (){
             $('#lblEstadoUtilizacion').text(result.vehiculo.inmueble.EstadoUtilizacion);
             $('#lblEstadoFisico').text(result.vehiculo.inmueble.EstadoFisico);
             $('#lblEstadoActivo').text(result.vehiculo.inmueble.EstadoActivo);
-            $('#lblPlaca1').text(result.vehiculo.Placa);
+            $('#lblPlaca1').text(result.vehiculo.PlacaVehiculo);
             
         }).fail(function () {
             alert('Algo salio mal');

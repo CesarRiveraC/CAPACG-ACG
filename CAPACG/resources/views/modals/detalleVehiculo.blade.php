@@ -41,7 +41,7 @@
         <dd id="lblEstadoActivo"></dd>
         <br>
 
-        <dt>Placa</dt>
+        <dt>Placa Vehículo</dt>
         <dd id="lblPlaca1"></dd>
         <br>
         

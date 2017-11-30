@@ -23,7 +23,7 @@ class InfraestructuraController extends Controller
         $infraestructuras = DB::table('infraestructuras')
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
         ->select('activos.*','infraestructuras.*')
-        ->where('activos.Estado','=', '1') 
+        ->where([['activos.Estado','=','1'],['activos.Identificador','=','1']])  
         ->paginate(4);
     
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
@@ -36,7 +36,7 @@ class InfraestructuraController extends Controller
         // $activo->Estado = request('TipoActivo');
         $infraestructuras = DB::table('infraestructuras')
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
-        
+        ->select('activos.*','infraestructuras.*')
         ->where('activos.Estado','=', '0')  
         //->where('activos.Estado','LIKE', '%' .$activo->Estado. '%' )
         
@@ -51,12 +51,13 @@ class InfraestructuraController extends Controller
        
         $infraestructuras = DB::table('infraestructuras')
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
-        
-        ->where('activos.dependencia_id','=', $name)  
+        ->select('activos.*','infraestructuras.*')
+        ->where([['activos.tipo_id','=', $name],['activos.Identificador','=','1']])
+        // ->where('activos.dependencia_id','=', $name)  
         //->where('activos.Estado','LIKE', '%' .$activo->Estado. '%' )
         
         ->paginate(2);
-        //return response()->json(['activo'=>$name]);
+        
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
     }
 
@@ -66,8 +67,9 @@ class InfraestructuraController extends Controller
        
         $infraestructuras = DB::table('infraestructuras')
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
-        
-        ->where('activos.tipo_id','=', $name)  
+        ->select('activos.*','infraestructuras.*')
+        ->where([['activos.tipo_id','=', $name],['activos.Identificador','=','1']]) 
+        //->where('activos.tipo_id','=', $name)  
        
         
         ->paginate(2);
@@ -82,9 +84,9 @@ class InfraestructuraController extends Controller
        
         $infraestructuras = DB::table('infraestructuras')
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
-        
+        ->select('activos.*','infraestructuras.*')
         ->whereBetween('activos.created_at',[$desde,$hasta])  
-       
+        ->where('activos.Identificador','=','1')
         
         ->paginate(2);
         if(count($infraestructuras)>0){
@@ -120,6 +122,7 @@ class InfraestructuraController extends Controller
         $activo->SubPrograma = $request['SubPrograma'];
         $activo->Color = $request['Color'];
         $activo->Estado = 1;
+        $activo->Identificador = 1;
         $activo->dependencia_id = $request['Dependencia'];
         $activo->tipo_id = $request['TipoActivo'];
         
@@ -229,7 +232,9 @@ class InfraestructuraController extends Controller
     {
         $infraestructuras = Infraestructura::buscar($request->get('buscar'))
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
-        ->where('activos.Estado','=','1')->paginate(1);
+        ->select('activos.*','infraestructuras.*')
+        ->where([['activos.Estado','=','1'],['activos.Identificador','=','1']]) 
+        ->paginate(10);
         return view('infraestructura/listar',compact('infraestructuras'));
     }
 
@@ -247,7 +252,7 @@ class InfraestructuraController extends Controller
                  ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa',
                  'activos.SubPrograma','activos.Color','infraestructuras.NumeroFinca','infraestructuras.AreaConstruccion'
                  ,'infraestructuras.AreaTerreno','infraestructuras.AnoFabricacion')
-                 ->where('activos.Estado','=','0') //cambiar el estado para generar el reporte
+                 ->where([['activos.Estado','=','1'],['activos.Identificador','=','1']]) 
                  ->get();
  
                  $infraestructuras = json_decode(json_encode($infraestructuras),true);

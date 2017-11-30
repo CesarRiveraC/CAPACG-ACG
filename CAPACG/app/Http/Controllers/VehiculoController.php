@@ -27,7 +27,7 @@ class VehiculoController extends Controller
         ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
         ->select('activos.*','inmuebles.*','vehiculos.*')
-        ->where('activos.Estado','=','1') //hay que definir bien cual es el que se va a utilizar
+        ->where([['activos.Estado','=','1'],['activos.Identificador','=','4']]) 
         ->paginate(20);
 
     ;
@@ -47,7 +47,7 @@ class VehiculoController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'Placa' => 'required|unique:activos,Placa',
-            'Placa' => 'required|unique:vehiculos,Placa',
+            'PlacaVehiculo' => 'required|unique:vehiculos,Placa',
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
@@ -101,7 +101,7 @@ class VehiculoController extends Controller
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
             $activo->Estado = 1;            
-
+            $activo->Identificador = 4;
             if ($request->hasFile('Foto')){ 
                 
                                 $file = $request->file('Foto');  
@@ -115,6 +115,8 @@ class VehiculoController extends Controller
             $inmueble = new Inmueble;
             $inmueble->activo_id =  $activo->id;
             $inmueble->Serie = $request['Serie'];
+            $inmueble->Marca = $request['Marca'];
+            $inmueble->Modelo = $request['Modelo'];
             $inmueble->EstadoUtilizacion = $request['EstadoUtilizacion'];
             $inmueble->EstadoFisico = $request['EstadoFisico'];
             $inmueble->EstadoActivo = $request['EstadoActivo'];
@@ -123,7 +125,7 @@ class VehiculoController extends Controller
             $vehiculo = new Vehiculo;
             
             $vehiculo->inmueble_id =  $inmueble->id;            
-            $vehiculo->Placa = $request['Placa'];
+            $vehiculo->PlacaVehiculo = $request['PlacaVehiculo'];
             $vehiculo->save();
    
             return redirect('/vehiculos'); 
@@ -194,7 +196,7 @@ class VehiculoController extends Controller
             $inmueble->save();   
     
             $vehiculo->inmueble_id =  $inmueble->id;            
-            $vehiculo->Placa = request('Placa1');
+            $vehiculo->PlacaVehiculo = request('PlacaVehiculo');
             $vehiculo->save();
     
            
@@ -235,7 +237,10 @@ class VehiculoController extends Controller
         $vehiculos = Vehiculo::buscar($request->get('buscar'))
         ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-        ->where('activos.Estado','=','1')->paginate(10);
+        //->where('activos.Estado','=','1')
+        ->select('activos.*','inmuebles.*','vehiculos.*')
+        ->where([['activos.Estado','=','1'],['activos.Identificador','=','4']]) 
+        ->paginate(10);
         return view('vehiculo/listar',compact('vehiculos'));
     }
 
@@ -245,8 +250,10 @@ class VehiculoController extends Controller
         $vehiculos = DB::table('vehiculos')
         ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-        ->where('inmuebles.activos.Estado','=', '0')  
-        ->paginate(20);
+        ->select('activos.*','inmuebles.*','vehiculos.*')
+        // ->where('inmuebles.activos.Estado','=', '0')  
+        ->where([['activos.Estado','=','0'],['activos.Identificador','=','4']]) 
+        ->paginate(10);
  
         return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
     }
@@ -258,8 +265,10 @@ class VehiculoController extends Controller
         $vehiculos = DB::table('vehiculos')
         ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-        ->where('activos.dependencia_id','=', $name)   
-        ->paginate(20);
+        ->select('activos.*','inmuebles.*','vehiculos.*')
+        ->where([['activos.dependencia_id','=', $name],['activos.Identificador','=','4']])
+        // ->where('activos.dependencia_id','=', $name)   
+        ->paginate(10);
         
         return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
     }
@@ -271,8 +280,10 @@ class VehiculoController extends Controller
         $vehiculos = DB::table('vehiculos')
         ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-        ->where('activos.tipo_id','=', $name)  
-        ->paginate(20);
+        ->select('activos.*','inmuebles.*','vehiculos.*')
+        // ->where('activos.tipo_id','=', $name)  
+        ->where([['activos.tipo_id','=', $name],['activos.Identificador','=','4']]) 
+        ->paginate(10);
         
         return view('/vehiculos/listar', ['vehiculos' => $vehiculos]);
     }
@@ -285,8 +296,10 @@ class VehiculoController extends Controller
         $infraestructuras = DB::table('vehiculos')
         ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-        ->whereBetween('activos.created_at',[$desde,$hasta])  
-        ->paginate(20);
+        ->select('activos.*','inmuebles.*','vehiculos.*')
+        ->whereBetween('activos.created_at',[$desde,$hasta]) 
+        ->where('activos.Identificador','=','4') 
+        ->paginate(10);
         if(count($vehiculos)>0){
             return view('/vehiculos/listar', ['vehiculos' => $vehiculos]);  
         }
@@ -311,8 +324,8 @@ class VehiculoController extends Controller
                  ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa','activos.tipo_id','activos.dependencia_id',
                  'activos.SubPrograma','activos.Color','inmuebles.Serie','inmuebles.Dependencia'
                  ,'inmuebles.EstadoUtilizacion', 'inmuebles.EstadoFisico','inmuebles.EstadoActivo',
-                 'vehiculos.Placa')
-                 ->where('activos.Estado','=','0') //cambiar el estado para generar el reporte
+                 'inmuebles.Marca','inmuebles.Modelo','vehiculos.PlacaVehiculo')
+                 ->where([['activos.Estado','=','1'],['activos.Identificador','=','4']]) 
                  ->get();
  
                  $vehiculos = json_decode(json_encode($vehiculos),true);

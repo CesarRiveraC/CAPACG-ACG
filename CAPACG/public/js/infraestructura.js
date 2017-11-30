@@ -40,61 +40,61 @@ $(function (){
     });
 });
 
-$(function(){
-    $('.crear').click(function (e) {
+// $(function(){
+//     $('.crear').click(function (e) {
         
         
 
-        console.log(e);                        
+        // console.log(e);                        
         
-                $.get('/dependencias/create/',function(data){
+        //         $.get('/dependencias/create/',function(data){
         
-                    $('#Dependencia').empty();
+        //             $('#Dependencia').empty();
         
-                    $('#Dependencia').append("<option value='' disabled selected style='display:none;'>Seleccione una dependencia</option>");
+        //             $('#Dependencia').append("<option value='' disabled selected style='display:none;'>Seleccione una dependencia</option>");
                     
                     
                     
-                     var cont = 0;  
-                     $.each(data, function(index, element){
+        //              var cont = 0;  
+        //              $.each(data, function(index, element){
                         
-                        cont = element.length;
+        //                 cont = element.length;
                         
                      
-                    });                                      
+        //             });                                      
                   
-                    for (var i = 0, l = cont; i< l; i++){
+        //             for (var i = 0, l = cont; i< l; i++){
                         
-                        $('#Dependencia').append('<option value="'+data.dependencias[i].id+'">'+data.dependencias[i].Dependencia+'</option>');                       
-                    }
+        //                 $('#Dependencia').append('<option value="'+data.dependencias[i].id+'">'+data.dependencias[i].Dependencia+'</option>');                       
+        //             }
                    
-                });
+        //         });
         
         
-                $.get('/tipos/create/',function(data){
+                // $.get('/tipos/create/',function(data){
                     
-                                $('#Tipo').empty();
+                //                 $('#Tipo').empty();
                     
-                                $('#Tipo').append("<option value='' disabled selected style='display:none;'>Seleccione el tipo de activo</option>");
+                //                 $('#Tipo').append("<option value='' disabled selected style='display:none;'>Seleccione el tipo de activo</option>");
                                                                   
-                                 var cont = 0;  
-                                 $.each(data, function(index, element){
+                //                  var cont = 0;  
+                //                  $.each(data, function(index, element){
                                     
-                                    cont = element.length;
+                //                     cont = element.length;
                                     
                                  
-                                });                                                                                                                               
-                                for (var i = 0, l = cont; i< l; i++){
+                //                 });                                                                                                                               
+                //                 for (var i = 0, l = cont; i< l; i++){
                                     
-                                    $('#Tipo').append('<option value="'+data.tipos[i].id+'">'+data.tipos[i].Tipo+'</option>');                       
-                                }
+                //                     $('#Tipo').append('<option value="'+data.tipos[i].id+'">'+data.tipos[i].Tipo+'</option>');                       
+                //                 }
 
-                                data=null;
+                //                 data=null;
                                
-                });                    
+                // });                    
 
-      });
-});
+//       });
+// });
 
 $(function(){
     $('.filtarDependencia').click(function (e) {
@@ -109,7 +109,7 @@ $(function(){
         
                     $('#DependenciaFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione una dependencia</option>");
                     
-                    
+                    $('#form-dependencia').attr('action','/infraestructuras/filterDependencia');
                     
                      var cont = 0;  
                      $.each(data, function(index, element){
@@ -144,7 +144,7 @@ $(function(){
         
                     $('#TipoFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Tipo</option>");
                     
-                    
+                    $('#form-tipo').attr('action','/infraestructuras/filterTipo');
                     
                      var cont = 0;  
                      $.each(data, function(index, element){
@@ -166,34 +166,41 @@ $(function(){
       });
 });
 
-$(function () {
-    $('.estado').click(function (e) {
-      $('#Crear').modal();
-    });
-  });
+$(function(){
+    $('.filtrarFecha').click(function(e){
+      
+        $('#form-fecha').attr('action','/infraestructuras/filterDate');
 
-  $(function (){
-    $('.editar').click(function (e){
-        let id = $(this).attr('data-editar');
-        let url = `/infraestructuras/${id}/edit`;
-        $.get(url, function (result) {
-            // alert(result.infraestructura.activo.Placa);
-            $('#role-form1').attr('action','/infraestructuras/'+result.infraestructura.id);
-            $('#input').attr('value',"PUT");
-            // $('#exampleModalLabel1').text("Holis");
-            $('#Placa1').val(result.infraestructura.activo.Placa);
-            $('#Descripcion1').val(result.infraestructura.activo.Descripcion);
-            $('#Programa1').val(result.infraestructura.activo.Programa);
-            $('#SubPrograma1').val(result.infraestructura.activo.SubPrograma);
-            $('#Color1').val(result.infraestructura.activo.Color);
-            // $('#Foto').attr('src',"storage/pictures/".concat(result.infraestructura.activo.Foto));
-            $('#NumeroFinca1').val(result.infraestructura.NumeroFinca);
-            $('#AreaConstruccion1').val(result.infraestructura.AreaConstruccion);
-            $('#AreaTerreno1').val(result.infraestructura.AreaTerreno);
-            $('#AnoFabricacion1').val(result.infraestructura.AnoFabricacion);
-        }).fail(function () {
-            alert('algo salio mal');
-        });
-        $('#Editar').modal();
     });
 });
+// $(function () {
+//     $('.estado').click(function (e) {
+//       $('#Crear').modal();
+//     });
+//   });
+
+//   $(function (){
+//     $('.editar').click(function (e){
+//         let id = $(this).attr('data-editar');
+//         let url = `/infraestructuras/${id}/edit`;
+//         $.get(url, function (result) {
+//             // alert(result.infraestructura.activo.Placa);
+//             $('#role-form1').attr('action','/infraestructuras/'+result.infraestructura.id);
+//             $('#input').attr('value',"PUT");
+//             // $('#exampleModalLabel1').text("Holis");
+//             $('#Placa1').val(result.infraestructura.activo.Placa);
+//             $('#Descripcion1').val(result.infraestructura.activo.Descripcion);
+//             $('#Programa1').val(result.infraestructura.activo.Programa);
+//             $('#SubPrograma1').val(result.infraestructura.activo.SubPrograma);
+//             $('#Color1').val(result.infraestructura.activo.Color);
+//             // $('#Foto').attr('src',"storage/pictures/".concat(result.infraestructura.activo.Foto));
+//             $('#NumeroFinca1').val(result.infraestructura.NumeroFinca);
+//             $('#AreaConstruccion1').val(result.infraestructura.AreaConstruccion);
+//             $('#AreaTerreno1').val(result.infraestructura.AreaTerreno);
+//             $('#AnoFabricacion1').val(result.infraestructura.AnoFabricacion);
+//         }).fail(function () {
+//             alert('algo salio mal');
+//         });
+//         $('#Editar').modal();
+//     });
+// });
