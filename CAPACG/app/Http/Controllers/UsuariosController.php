@@ -231,9 +231,17 @@ class UsuariosController extends Controller
         $colaborador = Colaborador::find($id);
         $usuario = User::find($colaborador->user_id);
       
-        $usuario->Estado = 0;
-        $colaborador->Estado = 0;    
-       
+        if ( $usuario->Estado ==1 && $colaborador->Estado == 1) {
+
+            $usuario->Estado = 0;
+            $colaborador->Estado = 0; 
+
+        } else if( $usuario->Estado ==0 && $colaborador->Estado == 0) {
+
+            $usuario->Estado = 1;
+            $colaborador->Estado = 1; 
+        }
+     
         $colaborador -> save();
         $usuario->save();
 
