@@ -37,5 +37,23 @@ $(function(){
 
         $('#Estado').modal();
     });
-});
+}); 
+
+$(function(){
+    $('.restaurar').click(function(e){
+      
+       let id = $(this).attr('data-estado');
+       let url = `/usuarios/${id}/change`;
+
+       $.get(url, function (result) {
+         //  $('#Nombre').text(result.colaborador.user.name);
+           $('#role-form').attr('action','/usuarios/'+result.colaborador.id+'/updatestate');
+                   
+       }).fail(function () {
+           alert('¡Algo salio mal!');
+       });
+
+        $('#Restaurar').modal();
+    });
+}); 
 

@@ -36,7 +36,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('Administrador');
+        //al consultar el route registrar se cae ya que el usuario no esta logueado y no es administrador.
     }
 
     /**

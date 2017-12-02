@@ -36,7 +36,7 @@
      @else
         <li><a href="#about">ACG</a></li>
         <li><a href="{{ url('/login') }}">Iniciar Sesión</a></li>
-        <li><a href="{{ url('/register') }}">Resgistrarse</a></li>
+        {{--  <li><a href="{{ url('/register') }}">Resgistrarse</a></li>  --}}
 		 @endif
          @endif
       </ul>
