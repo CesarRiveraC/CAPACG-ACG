@@ -6,6 +6,8 @@ use App\Activo;
 use App\Inmueble;
 use App\Dependencia;
 use App\Tipo;
+use App\Colaborador;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,8 +31,10 @@ class InmuebleController extends Controller
         ->select('activos.*','inmuebles.*')
         ->where([['activos.Estado','=','1'],['activos.Identificador','=','2']])
         ->paginate(10);
+        
+        $usuarios = Colaborador::pluck('Cedula','id')->prepend('selecciona un colaborador');
       
-        return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
+        return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' =>$usuarios]);
     }
 
     public function create()
@@ -240,6 +244,37 @@ class InmuebleController extends Controller
         $inmueble->activo()->associate($activo);
         
         return response()->json(['inmueble'=>$inmueble]);
+    }
+    public function searchCollaborators($inmueble_id, $id, Request $request){
+
+        $inmueble = Inmueble::find($inmueble_id);
+        $activo = Activo::find($inmueble->activo_id);
+        $inmueble->activo()->associate($activo);
+
+        $colaborador = Colaborador::find($id);
+        $usuario = User::find($colaborador->user_id);
+        $colaborador->user()->associate($usuario);
+
+        // $usuario = User::find($id);        
+        // $colaborador = Colaborador::where('user_id', '=', $usuario->id)->get();
+        // $colaborador->user()->associate($usuario);
+        
+     return response()->json(['inmueble'=>$inmueble, 'colaborador'=>$colaborador]);
+   }
+
+    public function asignCollaborator($inmueble_id,$user_id, Request $request){
+
+        $inmueble = Inmueble::find($inmueble_id);
+        $activo = Activo::find($inmueble->activo_id);
+
+        $colaborador= Colaborador::find($user_id); // no es necesario ya que el id ya viene pero esta como comprobacion que sea el id correcto.
+
+        $activo->colaborador_id = $colaborador->id;    
+       
+        $activo->save();
+     
+        return redirect('/inmuebles');
+
     }
 
 
