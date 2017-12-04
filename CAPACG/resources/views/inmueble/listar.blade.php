@@ -1,119 +1,155 @@
-@extends('layouts.app')
-
-@section('content')
+@extends('layouts.app') @section('content')
 <div class="container">
 
 
-    <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
-      
-      
-        <div class="col-md-8">
-        <a class="btn btn-primary my-5" href="/inmuebles/create">
-        <i class="fa fa-plus-circle " aria-hidden="true"></i></span> Crear nuevo Inmueble</a> 
-      
-        <a class="btn btn-success my-5" href="/inmuebles/excel">
-        <i class="fa fa-download" aria-hidden="true"></i></span> Generar Reporte</a> 
-        
-        <div class="btn-group ">
-        <button class="btn btn-warning dropdown-toggle my-5" type="button" data-toggle="dropdown">Filtrar Inmuebles
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-            <li><a class="btn btn-default " href="/inmuebles">
-            <i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a></li>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
 
-            <li><a class="btn btn-default filtrar" href="/inmuebles/filter">
-            <i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a></li>
 
-            <li><a class="btn btn-default filtarDependencia" data-toggle="modal" data-target="#FiltrarDependencia">
-            <span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a></li>
+			<div class="col-md-8">
+				<a class="btn btn-primary my-5" href="/inmuebles/create">
+					<i class="fa fa-plus-circle " aria-hidden="true"></i>
+					</span> Crear nuevo Inmueble</a>
 
-            <li><a class="btn btn-default filtrarTipo" data-toggle="modal" data-target="#FiltrarTipo">
-            <span class="fa fa-clone" aria-hidden="true"></span> Tipo</a></li>
+				<a class="btn btn-success my-5" href="/inmuebles/excel">
+					<i class="fa fa-download" aria-hidden="true"></i>
+					</span> Generar Reporte</a>
 
-            <li><a class="btn btn-default filtrarFecha" data-toggle="modal" data-target="#FiltrarFecha">
-            <i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a></li>
-            
-        </ul>
-        </div>
-        </div>
-        <div class="col-md-3 pull-right"><a class="href my-5" href="/home">
-                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
-        </div>
-            <br>
-            <br>
-              @include('partials.message')
+				<div class="btn-group ">
+					<button class="btn btn-warning dropdown-toggle my-5" type="button" data-toggle="dropdown">Filtrar Inmuebles
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="btn btn-default " href="/inmuebles">
+								<i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a>
+						</li>
 
-            <div class="panel panel-info">
+						<li>
+							<a class="btn btn-default filtrar" href="/inmuebles/filter">
+								<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
+						</li>
 
-            {!! Form::open(['url' => 'inmuebles/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search']) !!}
-            {!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
+						<li>
+							<a class="btn btn-default filtarDependencia" data-toggle="modal" data-target="#FiltrarDependencia">
+								<span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a>
+						</li>
 
-            <button type="submit" class="btn btn-primary"><span class="fa fa-search" ></span></button>
-            {!! Form::close() !!}
+						<li>
+							<a class="btn btn-default filtrarTipo" data-toggle="modal" data-target="#FiltrarTipo">
+								<span class="fa fa-clone" aria-hidden="true"></span> Tipo</a>
+						</li>
 
-                <div class="panel-heading"><h4>Inmuebles</h4> </div>
-                   
-                <div class="panel-body">
-                <p>Hay {{$inmuebles->total()}} registros</p> 
-           
-                    <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                             <tr>
-                                @include('partials.thActivo')
-                              
-                             
-                                
-                             </tr>
-                      </thead>
-                    <tbody>
+						<li>
+							<a class="btn btn-default filtrarFecha" data-toggle="modal" data-target="#FiltrarFecha">
+								<i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a>
+						</li>
 
-                        @foreach ($inmuebles as $inmueble)
-                            <tr>
-                                <td class="info"> {{$inmueble->Placa}} </td>
-                                <td class="info"> {{$inmueble->Descripcion}} </td>
-                                <td class="info"> {{$inmueble->Programa}} </td>
-                                <td class="info"> {{$inmueble->SubPrograma}} </td>
-                                <td class="info"> {{$inmueble->Color}} </td>
-                            
-                                
-                                <td class="warning col-xs-2 col-xs-offset-2 "> 
-                                <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar"></a>
-                                <a class="fa fa-eye btn btn-success btn-xs detalleInmueble" data-inmueble = "{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom" title="Ver"></a>
-                                <a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom" title="Editar"></a>
-                                <a href="/inmuebles/asignar" class="btn btn-info btn-xs fa fa-child" data-toggle="tooltip" data-placement="bottom" title="Asignar responsable"></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                  </table>
-                </div>
-                <div class="col-md-8">{{ $inmuebles->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta']))->links() }}</div>
-                <div class="col-md-3 pull-right"><br><a class="href" href="/home">
-                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-3 pull-right">
+				<a class="href my-5" href="/home">
+					<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
+			</div>
+			<br>
+			<br> @include('partials.message')
+
+			<div class="panel panel-info">
+
+				{!! Form::open(['url' => 'inmuebles/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search'])
+				!!} {!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
+
+				<button type="submit" class="btn btn-primary">
+					<span class="fa fa-search"></span>
+				</button>
+				{!! Form::close() !!}
+
+
+
+				<div>
+					<div class="panel-heading">
+						<h4>Usuarios</h4>
+
+
+						{!! Form::select('usuarios', $usuarios, null, ['id' => 'usuarios'])!!}
+
+					</div>
+
+				</div>
+
+				<div class="panel-heading">
+					<h4>Inmuebles</h4>
+				</div>
+
+				<div class="panel-body">
+					<p>Hay {{$inmuebles->total()}} registros</p>
+
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									@include('partials.thActivo')
+
+
+
+								</tr>
+							</thead>
+							<tbody>
+
+								@foreach ($inmuebles as $inmueble)
+								<tr>
+									<td class="info"> {{$inmueble->Placa}} </td>
+									<td class="info"> {{$inmueble->Descripcion}} </td>
+									<td class="info"> {{$inmueble->Programa}} </td>
+									<td class="info"> {{$inmueble->SubPrograma}} </td>
+									<td class="info"> {{$inmueble->Color}} </td>
+
+
+									<td class="warning col-xs-2 col-xs-offset-2 ">
+										<a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
+										 title="Eliminar"></a>
+										<a class="fa fa-eye btn btn-success btn-xs detalleInmueble" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
+										 title="Ver"></a>
+										<a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom"
+										 title="Editar"></a>
+										{{--
+										<a href="/inmuebles/asignar" class="btn btn-info btn-xs fa fa-child" data-toggle="tooltip" data-placement="bottom" title="Asignar responsable"></a> --}}
+										<a class="btn btn-info btn-xs fa fa-child asignarColaborador" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
+										 title="Asignar responsable"></a>
+
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
+					<div class="col-md-8">{{ $inmuebles->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta']))->links()
+						}}
+					</div>
+					<div class="col-md-3 pull-right">
+						<br>
+						<a class="href" href="/home">
+							<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-@include('modals.estado')
-@include('modals.detalleInmueble')
-@include('modals.modalPrueba')
-@include('modals.filtrar')
-@include('modals.filtrarDependencia')
-@include('modals.filtrarTipo')
-@include('modals.filtrarFecha')
-    <script src="{{ asset('js/inmueble.js') }}"></script> 
-    <script type="text/javascript">
-setTimeout(function(){
+@include('modals.estado') @include('modals.detalleInmueble') @include('modals.modalPrueba') @include('modals.filtrar') @include('modals.filtrarDependencia')
+@include('modals.filtrarTipo') @include('modals.filtrarFecha') @include('modals.asignarColaborador')
+<script src="{{ asset('js/inmueble.js') }}"></script>
+<script type="text/javascript">
+	setTimeout(function(){
     $('#mensaje').fadeOut('fast');
 }, 2000);
-    
+
 </script>
 <script type="text/javascript">
-    $(function(){
+	$(function(){
         $('[data-toggle="tooltip"]').tooltip()
     })
-    </script>
+
+</script>
 @endsection
