@@ -68,17 +68,21 @@
 
 
 				<div>
-					<div class="panel-heading">
-						<h4>Usuarios</h4>
-
-
-						{!! Form::select('usuarios', $usuarios, null, ['id' => 'usuarios'])!!}
-
+					<div class="panel-heading" style="display: inline-flex">
+						<div>
+							<label>Asignar Colaborador:</label>
+						</div>
+						<div>
+							<input type="checkbox" id="checkOption" name="question">
+						</div>
+						<div id="formUsuarios">
+							{!! Form::select('usuarios', $usuarios, null, ['id' => 'usuarios'])!!}
+						</div>
 					</div>
 
 				</div>
 
-				<div class="panel-heading">
+				<div class="panel-heading" style="width: 100%">
 					<h4>Inmuebles</h4>
 				</div>
 
@@ -113,9 +117,7 @@
 										 title="Ver"></a>
 										<a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom"
 										 title="Editar"></a>
-										{{--
-										<a href="/inmuebles/asignar" class="btn btn-info btn-xs fa fa-child" data-toggle="tooltip" data-placement="bottom" title="Asignar responsable"></a> --}}
-										<a class="btn btn-info btn-xs fa fa-child asignarColaborador" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
+										<a class="btn btn-info btn-xs fa fa-child asignarColaborador" style="display:none" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
 										 title="Asignar responsable"></a>
 
 									</td>

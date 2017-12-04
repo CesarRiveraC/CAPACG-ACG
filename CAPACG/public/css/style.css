@@ -223,3 +223,13 @@ height: 200px;
 #inicio1{
   background: #f5f8fa
 }
+input[type=checkbox] {
+  transform: scale(1.2);
+}
+#formUsuarios{
+  margin-left: 0.5em;
+}
+#checkOption{
+  margin-left: 0.5em;
+  margin-top: 6px;
+}

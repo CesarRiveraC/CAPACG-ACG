@@ -133,3 +133,31 @@
          $('#asignarColaborador').modal();
      });
  });
+
+ $(function() {
+    
+    var checkbox = $("#checkOption");
+    var hidden = $("#formUsuarios");
+    // $('.asignarColaborador').each(function(){
+    //     $(this).hide();
+    // });
+    
+    hidden.hide();
+    
+    checkbox.change(function() {
+     
+      if (checkbox.is(':checked')) {
+        hidden.show();
+        $('.asignarColaborador').each(function(){
+            $(this).show();
+        });
+
+      } else {
+       
+        hidden.hide();
+        $('.asignarColaborador').each(function(){
+            $(this).hide();
+        });
+    }
+    });
+  });
