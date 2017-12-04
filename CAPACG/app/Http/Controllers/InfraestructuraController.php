@@ -6,10 +6,12 @@ use App\Infraestructura;
 use App\Activo;
 use App\Dependencia;
 use App\Tipo;
+use App\Vehiculo;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Storage;
+use Illuminate\Support\Facades\Validator;
 
 class InfraestructuraController extends Controller
 {
@@ -104,7 +106,8 @@ class InfraestructuraController extends Controller
         //$infraestructuras = Infraestructura::all();
         $dependencias= Dependencia:: all();
         $tipos= Tipo:: all();
-        return view('/infraestructura/crear', compact('dependencias','tipos'));
+        $vehiculos = Vehiculo::all();
+        return view('/infraestructura/crear', compact('dependencias','tipos','vehiculos'));
         //return ( json_encode ($dependencias));
         //return response()->json(['dependencias'=>$dependencias]);
        
@@ -112,9 +115,46 @@ class InfraestructuraController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate(request(), [
-            'NumeroFinca'=> 'required']); // agregar los damas campos requeridos
-        
+        $validator = Validator::make($request->all(), [
+            'Placa' => 'required|unique:activos,Placa',
+            'Descripcion' => 'required',
+            'TipoActivo' => 'required',                        
+            'Programa' => 'required',
+            'SubPrograma' => 'required',
+            'Color' => 'required',
+            'Dependencia' => 'required',
+            'NumeroFinca' => 'required',         
+            'AreaConstruccion' => 'required',
+            'AreaTerreno' => 'required',        
+            'AnoFabricacion' => 'required', 
+                   
+            
+        ],
+        $messages = [
+            'Placa.required' => 'Debe definir la placa',
+            'Placa.unique' => 'La placa ya está en uso', 
+            'Descripcion.required' => 'Debe definir la descripción',
+            'TipoActivo.required' => 'Debe definir la categoría del activo',                        
+            'Programa.required' => 'Debe definir el programa',            
+            'SubPrograma.required' => 'Debe definir el subprograma',
+            'Color.required' => 'Debe definir el color',            
+            'Dependencia.required' => 'Debe definir la dependencia',
+            'NumeroFinca.required' => 'Debe definir el numero de finca',
+            'AreaConstruccion.required' => 'Debe definir el área de construcción',
+            'AreaTerreno.required' => 'Debe definir el área del terreno',
+            'AnoFabricacion.required' => 'Debe definir el año de fabricación',
+            
+            
+        ]
+    );
+    if ($validator->fails()) {
+        return redirect('infraestructuras/create')
+                    ->withInput()
+                    ->withErrors($validator);
+    }
+
+    else{
+    
         $activo = new Activo;
         $activo->Placa = $request['Placa'];
         $activo->Descripcion = $request['Descripcion'];
@@ -145,7 +185,7 @@ class InfraestructuraController extends Controller
         $infraestructura->save();
 
         return redirect('/infraestructuras')->with('message','Infraestructura correctamente creada'); 
-            
+            } 
     }
 
     public function show($id){
@@ -165,20 +205,61 @@ class InfraestructuraController extends Controller
     	$infraestructura = Infraestructura::find($id);
         $activo = Activo::find($infraestructura->activo_id);
         $infraestructura->activo()->associate($activo);
-        $dependencias= Dependencia:: all();
-        $tipos= Tipo:: all();
+        $Dependencias= Dependencia:: all();
+        $dependencias= Dependencia::find($activo->dependencia_id);
+        $Tipos= Tipo:: all();
+        $tipos= Tipo:: find($activo->dependencia_id);;
+        //$tipos= Tipo:: all();
         //$infraestructura = DB::table('infraestructuras')
         //->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
         //->select('activos.*', 'infraestructuras.*')
         //->get();
         //return response()->json(['infraestructura'=>$infraestructura]);
-        return view('/infraestructura/editar',compact('infraestructura','dependencias','tipos'));
+        return view('/infraestructura/editar',compact('infraestructura','dependencias','tipos','Dependencias','Tipos'));
     }
     
     public function update($id, Request $request)
     {
         $infraestructura = Infraestructura::find($id);
         $activo = Activo::find($infraestructura->activo_id);
+
+        $validator = Validator::make($request->all(), [
+            'Placa' => 'required|unique:activos,Placa,'.$activo->id,
+            'Descripcion' => 'required',
+            'TipoActivo' => 'required',                        
+            'Programa' => 'required',
+            'SubPrograma' => 'required',
+            'Color' => 'required',
+            'Dependencia' => 'required',
+            'NumeroFinca' => 'required',         
+            'AreaConstruccion' => 'required',
+            'AreaTerreno' => 'required',        
+            'AnoFabricacion' => 'required',         
+            
+        ],
+        $messages = [
+            'Placa.required' => 'Debe definir la placa',
+            'Placa.unique' => 'La placa ya está en uso', 
+            'Descripcion.required' => 'Debe definir la descripción',
+            'TipoActivo.required' => 'Debe definir la categoría del activo',                        
+            'Programa.required' => 'Debe definir el programa',            
+            'SubPrograma.required' => 'Debe definir el subprograma',
+            'Color.required' => 'Debe definir el color',            
+            'Dependencia.required' => 'Debe definir la dependencia',
+            'NumeroFinca.required' => 'Debe definir el numero de finca',
+            'AreaConstruccion.required' => 'Debe definir el área de construcción',
+            'AreaTerreno.required' => 'Debe definir el área del terreno',
+            'AnoFabricacion.required' => 'Debe definir el año de fabricación',
+            
+        ]
+    );
+    if ($validator->fails()) {
+        return redirect()->back()
+                         ->withErrors($validator)
+                         ->withInput();
+     }
+     else{
+    
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
         $activo->Programa = request('Programa');
@@ -206,6 +287,7 @@ class InfraestructuraController extends Controller
         $infraestructura->AnoFabricacion = request('AnoFabricacion');
         $infraestructura->save();
         return redirect('/infraestructuras');
+    }
     }
 
     public function change($id)

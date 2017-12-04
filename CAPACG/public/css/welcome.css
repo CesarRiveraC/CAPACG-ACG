@@ -6,18 +6,25 @@ body {
 p {font-size: 16px;}
 .margin {margin-bottom: 45px;}
 .bg-1{
-  background-attachment: fixed;
+  /* background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
 .bg-1 { 
     background-image: url('https://www.acguanacaste.ac.cr/images/phocagallery/galeria-general/thumbs/phoca_thumb_l_img_9186.jpg');
 
-      
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 56px);
+    /* background-image: url("../img/header.jpg"); */
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     min-height: 700px;
     
-    color: #ffffff;
+    /* color: #ffffff;  */
 }
 .bg-2 { 
     background-color: #474e5d; /* Dark Blue */
@@ -28,7 +35,7 @@ p {font-size: 16px;}
 .bg-4 { 
     /*background-color: #2f2f2f;  Black Gray */
     color: black;
-    background-color: #4CAF50;
+    background-color: #474e5d;
 }
 .container-fluid {
     padding-top: 70px;
@@ -49,7 +56,7 @@ p {font-size: 16px;}
 .navbar {
     font-family: Montserrat, sans-serif;
     margin-bottom: 0;
-    background-color: #4CAF50;
+    background-color: #1abc9c;
     border: 0;
     font-size: 11px !important;
     letter-spacing: 4px;

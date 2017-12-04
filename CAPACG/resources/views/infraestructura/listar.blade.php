@@ -14,6 +14,7 @@
 
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
+        <br>
    @include('partials.message')
         <div class="col-md-8">
         <a class="btn btn-primary my-5" href="/infraestructuras/create" >

@@ -5,7 +5,7 @@
     <div class="row">
     @include('partials.message')
         <div class="col-lg-10 col-md-offset-1">
-
+        <br>
     
         <a class="btn btn-primary my-5" href="/vehiculos/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Crear nuevo Vehiculo</a> 

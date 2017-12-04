@@ -6,7 +6,7 @@
   
  
         <div class="col-lg-10 col-lg-offset-1">
-
+        <br>
         <div class="col-md-8">
         <a class="btn btn-primary my-5" href="/semovientes/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nuevo semoviente</a> 
