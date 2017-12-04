@@ -54,7 +54,7 @@
                        <li class="dropdown">
                             <a href="#" id="activosDrop" class="dropdown-toggle pull right " data-toggle="dropdown"   >
                             Activos <span class="caret"></span></a>
-                            <ul id="activosDrop" class="dropdown-menu" role="menu">
+                            <ul id="Drop" class="dropdown-menu" role="menu">
                                 <li><a id="activosDrop"  tabindex="-1" href="/infraestructuras"><i class="fa fa-university" aria-hidden="true"></i> Infraestructura</a></li>
                                 <li><a id="activosDrop" tabindex="-1" href="/inmuebles"><i class="fa fa-television" aria-hidden="true"></i> Inmuebles</a></li>
                                 <li><a id="activosDrop" tabindex="-1" href="/semovientes"><i class="fa fa-bug" aria-hidden="true"></i> Semovientes</a></li>
@@ -87,7 +87,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <ul id="activosDrop" class="dropdown-menu" role="menu">
+                                <ul id="Drop" class="dropdown-menu" role="menu">
                                     <li>
                                         <a id="activosDrop" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

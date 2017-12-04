@@ -3,7 +3,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
 
-       <form id="role-form" method="POST"  action="">
+       <form id="form-asignar" method="POST"  action="">
         <input type="hidden" name="_method" value="PUT">
         {{ csrf_field() }}
         <!-- Modal Header -->

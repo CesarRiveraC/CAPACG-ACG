@@ -26,6 +26,16 @@ p {font-size: 16px;}
     
     /* color: #ffffff;  */
 }
+.encabezado{
+    padding-top: 150px;
+    padding-bottom: 100px;
+}
+.mainTitulo{
+    font-size: 45px;
+    /* font-weight: 700; */
+    line-height: 50px;
+    margin-bottom: 25px;
+}
 .bg-2 { 
     background-color: #474e5d; /* Dark Blue */
     color: black;
@@ -34,7 +44,7 @@ p {font-size: 16px;}
 
 .bg-4 { 
     /*background-color: #2f2f2f;  Black Gray */
-    color: black;
+    color: white !important;
     background-color: #474e5d;
 }
 .container-fluid {
@@ -48,7 +58,7 @@ p {font-size: 16px;}
   border: 8px;
 }
 #link{
-  color: black;
+  color: white;
 }
 .nav-tabs li a {
     color: #777;

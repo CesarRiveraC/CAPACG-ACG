@@ -51,11 +51,13 @@
 
 
 }
-#activosDrop, .navbar{
+#activosDrop, .navbar, #Drop{
   background-color: #1abc9c !important;
   color: white !important;
 }
-
+#activosDrop:hover{
+  background-color: #0AE6BB !important;
+}
 
 .nav>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a, .dropdown-menu>li{
   border-bottom: 3px solid transparent;
@@ -157,21 +159,12 @@ height: 200px;
   border-radius: 0;
   transition: .2s;
 }
-.hbtn:hover, .hbtn:focus {
-  border: 1px solid green;
-  background-color: #1abc9c;
-  color: white;
-}
-.person {
-  border: 10px solid transparent;
-  /* margin-bottom: 25px; */
-  width: 80%;
-  height: 80%;
-  opacity: 0.7;
-}
-.person:hover {
-  border-color: #f1f1f1;
-}
+/* .hbtn:hover, .hbtn:focus { */
+  /* border: 1px solid green;
+  background-color: #1abc9c; */
+  /* color: white; */
+/* } */
+
 
 
 
@@ -195,7 +188,7 @@ height: 200px;
   
 }  
 #footerContent{
-  color: white;
+  color: white !important;
 }
 
 #homeContentCol{
@@ -205,30 +198,16 @@ height: 200px;
 .jumbotron{
   background:  white;
 }
-#homeInfraestructura{
-  /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png"); */
-}
+
 #homeContent{
-  /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/linedpaper.png"); */
-  background-color: white;
-}
-
-/* .bgPrimero{
-  background-color: #F2F3F4;
-}
-
-#texto{
   
+  background-color: white !;
 }
-.bgSegundo{
-  background: #F2F3F4;
-  color: black;
-}
-*/
+
+
 .bgEncabezado{
   background: #85929E;
-  /* min-height: 300px; */
-  /* color: white !important; */
+  
 }
 .container-fluid {
   padding-top: 70px;

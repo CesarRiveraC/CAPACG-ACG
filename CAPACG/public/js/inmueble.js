@@ -124,7 +124,7 @@
 
          $.get(url, function (result) {
               $('#NombreUsuario').text(result.colaborador.user.name);
-              $('#role-form').attr('action', '/inmuebles/' + result.inmueble.id +'/'+ result.colaborador.id +'/asignCollaborator');
+              $('#form-asignar').attr('action', '/inmuebles/' + result.inmueble.id +'/'+ result.colaborador.id +'/asignCollaborator');
               
          }).fail(function () {
              alert('¡Algo salio mal!');

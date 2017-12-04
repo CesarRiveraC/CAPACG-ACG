@@ -5,9 +5,12 @@
 <div class="container-fluid bg-1 text-center" id="home">
 <br>
 <br>
-  <h2 class="margin"><div><span id="logo" class="label label-default">CAPACG</span></div></h2>
-  
+  <div class="encabezado">
+  <div class="mainTitulo"><span id="logo" class="label label-default">CAPACG</span></div>
   <h3>Control de Activos para el Área de Conservación Guanacaste</h3>
+  </div>
+  
+  
 </div>
 
 <!-- Second Container -->

@@ -47,13 +47,46 @@
 @yield('content')
 
 <footer class="container-fluid bg-4 text-center">
-<a id="link" href="#home" ><i class="fa fa-arrow-up w3-margin-right"></i>Arriba</a>
+<div id="link" class="row">
+      <div class="col-md-4">
+      
+               <p><span class="copyright">Copyright &copy; CAPACG</span></p> 
+             
+                <p>Área de Conservación Guanacaste</p>
+             
+                <p>Sistema Nacional de Área de Conservación Costa Rica</p>
+            
+                <p>Ministerio de Ambiente y Energía</p>
+           
+           
+      </div>
+      <div class="col-md-4">
+        <p>Control de Activos para el Area de Conservación Guanacaste</p>
+      <p>
+        <a id="link" href="#home" ><i class="fa fa-arrow-up"></i>Arriba</a>
+      </p>
+      <a id="link" href="https://www.facebook.com/ACG.CR"><i class="fa fa-facebook-official"></i></a>
+    <a id="link" href="https://plus.google.com/u/0/108989919407702501124/posts"><i class="fa fa-google-plus"></i></a>
+    <a id="link" href="http://www.youtube.com/videosacg"><i class="fa fa-youtube"></i></a>
+    <a id="link" href="https://www.acguanacaste.ac.cr/noticias?format=feed&type=rss"><i class="fa fa-rss-p w3-hover-opacity"></i></a>
+    <a id="link" href="https://twitter.com/ACGuanacaste"><i class="fa fa-twitter"></i></a>
+      </div>
+
+      <div class="col-md-4">
+             <p>Autores:</p>
+            <p>Omar Miranda Villagra</p>
+            <p>Adriana Vargas Villalobos</p>
+            <p>Cesar Rivera Campos</p>
+        </div>
+      
+      </div>
+{{--  <a id="link" href="#home" ><i class="fa fa-arrow-up w3-margin-right"></i>Arriba</a>
   <p>CAPACG</p> 
       <a id="link" href="https://www.facebook.com/ACG.CR"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
     <a id="link" href="https://plus.google.com/u/0/108989919407702501124/posts"><i class="fa fa-google-plus w3-hover-opacity"></i></a>
     <a id="link" href="http://www.youtube.com/videosacg"><i class="fa fa-youtube w3-hover-opacity"></i></a>
     <a id="link" href="https://www.acguanacaste.ac.cr/noticias?format=feed&type=rss"><i class="fa fa-rss-p w3-hover-opacity"></i></a>
-    <a id="link" href="https://twitter.com/ACGuanacaste"><i class="fa fa-twitter w3-hover-opacity"></i></a>
+    <a id="link" href="https://twitter.com/ACGuanacaste"><i class="fa fa-twitter w3-hover-opacity"></i></a>  --}}
 </footer>
 
 </body>
