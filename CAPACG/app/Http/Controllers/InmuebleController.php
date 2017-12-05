@@ -35,7 +35,7 @@ class InmuebleController extends Controller
         $colaboradores = DB::table('colaboradores')
         ->join('users','colaboradores.user_id','=','users.id')
         ->select('users.*','colaboradores.*',DB::raw("CONCAT(colaboradores.Cedula,' | ',users.name,' ',users.Apellido) as nombreCompleto"))
-        //  ->where(['colaboradores.Estado','=','0'])
+        ->where('users.Estado','=','1') 
         ->pluck('nombreCompleto','colaboradores.id')
         ->prepend('selecciona un colaborador');
       
