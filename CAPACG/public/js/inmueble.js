@@ -138,9 +138,7 @@
     
     var checkbox = $("#checkOption");
     var hidden = $("#formUsuarios");
-    // $('.asignarColaborador').each(function(){
-    //     $(this).hide();
-    // });
+  
     
     hidden.hide();
     

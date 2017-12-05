@@ -75,8 +75,9 @@
 						<div>
 							<input type="checkbox" id="checkOption" name="question">
 						</div>
-						<div id="formUsuarios">
+						<div id="formUsuarios" style="display:none">
 							{!! Form::select('usuarios', $usuarios, null, ['id' => 'usuarios'])!!}
+							{{--  <label>{{$usuarios}}</label>  --}}
 						</div>
 					</div>
 

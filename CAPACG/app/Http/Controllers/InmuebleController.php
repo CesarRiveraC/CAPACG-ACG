@@ -32,9 +32,14 @@ class InmuebleController extends Controller
         ->where([['activos.Estado','=','1'],['activos.Identificador','=','2']])
         ->paginate(10);
         
-        $usuarios = Colaborador::pluck('Cedula','id')->prepend('selecciona un colaborador');
+        $colaboradores = DB::table('colaboradores')
+        ->join('users','colaboradores.user_id','=','users.id')
+        ->select('users.*','colaboradores.*',DB::raw("CONCAT(colaboradores.Cedula,' | ',users.name,' ',users.Apellido) as nombreCompleto"))
+        //  ->where(['colaboradores.Estado','=','0'])
+        ->pluck('nombreCompleto','colaboradores.id')
+        ->prepend('selecciona un colaborador');
       
-        return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' =>$usuarios]);
+        return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' =>$colaboradores]);
     }
 
     public function create()
