@@ -29,6 +29,7 @@ $(function (){
         $.get(url, function (result) {
             $('#lblPlaca').text(result.semoviente.activo.Placa);
             $('#lblDescripcion').text(result.semoviente.activo.Descripcion);
+            $('#lblSector').text(result.semoviente.activo.sector.Sector);
             $('#lblPrograma').text(result.semoviente.activo.Programa);
             $('#lblSubPrograma').text(result.semoviente.activo.SubPrograma);
             $('#lblColor').text(result.semoviente.activo.Color);

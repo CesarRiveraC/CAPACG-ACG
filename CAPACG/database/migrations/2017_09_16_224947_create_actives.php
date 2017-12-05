@@ -17,6 +17,8 @@ class CreateActives extends Migration
              $table->increments('id'); 
              $table->integer('colaborador_id')->unsigned()->nullable();
              $table->foreign('colaborador_id')->references('id')->on('colaboradores');
+             $table->integer('sector_id')->unsigned()->nullable();
+             $table->foreign('sector_id')->references('id')->on('sectores');
              $table->integer('dependencia_id')->unsigned()->nullable();
              $table->foreign('dependencia_id')->references('id')->on('dependencias');
              $table->integer('tipo_id')->unsigned()->nullable();

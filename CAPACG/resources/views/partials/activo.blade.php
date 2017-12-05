@@ -27,6 +27,8 @@
                             </div>
                         </div>
 
+
+
                         <div class="form-group{{ $errors->has('TipoActivo') ? ' has-error' : '' }}">
                         <label for="TipoActivo" class="col-md-4 control-label">Categoría</label>
                         <div class="col-md-6">

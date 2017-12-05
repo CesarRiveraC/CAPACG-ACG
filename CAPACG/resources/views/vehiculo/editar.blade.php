@@ -12,6 +12,20 @@
                     <form class="form-horizontal" method="POST" action="/vehiculos/{{$vehiculo->id}}" enctype="multipart/form-data" >
                     <input type="hidden" name="_method" value="PUT">
                         {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('PlacaVehiculo') ? ' has-error' : '' }}">
+                            <label for="PlacaVehiculo" class="col-md-4 control-label">Placa Vehículo</label>
+
+                            <div class="col-md-6">
+                                <input id="PlacaVehiculo" type="text" class="form-control" name="PlacaVehiculo" value="{{ $vehiculo->PlacaVehiculo}}" required autofocus>    
+                                @if ($errors->has('PlacaVehiculo'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('PlacaVehiculo') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                
                
                         <div class="form-group{{ $errors->has('Placa') ? ' has-error' : '' }}">
                             <label for="Placa" class="col-md-4 control-label">Placa</label>
@@ -42,25 +56,50 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('TipoActivo') ? ' has-error' : '' }}">
-                        <label for="TipoActivo" class="col-md-4 control-label">Categoría</label>
+                        <div class="form-group{{ $errors->has('Sector') ? ' has-error' : '' }}">
+                        <label for="Sector" class="col-md-4 control-label">Sector</label>
                         <div class="col-md-6">
-                        <select name="TipoActivo" id="tipoActivo_id" class="form-control" required>
+                        <select name="Sector" id="sector_id" class="form-control" required>
                             
-                        <option value="">--Escoja categoría--</option>
-                        @foreach($tipos as $tipo)
-                                <option value="{{$tipo['id']}}">{{$tipo['Tipo']}}</option>
+                        <option value="{{ $sectores->id }}">{{$sectores->Sector}}</option
+                        @foreach($Sectores as $sector)
+                                <option value="{{$sector['id']}}">{{$sector['Sector']}}</option>
                             @endforeach
                         </select>
 
                         
-                        @if ($errors->has('TipoActivo'))
+                        @if ($errors->has('Sector'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('TipoActivo') }}</strong>
+                                        <strong>{{ $errors->first('Sector') }}</strong>
                                     </span>
                                 @endif
                         </div>
                     </div>
+
+
+
+
+                    <div class="form-group{{ $errors->has('TipoActivo') ? ' has-error' : '' }}">
+                    <label for="TipoActivo" class="col-md-4 control-label">Categoría</label>
+                    <div class="col-md-6">
+                    <select name="TipoActivo" id="tipoActivo_id" class="form-control" required>
+                        
+                    <option value="{{ $tipos->id }}">{{$tipos->Tipo}}</option>
+                    @foreach($Tipos as $tipo)
+                                            
+                    <option value="{{$tipo['id']}}">{{$tipo['Tipo']}}</option>
+                    
+                        @endforeach
+                    </select>
+
+                    
+                    @if ($errors->has('TipoActivo'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('TipoActivo') }}</strong>
+                                </span>
+                            @endif
+                    </div>
+                </div>
 
                         <div class="form-group{{ $errors->has('Programa') ? ' has-error' : '' }}">
                             <label for="Programa" class="col-md-4 control-label">Programa</label>
@@ -108,26 +147,29 @@
                         </div>   
 
                      
-
                         <div class="form-group{{ $errors->has('Dependencia') ? ' has-error' : '' }}">
-                            <label for="Dependencia" class="col-md-4 control-label">Dependencia</label>
-                            <div class="col-md-6">
-                            <select name="Dependencia" id="dependencia_id" class="form-control" required>
-                                
-                            <option value="">--Escoja dependencia--</option>
-                            @foreach($dependencias as $dependencia)
-                                    <option value="{{$dependencia['id']}}">{{$dependencia['Dependencia']}}</option>
-                                @endforeach
-                            </select>
-
+                        <label for="Dependencia" class="col-md-4 control-label">Dependencia</label>
+                        <div class="col-md-6">
+                        <select name="Dependencia" id="dependencia_id" class="form-control" required>
                             
-                            @if ($errors->has('Dependencia'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('Dependencia') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <option value="{{ $dependencias->id }}">{{$dependencias->Dependencia}}</option>
+                        @foreach($Dependencias as $dependencia)
+
+                      
+                        <option value="{{$dependencia['id']}}">{{$dependencia['Dependencia']}}</option>
+                     
+                              
+                            @endforeach
+                        </select>
+
+                        
+                        @if ($errors->has('Dependencia'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('Dependencia') }}</strong>
+                                </span>
+                            @endif
                         </div>
+                    </div>
                    
 
                         <div class="form-group">
@@ -227,18 +269,6 @@
                         
 
                         
-                        <div class="form-group{{ $errors->has('Placa1') ? ' has-error' : '' }}">
-                            <label for="Placa1" class="col-md-4 control-label">Placa Vehículo</label>
-
-                            <div class="col-md-6">
-                                <input id="Placa1" type="text" class="form-control" name="Placa1" value="{{ $vehiculo->Placa}}" required autofocus>    
-                                @if ($errors->has('Placa1'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('Placa1') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
                 
 
                         

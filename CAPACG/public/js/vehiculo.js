@@ -23,6 +23,7 @@ $(function (){
         $.get(url, function (result) {
             $('#lblPlaca').text(result.vehiculo.inmueble.activo.Placa);
             $('#lblDescripcion').text(result.vehiculo.inmueble.activo.Descripcion);
+            $('#lblSector').text(result.vehiculo.inmueble.activo.sector.Sector);
             $('#lblPrograma').text(result.vehiculo.inmueble.activo.Programa);
             $('#lblSubPrograma').text(result.vehiculo.inmueble.activo.SubPrograma);
             $('#lblColor').text(result.vehiculo.inmueble.activo.Color);

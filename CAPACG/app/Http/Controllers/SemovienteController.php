@@ -6,6 +6,7 @@ use App\Semoviente;
 use App\Activo;
 use App\Dependencia;
 use App\Tipo;
+use App\Sector;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -39,7 +40,8 @@ class SemovienteController extends Controller
         $semovientes = Semoviente::all();
         $dependencias= Dependencia:: all();
         $tipos= Tipo:: all();
-        return view('/semoviente/crear', compact('dependencias','tipos'));
+        $sectores= Sector:: all();
+        return view('/semoviente/crear', compact('dependencias','tipos','sectores'));
     
     }
 
@@ -51,6 +53,7 @@ class SemovienteController extends Controller
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
             'SubPrograma' => 'required',
+            'Sector' => 'required',
             'Color' => 'required',
             'Dependencia' => 'required',
             'Raza' => 'required',         
@@ -66,7 +69,8 @@ class SemovienteController extends Controller
             'TipoActivo.required' => 'Debe definir la categoría del activo',                        
             'Programa.required' => 'Debe definir el programa',            
             'SubPrograma.required' => 'Debe definir el subprograma',
-            'Color.required' => 'Debe definir el color',            
+            'Color.required' => 'Debe definir el color',        
+            'Sector.required' => 'Debe definir el sector',     
             'Dependencia.required' => 'Debe definir la dependencia',
             'Raza.required' => 'Debe definir la raza',
             'Edad.required' => 'Debe definir la edad',
@@ -90,6 +94,7 @@ class SemovienteController extends Controller
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
+            $activo->sector_id = $request['Sector'];
             $activo->Estado = 1;
             $activo->Identificador = 3;
             
@@ -121,7 +126,8 @@ class SemovienteController extends Controller
         $tipo= Tipo:: find($activo->tipo_id);
         $activo->dependencia()->associate($dependencia);
         $activo->tipo()->associate($tipo);
-        
+        $sector= Sector:: find($activo->tipo_id);
+        $activo->sector()->associate($sector);
         return response()->json(['semoviente'=>$semoviente]);        
 
     }
@@ -133,10 +139,11 @@ class SemovienteController extends Controller
         $semoviente->activo()->associate($activo);
         $Dependencias= Dependencia:: all();
         $dependencias= Dependencia::find($activo->dependencia_id);
-        $Tipos= Tipo:: all();
-        $tipos= Tipo:: find($activo->tipo_id);;
-    
-        return view('/semoviente/editar',compact('semoviente','dependencias','tipos','Dependencias','Tipos'));
+         $Tipos= Tipo:: all();
+        $tipos= Tipo:: find($activo->tipo_id);
+        $Sectores= Sector:: all();
+        $sectores= Sector:: find($activo->tipo_id);
+        return view('/semoviente/editar',compact('semoviente','dependencias','tipos','Dependencias','Tipos','Sectores','sectores'));
    
     }
     
@@ -150,6 +157,7 @@ class SemovienteController extends Controller
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
+            'Sector' => 'required',
             'SubPrograma' => 'required',
             'Color' => 'required',
             'Dependencia' => 'required',
@@ -161,10 +169,11 @@ class SemovienteController extends Controller
     
         $messages = [
             'Placa.required' => 'Debe definir el fierro',
-            'Placa.unique' => 'La placa ya está en uso', 
+            'Placa.unique' => 'Fierro ya está en uso', 
             'Descripcion.required' => 'Debe definir la descripción',
             'TipoActivo.required' => 'Debe definir la categoría del activo',                        
-            'Programa.required' => 'Debe definir el programa',            
+            'Programa.required' => 'Debe definir el programa',  
+            'Sector.required' => 'Debe definir el sector',          
             'SubPrograma.required' => 'Debe definir el subprograma',
             'Color.required' => 'Debe definir el color',            
             'Dependencia.required' => 'Debe definir la dependencia',
@@ -187,7 +196,8 @@ class SemovienteController extends Controller
         $activo->Programa = request('Programa');
         $activo->tipo_id = request('TipoActivo');
         $activo->SubPrograma = request('SubPrograma');
-        $activo->Color = request('Color');      
+        $activo->Color = request('Color');  
+        $activo->sector_id = request('Sector');  
         $activo->dependencia_id = request('Dependencia');
         if ($request->hasFile('Foto')){ 
             Storage::delete($activo->Foto);

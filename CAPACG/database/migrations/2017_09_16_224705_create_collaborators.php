@@ -43,6 +43,14 @@ class CreateCollaborators extends Migration
            
             $table->timestamps();
         });
+        Schema::create('Sectores',function(Blueprint $table){
+            $table->increments('id'); 
+            
+            $table->string('Sector')->unique();
+            $table->integer('Estado');
+           
+            $table->timestamps();
+        });
      }
      /**
       * Reverse the migrations.
@@ -54,6 +62,8 @@ class CreateCollaborators extends Migration
          Schema::dropIfExists('Colaboradores');
          Schema::dropIfExists('Dependencias');
          Schema::dropIfExists('Tipos');
+         Schema::dropIfExists('Sectores');
+         
      }
  
 }

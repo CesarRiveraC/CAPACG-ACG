@@ -38,4 +38,8 @@ class Activo extends Model
     {
     	return $this->belongsTo('App\Tipo');
     }
+    public function sector()
+    {
+    	return $this->belongsTo('App\Sector');
+    }
 }

@@ -6,6 +6,7 @@ use App\Vehiculo;
 use App\Activo;
 use App\Inmueble;
 use App\Dependencia;
+use App\Sector;
 use App\Tipo;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -39,17 +40,20 @@ class VehiculoController extends Controller
         $vehiculos = Vehiculo::all();
         $dependencias= Dependencia:: all();
         $tipos= Tipo:: all();
-        return view('/vehiculo/crear', compact('dependencias','tipos'));
+        $sectores= Sector:: all();
+        return view('/vehiculo/crear', compact('dependencias','tipos','sectores'));
        
     }
 
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'Placa' => 'required|unique:activos,Placa',
-            'PlacaVehiculo' => 'required|unique:vehiculos,Placa',
+            'PlacaVehiculo' => 'required|unique:vehiculos,PlacaVehiculo',
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
+            'Sector' => 'required',
             'Programa' => 'required',
             'SubPrograma' => 'required',
             'Color' => 'required',
@@ -61,14 +65,17 @@ class VehiculoController extends Controller
             'EstadoFisico' => 'required',  
             'EstadoActivo' => 'required',   
             'EstadoActivo' => 'required',   
-            'Placa' => 'required',     
+            
+                   
             
         ],
-    
         $messages = [
             'Placa.required' => 'Debe definir la placa',
             'Placa.unique' => 'La placa ya está en uso', 
+            'PlacaVehiculo.required' => 'Debe definir la placa de vehiculo ',
+            'PlacaVehiculo.unique' => 'La placa ya está en uso', 
             'Descripcion.required' => 'Debe definir la descripción',
+            'Sector.required' => 'Debe definir el sector',
             'TipoActivo.required' => 'Debe definir la categoría del activo',                        
             'Programa.required' => 'Debe definir el programa',            
             'SubPrograma.required' => 'Debe definir el subprograma',
@@ -80,20 +87,23 @@ class VehiculoController extends Controller
             'EstadoUtilizacion.required' => 'Debe definir el estado de utilización',
             'EstadoFisico.required' => 'Debe definir el estado físico',
             'EstadoActivo.required' => 'Debe definir el estado del activo',
-            'Placa.required' => 'Debe definir la placa del vehículo',
+    
+            
+            
             
         ]
     );
-
-
     if ($validator->fails()) {
         return redirect('vehiculos/create')
                     ->withInput()
                     ->withErrors($validator);
     }
+
     else{
+        
             $activo = new Activo;
             $activo->Placa = $request['Placa'];
+            $activo->Sector = $request['Sector'];
             $activo->Descripcion = $request['Descripcion'];
             $activo->dependencia_id = $request['Dependencia'];
             $activo->tipo_id = $request['TipoActivo'];
@@ -129,8 +139,10 @@ class VehiculoController extends Controller
             $vehiculo->save();
    
             return redirect('/vehiculos'); 
+    
     }
     }
+
     public function show($id){
         $vehiculo = Vehiculo::find($id);
         $inmueble = Inmueble::find($vehiculo->inmueble_id);
@@ -142,6 +154,8 @@ class VehiculoController extends Controller
         $inmueble->activo()->associate($activo);
         $activo->dependencia()->associate($dependencia);
         $activo->tipo()->associate($tipo);
+        $sector= Sector:: find($activo->tipo_id);
+        $activo->sector()->associate($sector);
         
         return response()->json(['vehiculo'=>$vehiculo]);        
 
@@ -154,10 +168,14 @@ class VehiculoController extends Controller
         $activo = Activo::find($inmueble->activo_id);
         $vehiculo->inmueble()->associate($inmueble);
         $inmueble->activo()->associate($activo);
-        $dependencias= Dependencia:: all();
-        $tipos= Tipo:: all();
-        
-        return view('/vehiculo/editar',compact('vehiculo','dependencias','tipos'));
+        $Dependencias= Dependencia:: all();
+        $dependencias= Dependencia::find($activo->dependencia_id);
+        $Tipos= Tipo:: all();
+        $tipos= Tipo:: find($activo->dependencia_id);
+        $Sectores= Sector:: all();
+        $sectores= Sector:: find($activo->tipo_id);
+
+        return view('/vehiculo/editar',compact('vehiculo','dependencias','tipos','Dependencias','Tipos','Sectores','sectores'));
     
     }
   
@@ -167,6 +185,53 @@ class VehiculoController extends Controller
             $vehiculo = Vehiculo::find($id);
             $inmueble = Inmueble::find($vehiculo->inmueble_id);
             $activo = Activo::find($inmueble->activo_id);
+
+            $validator = Validator::make($request->all(), [
+                'Placa' => 'required|unique:activos,Placa,'.$activo->id,
+                'PlacaVehiculo' => 'required|unique:vehiculos,PlacaVehiculo,'.$vehiculo->id,
+                'Descripcion' => 'required',
+                'TipoActivo' => 'required',                        
+                'Programa' => 'required',
+                'SubPrograma' => 'required',
+                'Color' => 'required',
+                'Dependencia' => 'required',
+                'Serie' => 'required',         
+                'Marca' => 'required',
+                'Modelo' => 'required',        
+                'EstadoUtilizacion' => 'required', 
+                'EstadoFisico' => 'required',  
+                'EstadoActivo' => 'required',   
+                'EstadoActivo' => 'required',   
+   
+            ],
+        
+            $messages = [
+                'Placa.required' => 'Debe definir la placa',
+                'Placa.unique' => 'La placa ya está en uso', 
+                'PlacaVehiculo.required' => 'Debe definir la placa',
+                'PlacaVehiculo.unique' => 'La placa ya está en uso', 
+                'Descripcion.required' => 'Debe definir la descripción',
+                'TipoActivo.required' => 'Debe definir la categoría del activo',                        
+                'Programa.required' => 'Debe definir el programa',            
+                'SubPrograma.required' => 'Debe definir el subprograma',
+                'Color.required' => 'Debe definir el color',            
+                'Dependencia.required' => 'Debe definir la dependencia',
+                'Serie.required' => 'Debe definir la serie',
+                'Marca.required' => 'Debe definir la marca',
+                'Modelo.required' => 'Debe definir el modelo',
+                'EstadoUtilizacion.required' => 'Debe definir el estado de utilización',
+                'EstadoFisico.required' => 'Debe definir el estado físico',
+                'EstadoActivo.required' => 'Debe definir el estado del activo',
+            
+                
+            ]
+        );
+        if ($validator->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator)
+                             ->withInput();
+         }
+         else{    
     
             $activo->Placa = request('Placa');
             $activo->Descripcion = request('Descripcion');
@@ -203,7 +268,7 @@ class VehiculoController extends Controller
             return redirect('/vehiculos');
            }
     
-    
+        }
     
     
 

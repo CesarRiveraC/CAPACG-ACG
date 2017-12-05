@@ -6,6 +6,7 @@
     <div class="col-lg-10 col-lg-offset-1">
 
 <div class="col-md-8">
+<br>
         <a class="btn btn-primary my-5" href="/combustibles/create">
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Factura Combustible</a> 
         <a class="btn btn-success my-5" href="/combustibles/excel">
@@ -14,6 +15,7 @@
        <div class="col-md-3 pull-right"><a class="href my-5" href="/home">
                 <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
         </div>
+            <br>
             <br>
             <br>
             @include('partials.message')
@@ -55,10 +57,19 @@
                                 <td class="info"> {{$combustible->Fecha}} </td>
                                 <td class="info"> {{$combustible->Kilometraje}} </td>
                                                                
-                                <td class="warning col-xs-2 col-xs-offset-2 "> 
-                                <a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado ="{{$combustible->id}}"  data-toggle="tooltip" data-placement="bottom" title="Eliminar"></a>
-                                <a class="fa fa-eye btn btn-success btn-xs detalleCombustible" data-combustible = "{{$combustible->id}}" data-toggle="tooltip" data-placement="bottom" title="Ver"></a>
-                                <a href="/combustibles/{{$combustible->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom" title="Editar"></a>
+
+
+                                <td class="warning"> 
+                                <a class="btn btn-danger btn-xs estado" data-estado ="{{$combustible->id}}"data-toggle="tooltip" data-placement="bottom" title="Eliminar" >
+                                Eliminar <i class="fa fa-minus" aria-hidden="true"></i></a>
+
+                                <a class="btn btn-success btn-xs detalleCombustible" data-combustible = "{{$combustible->id}}"  data-toggle="tooltip" data-placement="bottom" title="Ver">
+                                Detalle <i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                <a  class="btn btn-warning btn-xs editar" href="/combustibles/{{$combustibles->id}}/edit" data-toggle="tooltip" data-placement="bottom" title="Editar">
+                                Editar <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
+                                </td>
                                 
                                 </td>
                                

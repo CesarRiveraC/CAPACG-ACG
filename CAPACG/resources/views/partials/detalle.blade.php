@@ -5,6 +5,9 @@
         <dt>Descripción</dt>
         <dd id="lblDescripcion"></dd>
         <br>
+        <dt>Sector</dt>
+        <dd id="lblSector"></dd>
+        <br>
 
         <dt>Categoria</dt>
         <dd id="lblTipoActivo"></dd>

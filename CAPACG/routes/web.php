@@ -78,6 +78,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('tipos/search','TipoController@search');
     Route::resource('tipos','TipoController'); 
 
+    Route::get('sectores/{id}/change','SectorController@change');
+    Route::put('sectores/{id}/updatestate','SectorController@updatestate');
+    Route::get('sectores/search','SectorController@search');
+    Route::resource('sectores','SectorController'); 
+
     
     Route::resource('activos','Otro');  
     Route::resource('colaboradores','PruebaController');
