@@ -1,5 +1,5 @@
 <footer class="blog-footer" id="footerAbsolute">
-      <div id="footerContent"class="container">
+      <div id="footerContent" class="container">
       <div class="row">
       <div class="col-md-4">
       

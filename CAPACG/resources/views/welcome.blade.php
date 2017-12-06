@@ -41,7 +41,7 @@
 
 
 
-<div class="container bgPrimero">
+{{--  <div class="container bgPrimero">
         
 
         <div class="row text-center">
@@ -104,7 +104,7 @@
             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
           </div>
         </div>
-      </div>
+      </div>  --}}
 
 @endsection
 

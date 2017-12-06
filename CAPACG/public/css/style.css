@@ -184,7 +184,7 @@ height: 200px;
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 150px;
+  min-height: 150px;
   
 }  
 #footerContent{
@@ -232,4 +232,10 @@ input[type=checkbox] {
 #checkOption{
   margin-left: 0.5em;
   margin-top: 6px;
+}
+@media screen and (max-width: 800px) {
+  body{
+    margin-bottom: 500px;
+  }
+
 }

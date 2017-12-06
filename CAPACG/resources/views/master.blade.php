@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  
   <title>Bienvenido</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,7 @@
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
-<!-- Navbar -->
+
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -80,13 +80,6 @@
         </div>
       
       </div>
-{{--  <a id="link" href="#home" ><i class="fa fa-arrow-up w3-margin-right"></i>Arriba</a>
-  <p>CAPACG</p> 
-      <a id="link" href="https://www.facebook.com/ACG.CR"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
-    <a id="link" href="https://plus.google.com/u/0/108989919407702501124/posts"><i class="fa fa-google-plus w3-hover-opacity"></i></a>
-    <a id="link" href="http://www.youtube.com/videosacg"><i class="fa fa-youtube w3-hover-opacity"></i></a>
-    <a id="link" href="https://www.acguanacaste.ac.cr/noticias?format=feed&type=rss"><i class="fa fa-rss-p w3-hover-opacity"></i></a>
-    <a id="link" href="https://twitter.com/ACGuanacaste"><i class="fa fa-twitter w3-hover-opacity"></i></a>  --}}
 </footer>
 
 </body>
