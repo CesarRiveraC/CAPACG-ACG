@@ -15,12 +15,11 @@ class RolTableSeeder extends Seeder
         DB::table('roles')->insert([
             'Rol' =>'Administrador',
             
-                
+
         ]);
 
-//////////////////////////////FALTA 
         DB::table('roles')->insert([
-            'Rol' =>'faltaDefinir',
+            'Rol' =>'Estandar',
                 
         ]);
 

@@ -24,7 +24,7 @@ class Administrador
     public function handle($request, Closure $next)
     {
         $usuarioActual=\Auth::user();
-        if ($usuarioActual->Rol!=1) {
+        if ($usuarioActual->roles_id!=1) {
            return redirect('/mensajeRechazado');
         } 
         else{
