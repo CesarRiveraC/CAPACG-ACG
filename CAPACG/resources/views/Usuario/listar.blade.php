@@ -46,7 +46,7 @@
                              <tr>
                                 @include('partials.usuario')
                                 <th>Cédula</th>
-                                <th>Puesto de Trabajo</th>
+                                <th>Permisos</th>
                                 <th>Opciones</th>
                              </tr>
                       </thead>
@@ -58,7 +58,7 @@
                                 <td class="info"> {{$colaborador->Apellido}} </td>
                                 <td class="info"> {{$colaborador->email}} </td>
                                 <td class="info"> {{$colaborador->Cedula}} </td>
-                                <td class="info"> {{$colaborador->PuestoDeTrabajo}} </td>
+                                <td class="info"> {{$colaborador->Rol}} </td>
                                                            
                                 <td class="warning"> 
                                 @if($colaborador->Estado == 1)

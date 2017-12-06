@@ -112,7 +112,11 @@
      });
  });
  
- $('#usuarios').select({});
+ $('#usuarios').select({
+
+
+ });
+
  
  $(function () {
      $('.asignarColaborador').click(function (e) {

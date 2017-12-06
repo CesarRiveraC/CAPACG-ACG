@@ -198,6 +198,7 @@ class UsuariosController extends Controller
         $usuario->Apellido = request('Apellido');
         $usuario->email = request('email');
         $usuario->password = bcrypt(request('password'));
+        $usuario->Rol = request('Rol');
         $usuario->save();
         $colaborador->Cedula = request('Cedula');
         $colaborador->PuestoDeTrabajo = request('PuestoDeTrabajo');
