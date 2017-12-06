@@ -27,7 +27,8 @@ class UsuariosController extends Controller
     {
         $colaboradores = DB::table('colaboradores')
         ->join('users','colaboradores.user_id', '=','users.id')
-        ->select('users.*','colaboradores.*')
+        ->join('roles','users.roles_id', '=', 'roles.id')
+        ->select('users.*','colaboradores.*','roles.*')
         ->where('users.Estado','=','1') 
         ->paginate(10);
         
@@ -95,7 +96,7 @@ class UsuariosController extends Controller
             $usuario->Apellido = $request['Apellido'];
             $usuario->email = $request['email'];
             $usuario->password = bcrypt($request['password']);   
-            $usuario->Rol = 2;
+            $usuario->roles_id = 3;
             $usuario->Estado = 1;                
     
             $usuario->save();

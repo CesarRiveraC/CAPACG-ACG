@@ -13,11 +13,15 @@ class CreateRoles extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function(Blueprint $table){
-            $table->increments('id');
-            $table->string('Rol');
-            $table->timestamps();
-        });
+        //la migracion para crear los roles de usuario, se han definido en la migracion de usuarios, al necesitar primero la tabla roles por la llave foranea.
+
+
+
+        // Schema::create('roles', function(Blueprint $table){
+        //     $table->increments('id');
+        //     $table->string('Rol');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -27,7 +31,8 @@ class CreateRoles extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Roles');
+        //al igual que el up el down tambien ha sido definido desde la migracion de usuarios.
+         // Schema::dropIfExists('roles');
         
     }
 }

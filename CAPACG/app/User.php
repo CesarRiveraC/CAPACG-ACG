@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'Apellido', 'Rol', 'Estado',
+        'name', 'email', 'password', 'Apellido', 'Estado',
     ];
 
     /**
@@ -32,6 +32,10 @@ class User extends Authenticatable
     public function colaboradores()
     {
     	return $this->hasManny('App\Colaborador');
+    }
+    public function roles()
+    {
+    	return $this->hasManny('App\Rol');
     }
     public function scopeBuscar($query, $buscar){
           }
