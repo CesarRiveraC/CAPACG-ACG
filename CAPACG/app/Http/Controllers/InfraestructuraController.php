@@ -23,10 +23,11 @@ class InfraestructuraController extends Controller
     public function index()
     {
         $infraestructuras = DB::table('infraestructuras')
+        
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
         ->select('activos.*','infraestructuras.*')
         ->where([['activos.Estado','=','1'],['activos.Identificador','=','1']])  
-        ->paginate(4);
+        ->paginate(10);
     
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
     }
@@ -50,15 +51,38 @@ class InfraestructuraController extends Controller
     public function filterDependencia(Request $request){
         
         $name = $request->input('DependenciaFiltrar');
-       
-        $infraestructuras = DB::table('infraestructuras')
+        $buscar = $request->input('BuscarDependencia');
+        if($buscar != null){
+             $infraestructuras = DB::table('infraestructuras')
+        
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
         ->select('activos.*','infraestructuras.*')
-        ->where([['activos.tipo_id','=', $name],['activos.Identificador','=','1']])
-        // ->where('activos.dependencia_id','=', $name)  
-        //->where('activos.Estado','LIKE', '%' .$activo->Estado. '%' )
+        ->Where([['activos.dependencia_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','1']])
         
-        ->paginate(2);
+        ->paginate(10);
+        }
+        else{
+              $infraestructuras = DB::table('infraestructuras')
+            
+        ->join('activos','infraestructuras.activo_id', '=','activos.id')
+        ->select('activos.*','infraestructuras.*')
+        ->Where([['activos.dependencia_id','=', $name],['activos.Identificador','=','1']])
+        
+        
+        
+        ->paginate(10);
+        }
+        //return response()->json(['infraestructura'=>$buscar]);
+        // $infraestructuras = DB::table('infraestructuras')
+        // ->buscar($request->get('buscar'))
+        // ->join('activos','infraestructuras.activo_id', '=','activos.id')
+        // ->select('activos.*','infraestructuras.*')
+        // ->Where([['activos.tipo_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%']])
+        // ->orwhere([['activos.tipo_id','=', $name],['activos.Identificador','=','1']])
+        // // ->where('activos.dependencia_id','=', $name)  
+        // //->where('activos.Estado','LIKE', '%' .$activo->Estado. '%' )
+        
+        // ->paginate(10);
         
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
     }
@@ -66,15 +90,24 @@ class InfraestructuraController extends Controller
     public function filterTipo(Request $request){
         
         $name = $request->input('TipoFiltrar');
-       
-        $infraestructuras = DB::table('infraestructuras')
-        ->join('activos','infraestructuras.activo_id', '=','activos.id')
-        ->select('activos.*','infraestructuras.*')
-        ->where([['activos.tipo_id','=', $name],['activos.Identificador','=','1']]) 
-        //->where('activos.tipo_id','=', $name)  
-       
+        $buscar = $request->input('BuscarTipo');
+        if($buscar != null){
+            $infraestructuras = DB::table('infraestructuras')
+            ->join('activos','infraestructuras.activo_id', '=','activos.id')
+            ->select('activos.*','infraestructuras.*')
+            ->Where([['activos.tipo_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','1']])
+            ->paginate(10);
+        }
+        else{
+            $infraestructuras = DB::table('infraestructuras')
+            ->join('activos','infraestructuras.activo_id', '=','activos.id')
+            ->select('activos.*','infraestructuras.*')
+            ->where([['activos.tipo_id','=', $name],['activos.Identificador','=','1']]) 
+           
+            
+            ->paginate(10);
+        }
         
-        ->paginate(2);
         
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
     }

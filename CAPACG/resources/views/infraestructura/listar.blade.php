@@ -119,7 +119,7 @@
                   </table>
                 </div>
                 <div class="row">
-                <div class="col-md-8">{{ $infraestructuras->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta']))->links() }}</div>
+                <div class="col-md-8">{{ $infraestructuras->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta','BuscarDependencia','BuscarTipo']))->links() }}</div>
                 <div class="col-md-3 pull-right"><br><a class="href" href="/home">
                 <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a></div>
               </div>
