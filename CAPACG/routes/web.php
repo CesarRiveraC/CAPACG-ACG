@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function() {
-
+    Route::get('infraestructuras/filterSector','InfraestructuraController@filterSector');
     Route::get('infraestructuras/filterDate','InfraestructuraController@filterDate');
     Route::get('infraestructuras/filterTipo','InfraestructuraController@filterTipo');
     Route::get('infraestructuras/filterDependencia','InfraestructuraController@filterDependencia');
@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('infraestructuras/excel', 'InfraestructuraController@excel');
     Route::resource('infraestructuras','InfraestructuraController');
 
-
+    Route::get('semovientes/filterSector','SemovienteController@filterSector');
     Route::get('semovientes/filterSector','SemovienteController@filterSector');
     Route::get('semovientes/filterDate','SemovienteController@filterDate');
     Route::get('semovientes/filterTipo','SemovienteController@filterTipo');
@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('combustibles/excel', 'CombustibleController@excel');
     Route::resource('combustibles','CombustibleController');
 
+    Route::get('vehiculos/filterSector','VehiculoController@filterSector');
     Route::get('vehiculos/filterDate','VehiculoController@filterDate');
     Route::get('vehiculos/filterTipo','VehiculoController@filterTipo');
     Route::get('vehiculos/filterDependencia','VehiculoController@filterDependencia');
@@ -55,6 +56,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('vehiculos/excel', 'VehiculoController@excel');
     Route::resource('vehiculos','VehiculoController');
 
+    Route::get('inmuebles/filterSector','InmuebleController@filterSector');
     Route::get('inmuebles/filterDate','InmuebleController@filterDate');
     Route::get('inmuebles/filterTipo','InmuebleController@filterTipo');
     Route::get('inmuebles/filterDependencia','InmuebleController@filterDependencia');

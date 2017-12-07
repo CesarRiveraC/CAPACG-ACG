@@ -164,3 +164,38 @@
     }
     });
   });
+
+  $(function(){
+    $('.filtrarSector').click(function (e) {
+        
+        
+
+        console.log(e);                        
+        
+                $.get('/sectores/create/',function(data){
+        
+                    $('#SectorFiltrar').empty();
+        
+                    $('#SectorFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Sector</option>");
+                   
+                    $('#form-sector').attr('action','/inmuebles/filterSector');
+                    
+                     var cont = 0;  
+                     $.each(data, function(index, element){
+                        
+                        cont = element.length;
+                        
+                     
+                    });                                      
+                  
+                    for (var i = 0, l = cont; i< l; i++){
+                        
+                        $('#SectorFiltrar').append('<option value="'+data.sectores[i].id+'">'+data.sectores[i].Sector+'</option>');                       
+                    }
+                   
+                });
+        
+        
+               
+      });
+});

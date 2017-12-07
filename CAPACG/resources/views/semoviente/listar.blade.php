@@ -106,6 +106,7 @@
 @include('modals.filtrar')
 @include('modals.filtrarDependencia')
 @include('modals.filtrarTipo')
+@include('modals.filtrarSector') 
 @include('modals.filtrarFecha')
     <script src="{{ asset('js/semoviente.js') }}"></script> 
     <script type="text/javascript">

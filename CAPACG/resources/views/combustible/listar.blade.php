@@ -66,7 +66,7 @@
                                 <a class="btn btn-success btn-xs detalleCombustible" data-combustible = "{{$combustible->id}}"  data-toggle="tooltip" data-placement="bottom" title="Ver">
                                 Detalle <i class="fa fa-eye" aria-hidden="true"></i></a>
 
-                                <a  class="btn btn-warning btn-xs editar" href="/combustibles/{{$combustibles->id}}/edit" data-toggle="tooltip" data-placement="bottom" title="Editar">
+                                <a  class="btn btn-warning btn-xs editar" href="/combustibles/{{$combustible->id}}/edit" data-toggle="tooltip" data-placement="bottom" title="Editar">
                                 Editar <i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 <a href="#" class="btn btn-info btn-xs fa fa-link"></a>
                                 </td>

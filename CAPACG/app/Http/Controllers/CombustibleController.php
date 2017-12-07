@@ -18,22 +18,20 @@ class CombustibleController extends Controller
     {   
         $this->middleware('Administrador')->except('index');
     }
-    public function index(Request $request)
+    public function index()
     {
+        $combustibles = DB::table('combustibles')
+        ->select('combustibles.*')
+        ->where('Estado','=','1')
+        ->paginate(20);
 
-     $combustibles = DB::table('combustibles')
-      ->select('combustibles.*')
-      ->where('combustibles.Estado','=','1')
-      ->paginate(7);
-    return view('/combustible/listar', ['combustibles' => $combustibles]);
-
-      
+        
+        return view('/combustible/listar', ['combustibles' => $combustibles]);
     }
+
 
     public function create()
     {
-   
-
         $combustibles = Combustible::all();
         $vehiculos= Vehiculo:: all();
         $dependencias= Dependencia:: all();
@@ -44,41 +42,41 @@ class CombustibleController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
-            'NoVaucher' => 'required|unique:combustibles,NoVaucher',
-            'Monto' => 'required',
-            'Numero' => 'required',                        
-            'Fecha' => 'required',
-            'Kilometraje' => 'required',
-            'LitrosCombustible' => 'required',
-            'FuncionarioQueHizoCompra' => 'required',
-            'Dependencia' => 'required',         
-            'CodigoDeAccionDePlanPresupuesto' => 'required',
-            'Vehiculo' => 'required',        
+    //     $validator = Validator::make($request->all(), [
+    //         'NoVaucher' => 'required|unique:combustibles,NoVaucher',
+    //         'Monto' => 'required',
+    //         'Numero' => 'required',                        
+    //         'Fecha' => 'required',
+    //         'Kilometraje' => 'required',
+    //         'LitrosCombustible' => 'required',
+    //         'FuncionarioQueHizoCompra' => 'required',
+    //         'Dependencia' => 'required',         
+    //         'CodigoDeAccionDePlanPresupuesto' => 'required',
+    //         'Vehiculo' => 'required',        
                        
-        ],
+    //     ],
     
-        $messages = [
-            'NoVaucher.required' => 'Debe definir el No Vaucher',
-            'NoVaucher.unique' => 'Este número ya está en uso', 
-            'Monto.required' => 'Debe definir el monto',
-            'Fecha.required' => 'Debe definir la fecha',                        
-            'Kilometraje.required' => 'Debe definir el kilometraje',            
-            'LitrosCombustible.required' => 'Debe definir los litros de combustible',
-            'FuncionarioQueHizoCompra.required' => 'Debe definir el funcionario que hizo la compra',            
-            'Dependencia.required' => 'Debe definir la dependencia',
-            'CodigoDeAccionDePlanPresupuesto.required' => 'Debe definir el código de acción de plan de presupuesto',
-            'Vehiculo.required' => 'Debe definir el vehículo',
+    //     $messages = [
+    //         'NoVaucher.required' => 'Debe definir el No Vaucher',
+    //         'NoVaucher.unique' => 'Este número ya está en uso', 
+    //         'Monto.required' => 'Debe definir el monto',
+    //         'Fecha.required' => 'Debe definir la fecha',                        
+    //         'Kilometraje.required' => 'Debe definir el kilometraje',            
+    //         'LitrosCombustible.required' => 'Debe definir los litros de combustible',
+    //         'FuncionarioQueHizoCompra.required' => 'Debe definir el funcionario que hizo la compra',            
+    //         'Dependencia.required' => 'Debe definir la dependencia',
+    //         'CodigoDeAccionDePlanPresupuesto.required' => 'Debe definir el código de acción de plan de presupuesto',
+    //         'Vehiculo.required' => 'Debe definir el vehículo',
            
             
-        ]
-    );
-    if ($validator->fails()) {
-        return redirect('combustibles/create')
-                    ->withInput()
-                    ->withErrors($validator);
-    }
-    else{
+    //     ]
+    // );
+    // if ($validator->fails()) {
+    //     return redirect('combustibles/create')
+    //                 ->withInput()
+    //                 ->withErrors($validator);
+    // }
+    // else{
         
         $combustible = new Combustible;
         $combustible->NoVaucher = $request['NoVaucher'];
@@ -104,7 +102,8 @@ class CombustibleController extends Controller
         $combustible->save();
         
         return redirect('/combustibles')->with('message','Factura combustible correctamente creado');
-    }}
+    }
+//}
 
     public function show($id){
         $combustible = Combustible::find($id);
