@@ -67,3 +67,17 @@
                             </div>
                         </div>
 
+{{--  puede que el form-group para errores y la validacion de errores no sea necesaria para este campo  --}}
+						<div class="form-group{{ $errors->has('Rol') ? ' has-error' : '' }}">
+							<label for="Rol" class="col-md-4 control-label">Permisos</label>
+							<div class="col-md-6">
+
+                          {!! Form::select('roles', $roles, $rol->id, ['id' => 'roles', 'class'=>'form-control'])!!}
+
+								@if ($errors->has('Rol'))
+								<span class="help-block">
+									<strong>{{ $errors->first('Rol') }}</strong>
+								</span>
+								@endif
+							</div>
+						</div>
