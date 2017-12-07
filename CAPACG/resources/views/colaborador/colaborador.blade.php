@@ -51,32 +51,7 @@
                      
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-					 @if (Auth::check())
-                       <li class="dropdown">
-                            <a href="#" id="activosDrop" class="dropdown-toggle pull right " data-toggle="dropdown"   >
-                            Activos <span class="caret"></span></a>
-                            <ul id="Drop" class="dropdown-menu" role="menu">
-                                <li><a id="activosDrop"  tabindex="-1" href="/infraestructuras"><i class="fa fa-university" aria-hidden="true"></i> Infraestructura</a></li>
-                                <li><a id="activosDrop" tabindex="-1" href="/inmuebles"><i class="fa fa-television" aria-hidden="true"></i> Inmuebles</a></li>
-                                <li><a id="activosDrop" tabindex="-1" href="/semovientes"><i class="fa fa-bug" aria-hidden="true"></i> Semovientes</a></li>
-                                <li><a id="activosDrop" tabindex="-1" href="/vehiculos"><span class="fa fa-car" aria-hidden="true"></span> Vehiculos</a></li>
-								 <li class="divider"></li>
-								<li><a id="activosDrop" tabindex="-1" href="/dependencias"><span class="fa fa-list-alt" aria-hidden="true"></span> Dependencias</a></li>
-                                <li><a id="activosDrop" tabindex="-1" href="/tipos"><span class="fa fa-clone" aria-hidden="true"></span> Tipos de activo</a></li>
-                                <li><a id="activosDrop" tabindex="-1" href="/sectores"><span class="fa fa-clone" aria-hidden="true"></span> Sectores</a></li>
-                            </ul>
                     
-                        </li>
-						
-						
-
-                        <li><a id="activosDrop" href="/combustibles"><i class="fa fa-file-text" aria-hidden="true"></i> Combustibles</a></li>
-
-                         <li><a id="activosDrop" href="/usuarios"><i class="fa fa-users" aria-hidden="true"></i> Usuarios</a></li>
-
-                         @endif
-                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

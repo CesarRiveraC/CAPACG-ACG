@@ -1,0 +1,75 @@
+@extends('colaborador')
+
+@section('content')
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+        <br>
+   @include('partials.message')
+   
+        <div class="col-md-8">
+        
+       </div>
+       <div class="col-md-3 pull-right"><a class="href my-5" href="/home">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
+        </div>
+            
+            <br>
+            <br>
+
+            <div class="panel panel-info">
+           
+            {!! Form::open(['url' => 'infraestructuras/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search']) !!}
+                {!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
+                <button type="submit" class="btn btn-primary"><span class="fa fa-search" ></span></button>
+            {!! Form::close() !!}            
+
+                <div class="panel-heading"><h4>Infraestructuras</h4> </div>
+                
+                <div class="panel-body">
+                
+                    <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                             <tr>
+                                @include('partials.thActivo')
+                                <th>Número Finca</th>
+                                
+                             </tr>
+                      </thead>
+                    <tbody>
+
+                        @foreach ($infraestructuras as $infraestructura)
+                            <tr>
+                                <td class="info"> {{$infraestructura->Placa}} </td>
+                                <td class="info"> {{$infraestructura->Descripcion}} </td>
+                                <td class="info"> {{$infraestructura->Programa}} </td>
+                                <td class="info"> {{$infraestructura->SubPrograma}} </td>
+                                <td class="info"> {{$infraestructura->Color}} </td>
+                                
+                                
+
+                                <td class="info"> {{$infraestructura->NumeroFinca}} </td>
+                                                            
+                               
+                            </tr>
+                        @endforeach
+                    </tbody>
+                  </table>
+                </div>
+                <div class="row">
+                <div class="col-md-8">{{ $infraestructuras->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta','BuscarDependencia','BuscarTipo']))->links() }}</div>
+                <div class="col-md-3 pull-right"><br><a class="href" href="/home">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a></div>
+              </div>
+                </div> <!-- cierre de panel info -->
+            </div> <!-- cierre de panel body-->
+        </div>
+        </div>
+        </div>
+
+
+    
+@endsection
