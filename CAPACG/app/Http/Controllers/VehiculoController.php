@@ -372,6 +372,19 @@ class VehiculoController extends Controller
         ->with('error','No se han encontrado registros para las fechas indicadas'); 
         
     }
+    public function filterSector(Request $request){
+        
+        $name = $request->input('SectorFiltrar');
+       
+        $vehiculos = DB::table('vehiculos')
+        ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+        ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+        ->where([['activos.sector_id','=', $name],['activos.Identificador','=','4']])
+        ->paginate(10);
+        
+        return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
+    }
+
 
     public function excel(){
         

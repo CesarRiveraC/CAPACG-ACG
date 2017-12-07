@@ -157,7 +157,7 @@
                                 
                             <option value="">--Escoja placa--</option>
                             @foreach($vehiculos as $vehiculo)
-                                    <option value="{{$vehiculo['id']}}">{{$vehiculo['Placa']}}</option>
+                                    <option value="{{$vehiculo['id']}}">{{$vehiculo['PlacaVehiculo']}}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('Vehiculo'))

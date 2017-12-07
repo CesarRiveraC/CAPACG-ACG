@@ -137,8 +137,15 @@
 		</div>
 	</div>
 </div>
-@include('modals.estado') @include('modals.detalleInmueble') @include('modals.modalPrueba') @include('modals.filtrar') @include('modals.filtrarDependencia')
-@include('modals.filtrarTipo') @include('modals.filtrarFecha') @include('modals.asignarColaborador')
+@include('modals.estado') 
+@include('modals.detalleInmueble') 
+@include('modals.modalPrueba')
+@include('modals.filtrar') 
+@include('modals.filtrarDependencia')
+@include('modals.filtrarTipo') 
+@include('modals.filtrarFecha')
+@include('modals.filtrarSector')  
+@include('modals.asignarColaborador')
 <script src="{{ asset('js/inmueble.js') }}"></script>
 <script type="text/javascript">
 	setTimeout(function(){

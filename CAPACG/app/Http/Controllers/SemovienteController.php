@@ -315,6 +315,22 @@ class SemovienteController extends Controller
            ->with('error','No se han encontrado registros para las fechas indicadas'); 
            
        }
+
+       public function filterSector(Request $request){
+        
+        $name = $request->input('TipoSector');
+       
+        $semovientes = DB::table('semovientes')
+        ->join('activos','semovientes.activo_id', '=','activos.id')  
+        ->select('activos.*','semovientes.*') 
+     //    ->where('activos.tipo_id','=', $name)  
+        ->where([['activos.sector_id','=', $name],['activos.Identificador','=','3']])
+        ->paginate(10);
+        
+        return view('/semoviente/listar', ['semovientes' => $semovientes]);
+    }
+  
+
        
 
     public function excel(){

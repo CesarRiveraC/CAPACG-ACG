@@ -395,7 +395,23 @@ class InmuebleController extends Controller
         ->with('error','No se han encontrado registros para las fechas indicadas'); 
         
     }
-    
+    public function filterSector(Request $request){
+        
+        $name = $request->input('SectorFiltrar');
+       
+        $inmuebles = DB::table('inmuebles')
+        ->join('activos','inmuebles.activo_id', '=','activos.id')
+        ->select('activos.*','inmuebles.*')
+        ->where([['activos.sector_id','=', $name],['activos.Identificador','=','2']])
+       
+        
+        ->paginate(10);
+        
+        return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
+    }
+
+
+
 
     public function excel(){
 

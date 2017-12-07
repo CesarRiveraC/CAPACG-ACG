@@ -98,6 +98,7 @@
 @include('modals.filtrarDependencia')
 @include('modals.filtrarTipo')
 @include('modals.filtrarFecha')
+@include('modals.filtrarSector') 
     <script src="{{ asset('js/vehiculo.js') }}"></script> 
     <script type="text/javascript">
 setTimeout(function(){
