@@ -15,20 +15,24 @@
         <button class="btn btn-warning dropdown-toggle my-5" type="button" data-toggle="dropdown">Filtrar Vehiculos
         <span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu">
-            <li><a class="btn btn-default " href="/vehiculos">
-            <i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a></li>
+        
+        <li><a href="/vehiculos">
+        <i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a></li>
 
-            <li><a class="btn btn-default filtrar" href="/vehiculos/filter">
-            <i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a></li>
+        <li><a class="filtrar" href="/vehiculos/filter">
+        <i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a></li>
 
-            <li><a class="btn btn-default filtarDependencia" data-toggle="modal" data-target="#FiltrarDependencia">
-            <span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a></li>
+        <li><a class="filtarDependencia" href="" data-toggle="modal" data-target="#FiltrarDependencia">
+        <span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a></li>
 
-            <li><a class="btn btn-default filtrarTipo" data-toggle="modal" data-target="#FiltrarTipo">
-            <span class="fa fa-clone" aria-hidden="true"></span> Tipo</a></li>
+        <li><a class="filtrarTipo" href="" data-toggle="modal" data-target="#FiltrarTipo">
+        <span class="fa fa-clone" aria-hidden="true"></span> Tipo</a></li>
 
-            <li><a class="btn btn-default filtrarFecha" data-toggle="modal" data-target="#FiltrarFecha">
-            <i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a></li>
+        <li><a class="filtrarFecha" href="" data-toggle="modal" data-target="#FiltrarFecha">
+        <i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a></li>
+
+        <li><a class="filtrarSector" href="" data-toggle="modal" data-target="#FiltrarSector">
+        <i class="fa fa-location-arrow" aria-hidden="true"></i> Sector</a></li>
             
         </ul>
         </div>

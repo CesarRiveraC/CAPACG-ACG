@@ -57,25 +57,25 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('Sector') ? ' has-error' : '' }}">
-                        <label for="Sector" class="col-md-4 control-label">Sector</label>
-                        <div class="col-md-6">
-                        <select name="Sector" id="sector_id" class="form-control" required>
-                            
-                        <option value="{{ $sectores->id }}">{{$sectores->Sector}}</option
-                        @foreach($Sectores as $sector)
-                                <option value="{{$sector['id']}}">{{$sector['Sector']}}</option>
-                            @endforeach
-                        </select>
+                            <label for="Sector" class="col-md-4 control-label">Sector</label>
+                            <div class="col-md-6">
+                            <select name="Sector" id="sector_id" class="form-control" required>
+                                
+                            <option value="{{ $sectores->id }}">{{$sectores->Sector}}</option>
+                            @foreach($Sectores as $sector)
 
-                        
-                        @if ($errors->has('Sector'))
+                            <option value="{{$sector['id']}}">{{$sector['Sector']}}</option>
+                                @endforeach
+                            </select>
+
+                            
+                            @if ($errors->has('Sector'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('Sector') }}</strong>
                                     </span>
                                 @endif
+                            </div>
                         </div>
-                    </div>
-
 
 
 
@@ -281,6 +281,8 @@
                         </div>
                     </form>
                 </div>
+                <br>
+                <br>
             </div>
         </div>
     </div>

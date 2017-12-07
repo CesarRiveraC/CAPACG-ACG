@@ -7,6 +7,7 @@ use App\Inmueble;
 use App\Dependencia;
 use App\Tipo;
 use App\Colaborador;
+use App\Sector;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -47,7 +48,8 @@ class InmuebleController extends Controller
         $inmuebles = Inmueble::all();
         $dependencias= Dependencia:: all();
         $tipos= Tipo:: all();
-        return view('/inmueble/crear', compact('dependencias','tipos'));
+        $sectores= Sector:: all();
+        return view('/inmueble/crear', compact('dependencias','tipos','sectores'));
        
     }
 
@@ -60,6 +62,7 @@ class InmuebleController extends Controller
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
+            'Sector' => 'required',
             'SubPrograma' => 'required',
             'Color' => 'required',
             'Dependencia' => 'required',
@@ -77,7 +80,8 @@ class InmuebleController extends Controller
             'Placa.unique' => 'La placa ya está en uso', 
             'Descripcion.required' => 'Debe definir la descripción',
             'TipoActivo.required' => 'Debe definir la categoría del activo',                        
-            'Programa.required' => 'Debe definir el programa',            
+            'Programa.required' => 'Debe definir el programa',
+            'Sector.required' => 'Debe definir el sector',               
             'SubPrograma.required' => 'Debe definir el subprograma',
             'Color.required' => 'Debe definir el color',            
             'Dependencia.required' => 'Debe definir la dependencia',
@@ -101,12 +105,13 @@ class InmuebleController extends Controller
             $activo = new Activo;
             $activo->Placa = $request['Placa'];
             $activo->Descripcion = $request['Descripcion'];
+            $activo->sector_id = $request['Sector'];
             $activo->tipo_id = $request['TipoActivo'];
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
             $activo->dependencia_id = $request['Dependencia'];
-            $activo->tipo_id = $request['TipoActivo'];
+         
             $activo->Estado = 1;
             $activo->Identificador = 2;
             if ($request->hasFile('Foto')){ 
@@ -122,7 +127,6 @@ class InmuebleController extends Controller
             $inmueble = new Inmueble;
             $inmueble->activo_id =  $activo->id;
             $inmueble->Serie = $request['Serie'];
-            
             $inmueble->Marca = $request['Marca'];
             $inmueble->Modelo = $request['Modelo'];
             $inmueble->EstadoUtilizacion = $request['EstadoUtilizacion'];
@@ -144,6 +148,8 @@ class InmuebleController extends Controller
         $activo->dependencia()->associate($dependencia);
         $tipo = Tipo::find($activo->tipo_id);
         $activo->tipo()->associate($tipo);
+        $sector= Sector:: find($activo->tipo_id);
+        $activo->sector()->associate($sector);
         return response()->json(['inmueble'=>$inmueble]);
 
     }
@@ -158,8 +164,10 @@ class InmuebleController extends Controller
         $Tipos= Tipo:: all();
         $tipos= Tipo:: find($activo->dependencia_id);;
         $inmueble->activo()->associate($activo);
-        
-        return view('/inmueble/editar',compact('inmueble','dependencias','tipos','Dependencias','Tipos'));
+        $Sectores= Sector:: all();
+        $sectores= Sector:: find($activo->sector_id);
+
+        return view('/inmueble/editar',compact('inmueble','dependencias','tipos','Dependencias','Tipos','Sectores','sectores'));
     }
 
     public function update($id, Request $request)
@@ -173,6 +181,7 @@ class InmuebleController extends Controller
             'Descripcion' => 'required',
             'TipoActivo' => 'required',                        
             'Programa' => 'required',
+            'Sector' => 'required',
             'SubPrograma' => 'required',
             'Color' => 'required',
             'Dependencia' => 'required',
@@ -192,6 +201,7 @@ class InmuebleController extends Controller
             'TipoActivo.required' => 'Debe definir la categoría del activo',                        
             'Programa.required' => 'Debe definir el programa',            
             'SubPrograma.required' => 'Debe definir el subprograma',
+            'Sector.required' => 'Debe definir el sector',
             'Color.required' => 'Debe definir el color',            
             'Dependencia.required' => 'Debe definir la dependencia',
             'Serie.required' => 'Debe definir la serie',
@@ -215,6 +225,7 @@ class InmuebleController extends Controller
         $activo->Descripcion = request('Descripcion');
         $activo->Programa = request('Programa');
         $activo->tipo_id = request('TipoActivo');
+        $activo->sector_id = request('Sector');
         $activo->SubPrograma = request('SubPrograma');
         $activo->Color = request('Color');      
         $activo->dependencia_id = request('Dependencia');

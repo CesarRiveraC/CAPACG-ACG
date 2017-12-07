@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('infraestructuras','InfraestructuraController');
 
 
-
+    Route::get('semovientes/filterSector','SemovienteController@filterSector');
     Route::get('semovientes/filterDate','SemovienteController@filterDate');
     Route::get('semovientes/filterTipo','SemovienteController@filterTipo');
     Route::get('semovientes/filterDependencia','SemovienteController@filterDependencia');

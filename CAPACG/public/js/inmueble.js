@@ -24,6 +24,7 @@
          $.get(url, function (result) {
              $('#lblPlaca').text(result.inmueble.activo.Placa);
              $('#lblDescripcion').text(result.inmueble.activo.Descripcion);
+             $('#lblSector').text(result.inmueble.activo.sector.Sector);
              $('#lblTipoActivo').text(result.inmueble.activo.tipo_id);
              $('#lblPrograma').text(result.inmueble.activo.Programa);
              $('#lblSubPrograma').text(result.inmueble.activo.SubPrograma);

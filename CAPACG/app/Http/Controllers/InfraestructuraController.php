@@ -7,6 +7,7 @@ use App\Activo;
 use App\Dependencia;
 use App\Tipo;
 use App\Vehiculo;
+use App\Sector;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -140,7 +141,9 @@ class InfraestructuraController extends Controller
         $dependencias= Dependencia:: all();
         $tipos= Tipo:: all();
         $vehiculos = Vehiculo::all();
-        return view('/infraestructura/crear', compact('dependencias','tipos','vehiculos'));
+        $sectores = Sector::all();
+        
+        return view('/infraestructura/crear', compact('dependencias','tipos','vehiculos','sectores'));
         //return ( json_encode ($dependencias));
         //return response()->json(['dependencias'=>$dependencias]);
        
@@ -151,7 +154,8 @@ class InfraestructuraController extends Controller
         $validator = Validator::make($request->all(), [
             'Placa' => 'required|unique:activos,Placa',
             'Descripcion' => 'required',
-            'TipoActivo' => 'required',                        
+            'TipoActivo' => 'required', 
+            'Sector' => 'required',                        
             'Programa' => 'required',
             'SubPrograma' => 'required',
             'Color' => 'required',
@@ -166,6 +170,7 @@ class InfraestructuraController extends Controller
         $messages = [
             'Placa.required' => 'Debe definir la placa',
             'Placa.unique' => 'La placa ya está en uso', 
+            'Sector.required' => 'Debe definir el sector',
             'Descripcion.required' => 'Debe definir la descripción',
             'TipoActivo.required' => 'Debe definir la categoría del activo',                        
             'Programa.required' => 'Debe definir el programa',            
@@ -198,6 +203,7 @@ class InfraestructuraController extends Controller
         $activo->Identificador = 1;
         $activo->dependencia_id = $request['Dependencia'];
         $activo->tipo_id = $request['TipoActivo'];
+        $activo->sector_id = $request['Sector'];
         
         if ($request->hasFile('Foto')){ 
 
@@ -229,6 +235,8 @@ class InfraestructuraController extends Controller
         $activo->dependencia()->associate($dependencia);
         $tipo = Tipo::find($activo->tipo_id);
         $activo->tipo()->associate($tipo);
+        $sector= Sector:: find($activo->tipo_id);   
+        $activo->sector()->associate($sector);
         return response()->json(['infraestructura'=>$infraestructura]);
 
     }
@@ -243,12 +251,14 @@ class InfraestructuraController extends Controller
         $Tipos= Tipo:: all();
         $tipos= Tipo:: find($activo->dependencia_id);;
         //$tipos= Tipo:: all();
+        $Sectores= Sector:: all();
+        $sectores= Sector:: find($activo->sector_id);;
         //$infraestructura = DB::table('infraestructuras')
         //->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
         //->select('activos.*', 'infraestructuras.*')
         //->get();
         //return response()->json(['infraestructura'=>$infraestructura]);
-        return view('/infraestructura/editar',compact('infraestructura','dependencias','tipos','Dependencias','Tipos'));
+        return view('/infraestructura/editar',compact('infraestructura','dependencias','tipos','Dependencias','Tipos','Sectores','sectores'));
     }
     
     public function update($id, Request $request)
@@ -259,7 +269,8 @@ class InfraestructuraController extends Controller
         $validator = Validator::make($request->all(), [
             'Placa' => 'required|unique:activos,Placa,'.$activo->id,
             'Descripcion' => 'required',
-            'TipoActivo' => 'required',                        
+            'TipoActivo' => 'required', 
+            'Sector' => 'required',                        
             'Programa' => 'required',
             'SubPrograma' => 'required',
             'Color' => 'required',
@@ -274,6 +285,7 @@ class InfraestructuraController extends Controller
             'Placa.required' => 'Debe definir la placa',
             'Placa.unique' => 'La placa ya está en uso', 
             'Descripcion.required' => 'Debe definir la descripción',
+            'Sector.required' => 'Debe definir el sector',  
             'TipoActivo.required' => 'Debe definir la categoría del activo',                        
             'Programa.required' => 'Debe definir el programa',            
             'SubPrograma.required' => 'Debe definir el subprograma',
@@ -295,12 +307,13 @@ class InfraestructuraController extends Controller
     
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
+        $activo->sector_id = $request['Sector'];
         $activo->Programa = request('Programa');
         $activo->SubPrograma = request('SubPrograma');
         $activo->Color = request('Color');
         $activo->dependencia_id = $request['Dependencia'];
         $activo->tipo_id = $request['TipoActivo'];
-
+       
         if ($request->hasFile('Foto')){ 
             Storage::delete($activo->Foto);
 

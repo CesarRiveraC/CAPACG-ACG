@@ -40,7 +40,27 @@
                                 @endif
                             </div>
                         </div>
+                        
+                        <div class="form-group{{ $errors->has('Sector') ? ' has-error' : '' }}">
+                            <label for="Sector" class="col-md-4 control-label">Sector</label>
+                            <div class="col-md-6">
+                            <select name="Sector" id="sector_id" class="form-control" required>
+                                
+                            <option value="{{ $sectores->id }}">{{$sectores->Sector}}</option>
+                            @foreach($Sectores as $sector)
 
+                            <option value="{{$sector['id']}}">{{$sector['Sector']}}</option>
+                                @endforeach
+                            </select>
+
+                            
+                            @if ($errors->has('Sector'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Sector') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('TipoActivo') ? ' has-error' : '' }}">
                         <label for="TipoActivo" class="col-md-4 control-label">Categoría</label>
                         <div class="col-md-6">
@@ -234,9 +254,14 @@
                             <i class="fa fa-floppy-o" aria-hidden="true"></i> Editar </button>
                             <a href="/inmuebles" class="btn btn-default"> 
                             <i class="fa fa-times" aria-hidden="true"></i> Cancelar </a>
+                         
                         </div>
                     </form>
+                
                 </div>
+                <br>
+                <br>
+                    
             </div>
         </div>
     </div>

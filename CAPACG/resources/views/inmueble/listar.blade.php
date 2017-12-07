@@ -5,7 +5,7 @@
 
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1">
-
+			<br>
 
 			<div class="col-md-8">
 				<a class="btn btn-primary my-5" href="/inmuebles/create">
@@ -21,29 +21,23 @@
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
-						<li>
-							<a class="btn btn-default " href="/inmuebles">
-								<i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a>
-						</li>
-
-						<li>
-							<a class="btn btn-default filtrar" href="/inmuebles/filter">
-								<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
-						</li>
-
-						<li>
-							<a class="btn btn-default filtarDependencia" data-toggle="modal" data-target="#FiltrarDependencia">
-								<span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a>
-						</li>
-
-						<li>
-							<a class="btn btn-default filtrarTipo" data-toggle="modal" data-target="#FiltrarTipo">
-								<span class="fa fa-clone" aria-hidden="true"></span> Tipo</a>
-						</li>
-
-						<li>
-							<a class="btn btn-default filtrarFecha" data-toggle="modal" data-target="#FiltrarFecha">
-								<i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a>
+					<li><a href="/inmuebles">
+					<i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a></li>
+			
+					<li><a class="filtrar" href="/inmuebles/filter">
+					<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a></li>
+			
+					<li><a class="filtarDependencia" href="" data-toggle="modal" data-target="#FiltrarDependencia">
+					<span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a></li>
+			
+					<li><a class="filtrarTipo" href="" data-toggle="modal" data-target="#FiltrarTipo">
+					<span class="fa fa-clone" aria-hidden="true"></span> Tipo</a></li>
+			
+					<li><a class="filtrarFecha" href="" data-toggle="modal" data-target="#FiltrarFecha">
+					<i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a></li>
+			
+					<li><a class="filtrarSector" href="" data-toggle="modal" data-target="#FiltrarSector">
+					<i class="fa fa-location-arrow" aria-hidden="true"></i> Sector</a></li>
 						</li>
 
 					</ul>

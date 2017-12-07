@@ -16,8 +16,6 @@ use Storage;
 
 class VehiculoController extends Controller
 {
-    //
-
     public function __construct()
     {   
         $this->middleware('Administrador')->except('index');
@@ -31,7 +29,6 @@ class VehiculoController extends Controller
         ->where([['activos.Estado','=','1'],['activos.Identificador','=','4']]) 
         ->paginate(20);
 
-    ;
         return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
     }
 
@@ -103,7 +100,7 @@ class VehiculoController extends Controller
         
             $activo = new Activo;
             $activo->Placa = $request['Placa'];
-            $activo->Sector = $request['Sector'];
+            $activo->sector_id = $request['Sector'];
             $activo->Descripcion = $request['Descripcion'];
             $activo->dependencia_id = $request['Dependencia'];
             $activo->tipo_id = $request['TipoActivo'];
@@ -236,6 +233,7 @@ class VehiculoController extends Controller
             $activo->Placa = request('Placa');
             $activo->Descripcion = request('Descripcion');
             $activo->Programa = request('Programa');
+            $activo->sector_id = request('Sector');
             $activo->tipo_id = request('TipoActivo');
             $activo->SubPrograma = request('SubPrograma');
             $activo->Color = request('Color');      

@@ -23,6 +23,7 @@ $(function (){
         $.get(url, function (result) {
             $('#lblPlaca').text(result.infraestructura.activo.Placa);
             $('#lblDescripcion').text(result.infraestructura.activo.Descripcion);
+            $('#lblSector').text(result.infraestructura.activo.sector.Sector);
             $('#lblPrograma').text(result.infraestructura.activo.Programa);
             $('#lblSubPrograma').text(result.infraestructura.activo.SubPrograma);
             $('#lblDependencia').text(result.infraestructura.activo.dependencia.Dependencia);

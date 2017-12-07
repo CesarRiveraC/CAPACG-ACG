@@ -89,12 +89,12 @@ class SemovienteController extends Controller
             $activo = new Activo;
             $activo->Placa = $request['Placa'];
             $activo->Descripcion = $request['Descripcion'];
+            $activo->sector_id = $request['Sector'];
             $activo->dependencia_id = $request['Dependencia'];
             $activo->tipo_id = $request['TipoActivo'];
             $activo->Programa = $request['Programa'];
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
-            $activo->sector_id = $request['Sector'];
             $activo->Estado = 1;
             $activo->Identificador = 3;
             
@@ -139,10 +139,11 @@ class SemovienteController extends Controller
         $semoviente->activo()->associate($activo);
         $Dependencias= Dependencia:: all();
         $dependencias= Dependencia::find($activo->dependencia_id);
-         $Tipos= Tipo:: all();
+        $Tipos= Tipo:: all();
         $tipos= Tipo:: find($activo->tipo_id);
         $Sectores= Sector:: all();
-        $sectores= Sector:: find($activo->tipo_id);
+        $sectores= Sector:: find($activo->sector_id);
+
         return view('/semoviente/editar',compact('semoviente','dependencias','tipos','Dependencias','Tipos','Sectores','sectores'));
    
     }
@@ -193,11 +194,11 @@ class SemovienteController extends Controller
 
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
+        $activo->sector_id = request('Sector');
         $activo->Programa = request('Programa');
         $activo->tipo_id = request('TipoActivo');
         $activo->SubPrograma = request('SubPrograma');
         $activo->Color = request('Color');  
-        $activo->sector_id = request('Sector');  
         $activo->dependencia_id = request('Dependencia');
         if ($request->hasFile('Foto')){ 
             Storage::delete($activo->Foto);
