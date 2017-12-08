@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Colaborador;
 use App\User;
+use App\Rol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -28,7 +29,7 @@ class UsuariosController extends Controller
         $colaboradores = DB::table('colaboradores')
         ->join('users','colaboradores.user_id', '=','users.id')
         ->join('roles','users.roles_id', '=', 'roles.id')
-        ->select('users.*','colaboradores.*','roles.*')
+        ->select('users.*','roles.*','colaboradores.*')
         ->where('users.Estado','=','1') 
         ->paginate(10);
         
@@ -140,9 +141,13 @@ class UsuariosController extends Controller
     {
         $colaborador = Colaborador::find($id);
         $usuario = User::find($colaborador->user_id);
+        $rol = Rol::find($usuario->roles_id);
+        $rol->user()->associate($usuario);
         $colaborador->user()->associate($usuario);
-        
-         return view('/Usuario/editar', compact('colaborador','usuario'));        
+
+        $roles= DB::table('roles')->pluck('Rol','id');
+       
+      return view('/Usuario/editar', compact('colaborador','usuario','rol'),[ 'roles' => $roles]);        
     }
 
     /**
@@ -156,6 +161,7 @@ class UsuariosController extends Controller
     {         
         $colaborador = Colaborador::find($id);        
         $usuario = User::find($colaborador->user_id);
+        $rol = Rol::find($usuario->roles_id);
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -199,7 +205,7 @@ class UsuariosController extends Controller
         $usuario->Apellido = request('Apellido');
         $usuario->email = request('email');
         $usuario->password = bcrypt(request('password'));
-        $usuario->Rol = request('Rol');
+        $usuario->roles_id = request('roles');
         $usuario->save();
         $colaborador->Cedula = request('Cedula');
         $colaborador->PuestoDeTrabajo = request('PuestoDeTrabajo');
@@ -266,7 +272,8 @@ class UsuariosController extends Controller
     public function filter(){
         $colaboradores = DB::table('colaboradores')
         ->join('users','colaboradores.user_id', '=','users.id')
-        ->select('users.*','colaboradores.*')
+        ->join('roles','users.roles_id', '=', 'roles.id')        
+        ->select('users.*','roles.*','colaboradores.*')
         ->where('users.Estado','=','0') 
         ->paginate(20);
         
