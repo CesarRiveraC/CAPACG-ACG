@@ -26,7 +26,7 @@
         <dd id="lblemail"></dd>
         <br>
 
-        <dt>Rol:</dt>
+        <dt>Permisos:</dt>
         <dd id="lblRol"></dd>
         <br>
 
