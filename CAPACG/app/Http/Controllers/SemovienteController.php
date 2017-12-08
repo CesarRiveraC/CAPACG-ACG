@@ -126,7 +126,7 @@ class SemovienteController extends Controller
         $tipo= Tipo:: find($activo->tipo_id);
         $activo->dependencia()->associate($dependencia);
         $activo->tipo()->associate($tipo);
-        $sector= Sector:: find($activo->tipo_id);
+        $sector= Sector:: find($activo->sector_id);
         $activo->sector()->associate($sector);
         return response()->json(['semoviente'=>$semoviente]);        
 

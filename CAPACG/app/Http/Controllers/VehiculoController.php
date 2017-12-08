@@ -151,7 +151,7 @@ class VehiculoController extends Controller
         $inmueble->activo()->associate($activo);
         $activo->dependencia()->associate($dependencia);
         $activo->tipo()->associate($tipo);
-        $sector= Sector:: find($activo->tipo_id);
+        $sector= Sector:: find($activo->sector_id);
         $activo->sector()->associate($sector);
         
         return response()->json(['vehiculo'=>$vehiculo]);        
