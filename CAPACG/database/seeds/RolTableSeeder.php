@@ -11,23 +11,22 @@ class RolTableSeeder extends Seeder
      */
     public function run()
     {
-    //rol con mas permisos en el sistema
+        //rol con mas permisos en el sistema
         DB::table('roles')->insert([
-            'Rol' =>'Administrador',
-            
+            'Rol' => 'Administrador',
 
         ]);
 
         DB::table('roles')->insert([
-            'Rol' =>'Estandar',
-                
+            'Rol' => 'Estandar',
+
         ]);
 
-    //rol con permisos de colaborador(ver activos a cargo)
-            DB::table('roles')->insert([
-            'Rol' =>'Colaborador',
-                
+        //rol con permisos de colaborador(ver activos a cargo)
+        DB::table('roles')->insert([
+            'Rol' => 'Colaborador',
+
         ]);
-        
+
     }
 }
