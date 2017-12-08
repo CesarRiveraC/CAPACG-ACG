@@ -235,7 +235,7 @@ class InfraestructuraController extends Controller
         $activo->dependencia()->associate($dependencia);
         $tipo = Tipo::find($activo->tipo_id);
         $activo->tipo()->associate($tipo);
-        $sector= Sector:: find($activo->tipo_id);   
+        $sector= Sector:: find($activo->sector_id);   
         $activo->sector()->associate($sector);
         return response()->json(['infraestructura'=>$infraestructura]);
 
