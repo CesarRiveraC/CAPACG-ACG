@@ -120,11 +120,14 @@ class UsuariosController extends Controller
      */
     public function show($id)
     {
+
         $colaborador = Colaborador::find($id);
         $usuario = User::find($colaborador->user_id);
+        $rol = Rol::find($usuario->roles_id);
+        $rol->user()->associate($usuario);
         $colaborador->user()->associate($usuario);
 
-        return response()->json(['colaborador' => $colaborador]);
+        return response()->json(['colaborador' => $colaborador,'rol'=>$rol]);
 
     }
 

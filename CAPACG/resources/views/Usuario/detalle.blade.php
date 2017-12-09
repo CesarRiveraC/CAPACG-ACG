@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Detalle de Usuarios</div>
 
-                <div class="panel-body">                     
+                <div class="panel-body">
 
                      <dl class="dl-horizontal">
                       <dt>Nombre</dt>
@@ -25,11 +25,6 @@
                       <dt>Estado</dt>
                       <dd>{{$colaborador->usuario->Estado}}</dd>
                         <br>
-                      {{--  <dt>Foto</dt>
-                      <dd><a  href="{{ asset('storage/pictures/'.$inmueble->activo->Foto) }}"  >
-                       <img src="{{ asset('storage/pictures/'.$inmueble->activo->Foto) }}" class="img-responsive" alt="Foto" height="300" width="300"> 
-                       </a></dd>
-                        <br>  --}}
                       <dt>Cédula</dt>
                       <dd>{{$colaborador->Cedula}}</dd>
                         <br>
@@ -50,9 +45,7 @@
                              x</button></dt>
                     </dl>
                     <div class="form-group" align = "center"></div>
-                            
-                            
-                            
+
                         </div>
 
                 </div>
