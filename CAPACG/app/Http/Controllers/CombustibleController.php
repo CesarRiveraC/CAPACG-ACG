@@ -227,23 +227,25 @@ class CombustibleController extends Controller
         return view('combustible/listar',compact('combustibles'));
     }
 
-    
     public function excel(){
         
-                 Excel::create('Reporte Facturas de Combustible', function($excel) {
-          
-                     $excel->sheet('Facturas', function($sheet) {   
-                          $combustibles = DB::table('combustibles')
-                          ->select('id','NoVaucher','Monto','Numero',
-                         'Fecha','Estado','Kilometraje','LitrosCombustible'
-                         ,'FuncionarioQueHizoCompra','Dependencia','Foto','CodigoDeAccionDePlanPresupuesto')
-                         ->where('Estado','=','1') //cambiar el estado para generar el reporte
-                         ->get();
-         
-                         $combustibles = json_decode(json_encode($combustibles),true);
-                         $sheet->freezeFirstRow();
-                         $sheet->fromArray($combustibles);
-                     });
-                 })->export('xls');
+        Excel::create('Facturas combustibles', function($excel) {
+            
+                       $excel->sheet('Activos', function($sheet) {
+            
+                            $combustibles = DB::table('combustibles')
+                         //  ->join('colaboradores','combustibles.colaborador_id', '=','colaboradores.id')
+                           ->join('dependencias','combustibles.dependencia_id', '=','dependencias.id')
+                           ->select('combustibles.id','combustibles.NoVaucher','combustibles.Monto','combustibles.Numero','combustibles.Fecha','dependencias.Dependencia',
+                           'combustibles.Kilometraje','combustibles.LitrosCombustible','combustibles.FuncionarioQueHizoCompra','combustibles.CodigoDeAccionDePlanPresupuesto')
+                           ->get();
+           
+                           $combustibles = json_decode(json_encode($combustibles),true);
+                           $sheet->freezeFirstRow();
+                           $sheet->fromArray($combustibles);
+            
+                       });
+                   })->export('xls');
              }
 }
+
