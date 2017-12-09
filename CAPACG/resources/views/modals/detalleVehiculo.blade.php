@@ -14,6 +14,11 @@
         <div class="modal-body">
           <dl class="dl-horizontal">
 
+
+          <dt>Placa Vehículo</dt>
+        <dd id="lblPlaca1"></dd>
+        <br>
+        
         @include('partials.detalle')
         
         <dt>Serie</dt>
@@ -41,9 +46,7 @@
         <dd id="lblEstadoActivo"></dd>
         <br>
 
-        <dt>Placa Vehículo</dt>
-        <dd id="lblPlaca1"></dd>
-        <br>
+       
         
 
         </div>

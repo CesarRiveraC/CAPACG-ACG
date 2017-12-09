@@ -177,7 +177,7 @@ class InfraestructuraController extends Controller
             'SubPrograma.required' => 'Debe definir el subprograma',
             'Color.required' => 'Debe definir el color',            
             'Dependencia.required' => 'Debe definir la dependencia',
-            'NumeroFinca.required' => 'Debe definir el numero de finca',
+            'NumeroFinca.required' => 'Debe definir el nùmero de finca',
             'AreaConstruccion.required' => 'Debe definir el área de construcción',
             'AreaTerreno.required' => 'Debe definir el área del terreno',
             'AnoFabricacion.required' => 'Debe definir el año de fabricación',
@@ -246,19 +246,20 @@ class InfraestructuraController extends Controller
     	$infraestructura = Infraestructura::find($id);
         $activo = Activo::find($infraestructura->activo_id);
         $infraestructura->activo()->associate($activo);
-        $Dependencias= Dependencia:: all();
-        $dependencias= Dependencia::find($activo->dependencia_id);
-        $Tipos= Tipo:: all();
-        $tipos= Tipo:: find($activo->dependencia_id);;
-        //$tipos= Tipo:: all();
-        $Sectores= Sector:: all();
-        $sectores= Sector:: find($activo->sector_id);;
-        //$infraestructura = DB::table('infraestructuras')
-        //->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
-        //->select('activos.*', 'infraestructuras.*')
-        //->get();
-        //return response()->json(['infraestructura'=>$infraestructura]);
-        return view('/infraestructura/editar',compact('infraestructura','dependencias','tipos','Dependencias','Tipos','Sectores','sectores'));
+        $Dependencia = Dependencia::find($activo->dependencia_id);
+        $activo->dependencia()->associate($Dependencia);
+        $tipo = Tipo::find($activo->tipo_id);
+        $activo->tipo()->associate($tipo);
+        $sector = Sector::find($activo->sector_id);
+        $activo->sector()->associate($sector);
+
+        $infraestructura->activo()->associate($activo);
+
+        $Dependencias = DB::table('dependencias')->pluck('Dependencia', 'id');
+        $Tipos = DB::table('tipos')->pluck('Tipo', 'id');
+        $Sectores = DB::table('sectores')->pluck('Sector', 'id');
+
+        return view('/infraestructura/editar', compact('infraestructura', 'activo'), ['Dependencias' => $Dependencias,'Tipos'=>$Tipos,'Sectores'=>$Sectores]);
     }
     
     public function update($id, Request $request)
@@ -268,13 +269,10 @@ class InfraestructuraController extends Controller
 
         $validator = Validator::make($request->all(), [
             'Placa' => 'required|unique:activos,Placa,'.$activo->id,
-            'Descripcion' => 'required',
-            'TipoActivo' => 'required', 
-            'Sector' => 'required',                        
+            'Descripcion' => 'required',                     
             'Programa' => 'required',
             'SubPrograma' => 'required',
             'Color' => 'required',
-            'Dependencia' => 'required',
             'NumeroFinca' => 'required',         
             'AreaConstruccion' => 'required',
             'AreaTerreno' => 'required',        
@@ -285,13 +283,10 @@ class InfraestructuraController extends Controller
             'Placa.required' => 'Debe definir la placa',
             'Placa.unique' => 'La placa ya está en uso', 
             'Descripcion.required' => 'Debe definir la descripción',
-            'Sector.required' => 'Debe definir el sector',  
-            'TipoActivo.required' => 'Debe definir la categoría del activo',                        
             'Programa.required' => 'Debe definir el programa',            
             'SubPrograma.required' => 'Debe definir el subprograma',
             'Color.required' => 'Debe definir el color',            
-            'Dependencia.required' => 'Debe definir la dependencia',
-            'NumeroFinca.required' => 'Debe definir el numero de finca',
+            'NumeroFinca.required' => 'Debe definir el nùmero de finca',
             'AreaConstruccion.required' => 'Debe definir el área de construcción',
             'AreaTerreno.required' => 'Debe definir el área del terreno',
             'AnoFabricacion.required' => 'Debe definir el año de fabricación',
@@ -304,15 +299,14 @@ class InfraestructuraController extends Controller
                          ->withInput();
      }
      else{
-    
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
-        $activo->sector_id = $request['Sector'];
         $activo->Programa = request('Programa');
+        $activo->tipo_id = request('Tipos');
+        $activo->sector_id = request('Sectores');
         $activo->SubPrograma = request('SubPrograma');
         $activo->Color = request('Color');
-        $activo->dependencia_id = $request['Dependencia'];
-        $activo->tipo_id = $request['TipoActivo'];
+        $activo->dependencia_id = request('Dependencias');
        
         if ($request->hasFile('Foto')){ 
             Storage::delete($activo->Foto);

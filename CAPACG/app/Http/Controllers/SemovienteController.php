@@ -137,15 +137,20 @@ class SemovienteController extends Controller
     	$semoviente = Semoviente::find($id);
         $activo = Activo::find($semoviente->activo_id);
         $semoviente->activo()->associate($activo);
-        $Dependencias= Dependencia:: all();
-        $dependencias= Dependencia::find($activo->dependencia_id);
-        $Tipos= Tipo:: all();
-        $tipos= Tipo:: find($activo->tipo_id);
-        $Sectores= Sector:: all();
-        $sectores= Sector:: find($activo->sector_id);
+        $Dependencia = Dependencia::find($activo->dependencia_id);
+        $activo->dependencia()->associate($Dependencia);
+        $tipo = Tipo::find($activo->tipo_id);
+        $activo->tipo()->associate($tipo);
+        $sector = Sector::find($activo->sector_id);
+        $activo->sector()->associate($sector);
 
-        return view('/semoviente/editar',compact('semoviente','dependencias','tipos','Dependencias','Tipos','Sectores','sectores'));
-   
+        $semoviente->activo()->associate($activo);
+
+        $Dependencias = DB::table('dependencias')->pluck('Dependencia', 'id');
+        $Tipos = DB::table('tipos')->pluck('Tipo', 'id');
+        $Sectores = DB::table('sectores')->pluck('Sector', 'id');
+
+        return view('/semoviente/editar', compact('semoviente', 'activo'), ['Dependencias' => $Dependencias,'Tipos'=>$Tipos,'Sectores'=>$Sectores]);
     }
     
     public function update($id, Request $request)
@@ -156,12 +161,9 @@ class SemovienteController extends Controller
         $validator = Validator::make($request->all(), [
             'Placa' => 'required|unique:activos,Placa,'.$activo->id,
             'Descripcion' => 'required',
-            'TipoActivo' => 'required',                        
             'Programa' => 'required',
-            'Sector' => 'required',
             'SubPrograma' => 'required',
             'Color' => 'required',
-            'Dependencia' => 'required',
             'Raza' => 'required',         
             'Edad' => 'required',
             'Peso' => 'required',        
@@ -171,13 +173,10 @@ class SemovienteController extends Controller
         $messages = [
             'Placa.required' => 'Debe definir el fierro',
             'Placa.unique' => 'Fierro ya está en uso', 
-            'Descripcion.required' => 'Debe definir la descripción',
-            'TipoActivo.required' => 'Debe definir la categoría del activo',                        
+            'Descripcion.required' => 'Debe definir la descripción',                       
             'Programa.required' => 'Debe definir el programa',  
-            'Sector.required' => 'Debe definir el sector',          
             'SubPrograma.required' => 'Debe definir el subprograma',
             'Color.required' => 'Debe definir el color',            
-            'Dependencia.required' => 'Debe definir la dependencia',
             'Raza.required' => 'Debe definir la raza',
             'Edad.required' => 'Debe definir la edad',
             'Peso.required' => 'Debe definir el peso',
@@ -194,12 +193,12 @@ class SemovienteController extends Controller
 
         $activo->Placa = request('Placa');
         $activo->Descripcion = request('Descripcion');
-        $activo->sector_id = request('Sector');
+        $activo->sector_id = request('Sectores');
         $activo->Programa = request('Programa');
-        $activo->tipo_id = request('TipoActivo');
+        $activo->tipo_id = request('Tipos');
         $activo->SubPrograma = request('SubPrograma');
         $activo->Color = request('Color');  
-        $activo->dependencia_id = request('Dependencia');
+        $activo->dependencia_id = request('Dependencias');
         if ($request->hasFile('Foto')){ 
             Storage::delete($activo->Foto);
 

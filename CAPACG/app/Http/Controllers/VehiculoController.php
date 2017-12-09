@@ -186,12 +186,10 @@ class VehiculoController extends Controller
             $validator = Validator::make($request->all(), [
                 'Placa' => 'required|unique:activos,Placa,'.$activo->id,
                 'PlacaVehiculo' => 'required|unique:vehiculos,PlacaVehiculo,'.$vehiculo->id,
-                'Descripcion' => 'required',
-                'TipoActivo' => 'required',                        
+                'Descripcion' => 'required',                      
                 'Programa' => 'required',
                 'SubPrograma' => 'required',
                 'Color' => 'required',
-                'Dependencia' => 'required',
                 'Serie' => 'required',         
                 'Marca' => 'required',
                 'Modelo' => 'required',        
@@ -207,12 +205,10 @@ class VehiculoController extends Controller
                 'Placa.unique' => 'La placa ya está en uso', 
                 'PlacaVehiculo.required' => 'Debe definir la placa',
                 'PlacaVehiculo.unique' => 'La placa ya está en uso', 
-                'Descripcion.required' => 'Debe definir la descripción',
-                'TipoActivo.required' => 'Debe definir la categoría del activo',                        
+                'Descripcion.required' => 'Debe definir la descripción',                       
                 'Programa.required' => 'Debe definir el programa',            
                 'SubPrograma.required' => 'Debe definir el subprograma',
-                'Color.required' => 'Debe definir el color',            
-                'Dependencia.required' => 'Debe definir la dependencia',
+                'Color.required' => 'Debe definir el color',        
                 'Serie.required' => 'Debe definir la serie',
                 'Marca.required' => 'Debe definir la marca',
                 'Modelo.required' => 'Debe definir el modelo',
@@ -233,11 +229,11 @@ class VehiculoController extends Controller
             $activo->Placa = request('Placa');
             $activo->Descripcion = request('Descripcion');
             $activo->Programa = request('Programa');
-            $activo->sector_id = request('Sector');
-            $activo->tipo_id = request('TipoActivo');
+            $activo->sector_id = request('Sectores');
+            $activo->tipo_id = request('Tipos');
             $activo->SubPrograma = request('SubPrograma');
             $activo->Color = request('Color');      
-            $activo->dependencia_id = request('Dependencia');
+            $activo->dependencia_id = request('Dependencias');
             if ($request->hasFile('Foto')){ 
                 Storage::delete($activo->Foto);
     

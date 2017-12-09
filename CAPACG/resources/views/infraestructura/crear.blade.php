@@ -32,6 +32,12 @@
 
                             <div class="col-md-6">
                                 <input id="NumeroFinca" type="text" class="form-control" name="NumeroFinca" value="{{ old('NumeroFinca') }}" required autofocus>    
+                            
+                                @if ($errors->has('NumeroFinca'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('NumeroFinca') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -40,6 +46,13 @@
 
                             <div class="col-md-6">
                                 <input id="AreaConstruccion" type="text" class="form-control" name="AreaConstruccion" value="{{ old('AreaConstruccion') }}" required autofocus>                               
+                            
+                            
+                                @if ($errors->has('AreaConstruccion'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('AreaConstruccion') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -48,6 +61,12 @@
 
                             <div class="col-md-6">
                                 <input id="AreaTerreno" type="text" class="form-control" name="AreaTerreno" value="{{ old('AreaTerreno') }}" required>                               
+                            
+                                @if ($errors->has('AreaTerreno'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('AreaConstruccion') }}</strong>
+                                    </span>
+                                @endif
                             </div>  
                         </div>
 
@@ -58,13 +77,19 @@
 
                             <div class="col-md-6">
                                 <input id="AnoFabricacion" type="text" class="form-control" name="AnoFabricacion" value="{{ old('AnoFabricacion') }}" required>
+                           
+                                @if ($errors->has('AnoFabricacion'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('AnoFabricacion') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         
                         <div class="col-md-8">
                         <div class="form-group" align = "center"></div>
-                            <button type="submit" class="btn btn-success"> 
+                            <button type="submit" formnovalidate class="btn btn-success" class="btn btn-success"> 
                             <i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar </button>
                             <a href="/infraestructuras" class="btn btn-default"> 
                             <i class="fa fa-times" aria-hidden="true"></i> Cancelar </a>

@@ -45,47 +45,24 @@
             
     
                         <div class="form-group{{ $errors->has('Sector') ? ' has-error' : '' }}">
-                            <label for="Sector" class="col-md-4 control-label">Sector</label>
-                            <div class="col-md-6">
-                            <select name="Sector" id="sector_id" class="form-control" required>
-                                
-                            <option value="{{ $sectores->id }}">{{$sectores->Sector}}</option>
-                            @foreach($Sectores as $sector)
-
-                            <option value="{{$sector['id']}}">{{$sector['Sector']}}</option>
-                                @endforeach
-                            </select>
-
-                            
-                            @if ($errors->has('Sector'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('Sector') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                   
-
-
-                        <div class="form-group{{ $errors->has('TipoActivo') ? ' has-error' : '' }}">
-                        <label for="TipoActivo" class="col-md-4 control-label">Categoría</label>
+                        <label for="Sectores" class="col-md-4 control-label">Sector</label>
                         <div class="col-md-6">
-                        <select name="TipoActivo" id="tipoActivo_id" class="form-control" required>
                             
-                        <option value="{{ $semoviente->activo->tipo_id }}">{{$tipos->Tipo}}</option
-                        @foreach($Tipos as $tipo)
-                                <option value="{{$tipo['id']}}">{{$tipo['Tipo']}}</option>
-                            @endforeach
-                        </select>
+                        {!! Form::select('Sectores', $Sectores, $activo->sector_id, ['id' => 'Sector', 'class'=>'form-control'])!!}
 
                         
-                        @if ($errors->has('TipoActivo'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('TipoActivo') }}</strong>
-                                    </span>
-                                @endif
                         </div>
                     </div>
+
+                    <div class="form-group{{ $errors->has('TipoActivo') ? ' has-error' : '' }}">
+							<label for="TipoActivo" class="col-md-4 control-label">Categoría</label>
+							<div class="col-md-6">
+								
+							{!! Form::select('Tipos', $Tipos, $activo->tipo_id, ['id' => 'Tipo', 'class'=>'form-control'])!!}
+
+
+							</div>
+						</div>
 
                         <div class="form-group{{ $errors->has('Programa') ? ' has-error' : '' }}">
                             <label for="Programa" class="col-md-4 control-label">Programa</label>
@@ -139,24 +116,7 @@
                         <div class="form-group{{ $errors->has('Dependencia') ? ' has-error' : '' }}">
                             <label for="Dependencia" class="col-md-4 control-label">Dependencia</label>
                             <div class="col-md-6">
-                            <select name="Dependencia" id="dependencia_id" class="form-control" required>
-                                
-                            <option value="{{ $dependencias->id }}">{{$dependencias->Dependencia}}</option>
-                            @foreach($Dependencias as $dependencia)
-
-                          
-                            <option value="{{$dependencia['id']}}">{{$dependencia['Dependencia']}}</option>
-                         
-                                  
-                                @endforeach
-                            </select>
-
-                            
-                            @if ($errors->has('Dependencia'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('Dependencia') }}</strong>
-                                    </span>
-                                @endif
+                            {!! Form::select('Dependencias', $Dependencias, $activo->dependencia_id, ['id' => 'Dependencias', 'class'=>'form-control'])!!}
                             </div>
                         </div>
                    
