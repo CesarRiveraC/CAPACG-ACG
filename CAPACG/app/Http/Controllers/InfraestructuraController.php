@@ -115,6 +115,31 @@ class InfraestructuraController extends Controller
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
     }
 
+    public function filterSector(Request $request)
+    {
+
+        $name = $request->input('SectorFiltrar');
+        $buscar = $request->input('BuscarSector');
+        if($buscar != null){
+            $infraestructuras = DB::table('infraestructuras')
+            ->join('activos','infraestructuras.activo_id', '=','activos.id')
+            ->select('activos.*','infraestructuras.*')
+            ->Where([['activos.sector_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','1']])
+            ->paginate(10);
+        }
+        else{
+            $infraestructuras = DB::table('infraestructuras')
+            ->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
+            ->select('activos.*', 'infraestructuras.*')
+            ->where([['activos.sector_id', '=', $name], ['activos.Identificador', '=', '1']])
+
+            ->paginate(10);
+        }
+        
+
+        return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
+    }
+
     public function filterDate(Request $request){
         
         $desde = $request->input('Desde');

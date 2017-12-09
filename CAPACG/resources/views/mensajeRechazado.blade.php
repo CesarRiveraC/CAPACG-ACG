@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+        <br>
             <div class="panel panel-default">
                 <div class="panel-body">    
                     @if (session('status'))
@@ -11,7 +12,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    No tiene suficientes permisos para acceder al recurso
+                    <p>No tiene suficientes permisos para acceder al recurso</p>
+                    <a href="javascript:history.back(-1);" title="Ir a la pagina anterior">Volver</a>
                 </div>
             </div>
         </div>

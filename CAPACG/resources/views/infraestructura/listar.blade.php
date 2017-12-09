@@ -11,6 +11,7 @@
 @include('modals.filtrarDependencia')
 @include('modals.filtrarTipo')
 @include('modals.filtrarFecha')
+@include('modals.filtrarSector')
 
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
@@ -41,6 +42,9 @@
 
             <li><a class="filtrarFecha" href="" data-toggle="modal" data-target="#FiltrarFecha">
             <i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a></li>
+
+            <li><a class="filtrarSector" href="" data-toggle="modal" data-target="#FiltrarSector">
+			<i class="fa fa-location-arrow" aria-hidden="true"></i> Sector</a></li>
             
         </ul>
         </div>

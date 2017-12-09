@@ -342,12 +342,25 @@ class InmuebleController extends Controller
     {
 
         $name = $request->input('DependenciaFiltrar');
-        $inmuebles = DB::table('inmuebles')
+        $buscar = $request->input('BuscarDependencia');
+
+        if($buscar != null){
+            $inmuebles = DB::table('inmuebles')
+            ->join('activos','inmuebles.activo_id', '=','activos.id')
+            ->select('activos.*','inmuebles.*')
+            ->Where([['activos.dependencia_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','2']])
+            ->paginate(10);
+
+        }
+        else{
+            $inmuebles = DB::table('inmuebles')
             ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
             ->select('activos.*', 'inmuebles.*')
             ->where([['activos.dependencia_id', '=', $name], ['activos.Identificador', '=', '2']])
-        //->where('activos.dependencia_id','=', $name)
+       
             ->paginate(10);
+        }
+        
 
         return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }
@@ -356,14 +369,26 @@ class InmuebleController extends Controller
     {
 
         $name = $request->input('TipoFiltrar');
+        $buscar = $request->input('BuscarTipo');
 
-        $inmuebles = DB::table('inmuebles')
+        if($buscar =! null){
+            $inmuebles = DB::table('inmuebles')
+            ->join('activos','inmuebles.activo_id', '=','activos.id')
+            ->select('activos.*','inmuebles.*')
+            ->Where([['activos.tipo_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','2']])
+            ->paginate(10);
+        }
+        else{
+            $inmuebles = DB::table('inmuebles')
             ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
             ->select('activos.*', 'inmuebles.*')
             ->where([['activos.tipo_id', '=', $name], ['activos.Identificador', '=', '2']])
 
             ->paginate(10);
 
+        }
+
+       
         return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }
 
@@ -394,13 +419,24 @@ class InmuebleController extends Controller
     {
 
         $name = $request->input('SectorFiltrar');
+        $buscar = $request->input('BuscarSector');
 
-        $inmuebles = DB::table('inmuebles')
+        if($buscar != null){
+            $inmuebles = DB::table('inmuebles')
+            ->join('activos','inmuebles.activo_id', '=','activos.id')
+            ->select('activos.*','inmuebles.*')
+            ->Where([['activos.sector_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','2']])
+            ->paginate(10);
+        }
+        else{
+            $inmuebles = DB::table('inmuebles')
             ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
             ->select('activos.*', 'inmuebles.*')
             ->where([['activos.sector_id', '=', $name], ['activos.Identificador', '=', '2']])
 
             ->paginate(10);
+        }
+        
 
         return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }

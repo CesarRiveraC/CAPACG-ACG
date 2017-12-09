@@ -174,34 +174,41 @@ $(function(){
 
     });
 });
-// $(function () {
-//     $('.estado').click(function (e) {
-//       $('#Crear').modal();
-//     });
-//   });
 
-//   $(function (){
-//     $('.editar').click(function (e){
-//         let id = $(this).attr('data-editar');
-//         let url = `/infraestructuras/${id}/edit`;
-//         $.get(url, function (result) {
-//             // alert(result.infraestructura.activo.Placa);
-//             $('#role-form1').attr('action','/infraestructuras/'+result.infraestructura.id);
-//             $('#input').attr('value',"PUT");
-//             // $('#exampleModalLabel1').text("Holis");
-//             $('#Placa1').val(result.infraestructura.activo.Placa);
-//             $('#Descripcion1').val(result.infraestructura.activo.Descripcion);
-//             $('#Programa1').val(result.infraestructura.activo.Programa);
-//             $('#SubPrograma1').val(result.infraestructura.activo.SubPrograma);
-//             $('#Color1').val(result.infraestructura.activo.Color);
-//             // $('#Foto').attr('src',"storage/pictures/".concat(result.infraestructura.activo.Foto));
-//             $('#NumeroFinca1').val(result.infraestructura.NumeroFinca);
-//             $('#AreaConstruccion1').val(result.infraestructura.AreaConstruccion);
-//             $('#AreaTerreno1').val(result.infraestructura.AreaTerreno);
-//             $('#AnoFabricacion1').val(result.infraestructura.AnoFabricacion);
-//         }).fail(function () {
-//             alert('algo salio mal');
-//         });
-//         $('#Editar').modal();
-//     });
-// });
+$(function(){
+    $('.filtrarSector').click(function (e) {
+        
+        
+
+        console.log(e);                        
+        
+                $.get('/sectores/create/',function(data){
+        
+                    $('#SectorFiltrar').empty();
+        
+                    $('#SectorFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Sector</option>");
+                   
+                    $('#form-sector').attr('action','/infraestructuras/filterSector');
+                    
+                     var cont = 0;  
+                     $.each(data, function(index, element){
+                        
+                        cont = element.length;
+                        
+                     
+                    });                                      
+                  
+                    for (var i = 0, l = cont; i< l; i++){
+                        
+                        $('#SectorFiltrar').append('<option value="'+data.sectores[i].id+'">'+data.sectores[i].Sector+'</option>');                       
+                    }
+                   
+                });
+        
+        
+               
+      });
+
+});
+
+

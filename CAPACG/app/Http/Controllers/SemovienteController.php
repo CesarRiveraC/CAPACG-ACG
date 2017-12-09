@@ -31,7 +31,7 @@ class SemovienteController extends Controller
         ->select('activos.*','semovientes.*')
         ->where([['activos.Estado','=','1'],['activos.Identificador','=','3']])
         //->where('activos.Estado','=','1') 
-        ->paginate(20);
+        ->paginate(10);
 
         
         return view('/semoviente/listar', ['semovientes' => $semovientes]);
@@ -251,7 +251,7 @@ class SemovienteController extends Controller
         // ->where('activos.Estado','=','1')
         ->select('activos.*','semovientes.*')
         ->where([['activos.Estado','=','1'],['activos.Identificador','=','3']])
-        ->paginate(20);
+        ->paginate(10);
         return view('semoviente/listar',compact('semovientes'));
     }
 
@@ -264,7 +264,7 @@ class SemovienteController extends Controller
            ->join('activos','semovientes.activo_id', '=','activos.id')
            ->select('activos.*','semovientes.*')
            ->where([['activos.Estado','=','0'],['activos.Identificador','=','3']])
-           ->paginate(20);
+           ->paginate(10);
     
            return view('/semoviente/listar', ['semovientes' => $semovientes]);
        }
@@ -272,12 +272,25 @@ class SemovienteController extends Controller
        public function filterDependencia(Request $request){
            
            $name = $request->input('DependenciaFiltrar');
-           $semovientes = DB::table('semovientes')
-           ->join('activos','semovientes.activo_id', '=','activos.id')
-           ->select('activos.*','semovientes.*')
-           ->where([['activos.dependencia_id','=', $name],['activos.Identificador','=','3']])
-        //    ->where('activos.dependencia_id','=', $name)  
-           ->paginate(20);
+           $buscar = $request->input('BuscarDependencia');
+
+           if($buscar){
+               
+                $semovientes = DB::table('semovientes')
+                ->join('activos','semovientes.activo_id', '=','activos.id')
+                ->select('activos.*','semovientes.*')
+                ->Where([['activos.dependencia_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','3']])
+                ->paginate(10);
+           }
+           else{
+            $semovientes = DB::table('semovientes')
+            ->join('activos','semovientes.activo_id', '=','activos.id')
+            ->select('activos.*','semovientes.*')
+            ->where([['activos.dependencia_id','=', $name],['activos.Identificador','=','3']])
+         //    ->where('activos.dependencia_id','=', $name)  
+            ->paginate(10);
+           }
+           
            
            return view('/semoviente/listar', ['semovientes' => $semovientes]);
        }
@@ -285,13 +298,24 @@ class SemovienteController extends Controller
        public function filterTipo(Request $request){
            
            $name = $request->input('TipoFiltrar');
+           $buscar = $request->input('BuscarTipo');
+
+           if($buscar != null){
+                $semovientes = DB::table('semovientes')
+                ->join('activos','semovientes.activo_id', '=','activos.id')
+                ->select('activos.*','semovientes.*')
+                ->Where([['activos.tipo_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','3']])
+                ->paginate(10);
+           }
+           else{
+                $semovientes = DB::table('semovientes')
+                ->join('activos','semovientes.activo_id', '=','activos.id')  
+                ->select('activos.*','semovientes.*') 
+            //    ->where('activos.tipo_id','=', $name)  
+                ->where([['activos.tipo_id','=', $name],['activos.Identificador','=','3']])
+                ->paginate(10);
+           }
           
-           $semovientes = DB::table('semovientes')
-           ->join('activos','semovientes.activo_id', '=','activos.id')  
-           ->select('activos.*','semovientes.*') 
-        //    ->where('activos.tipo_id','=', $name)  
-           ->where([['activos.tipo_id','=', $name],['activos.Identificador','=','3']])
-           ->paginate(10);
            
            return view('/semoviente/listar', ['semovientes' => $semovientes]);
        }
@@ -319,14 +343,26 @@ class SemovienteController extends Controller
 
        public function filterSector(Request $request){
         
-        $name = $request->input('TipoSector');
-       
-        $semovientes = DB::table('semovientes')
-        ->join('activos','semovientes.activo_id', '=','activos.id')  
-        ->select('activos.*','semovientes.*') 
-     //    ->where('activos.tipo_id','=', $name)  
-        ->where([['activos.sector_id','=', $name],['activos.Identificador','=','3']])
-        ->paginate(10);
+        $name = $request->input('SectorFiltrar');
+        $buscar = $request->input('BuscarSector');
+
+        if($buscar != null){
+            $semovientes = DB::table('semovientes')
+            ->join('activos','semovientes.activo_id', '=','activos.id')
+            ->select('activos.*','semovientes.*')
+            ->Where([['activos.sector_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','3']])
+            ->paginate(10);
+        }
+        else{
+            $semovientes = DB::table('semovientes')
+            ->join('activos','semovientes.activo_id', '=','activos.id')  
+            ->select('activos.*','semovientes.*') 
+         //    ->where('activos.tipo_id','=', $name)  
+            ->where([['activos.sector_id','=', $name],['activos.Identificador','=','3']])
+            ->paginate(10);
+        }
+
+        
         
         return view('/semoviente/listar', ['semovientes' => $semovientes]);
     }

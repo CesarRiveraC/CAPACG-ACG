@@ -323,14 +323,28 @@ class VehiculoController extends Controller
     public function filterDependencia(Request $request){
         
         $name = $request->input('DependenciaFiltrar');
+        $buscar = $request->input('BuscarDependencia');
+
+        if($buscar != null){
+            $vehiculos = DB::table('vehiculos')
+            ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+            ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+            ->select('activos.*','inmuebles.*','vehiculos.*')
+            ->Where([['activos.dependencia_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','4']])
+             
+            ->paginate(10);
+        }
+        else{
+            $vehiculos = DB::table('vehiculos')
+            ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+            ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+            ->select('activos.*','inmuebles.*','vehiculos.*')
+            ->where([['activos.dependencia_id','=', $name],['activos.Identificador','=','4']])
+            // ->where('activos.dependencia_id','=', $name)   
+            ->paginate(10);
+        }
        
-        $vehiculos = DB::table('vehiculos')
-        ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
-        ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-        ->select('activos.*','inmuebles.*','vehiculos.*')
-        ->where([['activos.dependencia_id','=', $name],['activos.Identificador','=','4']])
-        // ->where('activos.dependencia_id','=', $name)   
-        ->paginate(10);
+        
         
         return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
     }
@@ -338,14 +352,28 @@ class VehiculoController extends Controller
     public function filterTipo(Request $request){
         
         $name = $request->input('TipoFiltrar');
-       
-        $vehiculos = DB::table('vehiculos')
-        ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
-        ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-        ->select('activos.*','inmuebles.*','vehiculos.*')
-        // ->where('activos.tipo_id','=', $name)  
-        ->where([['activos.tipo_id','=', $name],['activos.Identificador','=','4']]) 
-        ->paginate(10);
+        $buscar = $request->input('BuscarTipo');
+
+        if($buscar != null){
+            $vehiculos = DB::table('vehiculos')
+            ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+            ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+            ->select('activos.*','inmuebles.*','vehiculos.*')
+          
+            ->Where([['activos.tipo_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],
+            ['activos.Identificador','=','4']])
+            ->paginate(10);
+        }
+        else{
+            $vehiculos = DB::table('vehiculos')
+            ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+            ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+            ->select('activos.*','inmuebles.*','vehiculos.*')
+            // ->where('activos.tipo_id','=', $name)  
+            ->where([['activos.tipo_id','=', $name],['activos.Identificador','=','4']]) 
+            ->paginate(10);
+        }
+        
         
         return view('/vehiculos/listar', ['vehiculos' => $vehiculos]);
     }
@@ -374,12 +402,25 @@ class VehiculoController extends Controller
     public function filterSector(Request $request){
         
         $name = $request->input('SectorFiltrar');
+        $buscar = $request->input('BuscarSector');
        
-        $vehiculos = DB::table('vehiculos')
-        ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
-        ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-        ->where([['activos.sector_id','=', $name],['activos.Identificador','=','4']])
-        ->paginate(10);
+        if($buscar != null){
+            $vehiculos = DB::table('vehiculos')
+            ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+            ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+            ->Where([['activos.sector_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],
+            ['activos.Identificador','=','4']])
+
+            ->paginate(10);
+        }
+        else{
+            $vehiculos = DB::table('vehiculos')
+            ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+            ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+            ->where([['activos.sector_id','=', $name],['activos.Identificador','=','4']])
+            ->paginate(10);
+        }
+        
         
         return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
     }
