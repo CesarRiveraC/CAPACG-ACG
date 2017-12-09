@@ -18,7 +18,8 @@ class CombustibleController extends Controller
 
     public function __construct()
     {   
-        $this->middleware('Administrador')->except('index');
+        // $this->middleware('Administrador','Estandar')->except('index');
+        $this->middleware('Estandar')->except('show');
     }
     public function index()
     {

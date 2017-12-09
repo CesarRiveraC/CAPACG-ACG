@@ -45,11 +45,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     //todas las rutas de combustibles tienen que estar disponibles para el rol administrador
     //y estandar, aparte de show que tiene que estar para todos
-    Route::get('combustibles/{id}/change','CombustibleController@change');
-    Route::put('combustibles/{id}/updatestate','CombustibleController@updatestate');
-    Route::get('combustibles/search','CombustibleController@search');
-    Route::get('combustibles/excel', 'CombustibleController@excel');
-    Route::resource('combustibles','CombustibleController');
+    
 
     Route::get('vehiculos/filterSector','VehiculoController@filterSector');
     Route::get('vehiculos/filterDate','VehiculoController@filterDate');
@@ -98,7 +94,15 @@ Route::group(['middleware' => 'auth'], function() {
         return view('mensajeRechazado');
     });
 
+    // 
+        Route::get('combustibles/{id}/change','CombustibleController@change');
+        Route::put('combustibles/{id}/updatestate','CombustibleController@updatestate');
+        Route::get('combustibles/search','CombustibleController@search');
+        Route::get('combustibles/excel', 'CombustibleController@excel');
     
+        Route::resource('combustibles','CombustibleController');
+
+    // 
 
     Route::group(['middleware' => 'Administrador'], function(){
         Route::get('usuarios/search','UsuariosController@search');
@@ -117,6 +121,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('colaborador/combustiblesAsignados', 'ColaboradorController@combustiblesAsignados');
 
      //rutas para el rol estandar
+     Route::group(['middleware' => ['Estandar']], function(){
      Route::get('estandar/inmueblesAsignados', 'EstandarController@inmueblesAsignados');
      Route::get('estandar/infraestructurasAsignadas', 'EstandarController@infraestructurasAsignadas');
      Route::get('estandar/semovientesAsignados', 'EstandarController@semovientesAsignados');
@@ -125,7 +130,7 @@ Route::group(['middleware' => 'auth'], function() {
      Route::get('estandar/combustibles', 'EstandarController@combustibles');
      Route::get('estandar/vehiculos', 'EstandarController@vehiculos');
      Route::get('estandar/usuarios', 'EstandarController@usuarios');
-
+    });
      //muchos de los metodos se repiten, el problema es que dependenciendo del usuario
      //se tiene que redirigir a determinada vista
   });
