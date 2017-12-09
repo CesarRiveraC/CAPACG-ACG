@@ -1,4 +1,4 @@
-@extends('colaborador')
+@extends('colaborador.colaborador')
 
 @section('content')
 
@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
         <br>
-   @include('partials.message')
+   
    
         <div class="col-md-8">
         
@@ -36,7 +36,7 @@
                              <tr>
                                 @include('partials.thActivo')
                                 <th>Número Finca</th>
-                                
+                                <th>Opciones</th>
                              </tr>
                       </thead>
                     <tbody>
@@ -52,7 +52,15 @@
                                 
 
                                 <td class="info"> {{$infraestructura->NumeroFinca}} </td>
-                                                            
+                                
+                                <td class="warning"> 
+                                
+
+                                <a class="btn btn-success btn-xs detalleInfraestructura" data-infraestructura = "{{$infraestructura->id}}" >
+                                Detalle <i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                
+                                </td>
                                
                             </tr>
                         @endforeach
@@ -71,5 +79,8 @@
         </div>
 
 
-    
+@include('modals.detalleInfraestructura')  
+
+  <script src="{{ asset('js/infraestructura.js') }}"></script> 
+  
 @endsection

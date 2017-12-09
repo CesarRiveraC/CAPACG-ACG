@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function() {
+    //todas las rutas al metodo show tienen que ser para todos los usuarios, los index son 
+    //solo para administrador
+
     Route::get('infraestructuras/filterSector','InfraestructuraController@filterSector');
     Route::get('infraestructuras/filterDate','InfraestructuraController@filterDate');
     Route::get('infraestructuras/filterTipo','InfraestructuraController@filterTipo');
@@ -39,6 +42,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('semovientes/excel', 'SemovienteController@excel');
     Route::resource('semovientes','SemovienteController');
 
+
+    //todas las rutas de combustibles tienen que estar disponibles para el rol administrador
+    //y estandar, aparte de show que tiene que estar para todos
     Route::get('combustibles/{id}/change','CombustibleController@change');
     Route::put('combustibles/{id}/updatestate','CombustibleController@updatestate');
     Route::get('combustibles/search','CombustibleController@search');
@@ -102,11 +108,34 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('usuarios/excel', 'UsuariosController@excel');
        Route::resource('usuarios','UsuariosController');    
     });
+
+    //rutas para el rol colaborador
+    Route::get('colaborador/inmueblesAsignados', 'ColaboradorController@inmueblesAsignados');
+    Route::get('colaborador/infraestructurasAsignadas', 'ColaboradorController@infraestructurasAsignadas');
+    Route::get('colaborador/semovientesAsignados', 'ColaboradorController@semovientesAsignados');
+    Route::get('colaborador/vehiculosAsignados', 'ColaboradorController@vehiculosAsignados');
+    Route::get('colaborador/combustiblesAsignados', 'ColaboradorController@combustiblesAsignados');
+
+     //rutas para el rol estandar
+     Route::get('estandar/inmueblesAsignados', 'EstandarController@inmueblesAsignados');
+     Route::get('estandar/infraestructurasAsignadas', 'EstandarController@infraestructurasAsignadas');
+     Route::get('estandar/semovientesAsignados', 'EstandarController@semovientesAsignados');
+     Route::get('estandar/vehiculosAsignados', 'EstandarController@vehiculosAsignados');
+     Route::get('estandar/combustiblesAsignados', 'EstandarController@combustiblesAsignados');
+     Route::get('estandar/combustibles', 'EstandarController@combustibles');
+     Route::get('estandar/vehiculos', 'EstandarController@vehiculos');
+     Route::get('estandar/usuarios', 'EstandarController@usuarios');
+
+     //muchos de los metodos se repiten, el problema es que dependenciendo del usuario
+     //se tiene que redirigir a determinada vista
   });
 
-Auth::routes();
+
 Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
 //Route::resource('activos','ActivoController');
+
+//activos asignados a una persona
 
 
 

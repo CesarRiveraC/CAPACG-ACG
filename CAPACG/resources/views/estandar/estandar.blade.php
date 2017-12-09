@@ -61,16 +61,16 @@
 
 
 						<li>
-							<a id="activosDrop" href="/combustibles">
+							<a id="activosDrop" href="/estandar/combustibles">
 								<i class="fa fa-file-text" aria-hidden="true"></i> Combustibles</a>
 						</li>
 
 						<li>
-							<a id="activosDrop" href="/vehiculos">
+							<a id="activosDrop" href="/estandar/vehiculos">
 								<i class="fa fa-car" aria-hidden="true"></i> Vehiculos</a>
 						</li>
 						<li>
-							<a id="activosDrop" href="/usuarios">
+							<a id="activosDrop" href="/estandar/usuarios">
 								<i class="fa fa-users" aria-hidden="true"></i> Usuarios</a>
 						</li>
 						@endif

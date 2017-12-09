@@ -26,7 +26,7 @@
             </span>
           <p><strong>Infraestructuras</strong></p>
           <p>En este módulo se puede ver todos los activos de tipo infraestructura asignados a.</p>
-          <a href="/infraestructuras" class="btn hbtn">Ir al módulo</a>
+          <a href="/colaborador/infraestructurasAsignadas" class="btn hbtn">Ir al módulo</a>
         </div>
       </div>
       <div class="col-sm-4 text-center">
@@ -38,7 +38,7 @@
             </span>
           <p><strong>Inmuebles</strong></p>
           <p>En este módulo se puede ver todos los activos de tipo inmueble asignados a mí.</p>
-          <a href="/inmuebles" class="btn hbtn" >Ir al modulo</a>
+          <a href="colaborador/inmueblesAsignados" class="btn hbtn" >Ir al modulo</a>
         </div>
       </div>
       <div class="col-sm-4 text-center">
@@ -50,7 +50,7 @@
             </span>
           <p><strong>Semovientes</strong></p>
           <p>En este módulo se puede ver todos los activos de tipo semoviente asignados a mí.</p>
-          <a href="/semovientes" class="btn hbtn" >Ir al modulo</a>
+          <a href="colaborador/semovientesAsignados" class="btn hbtn" >Ir al modulo</a>
         </div>
       </div>  
     
@@ -63,7 +63,7 @@
             </span>
           <p><strong>Vehículos</strong></p>
           <p>En este módulo se puede ver todos los activos de tipo vehículo asignados a mí.</p>
-          <a class="btn hbtn" href="/vehiculos">Ir al modulo</a>
+          <a class="btn hbtn" href="colaborador/vehiculosAsignados">Ir al modulo</a>
         </div>
       </div>
       <div class="col-sm-6 text-center">
@@ -75,7 +75,7 @@
             </span>
           <p><strong>Combustibles</strong></p>
           <p>En este modulo se puede ver todas las facturas de combustibles hechas a un vehiculo asignados a mí.</p>
-          <a href="/combustibles" class="btn hbtn" >Ir al modulo</a>
+          <a href="colaborador/combustiblesAsignados" class="btn hbtn" >Ir al modulo</a>
         </div>
       </div>
      
