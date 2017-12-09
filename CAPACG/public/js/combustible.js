@@ -29,11 +29,14 @@ $(function (){
            $('#lblKilometraje').text(result.combustible.Kilometraje);
            $('#lblLitrosCombustible').text(result.combustible.LitrosCombustible);
            $('#lblFuncionarioQueHizoCompra').text(result.combustible.FuncionarioQueHizoCompra);
-           $('#lblDependencia').text(result.combustible.Dependencia);
+           $('#lblDependencia').text(result.combustible.dependencia.Dependencia);
            $('#lblFoto').attr('src',"storage/pictures/".concat(result.combustible.Foto));
            $('#lblCodigoDeAccionDePlanPresupuesto').text(result.combustible.CodigoDeAccionDePlanPresupuesto);
-           $('#lblPlaca').text(result.combustible.inmueble.vehiculo.activo.Placa);
-           $('#lblVehiculo').text('Ver datos Vehículo');
+           $('#lblPlaca').text(result.combustible.vehiculo.PlacaVehiculo);
+           $('#lblModelo').text(result.combustible.vehiculo.inmueble.Modelo);
+           $('#lblMarca').text(result.combustible.vehiculo.inmueble.Marca);
+           $('#lblPlacaActivo').text(result.combustible.vehiculo.inmueble.activo.Placa);
+        //    $('#lblVehiculo').text('Ver datos Vehículo');
            
 
        }).fail(function () {

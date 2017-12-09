@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Combustible;
 use App\Vehiculo;
 use App\Dependencia;
+use App\Inmueble;
+use App\Activo;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Storage;
@@ -106,11 +108,21 @@ class CombustibleController extends Controller
 //}
 
     public function show($id){
+
+        
         $combustible = Combustible::find($id);
+
         $vehiculo = Vehiculo::find($combustible->vehiculo_id);
         $combustible->vehiculo()->associate($vehiculo);
+        $dependencia=Dependencia::find($combustible->dependencia_id);
+        $combustible->dependencia()->associate($dependencia);
+        $inmueble= Inmueble::where("id", "=",$vehiculo->inmueble_id)->first();
+        // $inmueble-> Inmueble::find($vehiculo->inmueble_id);
+        $vehiculo->inmueble()->associate($inmueble);
+        $activo = Activo::find($inmueble->id);
+        $inmueble->activo()->associate($activo);
              
-        return response()->json(['combustible'=>$combustible, 'vehiculo'=> $vehiculo]);
+        return response()->json(['combustible'=>$combustible]);
 
     }
 
