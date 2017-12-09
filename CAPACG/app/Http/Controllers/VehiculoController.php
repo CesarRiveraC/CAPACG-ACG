@@ -91,7 +91,8 @@ class VehiculoController extends Controller
         ]
     );
     if ($validator->fails()) {
-        return redirect('vehiculos/create')
+        // return redirect('vehiculos/create')}
+             return redirect()->back()
                     ->withInput()
                     ->withErrors($validator);
     }
@@ -388,13 +389,16 @@ class VehiculoController extends Controller
          Excel::create('Reporte Vehiculos', function($excel) {
   
              $excel->sheet('Activos', function($sheet) {
-  
+   
                  //$infraestructuras = Activo::all();
                  $vehiculos = DB::table('vehiculos')
                  ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
                  ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa','activos.tipo_id','activos.dependencia_id',
-                 'activos.SubPrograma','activos.Color','inmuebles.Serie','inmuebles.Dependencia'
+                 ->join('tipos','activos.tipo_id', '=','tipos.id')
+                 ->join('sectores','activos.sector_id', '=','sectores.id')
+                 ->join('dependencias','activos.dependencia_id', '=','dependencias.id')
+                 ->select('vehiculos.id','activos.Placa','activos.Descripcion','activos.Programa','sectores.Sector','tipos.Tipo',
+                 'activos.SubPrograma','dependencias.Dependencia','activos.Color','inmuebles.Serie'
                  ,'inmuebles.EstadoUtilizacion', 'inmuebles.EstadoFisico','inmuebles.EstadoActivo',
                  'inmuebles.Marca','inmuebles.Modelo','vehiculos.PlacaVehiculo')
                  ->where([['activos.Estado','=','1'],['activos.Identificador','=','4']]) 

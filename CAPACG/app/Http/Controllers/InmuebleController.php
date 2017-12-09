@@ -411,8 +411,10 @@ class InmuebleController extends Controller
             $excel->sheet('Activos', function ($sheet) {
                 $inmuebles = DB::table('inmuebles')
                     ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-
-                    ->select('activos.id', 'activos.Placa', 'activos.Descripcion', 'activos.Programa', 'tipos.Tipo', 'activos.dependencia_id',
+                    ->join('tipos','activos.tipo_id', '=','tipos.id')
+                     ->join('sectores','activos.sector_id', '=','sectores.id')
+                    ->join('dependencias','activos.dependencia_id', '=','dependencias.id')
+                    ->select('activos.id', 'activos.Placa', 'activos.Descripcion', 'sectores.Sector','activos.Programa', 'tipos.Tipo', 'dependencias.Dependencia',
                         'activos.SubPrograma', 'activos.Color', 'inmuebles.Serie'
                         , 'inmuebles.EstadoUtilizacion', 'inmuebles.EstadoFisico', 'inmuebles.EstadoActivo',
                         'inmuebles.Marca', 'inmuebles.Modelo')

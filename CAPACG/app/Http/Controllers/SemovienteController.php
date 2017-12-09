@@ -341,7 +341,10 @@ class SemovienteController extends Controller
   
                   $semovientes = DB::table('semovientes')
                  ->join('activos','semovientes.activo_id', '=','activos.id')
-                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa','activos.tipo_id','activos.dependencia_id',
+                 ->join('tipos','activos.tipo_id', '=','tipos.id')
+                 ->join('sectores','activos.sector_id', '=','sectores.id')
+                 ->join('dependencias','activos.dependencia_id', '=','dependencias.id')
+                 ->select('activos.id','activos.Placa','activos.Descripcion','sectores.Sector','tipos.Tipo','activos.Programa','dependencias.Dependencia',
                  'activos.SubPrograma','activos.Color','semovientes.Raza','semovientes.Edad'
                  ,'semovientes.Peso')
                  ->where([['activos.Estado','=','1'],['activos.Identificador','=','3']])

@@ -371,7 +371,10 @@ class InfraestructuraController extends Controller
                  //$infraestructuras = Activo::all();
                   $infraestructuras = DB::table('infraestructuras')
                  ->join('activos','infraestructuras.activo_id', '=','activos.id')
-                 ->select('activos.id','activos.Placa','activos.Descripcion','activos.Programa',
+                 ->join('tipos','activos.tipo_id', '=','tipos.id')
+                 ->join('sectores','activos.sector_id', '=','sectores.id')
+                 ->join('dependencias','activos.dependencia_id', '=','dependencias.id')
+                 ->select('activos.id','activos.Placa','activos.Descripcion','sectores.Sector','tipos.Tipo','activos.Programa','dependencias.Dependencia',
                  'activos.SubPrograma','activos.Color','infraestructuras.NumeroFinca','infraestructuras.AreaConstruccion'
                  ,'infraestructuras.AreaTerreno','infraestructuras.AnoFabricacion')
                  ->where([['activos.Estado','=','1'],['activos.Identificador','=','1']]) 
