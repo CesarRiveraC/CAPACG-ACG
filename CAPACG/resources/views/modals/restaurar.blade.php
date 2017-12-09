@@ -1,5 +1,5 @@
 <!-- The Modal -->
-  <div class="modal fade" id="Restaurar">
+  <div class="modal fade" id="restaurar">
     <div class="modal-dialog">
       <div class="modal-content">
 
@@ -16,7 +16,7 @@
         <div class="modal-body">
           
                
-                     ¿Está seguro que desea restaurar el usuario seleccionado?  
+                     ¿Está seguro que desea restaurar el usuario        <dd id="Nombre"></dd>          seleccionado?  
                      <br>
                     
 
@@ -33,4 +33,5 @@
     </div>
     </form>
   </div>
+ 
   

@@ -28,31 +28,43 @@ $(function(){
        let url = `/usuarios/${id}/change`;
 
        $.get(url, function (result) {
+           if (result.colaborador.Estado==0) {
+            $('#titleModal').text("Restaurar");  
+            $('#bodyModal').text("¿Desea restaurar nuevamente este usuario y concederle permisos en el sistema?"); 
+            $('#btnOption').text("Restaurar");
+           } else {
+            $('#titleModal').text("Eliminar");  
+            $('#bodyModal').text("¿Está seguro de eliminar el siguiente registro?"); 
+            $('#btnOption').text("Eliminar");            
+           }
            $('#role-form').attr('action','/usuarios/'+result.colaborador.id+'/updatestate');
                    
        }).fail(function () {
            alert('¡Algo salio mal!');
        });
 
+       setTimeout(function() {
         $('#Estado').modal();
+    }, 880);
     });
 }); 
 
-$(function(){
-    $('.restaurar').click(function(e){
+// $(function(){
+//     $('.restaurar').click(function(e){
       
-       let id = $(this).attr('data-estado');
-       let url = `/usuarios/${id}/change`;
+//        let id = $(this).attr('data-restaurar');
+//        let url = `/usuarios/${id}/change`;
 
-       $.get(url, function (result) {
-         //  $('#Nombre').text(result.colaborador.user.name);
-           $('#role-form').attr('action','/usuarios/'+result.colaborador.id+'/updatestate');
+//        $.get(url, function (result) {
+//            alert(result);
+//            $('#Nombre').text(result.colaborador.user.name);
+//            $('#role-form').attr('action','/usuarios/'+result.colaborador.id+'/updatestate');
                    
-       }).fail(function () {
-           alert('¡Algo salio mal!');
-       });
+//        }).fail(function () {
+//            alert('¡Algo salio mal!');
+//        });
 
-        $('#Restaurar').modal();
-    });
-}); 
+//         $('#Restaurar').modal();
+//     });
+// }); 
 

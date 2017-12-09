@@ -9,14 +9,14 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Eliminar</h4>
+          <h4 class="modal-title" id="titleModal"></h4>
           </div>
         
         <!-- Modal body -->
         <div class="modal-body">
           
                
-                     ¿Está seguro de eliminar el siguiente registro?  
+                     <dd id="bodyModal"></dd>  
                      <br>
                     
 
@@ -25,7 +25,7 @@
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-danger" id="eliminar">Eliminar</a>
+          <button type="submit" class="btn btn-danger" id="btnOption"></a>
           
         </div>
         
