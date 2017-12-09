@@ -19,7 +19,9 @@ class InfraestructuraController extends Controller
     //
     public function __construct()
     {   
-        $this->middleware('Administrador')->except('index');
+        //cambio de index a show ya que es la ruta que tiene
+        //que estar disponible para todos
+        $this->middleware('Administrador')->except('show');
     }
     public function index()
     {
