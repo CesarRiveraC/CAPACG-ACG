@@ -40,6 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('semovientes/filter', 'SemovienteController@filter');
     Route::get('semovientes/{id}/change', 'SemovienteController@change');
     Route::put('semovientes/{id}/updatestate', 'SemovienteController@updatestate');
+    Route::get('semovientes/{semoviente_id}/{user_id}/searchCollaborators', 'SemovienteController@searchCollaborators');
+    Route::put('semovientes/{semoviente_id}/{user_id}/asignCollaborator', 'SemovienteController@asignCollaborator');
     Route::get('semovientes/search', 'SemovienteController@search');
     Route::get('semovientes/excel', 'SemovienteController@excel');
     Route::resource('semovientes', 'SemovienteController');
@@ -54,6 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('vehiculos/filter', 'VehiculoController@filter');
     Route::get('vehiculos/{id}/change', 'VehiculoController@change');
     Route::put('vehiculos/{id}/updatestate', 'VehiculoController@updatestate');
+    Route::get('vehiculos/{vehiculo_id}/{user_id}/searchCollaborators', 'VehiculoController@searchCollaborators');
+    Route::put('vehiculos/{vehiculo_id}/{user_id}/asignCollaborator', 'VehiculoController@asignCollaborator');
     Route::get('vehiculos/search', 'VehiculoController@search');
     Route::get('vehiculos/excel', 'VehiculoController@excel');
     Route::resource('vehiculos', 'VehiculoController');

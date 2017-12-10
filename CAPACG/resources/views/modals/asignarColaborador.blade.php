@@ -15,7 +15,7 @@
 				<div class="modal-body">
 
 
-					<label>¿Está seguro que desea asignar el activo al colaborador</label><label id="NombreUsuario"></label>?
+					<label>¿Está seguro que desea asignar el activo al colaborador </label><label id="NombreUsuario"></label>?
 					<br>
 
 
