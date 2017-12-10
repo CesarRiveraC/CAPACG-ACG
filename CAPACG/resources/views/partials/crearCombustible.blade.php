@@ -1,5 +1,6 @@
 
             <div class="panel panel-default">
+            <br>
                 <div class="panel-heading">Nueva Factura de Combustible</div>
 
                 <div class="panel-body">
@@ -172,5 +173,6 @@
                         </div>
                     </form>
                 </div>
+                <br><br>
             </div>
      

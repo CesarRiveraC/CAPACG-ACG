@@ -1,4 +1,5 @@
 <div class="panel panel-default">
+<br>
                 <div class="panel-heading">Editar Factura De Combustible</div>
 
                 <div class="panel-body">
@@ -110,20 +111,7 @@
                         <div class="form-group{{ $errors->has('Dependencia') ? ' has-error' : '' }}">
                         <label for="Dependencia" class="col-md-4 control-label">Dependencia</label>
                         <div class="col-md-6">
-                        <select name="Dependencia" id="dependencia_id" class="form-control" required>
-                            
-                        <option value="">--Escoja dependencia--</option>
-                        @foreach($dependencias as $dependencia)
-                                <option value="{{$dependencia['id']}}">{{$dependencia['Dependencia']}}</option>
-                            @endforeach
-                        </select>
-
-                        
-                        @if ($errors->has('Dependencia'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('Dependencia') }}</strong>
-                                </span>
-                            @endif
+                        {!! Form::select('Dependencias', $Dependencias, $combustible->dependencia_id, ['id' => 'Dependencias', 'class'=>'form-control'])!!}
                         </div>
                     </div> 
 
@@ -150,22 +138,11 @@
                             </div>
                             </div>
 
-                        <div class="form-group{{ $errors->has('Vehiculo') ? ' has-error' : '' }}">
-                        <label for="Vehiculo" class="col-md-4 control-label">Vehículo</label>
+                        <div class="form-group{{ $errors->has('Vehiculos') ? ' has-error' : '' }}">
+                        <label for="Vehiculos" class="col-md-4 control-label">Vehículo</label>
 
                         <div class="col-md-6">
-                        <select name="Vehiculo" id="vehiculo_id" class="form-control" required>
-                                
-                            <option value="">--Escoja placa--</option>
-                            @foreach($vehiculos as $vehiculo)
-                                    <option value="{{$vehiculo['id']}}">{{$vehiculo['Placa']}}</option>
-                                @endforeach
-                            </select>
-                            @if ($errors->has('Vehiculo'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('Vehiculo') }}</strong>
-                                    </span>
-                                @endif
+                        {!! Form::select('Vehiculos', $Vehiculos, $combustible->vehiculo_id, ['id' => 'Vehiculos', 'class'=>'form-control'])!!}
                         </div>
                        </div>
 
@@ -179,4 +156,7 @@
                         </div>
                     </form>
                 </div>
+                
+                <br>
+                    <br>
             </div>

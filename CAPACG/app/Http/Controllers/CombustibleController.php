@@ -131,8 +131,15 @@ class CombustibleController extends Controller
     {
     	$combustible = Combustible::find($id);
         $vehiculos= Vehiculo:: all();
-        $dependencias= Dependencia:: all();
-        return view('/combustible/editar',compact('combustible','vehiculos', 'dependencias'));
+   
+        $Dependencia = Dependencia::find($combustible->dependencia_id);
+        $combustible->dependencia()->associate($Dependencia);
+        $Dependencias = DB::table('dependencias')->pluck('Dependencia', 'id');
+
+        $Vehiculo = Dependencia::find($combustible->vehiculo_id);
+        $combustible->vehiculo()->associate($Vehiculo);
+        $Vehiculos = DB::table('vehiculos')->pluck('PlacaVehiculo', 'id');
+        return view('/combustible/editar',compact('combustible'), ['Dependencias' => $Dependencias,'Vehiculos' => $Vehiculos]);
     }
 
         
@@ -149,9 +156,7 @@ class CombustibleController extends Controller
             'Kilometraje' => 'required',
             'LitrosCombustible' => 'required',
             'FuncionarioQueHizoCompra' => 'required',
-            'Dependencia' => 'required',         
-            'CodigoDeAccionDePlanPresupuesto' => 'required',
-            'Vehiculo' => 'required',        
+            'CodigoDeAccionDePlanPresupuesto' => 'required',      
                        
         ],
     
@@ -162,10 +167,9 @@ class CombustibleController extends Controller
             'Fecha.required' => 'Debe definir la fecha',                        
             'Kilometraje.required' => 'Debe definir el kilometraje',            
             'LitrosCombustible.required' => 'Debe definir los litros de combustible',
-            'FuncionarioQueHizoCompra.required' => 'Debe definir el funcionario que hizo la compra',            
-            'Dependencia.required' => 'Debe definir la dependencia',
+            'FuncionarioQueHizoCompra.required' => 'Debe definir el funcionario que hizo la compra',           
             'CodigoDeAccionDePlanPresupuesto.required' => 'Debe definir el código de acción de plan de presupuesto',
-            'Vehiculo.required' => 'Debe definir el vehículo',
+            
            
             
         ]
@@ -197,7 +201,7 @@ class CombustibleController extends Controller
                             $combustible->Foto = $file_route; 
                         
         }
-        $combustible->vehiculo_id = $request['Vehiculo'];
+        $combustible->vehiculo_id = $request['Vehiculos'];
         $combustible->save();
         return redirect('/combustibles')->with('message','Factura combustible correctamente editado');
     }
@@ -228,25 +232,31 @@ class CombustibleController extends Controller
         return view('combustible/listar',compact('combustibles'));
     }
 
-    public function excel(){
-        
-        Excel::create('Facturas combustibles', function($excel) {
+   
+        public function excel(){
             
-                       $excel->sheet('Activos', function($sheet) {
-            
-                            $combustibles = DB::table('combustibles')
-                         //  ->join('colaboradores','combustibles.colaborador_id', '=','colaboradores.id')
-                           ->join('dependencias','combustibles.dependencia_id', '=','dependencias.id')
-                           ->select('combustibles.id','combustibles.NoVaucher','combustibles.Monto','combustibles.Numero','combustibles.Fecha','dependencias.Dependencia',
-                           'combustibles.Kilometraje','combustibles.LitrosCombustible','combustibles.FuncionarioQueHizoCompra','combustibles.CodigoDeAccionDePlanPresupuesto')
-                           ->get();
-           
-                           $combustibles = json_decode(json_encode($combustibles),true);
-                           $sheet->freezeFirstRow();
-                           $sheet->fromArray($combustibles);
-            
-                       });
-                   })->export('xls');
-             }
+            Excel::create('Facturas combustibles', function($excel) {
+                
+                           $excel->sheet('Activos', function($sheet) {
+                
+                                $combustibles = DB::table('combustibles')
+                             //  ->join('colaboradores','combustibles.colaborador_id', '=','colaboradores.id')
+                               ->join('dependencias','combustibles.dependencia_id', '=','dependencias.id')
+                               ->select('combustibles.id','combustibles.NoVaucher','combustibles.Monto','combustibles.Numero','combustibles.Fecha','dependencias.Dependencia',
+                               'combustibles.Kilometraje','combustibles.LitrosCombustible','combustibles.FuncionarioQueHizoCompra','combustibles.CodigoDeAccionDePlanPresupuesto')
+                        
+                               
+                               ->get();
+               
+                               $combustibles = json_decode(json_encode($combustibles),true);
+                               $sheet->freezeFirstRow();
+                               $sheet->fromArray($combustibles);
+                
+                           });
+                       })->export('xls');
+                 }
+    
+    
+    
 }
 
