@@ -9,6 +9,7 @@ use App\Inmueble;
 use App\Sector;
 use App\Tipo;
 use App\User;
+// use App\Http\Controllers\getColaboradores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -34,14 +35,20 @@ class InmuebleController extends Controller
             ->where([['activos.Estado', '=', '1'], ['activos.Identificador', '=', '2']])
             ->paginate(10);
 
-        $colaboradores = DB::table('colaboradores')
-            ->join('users', 'colaboradores.user_id', '=', 'users.id')
-            ->select('users.*', 'colaboradores.*', DB::raw("CONCAT(colaboradores.Cedula,' | ',users.name,' ',users.Apellido) as nombreCompleto"))
-            ->where('users.Estado', '=', '1')
-            ->pluck('nombreCompleto', 'colaboradores.id')
-            ->prepend('selecciona un colaborador');
+        $colaboradores = $this->getColaboradores();
 
         return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' => $colaboradores]);
+    }
+    public function getColaboradores(){
+
+        $colaboradores = DB::table('colaboradores')
+        ->join('users', 'colaboradores.user_id', '=', 'users.id')
+        ->select('users.*', 'colaboradores.*', DB::raw("CONCAT(colaboradores.Cedula,' | ',users.name,' ',users.Apellido) as nombreCompleto"))
+        ->where('users.Estado', '=', '1')
+        ->pluck('nombreCompleto', 'colaboradores.id')
+        ->prepend('selecciona un colaborador');
+
+        return $colaboradores;
     }
 
     public function create()
@@ -267,9 +274,6 @@ class InmuebleController extends Controller
         $usuario = User::find($colaborador->user_id);
         $colaborador->user()->associate($usuario);
 
-        // $usuario = User::find($id);
-        // $colaborador = Colaborador::where('user_id', '=', $usuario->id)->get();
-        // $colaborador->user()->associate($usuario);
 
         return response()->json(['inmueble' => $inmueble, 'colaborador' => $colaborador]);
     }
@@ -361,8 +365,9 @@ class InmuebleController extends Controller
             ->paginate(10);
         }
         
-
-        return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
+        $colaboradores = $this->getColaboradores();
+        
+        return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios'=> $colaboradores]);
     }
 
     public function filterTipo(Request $request)
@@ -388,16 +393,15 @@ class InmuebleController extends Controller
 
         }
 
-       
-        return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
+        $colaboradores = $this->getColaboradores();
+
+        return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' => $colaboradores]);
     }
 
     public function filterDate(Request $request)
-    {
-
+    {        
         $desde = $request->input('Desde');
         $hasta = $request->input('Hasta');
-
         $inmuebles = DB::table('inmuebles')
             ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
             ->select('activos.*', 'inmuebles.*')
@@ -405,12 +409,15 @@ class InmuebleController extends Controller
             ->where('activos.Identificador', '=', '2')
 
             ->paginate(10);
+
+            $colaboradores = $this->getColaboradores();
+            
         if (count($inmuebles) > 0) {
-            return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
+            return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' => $colaboradores]);
         } else {
             return
 
-            view('/inmueble/listar', ['inmuebles' => $inmuebles])
+            view('/inmueble/listar', ['inmuebles' => $inmuebles,'usuarios' => $colaboradores])
                 ->with('error', 'No se han encontrado registros para las fechas indicadas');
         }
 
@@ -436,9 +443,10 @@ class InmuebleController extends Controller
 
             ->paginate(10);
         }
-        
 
-        return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
+        $colaboradores = $this->getColaboradores();        
+
+        return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' => $colaboradores]);
     }
 
     public function excel()

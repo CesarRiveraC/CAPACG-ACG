@@ -67,7 +67,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('inmuebles/{id}/change','InmuebleController@change');
     Route::put('inmuebles/{id}/updatestate','InmuebleController@updatestate');
     Route::get('inmuebles/{inmueble_id}/{user_id}/searchCollaborators','InmuebleController@searchCollaborators'); 
-    Route::put('inmuebles/{inmueble_id}/{user_id}/asignCollaborator','InmuebleController@asignCollaborator');    
+    Route::put('inmuebles/{inmueble_id}/{user_id}/asignCollaborator','InmuebleController@asignCollaborator');   
+    // Route::get('inmuebles/getColaboradores','InmuebleController@getColaboradores');    
     
     Route::get('inmuebles/search','InmuebleController@search');
     Route::resource('inmuebles','InmuebleController');  

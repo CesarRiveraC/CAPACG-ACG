@@ -204,7 +204,7 @@ class UsuariosController extends Controller
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
-                ->withInput()->with('message','Verifique la contraseña enviada!');
+                ->withInput();
         } else {
             $message = 'La Informacion del usuario ha sido actualizada';            
             $colaborador = Colaborador::find($id);

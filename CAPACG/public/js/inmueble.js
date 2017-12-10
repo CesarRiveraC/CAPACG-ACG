@@ -186,14 +186,14 @@
     checkbox.change(function() {
      
       if (checkbox.is(':checked')) {
-        hidden.show();
+        hidden.show(500);
         $('.asignarColaborador').each(function(){
             $(this).show();
         });
 
       } else {
        
-        hidden.hide();
+        hidden.hide(500);
         $('.asignarColaborador').each(function(){
             $(this).hide();
         });

@@ -72,7 +72,6 @@
 						</div>
 						<div id="formUsuarios" style="display:none">
 							{!! Form::select('usuarios', $usuarios, null, ['id' => 'usuarios'])!!}
-							{{--  <label>{{$usuarios}}</label>  --}}
 						</div>
 					</div>
 

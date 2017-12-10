@@ -1,4 +1,5 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app') 
+@section('content')
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
@@ -82,7 +83,7 @@
 
 							<div class="col-md-6">
 								<input id="Cedula" type="text" class="form-control" name="Cedula" value="{{ old('Cedula') }}" required autofocus> @if ($errors->has('Cedula'))
-								<span class="help-block">
+								<span class="help-block"></span>
 									<strong>{{ $errors->first('Cedula') }}</strong>
 								</span>
 								@endif
@@ -128,10 +129,6 @@
 							</div>
 						</div>
 
-						<div class="form-group" style="display:inline;">
-							<label class="col-md-4 control-label">Desea definir una nueva contraseña al usuario?</label>
-							<input class="form" type="checkbox" id="setNewPassword" name="setNewPassword">
-						</div>
 						<div class="form-group" align="center"></div>
 						<button type="submit" formnovalidate class="btn btn-success">
 							<i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar </button>
