@@ -164,10 +164,13 @@ class InmuebleController extends Controller
     {
         $inmueble = Inmueble::find($id);
         $activo = Activo::find($inmueble->activo_id);
-        $Dependencia = Dependencia::find($activo->dependencia_id);
-        $activo->dependencia()->associate($Dependencia);
+
+        $dependencia = Dependencia::find($activo->dependencia_id);
+        $activo->dependencia()->associate($dependencia);
+
         $tipo = Tipo::find($activo->tipo_id);
         $activo->tipo()->associate($tipo);
+
         $sector = Sector::find($activo->sector_id);
         $activo->sector()->associate($sector);
 

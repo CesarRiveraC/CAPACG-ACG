@@ -213,8 +213,9 @@ class UsuariosController extends Controller
             $usuario->name = $request['name'];
             $usuario->Apellido = $request['Apellido'];
             $usuario->email = $request['email'];
-                           
-            $usuario->password = bcrypt(request('password'));
+              if($request['password']!=null && $request->has('setNewPassword')){
+                $usuario->password = bcrypt(request('password'));                
+              }             
             $usuario->roles_id = $request['roles'];
             $usuario->save();
             $colaborador->Cedula = $request['Cedula'];

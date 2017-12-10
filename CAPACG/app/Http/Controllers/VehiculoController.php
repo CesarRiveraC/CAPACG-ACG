@@ -93,7 +93,6 @@ class VehiculoController extends Controller
         ]
     );
     if ($validator->fails()) {
-        // return redirect('vehiculos/create')}
              return redirect()->back()
                     ->withInput()
                     ->withErrors($validator);
@@ -166,16 +165,16 @@ class VehiculoController extends Controller
     	$vehiculo = Vehiculo::find($id);
         $inmueble = Inmueble::find($vehiculo->inmueble_id);
         $activo = Activo::find($inmueble->activo_id);
+
         $vehiculo->inmueble()->associate($inmueble);
         $inmueble->activo()->associate($activo);
-        $Dependencias= Dependencia:: all();
-        $dependencias= Dependencia::find($activo->dependencia_id);
-        $Tipos= Tipo:: all();
-        $tipos= Tipo:: find($activo->dependencia_id);
-        $Sectores= Sector:: all();
-        $sectores= Sector:: find($activo->tipo_id);
 
-        return view('/vehiculo/editar',compact('vehiculo','dependencias','tipos','Dependencias','Tipos','Sectores','sectores'));
+        $Dependencias = DB::table('dependencias')->pluck('Dependencia', 'id');
+        $Tipos = DB::table('tipos')->pluck('Tipo', 'id');
+        $Sectores = DB::table('sectores')->pluck('Sector', 'id');
+
+
+        return view('/vehiculo/editar',compact('vehiculo','inmueble','activo'), ['Dependencias' => $Dependencias,'Tipos'=>$Tipos,'Sectores'=>$Sectores]);
     
     }
   
