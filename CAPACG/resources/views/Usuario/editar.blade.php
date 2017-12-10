@@ -59,6 +59,40 @@
 							</div>
 						</div>
 
+						<div class="form-group">
+							<label class="col-md-4 control-label">¿Desea establecer una nueva contraseña? </label>
+							<input class="form"style="display:inline-flex;margin-top: 27px;margin-left: 18px;" type="checkbox" id="setNewPassword" name="setNewPassword">
+						</div>
+
+
+						<div id="setPassword" style="display:none">
+
+							<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+								<label for="password" class="col-md-4 control-label">Nueva Contraseña</label>
+
+								<div class="col-md-6">
+									<input id="password" type="password" class="form-control" name="password" required> @if ($errors->has('password'))
+									<span class="help-block">
+										<strong>{{ $errors->first('password') }}</strong>
+									</span>
+									@endif
+								</div>
+							</div>
+
+							<div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+								<label for="password_confirmation" class="col-md-4 control-label">Confirmar Contraseña</label>
+
+								<div class="col-md-6">
+									<input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required> @if ($errors->has('password_confirmation'))
+									<span class="help-block">
+										<strong>{{ $errors->first('password_confirmation') }}</strong>
+									</span>
+									@endif
+								</div>
+							</div>
+
+
+						</div>
 
 						<div class="form-group" align="center"></div>
 						<button type="submit" formnovalidate class="btn btn-success">
@@ -72,5 +106,4 @@
 	</div>
 </div>
 </div>
-
 @endsection

@@ -1,3 +1,5 @@
+
+
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 	<label for="name" class="col-md-4 control-label">Nombre</label>
 
@@ -26,7 +28,8 @@
 	<label for="email" class="col-md-4 control-label">Correo Electrónico</label>
 
 	<div class="col-md-6">
-		<input id="email" type="email" class="form-control" name="email" value="{{ $usuario->email }}" required> @if ($errors->has('email'))
+		<input id="email" type="email" class="form-control" name="email" value="{{ $usuario->email }}" required> 
+		@if ($errors->has('email'))
 		<span class="help-block">
 			<strong>{{ $errors->first('email') }}</strong>
 		</span>
@@ -34,31 +37,6 @@
 	</div>
 </div>
 
-
-
-<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-	<label for="password" class="col-md-4 control-label">Nueva Contraseña</label>
-
-	<div class="col-md-6">
-		<input id="password" type="password" class="form-control" name="password" required> @if ($errors->has('password'))
-		<span class="help-block">
-			<strong>{{ $errors->first('password') }}</strong>
-		</span>
-		@endif
-	</div>
-</div>
-
-<div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-	<label for="password_confirmation" class="col-md-4 control-label">Confirmar Contraseña</label>
-
-	<div class="col-md-6">
-		<input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required> @if ($errors->has('password_confirmation'))
-		<span class="help-block">
-			<strong>{{ $errors->first('password_confirmation') }}</strong>
-		</span>
-		@endif
-	</div>
-</div>
 
 {{-- puede que el form-group para errores y la validacion de errores no sea necesaria para este campo --}}
 <div class="form-group{{ $errors->has('Rol') ? ' has-error' : '' }}">
@@ -72,3 +50,5 @@
 		@endif
 	</div>
 </div>
+
+<script src="{{ asset('js/colaborador.js') }}"></script>
