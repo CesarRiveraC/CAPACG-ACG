@@ -1,5 +1,4 @@
-@extends('layouts.app') 
-@section('content')
+@extends('layouts.app') @section('content')
 <div class="container">
 
 
@@ -21,23 +20,35 @@
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
-					<li><a href="/inmuebles">
-					<i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a></li>
-			
-					<li><a class="filtrar" href="/inmuebles/filter">
-					<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a></li>
-			
-					<li><a class="filtarDependencia" href="" data-toggle="modal" data-target="#FiltrarDependencia">
-					<span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a></li>
-			
-					<li><a class="filtrarTipo" href="" data-toggle="modal" data-target="#FiltrarTipo">
-					<span class="fa fa-clone" aria-hidden="true"></span> Tipo</a></li>
-			
-					<li><a class="filtrarFecha" href="" data-toggle="modal" data-target="#FiltrarFecha">
-					<i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a></li>
-			
-					<li><a class="filtrarSector" href="" data-toggle="modal" data-target="#FiltrarSector">
-					<i class="fa fa-location-arrow" aria-hidden="true"></i> Sector</a></li>
+						<li>
+							<a href="/inmuebles">
+								<i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a>
+						</li>
+
+						<li>
+							<a class="filtrar" href="/inmuebles/filter">
+								<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
+						</li>
+
+						<li>
+							<a class="filtarDependencia" href="" data-toggle="modal" data-target="#FiltrarDependencia">
+								<span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a>
+						</li>
+
+						<li>
+							<a class="filtrarTipo" href="" data-toggle="modal" data-target="#FiltrarTipo">
+								<span class="fa fa-clone" aria-hidden="true"></span> Tipo</a>
+						</li>
+
+						<li>
+							<a class="filtrarFecha" href="" data-toggle="modal" data-target="#FiltrarFecha">
+								<i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a>
+						</li>
+
+						<li>
+							<a class="filtrarSector" href="" data-toggle="modal" data-target="#FiltrarSector">
+								<i class="fa fa-location-arrow" aria-hidden="true"></i> Sector</a>
+						</li>
 						</li>
 
 					</ul>
@@ -60,8 +71,6 @@
 				</button>
 				{!! Form::close() !!}
 
-
-
 				<div>
 					<div class="panel-heading" style="display: inline-flex">
 						<div>
@@ -74,7 +83,6 @@
 							{!! Form::select('usuarios', $usuarios, null, ['id' => 'usuarios'])!!}
 						</div>
 					</div>
-
 				</div>
 
 				<div class="panel-heading" style="width: 100%">
@@ -112,8 +120,8 @@
 										 title="Ver"></a>
 										<a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom"
 										 title="Editar"></a>
-										<a class="btn btn-info btn-xs fa fa-child asignarColaborador" style="display:none" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Asignar responsable"></a>
+										<a class="btn btn-info btn-xs fa fa-child asignarColaborador" style="display:none" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip"
+										 data-placement="bottom" title="Asignar responsable"></a>
 
 									</td>
 								</tr>
@@ -136,14 +144,14 @@
 		</div>
 	</div>
 </div>
-@include('modals.estado') 
-@include('modals.detalleInmueble') 
+@include('modals.estado')
+@include('modals.detalleInmueble')
 @include('modals.modalPrueba')
-@include('modals.filtrar') 
+@include('modals.filtrar')
 @include('modals.filtrarDependencia')
-@include('modals.filtrarTipo') 
+@include('modals.filtrarTipo')
 @include('modals.filtrarFecha')
-@include('modals.filtrarSector')  
+@include('modals.filtrarSector')
 @include('modals.asignarColaborador')
 <script src="{{ asset('js/inmueble.js') }}"></script>
 <script type="text/javascript">

@@ -39,14 +39,15 @@ class InmuebleController extends Controller
 
         return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' => $colaboradores]);
     }
-    public function getColaboradores(){
 
+    public function getColaboradores()
+    {
         $colaboradores = DB::table('colaboradores')
-        ->join('users', 'colaboradores.user_id', '=', 'users.id')
-        ->select('users.*', 'colaboradores.*', DB::raw("CONCAT(colaboradores.Cedula,' | ',users.name,' ',users.Apellido) as nombreCompleto"))
-        ->where('users.Estado', '=', '1')
-        ->pluck('nombreCompleto', 'colaboradores.id')
-        ->prepend('selecciona un colaborador');
+            ->join('users', 'colaboradores.user_id', '=', 'users.id')
+            ->select('users.*', 'colaboradores.*', DB::raw("CONCAT(colaboradores.Cedula,' | ',users.name,' ',users.Apellido) as nombreCompleto"))
+            ->where('users.Estado', '=', '1')
+            ->pluck('nombreCompleto', 'colaboradores.id')
+            ->prepend('selecciona un colaborador');
 
         return $colaboradores;
     }
@@ -180,7 +181,7 @@ class InmuebleController extends Controller
         $Tipos = DB::table('tipos')->pluck('Tipo', 'id');
         $Sectores = DB::table('sectores')->pluck('Sector', 'id');
 
-        return view('/inmueble/editar', compact('inmueble', 'activo'), ['Dependencias' => $Dependencias,'Tipos'=>$Tipos,'Sectores'=>$Sectores]);
+        return view('/inmueble/editar', compact('inmueble', 'activo'), ['Dependencias' => $Dependencias, 'Tipos' => $Tipos, 'Sectores' => $Sectores]);
     }
 
     public function update($id, Request $request)
@@ -277,7 +278,6 @@ class InmuebleController extends Controller
         $usuario = User::find($colaborador->user_id);
         $colaborador->user()->associate($usuario);
 
-
         return response()->json(['inmueble' => $inmueble, 'colaborador' => $colaborador]);
     }
 
@@ -320,17 +320,17 @@ class InmuebleController extends Controller
         return view('inmueble/listar', compact('inmuebles'));
     }
 
-    public function asignar(Request $request)
-    {
+    // public function asignar(Request $request)
+    // {
 
-        $inmuebles = DB::table('inmuebles')
-            ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-            ->select('activos.*', 'inmuebles.*')
-            ->where('activos.Estado', '=', '1')
-            ->paginate(7);
+    //     $inmuebles = DB::table('inmuebles')
+    //         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+    //         ->select('activos.*', 'inmuebles.*')
+    //         ->where('activos.Estado', '=', '1')
+    //         ->paginate(7);
 
-        return view('/inmueble/asignar', ['inmuebles' => $inmuebles]);
-    }
+    //     return view('/inmueble/asignar', ['inmuebles' => $inmuebles]);
+    // }
 
     public function filter()
     {
@@ -341,7 +341,7 @@ class InmuebleController extends Controller
             ->select('activos.*', 'inmuebles.*')
             ->where([['activos.Estado', '=', '0'], ['activos.Identificador', '=', '2']])
             ->paginate(10);
-
+//el filter no debe devolver los datos de los colaboradores, a los inactivos no se asignan colaboradores
         return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }
 
@@ -351,26 +351,25 @@ class InmuebleController extends Controller
         $name = $request->input('DependenciaFiltrar');
         $buscar = $request->input('BuscarDependencia');
 
-        if($buscar != null){
+        if ($buscar != null) {
             $inmuebles = DB::table('inmuebles')
-            ->join('activos','inmuebles.activo_id', '=','activos.id')
-            ->select('activos.*','inmuebles.*')
-            ->Where([['activos.dependencia_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','2']])
-            ->paginate(10);
+                ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+                ->select('activos.*', 'inmuebles.*')
+                ->Where([['activos.dependencia_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '2']])
+                ->paginate(10);
 
-        }
-        else{
+        } else {
             $inmuebles = DB::table('inmuebles')
-            ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-            ->select('activos.*', 'inmuebles.*')
-            ->where([['activos.dependencia_id', '=', $name], ['activos.Identificador', '=', '2']])
-       
-            ->paginate(10);
+                ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+                ->select('activos.*', 'inmuebles.*')
+                ->where([['activos.dependencia_id', '=', $name], ['activos.Identificador', '=', '2']])
+
+                ->paginate(10);
         }
-        
+
         $colaboradores = $this->getColaboradores();
-        
-        return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios'=> $colaboradores]);
+
+        return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' => $colaboradores]);
     }
 
     public function filterTipo(Request $request)
@@ -379,20 +378,19 @@ class InmuebleController extends Controller
         $name = $request->input('TipoFiltrar');
         $buscar = $request->input('BuscarTipo');
 
-        if($buscar =! null){
+        if ($buscar = !null) {
             $inmuebles = DB::table('inmuebles')
-            ->join('activos','inmuebles.activo_id', '=','activos.id')
-            ->select('activos.*','inmuebles.*')
-            ->Where([['activos.tipo_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','2']])
-            ->paginate(10);
-        }
-        else{
+                ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+                ->select('activos.*', 'inmuebles.*')
+                ->Where([['activos.tipo_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '2']])
+                ->paginate(10);
+        } else {
             $inmuebles = DB::table('inmuebles')
-            ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-            ->select('activos.*', 'inmuebles.*')
-            ->where([['activos.tipo_id', '=', $name], ['activos.Identificador', '=', '2']])
+                ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+                ->select('activos.*', 'inmuebles.*')
+                ->where([['activos.tipo_id', '=', $name], ['activos.Identificador', '=', '2']])
 
-            ->paginate(10);
+                ->paginate(10);
 
         }
 
@@ -402,7 +400,7 @@ class InmuebleController extends Controller
     }
 
     public function filterDate(Request $request)
-    {        
+    {
         $desde = $request->input('Desde');
         $hasta = $request->input('Hasta');
         $inmuebles = DB::table('inmuebles')
@@ -413,14 +411,14 @@ class InmuebleController extends Controller
 
             ->paginate(10);
 
-            $colaboradores = $this->getColaboradores();
-            
+        $colaboradores = $this->getColaboradores();
+
         if (count($inmuebles) > 0) {
             return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' => $colaboradores]);
         } else {
             return
 
-            view('/inmueble/listar', ['inmuebles' => $inmuebles,'usuarios' => $colaboradores])
+            view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' => $colaboradores])
                 ->with('error', 'No se han encontrado registros para las fechas indicadas');
         }
 
@@ -431,23 +429,22 @@ class InmuebleController extends Controller
         $name = $request->input('SectorFiltrar');
         $buscar = $request->input('BuscarSector');
 
-        if($buscar != null){
+        if ($buscar != null) {
             $inmuebles = DB::table('inmuebles')
-            ->join('activos','inmuebles.activo_id', '=','activos.id')
-            ->select('activos.*','inmuebles.*')
-            ->Where([['activos.sector_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%'],['activos.Identificador','=','2']])
-            ->paginate(10);
-        }
-        else{
+                ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+                ->select('activos.*', 'inmuebles.*')
+                ->Where([['activos.sector_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '2']])
+                ->paginate(10);
+        } else {
             $inmuebles = DB::table('inmuebles')
-            ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-            ->select('activos.*', 'inmuebles.*')
-            ->where([['activos.sector_id', '=', $name], ['activos.Identificador', '=', '2']])
+                ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+                ->select('activos.*', 'inmuebles.*')
+                ->where([['activos.sector_id', '=', $name], ['activos.Identificador', '=', '2']])
 
-            ->paginate(10);
+                ->paginate(10);
         }
 
-        $colaboradores = $this->getColaboradores();        
+        $colaboradores = $this->getColaboradores();
 
         return view('/inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' => $colaboradores]);
     }
@@ -460,10 +457,10 @@ class InmuebleController extends Controller
             $excel->sheet('Activos', function ($sheet) {
                 $inmuebles = DB::table('inmuebles')
                     ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-                    ->join('tipos','activos.tipo_id', '=','tipos.id')
-                     ->join('sectores','activos.sector_id', '=','sectores.id')
-                    ->join('dependencias','activos.dependencia_id', '=','dependencias.id')
-                    ->select('activos.id', 'activos.Placa', 'activos.Descripcion', 'sectores.Sector','activos.Programa', 'tipos.Tipo', 'dependencias.Dependencia',
+                    ->join('tipos', 'activos.tipo_id', '=', 'tipos.id')
+                    ->join('sectores', 'activos.sector_id', '=', 'sectores.id')
+                    ->join('dependencias', 'activos.dependencia_id', '=', 'dependencias.id')
+                    ->select('activos.id', 'activos.Placa', 'activos.Descripcion', 'sectores.Sector', 'activos.Programa', 'tipos.Tipo', 'dependencias.Dependencia',
                         'activos.SubPrograma', 'activos.Color', 'inmuebles.Serie'
                         , 'inmuebles.EstadoUtilizacion', 'inmuebles.EstadoFisico', 'inmuebles.EstadoActivo',
                         'inmuebles.Marca', 'inmuebles.Modelo')

@@ -33,7 +33,6 @@
              $('#lblTipoActivo').text(result.inmueble.activo.tipo.Tipo);
              $('#lblFoto').attr('src', "storage/pictures/".concat(result.inmueble.activo.Foto));
              $('#lblSerie').text(result.inmueble.Serie);
-
              $('#lblModelo').text(result.inmueble.Modelo);
              $('#lblMarca').text(result.inmueble.Marca);
              $('#lblEstadoUtilizacion').text(result.inmueble.EstadoUtilizacion);
@@ -49,7 +48,6 @@
 
  $(function () {
      $('.filtarDependencia').click(function (e) {
-
          console.log(e);
 
          $.get('/dependencias/create/', function (data) {
@@ -70,11 +68,7 @@
 
                  $('#DependenciaFiltrar').append('<option value="' + data.dependencias[i].id + '">' + data.dependencias[i].Dependencia + '</option>');
              }
-
          });
-
-
-
      });
  });
 
@@ -100,7 +94,6 @@
 
                  $('#TipoFiltrar').append('<option value="' + data.tipos[i].id + '">' + data.tipos[i].Tipo + '</option>');
              }
-
          });
      });
  });
@@ -109,52 +102,36 @@
      $('.filtrarFecha').click(function (e) {
 
          $('#form-fecha').attr('action', '/inmuebles/filterDate');
-
      });
  });
- $(function(){
-    $('.filtrarSector').click(function (e) {
-        
-        
+ $(function () {
+     $('.filtrarSector').click(function (e) {
+         console.log(e);
 
-        console.log(e);                        
-        
-                $.get('/sectores/create/',function(data){
-        
-                    $('#SectorFiltrar').empty();
-        
-                    $('#SectorFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Sector</option>");
-                   
-                    $('#form-sector').attr('action','/inmuebles/filterSector');
-                    
-                     var cont = 0;  
-                     $.each(data, function(index, element){
-                        
-                        cont = element.length;
-                        
-                     
-                    });                                      
-                  
-                    for (var i = 0, l = cont; i< l; i++){
-                        
-                        $('#SectorFiltrar').append('<option value="'+data.sectores[i].id+'">'+data.sectores[i].Sector+'</option>');                       
-                    }
-                   
-                });
-        
-        
-               
-      });
+         $.get('/sectores/create/', function (data) {
 
-});
+             $('#SectorFiltrar').empty();
 
+             $('#SectorFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Sector</option>");
 
- $('#usuarios').select({
+             $('#form-sector').attr('action', '/inmuebles/filterSector');
 
+             var cont = 0;
+             $.each(data, function (index, element) {
 
+                 cont = element.length;
+             });
+
+             for (var i = 0, l = cont; i < l; i++) {
+
+                 $('#SectorFiltrar').append('<option value="' + data.sectores[i].id + '">' + data.sectores[i].Sector + '</option>');
+             }
+         });
+     });
  });
 
- 
+ $('#usuarios').select({});
+
  $(function () {
      $('.asignarColaborador').click(function (e) {
 
@@ -164,9 +141,9 @@
          let url = `/inmuebles/${inmueble_id}/${user_id}/searchCollaborators`;
 
          $.get(url, function (result) {
-              $('#NombreUsuario').text(result.colaborador.user.name);
-              $('#form-asignar').attr('action', '/inmuebles/' + result.inmueble.id +'/'+ result.colaborador.id +'/asignCollaborator');
-              
+             $('#NombreUsuario').text(result.colaborador.user.name);
+             $('#form-asignar').attr('action', '/inmuebles/' + result.inmueble.id + '/' + result.colaborador.id + '/asignCollaborator');
+
          }).fail(function () {
              alert('¡Algo salio mal!');
          });
@@ -175,63 +152,63 @@
      });
  });
 
- $(function() {
-    
-    var checkbox = $("#checkOption");
-    var hidden = $("#formUsuarios");
-  
-    
-    hidden.hide();
-    
-    checkbox.change(function() {
-     
-      if (checkbox.is(':checked')) {
-        hidden.show(500);
-        $('.asignarColaborador').each(function(){
-            $(this).show();
-        });
+ $(function () {
 
-      } else {
-       
-        hidden.hide(500);
-        $('.asignarColaborador').each(function(){
-            $(this).hide();
-        });
-    }
-    });
-  });
+     var checkbox = $("#checkOption");
+     var hidden = $("#formUsuarios");
 
-  $(function(){
-    $('.filtrarSector').click(function (e) {
-        
-        
 
-        console.log(e);                        
-        
-                $.get('/sectores/create/',function(data){
-        
-                    $('#SectorFiltrar').empty();
-        
-                    $('#SectorFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Sector</option>");
-                   
-                    $('#form-sector').attr('action','/inmuebles/filterSector');
-                    
-                     var cont = 0;  
-                     $.each(data, function(index, element){
-                        
-                        cont = element.length;
-                        
-                     
-                    });                                      
-                  
-                    for (var i = 0, l = cont; i< l; i++){
-                        
-                        $('#SectorFiltrar').append('<option value="'+data.sectores[i].id+'">'+data.sectores[i].Sector+'</option>');                       
-                    }
-                   
-                });
-        
-        
-               
-      });
-});
+     hidden.hide();
+
+     checkbox.change(function () {
+
+         if (checkbox.is(':checked')) {
+             hidden.show(500);
+             $('.asignarColaborador').each(function () {
+                 $(this).show();
+             });
+
+         } else {
+
+             hidden.hide(500);
+             $('.asignarColaborador').each(function () {
+                 $(this).hide();
+             });
+         }
+     });
+ });
+
+//  $(function () {
+//      $('.filtrarSector').click(function (e) {
+
+
+
+//          console.log(e);
+
+//          $.get('/sectores/create/', function (data) {
+
+//              $('#SectorFiltrar').empty();
+
+//              $('#SectorFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione un Sector</option>");
+
+//              $('#form-sector').attr('action', '/inmuebles/filterSector');
+
+//              var cont = 0;
+//              $.each(data, function (index, element) {
+
+//                  cont = element.length;
+
+
+//              });
+
+//              for (var i = 0, l = cont; i < l; i++) {
+
+//                  $('#SectorFiltrar').append('<option value="' + data.sectores[i].id + '">' + data.sectores[i].Sector + '</option>');
+//              }
+
+//          });
+
+
+
+//      });
+//  });
