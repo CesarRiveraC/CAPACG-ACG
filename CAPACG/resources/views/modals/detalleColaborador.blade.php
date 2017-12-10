@@ -50,10 +50,6 @@
 					<dd id="lblTelefono"></dd>
 					<br>
 
-					<dt>Estado colaborador:</dt>
-					<dd id="lblEstadoColaborador"></dd>
-					<br>
-
 			</div>
 
 			<!-- Modal footer -->

@@ -74,7 +74,8 @@
 					</div>
 					<div class="row">
 						<div class="col-md-8">{{ $infraestructuras->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta','BuscarDependencia','BuscarTipo']))->links()
-							}}</div>
+							}}
+						</div>
 						<div class="col-md-3 pull-right">
 							<br>
 							<a class="href" href="/home">

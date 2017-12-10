@@ -61,7 +61,7 @@
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">¿Desea establecer una nueva contraseña? </label>
-							<input class="form"style="display:inline-flex;margin-top: 27px;margin-left: 18px;" type="checkbox" id="setNewPassword" name="setNewPassword">
+							<input class="form" style="display:inline-flex;margin-top: 27px;margin-left: 18px;" type="checkbox" id="setNewPassword" name="setNewPassword">
 						</div>
 
 

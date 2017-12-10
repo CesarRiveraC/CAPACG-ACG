@@ -2,7 +2,6 @@
 <div class="container">
 	<div class="row">
 
-
 		<div class="col-lg-10 col-lg-offset-1">
 			<br>
 			<div class="col-md-8">
@@ -127,7 +126,8 @@
 						</table>
 					</div>
 					<div class="col-md-8">{{ $semovientes->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta']))->links()
-						}}</div>
+						}}
+					</div>
 					<div class="col-md-3 pull-right">
 						<br>
 						<a class="href" href="/home">
@@ -152,5 +152,6 @@
 	$(function(){
         $('[data-toggle="tooltip"]').tooltip()
     })
+
 </script>
 @endsection

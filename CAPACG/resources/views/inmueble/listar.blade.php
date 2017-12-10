@@ -98,8 +98,6 @@
 								<tr>
 									@include('partials.thActivo')
 
-
-
 								</tr>
 							</thead>
 							<tbody>
@@ -111,7 +109,6 @@
 									<td class="info"> {{$inmueble->Programa}} </td>
 									<td class="info"> {{$inmueble->SubPrograma}} </td>
 									<td class="info"> {{$inmueble->Color}} </td>
-
 
 									<td class="warning col-xs-2 col-xs-offset-2 ">
 										<a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
@@ -144,15 +141,8 @@
 		</div>
 	</div>
 </div>
-@include('modals.estado')
-@include('modals.detalleInmueble')
-@include('modals.modalPrueba')
-@include('modals.filtrar')
-@include('modals.filtrarDependencia')
-@include('modals.filtrarTipo')
-@include('modals.filtrarFecha')
-@include('modals.filtrarSector')
-@include('modals.asignarColaborador')
+@include('modals.estado') @include('modals.detalleInmueble') @include('modals.modalPrueba') @include('modals.filtrar') @include('modals.filtrarDependencia')
+@include('modals.filtrarTipo') @include('modals.filtrarFecha') @include('modals.filtrarSector') @include('modals.asignarColaborador')
 <script src="{{ asset('js/inmueble.js') }}"></script>
 <script type="text/javascript">
 	setTimeout(function(){

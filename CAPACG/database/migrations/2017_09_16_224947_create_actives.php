@@ -29,8 +29,6 @@ class CreateActives extends Migration
              $table->string('Programa');
              $table->string('SubPrograma');
              $table->string('Color');
-             //$table->string('Respondable');// este campo no va ya que esto se hace por medio de la relacion que existe con colaboradores
-            // $table->string('Cedula'); //este campo ya no es necesario porque la relacion se hace con id
              $table->string('Foto');      // se define el campo como binario para poder almacenar la foto del activo.
              $table->integer('Estado');
              $table->string('TipoActivo');

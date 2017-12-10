@@ -13,13 +13,7 @@
                
                         @include('partials.activo')
 
-                     
                         @include('partials.inmueble')
-
-                           
-                         
-                      
-                        
 
                         <div class="form-group" align = "center"></div>
                             <button type="submit" formnovalidate class="btn btn-success" class="btn btn-success"> 

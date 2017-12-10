@@ -4,7 +4,7 @@
 		<i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Factura Combustible</a>
 	<a class="btn btn-success my-5" href="/combustibles/excel">
 		<i class="fa fa-download" aria-hidden="true"></i>
-		 Generar Reporte</a>
+		Generar Reporte</a>
 </div>
 <div class="col-md-3 pull-right">
 	<a class="href my-5" href="/home">
@@ -12,12 +12,9 @@
 </div>
 <br>
 <br>
-<br> 
-@include('partials.message')
+<br> @include('partials.message')
 
 <div class="panel panel-info">
-
-
 
 	{!! Form::open(['url' => 'combustibles/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search'])
 	!!} {!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
@@ -54,8 +51,6 @@
 						<td class="info"> {{$combustible->Numero}} </td>
 						<td class="info"> {{$combustible->Fecha}} </td>
 						<td class="info"> {{$combustible->Kilometraje}} </td>
-
-
 
 						<td class="warning">
 							<a class="btn btn-danger btn-xs estado" data-estado="{{$combustible->id}}" data-toggle="tooltip" data-placement="bottom"

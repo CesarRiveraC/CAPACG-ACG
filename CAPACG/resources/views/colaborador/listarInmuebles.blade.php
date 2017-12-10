@@ -1,5 +1,4 @@
-@extends('colaborador.colaborador') 
-@section('content')
+@extends('colaborador.colaborador') @section('content')
 <div class="container">
 
 
@@ -8,8 +7,6 @@
 			<br>
 
 			<div class="col-md-8">
-
-
 
 			</div>
 			<div class="col-md-3 pull-right">
@@ -29,9 +26,6 @@
 				</button>
 				{!! Form::close() !!}
 
-
-
-
 				<div class="panel-heading" style="width: 100%">
 					<h4>Inmuebles</h4>
 				</div>
@@ -45,8 +39,6 @@
 								<tr>
 									@include('partials.thActivo')
 
-
-
 								</tr>
 							</thead>
 							<tbody>
@@ -59,18 +51,15 @@
 									<td class="info"> {{$inmueble->SubPrograma}} </td>
 									<td class="info"> {{$inmueble->Color}} </td>
 
-
 									<td class="warning col-xs-2 col-xs-offset-2 ">
 
 										<a class="fa fa-eye btn btn-success btn-xs detalleInmueble" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
 										 title="Ver"></a>
 
-
 									</td>
 								</tr>
 								@endforeach
 							</tbody>
-
 
 						</table>
 					</div>

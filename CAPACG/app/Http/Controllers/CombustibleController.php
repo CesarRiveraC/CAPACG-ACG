@@ -45,41 +45,41 @@ class CombustibleController extends Controller
     public function store(Request $request)
     {
 
-    //     $validator = Validator::make($request->all(), [
-    //         'NoVaucher' => 'required|unique:combustibles,NoVaucher',
-    //         'Monto' => 'required',
-    //         'Numero' => 'required',                        
-    //         'Fecha' => 'required',
-    //         'Kilometraje' => 'required',
-    //         'LitrosCombustible' => 'required',
-    //         'FuncionarioQueHizoCompra' => 'required',
-    //         'Dependencia' => 'required',         
-    //         'CodigoDeAccionDePlanPresupuesto' => 'required',
-    //         'Vehiculo' => 'required',        
+        $validator = Validator::make($request->all(), [
+            'NoVaucher' => 'required|unique:combustibles,NoVaucher',
+            'Monto' => 'required',
+            'Numero' => 'required',                        
+            'Fecha' => 'required',
+            'Kilometraje' => 'required',
+            'LitrosCombustible' => 'required',
+            'FuncionarioQueHizoCompra' => 'required',
+            'Dependencia' => 'required',         
+            'CodigoDeAccionDePlanPresupuesto' => 'required',
+            'Vehiculo' => 'required',        
                        
-    //     ],
+        ],
     
-    //     $messages = [
-    //         'NoVaucher.required' => 'Debe definir el No Vaucher',
-    //         'NoVaucher.unique' => 'Este número ya está en uso', 
-    //         'Monto.required' => 'Debe definir el monto',
-    //         'Fecha.required' => 'Debe definir la fecha',                        
-    //         'Kilometraje.required' => 'Debe definir el kilometraje',            
-    //         'LitrosCombustible.required' => 'Debe definir los litros de combustible',
-    //         'FuncionarioQueHizoCompra.required' => 'Debe definir el funcionario que hizo la compra',            
-    //         'Dependencia.required' => 'Debe definir la dependencia',
-    //         'CodigoDeAccionDePlanPresupuesto.required' => 'Debe definir el código de acción de plan de presupuesto',
-    //         'Vehiculo.required' => 'Debe definir el vehículo',
+        $messages = [
+            'NoVaucher.required' => 'Debe definir el No Vaucher',
+            'NoVaucher.unique' => 'Este número ya está en uso', 
+            'Monto.required' => 'Debe definir el monto',
+            'Fecha.required' => 'Debe definir la fecha',                        
+            'Kilometraje.required' => 'Debe definir el kilometraje',            
+            'LitrosCombustible.required' => 'Debe definir los litros de combustible',
+            'FuncionarioQueHizoCompra.required' => 'Debe definir el funcionario que hizo la compra',            
+            'Dependencia.required' => 'Debe definir la dependencia',
+            'CodigoDeAccionDePlanPresupuesto.required' => 'Debe definir el código de acción de plan de presupuesto',
+            'Vehiculo.required' => 'Debe definir el vehículo',
            
             
-    //     ]
-    // );
-    // if ($validator->fails()) {
-    //     return redirect('combustibles/create')
-    //                 ->withInput()
-    //                 ->withErrors($validator);
-    // }
-    // else{
+        ]
+    );
+    if ($validator->fails()) {
+        return redirect('combustibles/create')
+                    ->withInput()
+                    ->withErrors($validator);
+    }
+    else{
         
         $combustible = new Combustible;
         $combustible->NoVaucher = $request['NoVaucher'];
@@ -106,7 +106,7 @@ class CombustibleController extends Controller
         
         return redirect('/combustibles')->with('message','Factura combustible correctamente creado');
     }
-//}
+}
 
     public function show($id){
 
@@ -118,7 +118,6 @@ class CombustibleController extends Controller
         $dependencia=Dependencia::find($combustible->dependencia_id);
         $combustible->dependencia()->associate($dependencia);
         $inmueble= Inmueble::where("id", "=",$vehiculo->inmueble_id)->first();
-        // $inmueble-> Inmueble::find($vehiculo->inmueble_id);
         $vehiculo->inmueble()->associate($inmueble);
         $activo = Activo::find($inmueble->id);
         $inmueble->activo()->associate($activo);
@@ -231,8 +230,6 @@ class CombustibleController extends Controller
         ->where('combustibles.Estado','=','1')->paginate(7);
         return view('combustible/listar',compact('combustibles'));
     }
-
-   
         public function excel(){
             
             Excel::create('Facturas combustibles', function($excel) {
@@ -255,8 +252,5 @@ class CombustibleController extends Controller
                            });
                        })->export('xls');
                  }
-    
-    
-    
 }
 

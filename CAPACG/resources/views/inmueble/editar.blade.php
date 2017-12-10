@@ -92,16 +92,12 @@
 							</div>
 						</div>
 
-
-
 						<div class="form-group{{ $errors->has('Dependencia') ? ' has-error' : '' }}">
 							<label for="Dependencia" class="col-md-4 control-label">Dependencia</label>
 							<div class="col-md-6">
 
 							{!! Form::select('Dependencias', $Dependencias, $activo->dependencia_id, ['id' => 'Dependencias', 'class'=>'form-control'])!!}
 
-
-								
 							</div>
 						</div>
 
@@ -164,8 +160,6 @@
 							</div>
 						</div>
 
-
-
 						<div class="form-group{{ $errors->has('EstadoFisico') ? ' has-error' : '' }}">
 							<label for="EstadoFisico" class="col-md-4 control-label">Estado Físico</label>
 
@@ -177,7 +171,6 @@
 								@endif
 							</div>
 						</div>
-
 
 						<div class="form-group{{ $errors->has('EstadoActivo') ? ' has-error' : '' }}">
 							<label for="EstadoActivo" class="col-md-4 control-label">Estado Activo</label>
@@ -191,15 +184,11 @@
 							</div>
 						</div>
 
-
-
-
 						<div class="form-group" align="center"></div>
 						<button type="submit" formnovalidate class="btn btn-success" class="btn btn-success">
 							<i class="fa fa-floppy-o" aria-hidden="true"></i> Editar </button>
 						<a href="/inmuebles" class="btn btn-default">
 							<i class="fa fa-times" aria-hidden="true"></i> Cancelar </a>
-
 				</div>
 				</form>
 

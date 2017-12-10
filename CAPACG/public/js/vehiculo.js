@@ -130,47 +130,47 @@ $(function () {
 
 $('#usuarios').select({});
 
- $(function () {
-     $('.asignarColaborador').click(function (e) {
+$(function () {
+    $('.asignarColaborador').click(function (e) {
 
-         let vehiculo_id = $(this).attr('data-vehiculo');
-         var e = document.getElementById("usuarios");
-         var user_id = e.options[e.selectedIndex].value;
-         let url = `/vehiculos/${vehiculo_id}/${user_id}/searchCollaborators`;
+        let vehiculo_id = $(this).attr('data-vehiculo');
+        var e = document.getElementById("usuarios");
+        var user_id = e.options[e.selectedIndex].value;
+        let url = `/vehiculos/${vehiculo_id}/${user_id}/searchCollaborators`;
 
-         $.get(url, function (result) {
-             $('#NombreUsuario').text(result.colaborador.user.name);
-             $('#form-asignar').attr('action', '/vehiculos/' + result.vehiculo.id + '/' + result.colaborador.id + '/asignCollaborator');
+        $.get(url, function (result) {
+            $('#NombreUsuario').text(result.colaborador.user.name);
+            $('#form-asignar').attr('action', '/vehiculos/' + result.vehiculo.id + '/' + result.colaborador.id + '/asignCollaborator');
 
-         }).fail(function () {
-             alert('¡Algo salio mal!');
-         });
+        }).fail(function () {
+            alert('¡Algo salio mal!');
+        });
 
-         $('#asignarColaborador').modal();
-     });
- });
+        $('#asignarColaborador').modal();
+    });
+});
 
- $(function () {
+$(function () {
 
-     var checkbox = $("#checkOption");
-     var hidden = $("#formUsuarios");
+    var checkbox = $("#checkOption");
+    var hidden = $("#formUsuarios");
 
-     hidden.hide();
+    hidden.hide();
 
-     checkbox.change(function () {
+    checkbox.change(function () {
 
-         if (checkbox.is(':checked')) {
-             hidden.show(500);
-             $('.asignarColaborador').each(function () {
-                 $(this).show();
-             });
+        if (checkbox.is(':checked')) {
+            hidden.show(500);
+            $('.asignarColaborador').each(function () {
+                $(this).show();
+            });
 
-         } else {
+        } else {
 
-             hidden.hide(500);
-             $('.asignarColaborador').each(function () {
-                 $(this).hide();
-             });
-         }
-     });
- });
+            hidden.hide(500);
+            $('.asignarColaborador').each(function () {
+                $(this).hide();
+            });
+        }
+    });
+});

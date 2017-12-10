@@ -1,5 +1,4 @@
-@extends('estandar.estandar') 
-@section('content')
+@extends('estandar.estandar') @section('content')
 <div class="container">
 
 
@@ -8,8 +7,6 @@
 			<br>
 
 			<div class="col-md-8">
-
-
 
 			</div>
 			<div class="col-md-3 pull-right">
@@ -29,9 +26,6 @@
 				</button>
 				{!! Form::close() !!}
 
-
-
-
 				<div class="panel-heading" style="width: 100%">
 					<h4>Inmuebles</h4>
 				</div>
@@ -44,8 +38,6 @@
 							<thead>
 								<tr>
 									@include('partials.thActivo')
-
-
 
 								</tr>
 							</thead>
@@ -70,7 +62,6 @@
 								</tr>
 								@endforeach
 							</tbody>
-
 
 						</table>
 					</div>

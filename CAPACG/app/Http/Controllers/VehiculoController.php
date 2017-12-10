@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Activo;
+use App\Colaborador;
 use App\Dependencia;
 use App\Inmueble;
 use App\Sector;
 use App\Tipo;
-use App\Vehiculo;
-use App\Colaborador;
 use App\User;
+use App\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -58,7 +58,7 @@ class VehiculoController extends Controller
 
         $inmueble->activo()->associate($activo);
         $vehiculo->inmueble()->associate($inmueble);
-        
+
         $colaborador = Colaborador::find($id);
         $usuario = User::find($colaborador->user_id);
         $colaborador->user()->associate($usuario);
@@ -69,7 +69,7 @@ class VehiculoController extends Controller
     public function asignCollaborator($vehiculo_id, $user_id, Request $request)
     {
         $vehiculo = Vehiculo::find($vehiculo_id);
-        $inmueble = Inmueble::find($vehiculo->inmueble_id);        
+        $inmueble = Inmueble::find($vehiculo->inmueble_id);
         $activo = Activo::find($inmueble->activo_id);
 
         $colaborador = Colaborador::find($user_id); // no es necesario ya que el id ya viene pero esta como comprobacion que sea el id correcto.
@@ -409,7 +409,7 @@ class VehiculoController extends Controller
 
         $colaboradores = $this->getColaboradores();
 
-        return view('/vehiculo/listar', ['vehiculos' => $vehiculos, 'usuarios'=> $colaboradores]);
+        return view('/vehiculo/listar', ['vehiculos' => $vehiculos, 'usuarios' => $colaboradores]);
     }
 
     public function filterDate(Request $request)
@@ -426,14 +426,14 @@ class VehiculoController extends Controller
             ->where('activos.Identificador', '=', '4')
             ->paginate(10);
 
-            $colaboradores = $this->getColaboradores();
+        $colaboradores = $this->getColaboradores();
 
         if (count($vehiculos) > 0) {
-            return view('/vehiculo/listar', ['vehiculos' => $vehiculos, 'usuarios'=>$colaboradores]);
+            return view('/vehiculo/listar', ['vehiculos' => $vehiculos, 'usuarios' => $colaboradores]);
         } else {
             return
 
-            view('/vehiculo/listar', ['vehiculos' => $vehiculos,'usuarios'=>$colaboradores])
+            view('/vehiculo/listar', ['vehiculos' => $vehiculos, 'usuarios' => $colaboradores])
                 ->with('error', 'No se han encontrado registros para las fechas indicadas');
         }
 
@@ -462,7 +462,7 @@ class VehiculoController extends Controller
 
         $colaboradores = $this->getColaboradores();
 
-        return view('/vehiculo/listar', ['vehiculos' => $vehiculos, 'usuarios'=> $colaboradores]);
+        return view('/vehiculo/listar', ['vehiculos' => $vehiculos, 'usuarios' => $colaboradores]);
     }
 
     public function excel()

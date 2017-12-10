@@ -45,20 +45,12 @@
 						<p class="logo">CAPACG</p>
 					</a>
 
-
-
-
 				</div>
-
-
 
 				<div class="collapse navbar-collapse" id="app-navbar-collapse">
 					<!-- Left Side Of Navbar -->
 					<ul class="nav navbar-nav">
 						@if (Auth::check())
-
-
-
 
 						<li>
 							<a id="activosDrop" href="/estandar/combustibles">

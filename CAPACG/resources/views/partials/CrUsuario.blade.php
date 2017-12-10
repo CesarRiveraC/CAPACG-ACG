@@ -1,5 +1,3 @@
-
-
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 	<label for="name" class="col-md-4 control-label">Nombre</label>
 
@@ -28,15 +26,13 @@
 	<label for="email" class="col-md-4 control-label">Correo Electrónico</label>
 
 	<div class="col-md-6">
-		<input id="email" type="email" class="form-control" name="email" value="{{ $usuario->email }}" required> 
-		@if ($errors->has('email'))
+		<input id="email" type="email" class="form-control" name="email" value="{{ $usuario->email }}" required> @if ($errors->has('email'))
 		<span class="help-block">
 			<strong>{{ $errors->first('email') }}</strong>
 		</span>
 		@endif
 	</div>
 </div>
-
 
 {{-- puede que el form-group para errores y la validacion de errores no sea necesaria para este campo --}}
 <div class="form-group{{ $errors->has('Rol') ? ' has-error' : '' }}">

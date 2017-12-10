@@ -1,9 +1,7 @@
-@extends('layouts.app') 
-@section('content')
+@extends('layouts.app') @section('content')
 <div class="container">
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1">
-
 
 			<a class="btn btn-primary" href="/usuarios/create">
 				<i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -36,8 +34,8 @@
 
 			<div class="panel panel-info">
 
-				{!! Form::open(['url' => '#', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search']) !!} 
-				{!! Form::text('buscar',null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
+				{!! Form::open(['url' => '#', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search']) !!} {!! Form::text('buscar',null,['class'=>
+				'form-control', 'placeholder' => 'Buscar']) !!}
 
 				<button type="submit" class="btn btn-primary">
 					<span class="fa fa-search"></span>
@@ -100,9 +98,7 @@
 		</div>
 	</div>
 </div>
-@include('modals.detalleColaborador')
-@include('modals.estado') 
-{{--  @include('modals.restaurar')  --}}
+@include('modals.detalleColaborador') @include('modals.estado') {{-- @include('modals.restaurar') --}}
 
 
 <script src="{{ asset('js/colaborador.js') }}"></script>
@@ -111,10 +107,12 @@
 	setTimeout(function(){
         $('#mensaje').fadeOut('fast');
     }, 2000);
+
 </script>>
 <script type="text/javascript">
 	$(function(){
         $('[data-toggle="tooltip"]').tooltip()
     })
+
 </script>
 @endsection

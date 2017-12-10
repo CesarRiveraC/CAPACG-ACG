@@ -195,7 +195,7 @@
 
 							</div>
 						</div>
-                        
+
 						<div class="form-group" align="center"></div>
 						<button type="submit" formnovalidate class="btn btn-success" class="btn btn-success">
 							<span class="fa f-floppy-o"></span> Editar </button>

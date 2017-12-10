@@ -1,5 +1,4 @@
-@extends('estandar.estandar') 
-@section('content')
+@extends('estandar.estandar') @section('content')
 <div class="container">
 	<div class="row">
 
@@ -70,7 +69,8 @@
 						</table>
 					</div>
 					<div class="col-md-8">{{ $semovientes->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta']))->links()
-						}}</div>
+						}}
+					</div>
 					<div class="col-md-3 pull-right">
 						<br>
 						<a class="href" href="/home">
@@ -90,5 +90,6 @@
 	$(function(){
         $('[data-toggle="tooltip"]').tooltip()
     })
+
 </script>
 @endsection

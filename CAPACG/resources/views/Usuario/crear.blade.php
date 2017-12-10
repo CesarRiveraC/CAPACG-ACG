@@ -1,5 +1,4 @@
-@extends('layouts.app') 
-@section('content')
+@extends('layouts.app') @section('content')
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
@@ -84,7 +83,7 @@
 							<div class="col-md-6">
 								<input id="Cedula" type="text" class="form-control" name="Cedula" value="{{ old('Cedula') }}" required autofocus> @if ($errors->has('Cedula'))
 								<span class="help-block"></span>
-									<strong>{{ $errors->first('Cedula') }}</strong>
+								<strong>{{ $errors->first('Cedula') }}</strong>
 								</span>
 								@endif
 							</div>
