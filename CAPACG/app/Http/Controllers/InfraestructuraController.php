@@ -8,6 +8,7 @@ use App\Dependencia;
 use App\Tipo;
 use App\Vehiculo;
 use App\Sector;
+use App\Colaborador;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -394,16 +395,25 @@ class InfraestructuraController extends Controller
          Excel::create('Reporte Infraestructura', function($excel) {
   
              $excel->sheet('Activos', function($sheet) {
-  
+
+                // $colaboradores= DB::table('colaboradores')
+                // ->select('colaboradores.*')
+                // ->get();
                  //$infraestructuras = Activo::all();
                   $infraestructuras = DB::table('infraestructuras')
                  ->join('activos','infraestructuras.activo_id', '=','activos.id')
+                //  ->join('colaboradores', function ($join){
+                //     $join->on('activos.colaborador_id','=','colaboradores.id');
+                // })
                  ->join('tipos','activos.tipo_id', '=','tipos.id')
+                 
                  ->join('sectores','activos.sector_id', '=','sectores.id')
                  ->join('dependencias','activos.dependencia_id', '=','dependencias.id')
+                 
+                 ->join('colaboradores','activos.colaborador_id','=','colaboradores.id')
                  ->select('activos.id','activos.Placa','activos.Descripcion','sectores.Sector','tipos.Tipo','activos.Programa','dependencias.Dependencia',
                  'activos.SubPrograma','activos.Color','infraestructuras.NumeroFinca','infraestructuras.AreaConstruccion'
-                 ,'infraestructuras.AreaTerreno','infraestructuras.AnoFabricacion')
+                 ,'infraestructuras.AreaTerreno','infraestructuras.AnoFabricacion','colaboradores.Cedula')
                  ->where([['activos.Estado','=','1'],['activos.Identificador','=','1']]) 
                  ->get();
  
