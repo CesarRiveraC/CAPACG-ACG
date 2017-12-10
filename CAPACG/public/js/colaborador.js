@@ -49,22 +49,24 @@ $(function(){
     });
 }); 
 
-// $(function(){
-//     $('.restaurar').click(function(e){
-      
-//        let id = $(this).attr('data-restaurar');
-//        let url = `/usuarios/${id}/change`;
 
-//        $.get(url, function (result) {
-//            alert(result);
-//            $('#Nombre').text(result.colaborador.user.name);
-//            $('#role-form').attr('action','/usuarios/'+result.colaborador.id+'/updatestate');
-                   
-//        }).fail(function () {
-//            alert('¡Algo salio mal!');
-//        });
+$(function() {
+    
+    var checkbox = $("#setNewPassword");
+    var hidden = $("#setPassword");
+  
+    
+    hidden.hide();
+    
+    checkbox.change(function() {
+     
+      if (checkbox.is(':checked')) {
+        hidden.slideDown(500);
 
-//         $('#Restaurar').modal();
-//     });
-// }); 
-
+      } else {
+       
+        hidden.slideUp(500);
+        
+    }
+    });
+  });
