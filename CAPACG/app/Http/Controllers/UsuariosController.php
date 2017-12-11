@@ -21,7 +21,7 @@ class UsuariosController extends Controller
     public function _construct()
     {
 
-        $this->middleware('Administrador')->except('index');
+        $this->middleware('Administrador')->except('show');
     }
 
     public function index()

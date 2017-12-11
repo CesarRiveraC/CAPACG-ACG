@@ -119,9 +119,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('usuarios/{id}/change', 'UsuariosController@change');
         Route::put('usuarios/{id}/updatestate', 'UsuariosController@updatestate');
         Route::get('usuarios/excel', 'UsuariosController@excel');
-        Route::resource('usuarios', 'UsuariosController');
+        
     });
 
+    //lo saco para poder acceder al show desde otros roles
+    Route::resource('usuarios', 'UsuariosController');
     //rutas para el rol colaborador
     Route::get('colaborador/inmueblesAsignados', 'ColaboradorController@inmueblesAsignados');
     Route::get('colaborador/infraestructurasAsignadas', 'ColaboradorController@infraestructurasAsignadas');
