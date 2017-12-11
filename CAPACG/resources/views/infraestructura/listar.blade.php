@@ -14,7 +14,7 @@
 					<i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Infraestructura</a>
 				<a class="btn btn-success my-5" href="/infraestructuras/excel">
 					<i class="fa fa-download" aria-hidden="true"></i>
-					</span> Generar Reporte</a>
+					 Generar Reporte</a>
 
 				<div class="btn-group">
 					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filtrar Infraestructuras

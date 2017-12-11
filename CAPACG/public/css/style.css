@@ -3,7 +3,7 @@
         color: #229337;
        
         background: url("https://www.toptal.com/designers/subtlepatterns/patterns/congruent_pentagon.png");
-        /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/dust_scratches.png"); */
+       
         min-height: 100%;
         position: relative;
         -webkit-tap-highlight-color: #fed136;
@@ -11,17 +11,17 @@
     
     body{      
       background: url("https://www.toptal.com/designers/subtlepatterns/patterns/congruent_pentagon.png");
-      /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/dust_scratches.png"); */
+      
       margin: 0;
       margin-bottom: 150px;
     }
     
     .navbar{
-            /* background-color: #F7F9F9  !important; */
+            
             background-color: #1abc9c !important;
             color: white; 
             border-bottom: 4px ; 
-            /* box-shadow: 3px 3px 3px #7C837D; */
+            
             opacity: 0.9;
             margin-bottom: 0;
     }
@@ -38,9 +38,7 @@
     
     li a{
       color: black !important;
-      opacity: 1;
-      /* color: #4CAF50 !important; */
-      /* color: #06661F !important; */
+      opacity: 1;      
     }
 	
 	.navbar, .dropdown-menu{
@@ -130,9 +128,6 @@
 
 #img-infraestructura, #img-inmueble, #img-semoviente, #img-combustible, 
 #img-combustible, #img-usuario, #img-vehiculo{
-	/* display:block;
-  margin:0 auto 0 auto; */
-
 height: 200px;
   width: 200px;
 }
@@ -145,8 +140,6 @@ height: 200px;
   padding: 0 0 15px 0;
   border: none;
   border-radius: 0;
-  /* height: 200px;
-  width: 200px; */
 }
 .thumbnail p {
   margin-top: 15px;
@@ -159,14 +152,6 @@ height: 200px;
   border-radius: 0;
   transition: .2s;
 }
-/* .hbtn:hover, .hbtn:focus { */
-  /* border: 1px solid green;
-  background-color: #1abc9c; */
-  /* color: white; */
-/* } */
-
-
-
 
 .blog-footer {
   
@@ -190,25 +175,15 @@ height: 200px;
 #footerContent{
   color: white !important;
 }
-
-#homeContentCol{
-  background-color: white !important;
- 
-}
 .jumbotron{
   background:  white;
 }
 
-#homeContent{
+#homeContent, #homeContentCol{
   
-  background-color: white !;
+  background-color: white !important;
 }
 
-
-.bgEncabezado{
-  background: #85929E;
-  
-}
 .container-fluid {
   padding-top: 70px;
   padding-bottom: 70px;

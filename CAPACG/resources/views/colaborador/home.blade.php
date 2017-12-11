@@ -4,14 +4,7 @@
 
 	<div id="homeContentCol" class="col-md-10 col-md-offset-1">
 		<div class="row">
-			{{--
-			<div class="jumbotron">
-				<h1 id="titulo" class="text-center">CAPACG</h1>
-				{{--
-				<p class="lead text-center" id="texto">Es un proyecto en el cual se puede administrar los activos pertenecientes al Área de Conservación Guanacaste, dentro
-					de las categorías que administra están: infraestrucutras, inmuebles, semovientes y vehiculos además de sus respectivas
-					facturas.</p> --}} {{-- </div> --}}
-
+			
 			<br>
 			<h2 class="text-center">Menú Principal</h2>
 			<br>
@@ -25,7 +18,7 @@
 					<p>
 						<strong>Infraestructuras</strong>
 					</p>
-					<p>En este módulo se puede ver todos los activos de tipo infraestructura asignados a.</p>
+					<p>En este módulo se puede ver todos los activos de tipo infraestructura asignados a mi usuario.</p>
 					<a href="/colaborador/infraestructurasAsignadas" class="btn hbtn">Ir al módulo</a>
 				</div>
 			</div>
@@ -39,7 +32,7 @@
 					<p>
 						<strong>Inmuebles</strong>
 					</p>
-					<p>En este módulo se puede ver todos los activos de tipo inmueble asignados a mí.</p>
+					<p>En este módulo se puede ver todos los activos de tipo inmueble asignados a mi usuario.</p>
 					<a href="colaborador/inmueblesAsignados" class="btn hbtn">Ir al modulo</a>
 				</div>
 			</div>
@@ -53,7 +46,7 @@
 					<p>
 						<strong>Semovientes</strong>
 					</p>
-					<p>En este módulo se puede ver todos los activos de tipo semoviente asignados a mí.</p>
+					<p>En este módulo se puede ver todos los activos de tipo semoviente asignados a mi usuario.</p>
 					<a href="colaborador/semovientesAsignados" class="btn hbtn">Ir al modulo</a>
 				</div>
 			</div>
@@ -68,7 +61,7 @@
 					<p>
 						<strong>Vehículos</strong>
 					</p>
-					<p>En este módulo se puede ver todos los activos de tipo vehículo asignados a mí.</p>
+					<p>En este módulo se puede ver todos los activos de tipo vehículo asignados a mi usuario.</p>
 					<a class="btn hbtn" href="colaborador/vehiculosAsignados">Ir al modulo</a>
 				</div>
 			</div>
@@ -82,7 +75,7 @@
 					<p>
 						<strong>Combustibles</strong>
 					</p>
-					<p>En este modulo se puede ver todas las facturas de combustibles hechas a un vehiculo asignados a mí.</p>
+					<p>En este modulo se puede ver todas las facturas de combustibles hechas a un vehiculo asignados a m usuario.</p>
 					<a href="colaborador/combustiblesAsignados" class="btn hbtn">Ir al modulo</a>
 				</div>
 			</div>

@@ -130,7 +130,7 @@
 			<div class="form-group" align="center"></div>
 			<button type="submit" formnovalidate class="btn btn-success" class="btn btn-success">
 				<span class="fa fa-floppy-o"></span> Editar </button>
-			<a href="/combustibles" class="btn btn-default">
+			<a href="javascript:history.back(-1);" class="btn btn-default">
 				<span class="fa fa-times"></span> Cancelar </a>
 	</div>
 	</form>

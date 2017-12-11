@@ -64,7 +64,7 @@
 								 <li class="divider"></li>
 								<li><a id="activosDrop" tabindex="-1" href="/dependencias"><span class="fa fa-list-alt" aria-hidden="true"></span> Dependencias</a></li>
                                 <li><a id="activosDrop" tabindex="-1" href="/tipos"><span class="fa fa-clone" aria-hidden="true"></span> Tipos de activo</a></li>
-                                <li><a id="activosDrop" tabindex="-1" href="/sectores"><span class="fa fa-clone" aria-hidden="true"></span> Sectores</a></li>
+                                <li><a id="activosDrop" tabindex="-1" href="/sectores"><span class="fa fa-location-arrow" aria-hidden="true"></span> Sectores</a></li>
                             </ul>
                     
                         </li>

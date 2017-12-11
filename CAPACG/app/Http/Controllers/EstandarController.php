@@ -75,7 +75,7 @@ class EstandarController extends Controller
                         ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
                         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
                         ->select('activos.*','inmuebles.*','vehiculos.*')
-                    ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','4']])
+                    ->where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','4']])
                     
                     
                     

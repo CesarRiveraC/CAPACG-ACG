@@ -18,7 +18,7 @@
 					<p>
 						<strong>Infraestructuras</strong>
 					</p>
-					<p>En este modulo se pueden ver todos los activos de tipo infraestructura.</p>
+					<p>En este módulo se pueden ver todos los activos de tipo infraestructura asignados a mi usuario.</p>
 					<a href="estandar/infraestructurasAsignadas" class="btn hbtn">Ir al módulo</a>
 				</div>
 			</div>
@@ -32,7 +32,7 @@
 					<p>
 						<strong>Inmuebles</strong>
 					</p>
-					<p>En este modulo se pueden ver todos los activos de tipo inmueble.</p>
+					<p>En este módulo se pueden ver todos los activos de tipo inmueble asignados a mi usuario.</p>
 					<a href="estandar/inmueblesAsignados" class="btn hbtn">Ir al módulo</a>
 				</div>
 			</div>
@@ -46,7 +46,7 @@
 					<p>
 						<strong>Semovientes</strong>
 					</p>
-					<p>En este modulo se pueden ver todos los activos de tipo semoviente.</p>
+					<p>En este módulo se pueden ver todos los activos de tipo semoviente asignados a mi usuario.</p>
 					<a href="estandar/semovientesAsignados" class="btn hbtn">Ir al módulo</a>
 				</div>
 			</div>
@@ -59,9 +59,9 @@
 						<i class="fa fa-car fa-stack-1x fa-inverse"></i>
 					</span>
 					<p>
-						<strong>Vehiculos</strong>
+						<strong>Vehículos</strong>
 					</p>
-					<p>En este modulo se pueden ver todos los activos de tipo vehículo.</p>
+					<p>En este módulo se pueden ver todos los activos de tipo vehículo asignados a mi usuario.</p>
 					<a class="btn hbtn" href="estandar/vehiculos">Ir al módulo</a>
 				</div>
 			</div>
@@ -75,7 +75,7 @@
 					<p>
 						<strong>Combustibles</strong>
 					</p>
-					<p>En este modulo se puede administrar todas las facturas de combustibles hechas a un vehiculo.</p>
+					<p>En este módulo se puede administrar todas las facturas de combustibles hechas a un vehiculo</p>
 					<a href="estandar/combustibles" class="btn hbtn">Ir al módulo</a>
 				</div>
 			</div>
@@ -89,7 +89,7 @@
 					<p>
 						<strong>Usuarios</strong>
 					</p>
-					<p>En este modulo se pueden ver los usuarios pertenecientes al sistema</p>
+					<p>En este módulo se pueden ver los usuarios pertenecientes al sistema</p>
 					<a href="estandar/usuarios" class="btn hbtn">Ir al módulo</a>
 				</div>
 			</div>

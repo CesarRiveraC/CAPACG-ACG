@@ -154,7 +154,7 @@
 			<button type="submit" formnovalidate class="btn btn-success" class="btn btn-success">
 				<i class="fa fa-floppy-o" aria-hidden="true"></i>
 				</span> Guardar </button>
-			<a href="/combustibles" class="btn btn-default">
+			<a href="javascript:history.back(-1);" class="btn btn-default">
 				<i class="fa fa-times" aria-hidden="true"></i> Cancelar </a>
 	</div>
 	</form>
