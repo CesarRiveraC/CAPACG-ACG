@@ -18,7 +18,7 @@
 
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}"></link>
 
-	<link href="{{ asset('css/Montserrat-Regular.ttf') }}"></link>
+	{{--  <link href="{{ asset('css/Montserrat-Regular.ttf') }}"></link>  --}}
 
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet"> {{--
