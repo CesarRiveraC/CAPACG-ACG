@@ -186,7 +186,7 @@ class CombustibleController extends Controller
         $combustible->Kilometraje = request('Kilometraje');
         $combustible->LitrosCombustible = request('LitrosCombustible');
         $combustible->FuncionarioQueHizoCompra = request('FuncionarioQueHizoCompra');
-        $combustible->dependencia_id = request('Dependencia');
+        $combustible->dependencia_id = request('Dependencias');
         $combustible->CodigoDeAccionDePlanPresupuesto = request('CodigoDeAccionDePlanPresupuesto');
         
         
