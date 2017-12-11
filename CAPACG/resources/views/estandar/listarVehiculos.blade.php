@@ -18,7 +18,7 @@
 
 					<li>
 						<a class="filtrar" href="/estandar/vehiculosAsignados">
-							Asignados</a>
+							<i class="fa fa-user-o" aria-hidden="true"></i> Asignados</a>
 					</li>
 				</ul>
 			</div>
@@ -90,5 +90,6 @@
 	$(function(){
         $('[data-toggle="tooltip"]').tooltip()
     })
+
 </script>
 @endsection

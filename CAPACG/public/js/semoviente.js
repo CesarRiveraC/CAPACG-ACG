@@ -5,6 +5,9 @@ $(function () {
         let url = `/semovientes/${id}/change`;
 
         $.get(url, function (result) {
+            $('#titleModal').text("Eliminar");
+            $('#bodyModal').text("¿Está seguro de eliminar el siguiente registro?");
+            $('#btnOption').text("Eliminar");
             $('#Placa').text(result.semoviente.activo.Placa);
             $('#role-form').attr('action', '/semovientes/' + result.semoviente.id + '/updatestate');
 

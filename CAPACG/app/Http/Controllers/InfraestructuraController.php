@@ -79,20 +79,33 @@ class InfraestructuraController extends Controller
 
     }
 
+    public function asignadas(){
+        
+        $usuarioActual=\Auth::user();
+        $colaborador= Colaborador::where("user_id", "=",$usuarioActual->id)->first();
+                
+        $infraestructuras = DB::table('infraestructuras')
+                
+        ->join('activos','infraestructuras.activo_id', '=','activos.id')
+            
+        ->select('activos.*','infraestructuras.*')
+        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','1']])
+                                   
+        ->paginate(10);
+
+        $colaboradores = $this->getColaboradores();
+            
+        return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras, 'usuarios' => $colaboradores]);
+        
+    }
+
     public function filter()
-    {
-        //$fitro = $request['TipoActivo'];
-        // $name = $request->input('TipoActivo');
-        // $activo = new Activo;
-        // $activo->Estado = request('TipoActivo');
+    {       
         $infraestructuras = DB::table('infraestructuras')
             ->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
             ->select('activos.*', 'infraestructuras.*')
-            ->where('activos.Estado', '=', '0')
-        //->where('activos.Estado','LIKE', '%' .$activo->Estado. '%' )
-
-            ->paginate(2);
-        //return response()->json(['activo'=>$name]);
+            ->where('activos.Estado', '=', '0')        
+            ->paginate(10);        
         //el filter no debe devolver los datos de los colaboradores, a los inactivos no se asignan colaboradores
 
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
@@ -120,17 +133,7 @@ class InfraestructuraController extends Controller
 
                 ->paginate(10);
         }
-        //return response()->json(['infraestructura'=>$buscar]);
-        // $infraestructuras = DB::table('infraestructuras')
-        // ->buscar($request->get('buscar'))
-        // ->join('activos','infraestructuras.activo_id', '=','activos.id')
-        // ->select('activos.*','infraestructuras.*')
-        // ->Where([['activos.tipo_id','=', $name],['activos.Placa', 'LIKE', '%' .$buscar. '%']])
-        // ->orwhere([['activos.tipo_id','=', $name],['activos.Identificador','=','1']])
-        // // ->where('activos.dependencia_id','=', $name)
-        // //->where('activos.Estado','LIKE', '%' .$activo->Estado. '%' )
-
-        // ->paginate(10);
+        
         $colaboradores = $this->getColaboradores();
 
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras, 'usuarios' => $colaboradores]);

@@ -49,6 +49,10 @@
 							<a class="filtrarSector" href="" data-toggle="modal" data-target="#FiltrarSector">
 								<i class="fa fa-location-arrow" aria-hidden="true"></i> Sector</a>
 						</li>
+
+						<li>
+							<a href="/inmuebles/asignados">
+								<i class="fa fa-user-o" aria-hidden="true"></i> Asignados</a>
 						</li>
 
 					</ul>

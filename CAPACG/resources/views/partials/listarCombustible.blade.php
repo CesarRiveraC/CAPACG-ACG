@@ -5,35 +5,38 @@
 	<a class="btn btn-success my-5" href="/combustibles/excel">
 		<i class="fa fa-download" aria-hidden="true"></i>
 		Generar Reporte</a>
-		<div class="btn-group ">
-					<button class="btn btn-warning dropdown-toggle my-5" type="button" data-toggle="dropdown">Filtrar Facturas
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="/combustibles">
-								<i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a>
-						</li>
+	<div class="btn-group ">
+		<button class="btn btn-warning dropdown-toggle my-5" type="button" data-toggle="dropdown">Filtrar Facturas
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+			<li>
+				<a href="/combustibles">
+					<i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a>
+			</li>
 
-						<li>
-							<a class="filtrar" href="/combustibles/filter">
-								<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
-						</li>
+			<li>
+				<a class="filtrar" href="/combustibles/filter">
+					<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
+			</li>
 
-						<li>
-							<a class="filtarDependencia" href="" data-toggle="modal" data-target="#FiltrarDependencia">
-								<span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a>
-						</li>
+			<li>
+				<a class="filtarDependencia" href="" data-toggle="modal" data-target="#FiltrarDependencia">
+					<span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a>
+			</li>
 
 
-						<li>
-							<a class="filtrarFecha" href="" data-toggle="modal" data-target="#FiltrarFecha">
-								<i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a>
-						</li>
+			<li>
+				<a class="filtrarFecha" href="" data-toggle="modal" data-target="#FiltrarFecha">
+					<i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a>
+			</li>
 
-				
-					</ul>
-				</div>
+			<li>
+				<a href="/combustibles/asignados">
+					<i class="fa fa-user-o" aria-hidden="true"></i> Asignados</a>
+			</li>
+		</ul>
+	</div>
 
 </div>
 <div class="col-md-3 pull-right">
@@ -100,7 +103,7 @@
 								Editar
 								<i class="fa fa-pencil" aria-hidden="true"></i>
 							</a>
-						
+
 						</td>
 
 						</td>

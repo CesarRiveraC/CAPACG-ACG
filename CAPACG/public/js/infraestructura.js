@@ -5,6 +5,9 @@
          let url = `/infraestructuras/${id}/change`;
 
          $.get(url, function (result) {
+            $('#titleModal').text("Eliminar");
+            $('#bodyModal').text("¿Está seguro de eliminar el siguiente registro?");
+            $('#btnOption').text("Eliminar");
              $('#Placa').text(result.infraestructura.activo.Placa);
              $('#role-form').attr('action', '/infraestructuras/' + result.infraestructura.id + '/updatestate');
 
@@ -40,61 +43,7 @@
      });
  });
 
- // $(function(){
- //     $('.crear').click(function (e) {
 
-
-
- // console.log(e);                        
-
- //         $.get('/dependencias/create/',function(data){
-
- //             $('#Dependencia').empty();
-
- //             $('#Dependencia').append("<option value='' disabled selected style='display:none;'>Seleccione una dependencia</option>");
-
-
-
- //              var cont = 0;  
- //              $.each(data, function(index, element){
-
- //                 cont = element.length;
-
-
- //             });                                      
-
- //             for (var i = 0, l = cont; i< l; i++){
-
- //                 $('#Dependencia').append('<option value="'+data.dependencias[i].id+'">'+data.dependencias[i].Dependencia+'</option>');                       
- //             }
-
- //         });
-
-
- // $.get('/tipos/create/',function(data){
-
- //                 $('#Tipo').empty();
-
- //                 $('#Tipo').append("<option value='' disabled selected style='display:none;'>Seleccione el tipo de activo</option>");
-
- //                  var cont = 0;  
- //                  $.each(data, function(index, element){
-
- //                     cont = element.length;
-
-
- //                 });                                                                                                                               
- //                 for (var i = 0, l = cont; i< l; i++){
-
- //                     $('#Tipo').append('<option value="'+data.tipos[i].id+'">'+data.tipos[i].Tipo+'</option>');                       
- //                 }
-
- //                 data=null;
-
- // });                    
-
- //       });
- // });
 
  $(function () {
      $('.filtarDependencia').click(function (e) {

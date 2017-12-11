@@ -47,6 +47,11 @@
 							<i class="fa fa-location-arrow" aria-hidden="true"></i> Sector</a>
 					</li>
 
+					<li>
+						<a href="/vehiculos/asignados">
+							<i class="fa fa-user-o" aria-hidden="true"></i> Asignados</a>
+					</li>
+
 				</ul>
 			</div>
 
@@ -60,8 +65,7 @@
 				<button type="submit" class="btn btn-primary">
 					<span class="fa fa-search"></span>
 				</button>
-				{!! Form::close() !!}
-				@if( ! empty($usuarios))
+				{!! Form::close() !!} @if( ! empty($usuarios))
 				<div>
 					<div class="panel-heading" style="display: inline-flex">
 						<div>

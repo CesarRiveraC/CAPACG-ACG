@@ -17,7 +17,7 @@
 					Generar Reporte</a>
 
 				<div class="btn-group">
-					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filtrar Infraestructuras
+					<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">Filtrar Infraestructuras
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
@@ -49,6 +49,11 @@
 						<li>
 							<a class="filtrarSector" href="" data-toggle="modal" data-target="#FiltrarSector">
 								<i class="fa fa-location-arrow" aria-hidden="true"></i> Sector</a>
+						</li>
+
+						<li>
+							<a href="/infraestructuras/asignadas">
+								<i class="fa fa-user-o" aria-hidden="true"></i> Asignadas</a>
 						</li>
 
 					</ul>
@@ -120,7 +125,7 @@
 									<td class="warning">
 										<a class="btn btn-danger btn-xs estado" data-estado="{{$infraestructura->id}}">
 											Eliminar
-											<i class="fa fa-minus" aria-hidden="true"></i>
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
 										</a>
 
 										<a class="btn btn-success btn-xs detalleInfraestructura" data-infraestructura="{{$infraestructura->id}}">

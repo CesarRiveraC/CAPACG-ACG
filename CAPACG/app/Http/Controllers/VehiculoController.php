@@ -353,6 +353,22 @@ class VehiculoController extends Controller
         return view('/vehiculo/listar', ['vehiculos' => $vehiculos]);
     }
 
+    public function asignados(){
+        
+        $usuarioActual=\Auth::user();
+        $colaborador= Colaborador::where("user_id", "=",$usuarioActual->id)->first();
+        $vehiculos = DB::table('vehiculos')
+        ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
+        ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+        ->select('activos.*','inmuebles.*','vehiculos.*')
+        ->where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','4']])                                    
+        ->paginate(10);
+
+        $colaboradores = $this->getColaboradores();
+        return view('/vehiculo/listar', ['vehiculos' => $vehiculos, 'usuarios' => $colaboradores]);
+        
+    }
+
     public function filterDependencia(Request $request)
     {
 
@@ -372,8 +388,7 @@ class VehiculoController extends Controller
                 ->join('inmuebles', 'vehiculos.inmueble_id', '=', 'inmuebles.id')
                 ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'inmuebles.*', 'vehiculos.*')
-                ->where([['activos.dependencia_id', '=', $name], ['activos.Identificador', '=', '4']])
-            // ->where('activos.dependencia_id','=', $name)
+                ->where([['activos.dependencia_id', '=', $name], ['activos.Identificador', '=', '4']])            
                 ->paginate(10);
         }
 

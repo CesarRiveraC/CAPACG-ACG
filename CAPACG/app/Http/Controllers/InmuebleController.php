@@ -52,6 +52,7 @@ class InmuebleController extends Controller
         return $colaboradores;
     }
 
+   
     public function create()
     {
         $inmuebles = Inmueble::all();
@@ -320,28 +321,33 @@ class InmuebleController extends Controller
         return view('inmueble/listar', compact('inmuebles'));
     }
 
-    // public function asignar(Request $request)
-    // {
-
-    //     $inmuebles = DB::table('inmuebles')
-    //         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-    //         ->select('activos.*', 'inmuebles.*')
-    //         ->where('activos.Estado', '=', '1')
-    //         ->paginate(7);
-
-    //     return view('/inmueble/asignar', ['inmuebles' => $inmuebles]);
-    // }
+    public function asignados(){
+        
+        $usuarioActual=\Auth::user();
+        $colaborador= Colaborador::where("user_id", "=",$usuarioActual->id)->first();
+        $inmuebles = DB::table('inmuebles')
+                
+        ->join('activos','inmuebles.activo_id', '=','activos.id')
+            
+        ->select('activos.*','inmuebles.*')
+        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','2']])
+        ->paginate(10);
+        
+        $colaboradores = $this->getColaboradores();
+        return view('inmueble/listar', ['inmuebles' => $inmuebles, 'usuarios' => $colaboradores]);
+        
+    }
 
     public function filter()
     {
 
         $inmuebles = DB::table('inmuebles')
             ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
-        //->where('activos.Estado','=', '0')
+        
             ->select('activos.*', 'inmuebles.*')
             ->where([['activos.Estado', '=', '0'], ['activos.Identificador', '=', '2']])
             ->paginate(10);
-//el filter no debe devolver los datos de los colaboradores, a los inactivos no se asignan colaboradores
+        //el filter no debe devolver los datos de los colaboradores, a los inactivos no se asignan colaboradores
         return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
     }
 

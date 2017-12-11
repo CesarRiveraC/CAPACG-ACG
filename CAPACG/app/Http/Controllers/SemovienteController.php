@@ -306,6 +306,24 @@ class SemovienteController extends Controller
         return view('/semoviente/listar', ['semovientes' => $semovientes]);
     }
 
+    public function asignados(){
+        
+        $usuarioActual=\Auth::user();
+        $colaborador= Colaborador::where("user_id", "=",$usuarioActual->id)->first();
+        $semovientes = DB::table('semovientes')
+                
+        ->join('activos','semovientes.activo_id', '=','activos.id')
+            
+        ->select('activos.*','semovientes.*')
+        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','3']])                        
+            
+        ->paginate(10);
+
+        $colaboradores = $this->getColaboradores();
+        return view('/semoviente/listar', ['semovientes' => $semovientes, 'usuarios' => $colaboradores]);
+        
+    }
+
     public function filterDependencia(Request $request)
     {
 

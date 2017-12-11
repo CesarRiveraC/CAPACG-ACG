@@ -5,6 +5,9 @@
          let url = `/inmuebles/${id}/change`;
 
          $.get(url, function (result) {
+            $('#titleModal').text("Eliminar");
+            $('#bodyModal').text("¿Está seguro de eliminar el siguiente registro?");
+            $('#btnOption').text("Eliminar");
              $('#Placa').text(result.inmueble.activo.Placa);
              $('#role-form').attr('action', '/inmuebles/' + result.inmueble.id + '/updatestate');
 

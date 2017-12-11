@@ -16,9 +16,9 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    //todas las rutas al metodo show tienen que ser para todos los usuarios, los index son
-    //solo para administrador
+    //todas las rutas al metodo show estan para todos los usuarios
 
+    Route::get('infraestructuras/asignadas', 'InfraestructuraController@asignadas');
     Route::get('infraestructuras/filterSector', 'InfraestructuraController@filterSector');
     Route::get('infraestructuras/filterDate', 'InfraestructuraController@filterDate');
     Route::get('infraestructuras/filterTipo', 'InfraestructuraController@filterTipo');
@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('infraestructuras/excel', 'InfraestructuraController@excel');
     Route::resource('infraestructuras', 'InfraestructuraController');
 
+    Route::get('semovientes/asignados', 'SemovienteController@asignados');
     Route::get('semovientes/filterSector', 'SemovienteController@filterSector');
     Route::get('semovientes/filterSector', 'SemovienteController@filterSector');
     Route::get('semovientes/filterDate', 'SemovienteController@filterDate');
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     //todas las rutas de combustibles tienen que estar disponibles para el rol administrador
     //y estandar, aparte de show que tiene que estar para todos
 
+    Route::get('vehiculos/asignados', 'VehiculoController@asignados');
     Route::get('vehiculos/filterSector', 'VehiculoController@filterSector');
     Route::get('vehiculos/filterDate', 'VehiculoController@filterDate');
     Route::get('vehiculos/filterTipo', 'VehiculoController@filterTipo');
@@ -62,6 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('vehiculos/excel', 'VehiculoController@excel');
     Route::resource('vehiculos', 'VehiculoController');
 
+    Route::get('inmuebles/asignados', 'InmuebleController@asignados');
     Route::get('inmuebles/filterSector', 'InmuebleController@filterSector');
     Route::get('inmuebles/filterDate', 'InmuebleController@filterDate');
     Route::get('inmuebles/filterTipo', 'InmuebleController@filterTipo');
@@ -97,6 +100,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('mensajeRechazado');
     });
 
+    Route::get('combustibles/asignados', 'CombustibleController@asignados');
     Route::get('combustibles/filterDependencia', 'CombustibleController@filterDependencia');
     Route::get('combustibles/filterDate', 'CombustibleController@filterDate');
     Route::get('combustibles/filter', 'CombustibleController@filter');
