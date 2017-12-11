@@ -97,7 +97,9 @@ Route::group(['middleware' => 'auth'], function () {
         return view('mensajeRechazado');
     });
 
-    //
+    Route::get('combustibles/filterDependencia', 'CombustibleController@filterDependencia');
+    Route::get('combustibles/filterDate', 'CombustibleController@filterDate');
+    Route::get('combustibles/filter', 'CombustibleController@filter');
     Route::get('combustibles/{id}/change', 'CombustibleController@change');
     Route::put('combustibles/{id}/updatestate', 'CombustibleController@updatestate');
     Route::get('combustibles/search', 'CombustibleController@search');

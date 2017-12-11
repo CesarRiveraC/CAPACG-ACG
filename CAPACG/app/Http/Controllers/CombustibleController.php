@@ -38,7 +38,7 @@ class CombustibleController extends Controller
         $combustibles = Combustible::all();
         $vehiculos= Vehiculo:: all();
         $dependencias= Dependencia:: all();
-        return view('/combustible/crear', compact('vehiculos','dependencias'));
+        return view('/combustible/crear', ['vehiculos'=>$vehiculos,'dependencias'=>$dependencias]);
     }
 
 
@@ -230,6 +230,58 @@ class CombustibleController extends Controller
         ->where('combustibles.Estado','=','1')->paginate(7);
         return view('combustible/listar',compact('combustibles'));
     }
+    public function filter()
+    {
+
+        $inmuebles = DB::table('inmuebles')
+            ->select('combustibles.*')
+            ->where('combustibles.Estado', '=', '0')
+            ->paginate(10);
+
+        return view('/inmueble/listar', ['inmuebles' => $inmuebles]);
+    }
+    public function filterDependencia(Request $request)
+    {
+
+        $name = $request->input('DependenciaFiltrar');
+        $buscar = $request->input('BuscarDependencia');
+        if ($buscar != null) {
+            $combustibles = DB::table('combustibles')
+                ->select('combustibles.*')
+                ->where('combustibles.dependencia_id', '=', $name)
+                ->paginate(10);
+        } else {
+            $combustibles = DB::table('combustibles')
+                ->select('combustibles.*')
+                ->where('combustibles.dependencia_id', '=', $name)
+
+                ->paginate(10);
+        }
+        
+        return view('/combustible/listar', compact('combustibles'));
+    }
+    
+    public function filterDate(Request $request)
+    {
+        $desde = $request->input('Desde');
+        $hasta = $request->input('Hasta');
+        $combustibles = DB::table('combustibles')
+            ->select('combustibles.*')
+            ->whereBetween('combustibles.Fecha', [$desde, $hasta])
+             ->paginate(10);
+
+        if (count($combustibles) > 0) {
+            return view('/combustible/listar', ['combustibles' => $combustibles]);
+        } else {
+            return
+
+            view('/combustible/listar', ['combustibles' => $combustibles])
+                ->with('error', 'No se han encontrado registros para las fechas indicadas');
+        }
+
+    }
+
+
         public function excel(){
             
             Excel::create('Facturas combustibles', function($excel) {

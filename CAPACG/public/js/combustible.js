@@ -44,3 +44,35 @@ $(function () {
         $('#DetalleCombustible').modal();
     });
 });
+$(function () {
+    $('.filtarDependencia').click(function (e) {
+        console.log(e);
+
+        $.get('/dependencias/create/', function (data) {
+
+            $('#DependenciaFiltrar').empty();
+
+            $('#DependenciaFiltrar').append("<option value='' disabled selected style='display:none;'>Seleccione una dependencia</option>");
+
+            $('#form-dependencia').attr('action', '/combustibles/filterDependencia');
+
+            var cont = 0;
+            $.each(data, function (index, element) {
+
+                cont = element.length;
+            });
+
+            for (var i = 0, l = cont; i < l; i++) {
+
+                $('#DependenciaFiltrar').append('<option value="' + data.dependencias[i].id + '">' + data.dependencias[i].Dependencia + '</option>');
+            }
+        });
+    });
+});
+
+$(function () {
+    $('.filtrarFecha').click(function (e) {
+
+        $('#form-fecha').attr('action', '/combustibles/filterDate');
+    });
+});

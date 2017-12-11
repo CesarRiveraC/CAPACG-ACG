@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1">
-
+<br>
 			<a class="btn btn-primary" href="/usuarios/create">
 				<i class="fa fa-plus-circle" aria-hidden="true"></i>
 				</span> Crear nuevo Usuario</a>
@@ -11,13 +11,14 @@
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
+				
 					<li>
-						<a class="btn btn-default " href="/usuarios">
+						<a href="/usuarios">
 							<i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a>
 					</li>
 
 					<li>
-						<a class="btn btn-default " href="/usuarios/filter">
+						<a class="filtrar" href="/usuarios/filter">
 							<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
 					</li>
 
