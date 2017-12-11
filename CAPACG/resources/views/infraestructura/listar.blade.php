@@ -14,7 +14,7 @@
 					<i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Infraestructura</a>
 				<a class="btn btn-success my-5" href="/infraestructuras/excel">
 					<i class="fa fa-download" aria-hidden="true"></i>
-					 Generar Reporte</a>
+					Generar Reporte</a>
 
 				<div class="btn-group">
 					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filtrar Infraestructuras
@@ -69,7 +69,8 @@
 				<button type="submit" class="btn btn-primary">
 					<span class="fa fa-search"></span>
 				</button>
-				{!! Form::close() !!}
+				{!! Form::close() !!} 
+				@if( ! empty($usuarios))
 				<div>
 					<div class="panel-heading" style="display: inline-flex">
 						<div>
@@ -83,6 +84,9 @@
 						</div>
 					</div>
 				</div>
+
+				@endif
+
 
 				<div class="panel-heading" style="width:100%">
 					<h4>Infraestructuras</h4>

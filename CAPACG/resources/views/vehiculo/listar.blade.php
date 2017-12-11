@@ -61,6 +61,7 @@
 					<span class="fa fa-search"></span>
 				</button>
 				{!! Form::close() !!}
+				@if( ! empty($usuarios))
 				<div>
 					<div class="panel-heading" style="display: inline-flex">
 						<div>
@@ -74,6 +75,8 @@
 						</div>
 					</div>
 				</div>
+
+				@endif
 
 				<div class="panel-heading" style="width:100%">
 					<h4>Vehículos</h4>

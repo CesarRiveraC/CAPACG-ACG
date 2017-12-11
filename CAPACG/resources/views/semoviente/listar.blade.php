@@ -67,6 +67,7 @@
 				</button>
 				{!! Form::close() !!}
 
+				@if( ! empty($usuarios))
 				<div>
 					<div class="panel-heading" style="display: inline-flex">
 						<div>
@@ -80,6 +81,8 @@
 						</div>
 					</div>
 				</div>
+
+				@endif
 
 				<div class="panel-heading" style="width:100%">
 					<h4>Semovientes</h4>
