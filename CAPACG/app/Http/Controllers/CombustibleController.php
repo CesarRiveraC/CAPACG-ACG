@@ -9,6 +9,7 @@ use App\Dependencia;
 use App\Inmueble;
 use App\Activo;
 use App\Colaborador;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Storage;
@@ -38,6 +39,17 @@ class CombustibleController extends Controller
                                   
     }
 
+    public function getColaboradores()
+    {
+        $colaboradores = DB::table('colaboradores')
+            ->join('users', 'colaboradores.user_id', '=', 'users.id')
+            ->select('users.*', 'colaboradores.*', DB::raw("CONCAT(colaboradores.Cedula,' | ',users.name,' ',users.Apellido) as nombreCompleto"))
+            ->where('users.Estado', '=', '1')
+            ->pluck('nombreCompleto', 'colaboradores.id')
+            ->prepend('selecciona un colaborador');
+
+        return $colaboradores;
+    }
 
     public function create()
     {
@@ -46,11 +58,14 @@ class CombustibleController extends Controller
         $dependencias= Dependencia:: all();
 
         $usuarioActual=\Auth::user();
+
+        $colaboradores = $this->getColaboradores();
+
         if($usuarioActual->roles_id==1){
-            return view('/combustible/crear', ['vehiculos'=>$vehiculos,'dependencias'=>$dependencias]);
+            return view('/combustible/crear', ['vehiculos'=>$vehiculos,'dependencias'=>$dependencias, 'usuarios'=>$colaboradores]);
         }
         else{
-            return view('/estandar/crearCombustible', ['vehiculos'=>$vehiculos,'dependencias'=>$dependencias]);
+            return view('/estandar/crearCombustible', ['vehiculos'=>$vehiculos,'dependencias'=>$dependencias,'usuarios'=>$colaboradores]);
         }
         
     }
@@ -66,7 +81,7 @@ class CombustibleController extends Controller
             'Fecha' => 'required',
             'Kilometraje' => 'required',
             'LitrosCombustible' => 'required',
-            'FuncionarioQueHizoCompra' => 'required',
+            //'FuncionarioQueHizoCompra' => 'required',
             'Dependencia' => 'required',         
             'CodigoDeAccionDePlanPresupuesto' => 'required',
             'Vehiculo' => 'required',        
@@ -80,7 +95,7 @@ class CombustibleController extends Controller
             'Fecha.required' => 'Debe definir la fecha',                        
             'Kilometraje.required' => 'Debe definir el kilometraje',            
             'LitrosCombustible.required' => 'Debe definir los litros de combustible',
-            'FuncionarioQueHizoCompra.required' => 'Debe definir el funcionario que hizo la compra',            
+            //'FuncionarioQueHizoCompra.required' => 'Debe definir el funcionario que hizo la compra',            
             'Dependencia.required' => 'Debe definir la dependencia',
             'CodigoDeAccionDePlanPresupuesto.required' => 'Debe definir el código de acción de plan de presupuesto',
             'Vehiculo.required' => 'Debe definir el vehículo',
@@ -102,7 +117,7 @@ class CombustibleController extends Controller
         $combustible->Fecha = $request['Fecha'];
         $combustible->Kilometraje = $request['Kilometraje'];
         $combustible->LitrosCombustible = $request['LitrosCombustible'];
-        $combustible->FuncionarioQueHizoCompra = $request['FuncionarioQueHizoCompra'];
+        $combustible->colaborador_id = $request['usuarios'];
         $combustible->dependencia_id = request('Dependencia');
         $combustible->CodigoDeAccionDePlanPresupuesto = $request['CodigoDeAccionDePlanPresupuesto'];
         $combustible->Estado=1;
@@ -126,6 +141,10 @@ class CombustibleController extends Controller
 
         
         $combustible = Combustible::find($id);
+        $colaborador = Colaborador::find($combustible->colaborador_id);
+        $usuario = User::find($colaborador->id);
+        $colaborador->user()->associate($usuario);
+        $combustible->colaborador()->associate($colaborador);
 
         $vehiculo = Vehiculo::find($combustible->vehiculo_id);
         $combustible->vehiculo()->associate($vehiculo);
@@ -142,7 +161,7 @@ class CombustibleController extends Controller
 
     public function edit($id)
     {
-    	$combustible = Combustible::find($id);
+        $combustible = Combustible::find($id);
         $vehiculos= Vehiculo:: all();
    
         $Dependencia = Dependencia::find($combustible->dependencia_id);
@@ -154,11 +173,13 @@ class CombustibleController extends Controller
         $Vehiculos = DB::table('vehiculos')->pluck('PlacaVehiculo', 'id');
 
         $usuarioActual=\Auth::user();
+
+        $colaboradores = $this->getColaboradores();
         if($usuarioActual->roles_id==1){
-            return view('/combustible/editar',compact('combustible'), ['Dependencias' => $Dependencias,'Vehiculos' => $Vehiculos]);
+            return view('/combustible/editar',compact('combustible'), ['Dependencias' => $Dependencias,'Vehiculos' => $Vehiculos, 'usuarios'=>$colaboradores]);
         }
         else{
-            return view('/estandar/editarCombustible',compact('combustible'), ['Dependencias' => $Dependencias,'Vehiculos' => $Vehiculos]);
+            return view('/estandar/editarCombustible',compact('combustible'), ['Dependencias' => $Dependencias,'Vehiculos' => $Vehiculos, 'usuarios'=>$colaboradores]);
         }
         
         
@@ -177,7 +198,7 @@ class CombustibleController extends Controller
             'Fecha' => 'required',
             'Kilometraje' => 'required',
             'LitrosCombustible' => 'required',
-            'FuncionarioQueHizoCompra' => 'required',
+            //'FuncionarioQueHizoCompra' => 'required',
             'CodigoDeAccionDePlanPresupuesto' => 'required',      
                        
         ],
@@ -189,7 +210,7 @@ class CombustibleController extends Controller
             'Fecha.required' => 'Debe definir la fecha',                        
             'Kilometraje.required' => 'Debe definir el kilometraje',            
             'LitrosCombustible.required' => 'Debe definir los litros de combustible',
-            'FuncionarioQueHizoCompra.required' => 'Debe definir el funcionario que hizo la compra',           
+          //  'FuncionarioQueHizoCompra.required' => 'Debe definir el funcionario que hizo la compra',           
             'CodigoDeAccionDePlanPresupuesto.required' => 'Debe definir el código de acción de plan de presupuesto',
             
            
@@ -208,7 +229,7 @@ class CombustibleController extends Controller
         $combustible->Fecha = request('Fecha');
         $combustible->Kilometraje = request('Kilometraje');
         $combustible->LitrosCombustible = request('LitrosCombustible');
-        $combustible->FuncionarioQueHizoCompra = request('FuncionarioQueHizoCompra');
+        $combustible->colaborador_id = request('usuarios');
         $combustible->dependencia_id = request('Dependencias');
         $combustible->CodigoDeAccionDePlanPresupuesto = request('CodigoDeAccionDePlanPresupuesto');
         

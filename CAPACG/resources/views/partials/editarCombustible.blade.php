@@ -83,11 +83,8 @@
 				<label for="FuncionarioQueHizoCompra" class="col-md-4 control-label">Funcionario Que Hizo La Compra</label>
 
 				<div class="col-md-6">
-					<input id="FuncionarioQueHizoCompra" type="text" class="form-control" name="FuncionarioQueHizoCompra" value="{{ $combustible->FuncionarioQueHizoCompra }}"
-					 required> @if ($errors->has('FuncionarioQueHizoCompra'))
-					<span class="help-block">
-						<strong>{{ $errors->first('FuncionarioQueHizoCompra') }}</strong>
-					</span>
+					@if( ! empty($usuarios)) 
+				{!! Form::select('usuarios', $usuarios, $combustible->colaborador_id, ['id' => 'usuarios', 'class'=>'form-control'])!!}
 					@endif
 				</div>
 			</div>
