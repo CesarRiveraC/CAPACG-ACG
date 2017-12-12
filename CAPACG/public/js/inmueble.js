@@ -136,24 +136,57 @@
  $('#usuarios').select({});
 
  $(function () {
-     $('.asignarColaborador').click(function (e) {
+    $('.asignarColaborador').click(function (e) {
 
-         let inmueble_id = $(this).attr('data-inmueble');
-         var e = document.getElementById("usuarios");
-         var user_id = e.options[e.selectedIndex].value;
-         let url = `/inmuebles/${inmueble_id}/${user_id}/searchCollaborators`;
+        let inmueble_id = $(this).attr('data-inmueble');
+        var e = document.getElementById("usuarios");
+        var user_id = e.options[e.selectedIndex].value;
 
-         $.get(url, function (result) {
-             $('#NombreUsuario').text(result.colaborador.user.name);
-             $('#form-asignar').attr('action', '/inmuebles/' + result.inmueble.id + '/' + result.colaborador.id + '/asignCollaborator');
+        if (user_id != 0) {
+            let url = `/inmuebles/${inmueble_id}/${user_id}/searchCollaborators`;
 
-         }).fail(function () {
-             alert('¡Algo salio mal!');
-         });
+            $.get(url, function (result) {
+                if (result.inmueble.activo.colaborador_id != null) {
+                   if (result.inmueble.activo.colaborador_id == result.colaborador.id) {
+                       $('.bodyModal1').text("");
+                       $('.modal-title').text("Ups!");
+                       $('.bodyModal2').text("Este activo ya está asignado actualmente a " + result.inmueble.activo.colaborador.user.name + " " + result.inmueble.activo.colaborador.user.Apellido + ".");
+                       $('.btnOption').text("Aceptar");
+                       $('.btnOption').attr('data-dismiss', 'modal');
+                   }else{
+                       $('.btnOption').removeAttr('data-dismiss');
+                       $('.btnOption').text("Reasignar");                     
+                       $('.modal-title').text("¡Cuidado!");
+                       $('.bodyModal1').text("El activo esta actualmente asignado a " + result.inmueble.activo.colaborador.user.name + " " + result.inmueble.activo.colaborador.user.Apellido + ".");
+                       $('.bodyModal2').text("¿Está seguro de reasignar el activo a " + result.colaborador.user.name + " " + result.colaborador.user.Apellido + "?");
+                       $('.form-asignar').attr('action', '/inmuebles/' + result.inmueble.id + '/' + result.colaborador.id + '/asignCollaborator');
+                   }   
+                }
+                 if(result.inmueble.activo.colaborador_id==null) {
+                    $('.btnOption').removeAttr('data-dismiss');
+                    $('.modal-title').text("Asignar");
+                    $('.bodyModal2').text("¿Está seguro de asignar el activo a " + result.colaborador.user.name + " " + result.colaborador.user.Apellido + "?");
+                    $('.btnOption').text("Asignar");
+                    $('.form-asignar').attr('action', '/inmuebles/' + result.inmueble.id + '/' + result.colaborador.id + '/asignCollaborator');
+                }
 
-         $('#asignarColaborador').modal();
-     });
- });
+            }).fail(function () {
+                alert('¡Algo salio mal!');
+            });
+
+        } else if (user_id == 0) {
+            $('.bodyModal1').text("");
+            $('.modal-title').text("¡Cuidado!");
+            $('.bodyModal2').text("¡Aun no has seleccionado ningun colaborador!");
+            $('.btnOption').text("Aceptar");
+            $('.btnOption').attr('data-dismiss', 'modal');
+        };
+        setTimeout(function () {
+            $('#asignarColaborador').modal();
+        }, 900);
+    });
+});
+
 
  $(function () {
 

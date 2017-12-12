@@ -29,11 +29,7 @@
 					<dt>Permisos:</dt>
 					<dd id="lblRol"></dd>
 					<br>
-
-					<dt>Estado:</dt>
-					<dd id="lblEstado"></dd>
-					<br>
-
+					
 					<dt>Cédula:</dt>
 					<dd id="lblCedula"></dd>
 					<br>

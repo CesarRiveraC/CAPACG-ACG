@@ -8,7 +8,6 @@ $(function () {
             $('#lblApellido').text(result.colaborador.user.Apellido);
             $('#lblemail').text(result.colaborador.user.email);
             $('#lblRol').text(result.rol.Rol);
-            $('#lblEstado').text(result.colaborador.user.Estado);
             $('#lblCedula').text(result.colaborador.Cedula);
             $('#lblPuestoDeTrabajo').text(result.colaborador.PuestoDeTrabajo);
             $('#lblLugarDeTrabajo').text(result.colaborador.LugarDeTrabajo);
