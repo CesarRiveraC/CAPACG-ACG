@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class EstandarController extends Controller
 {
-    //Creado para administrar al usuario con rol estandar
-
+    //Creado para administrar al usuario con rol estandar    
+        
     public function inmueblesAsignados(){
         
                 $usuarioActual=\Auth::user();

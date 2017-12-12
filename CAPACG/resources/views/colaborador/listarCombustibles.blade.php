@@ -17,12 +17,17 @@
 
 			<div class="panel panel-info">
 
-				{!! Form::open(['url' => 'combustibles/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search'])
-				!!} {!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
-				<button type="submit" class="btn btn-primary">
-					<span class="fa fa-search"></span>
-				</button>
-				{!! Form::close() !!}
+				<form role="search" action="/colaborador/searchCombustibles" class="navbar-form navbar-right">
+					{{ csrf_field() }}
+
+
+					<input type="text" class="form-control" id="Buscar" placeholder="Buscar" name="Buscar">
+
+
+					<button type="submit" class="btn btn-primary">
+						<span class="fa fa-search"></span>
+					</button>
+				</form>
 
 				<div class="panel-heading">
 					<h4>Facturas de Combustibles</h4>

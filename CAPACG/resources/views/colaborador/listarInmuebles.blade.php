@@ -17,14 +17,18 @@
 			<br> @include('partials.message')
 
 			<div class="panel panel-info">
+				<form role="search" action="/colaborador/searchInmuebles" class="navbar-form navbar-right">
+					{{ csrf_field() }}
 
-				{!! Form::open(['url' => 'inmuebles/search', 'method' =>'GET', 'class' => 'navbar-form navbar-right', 'role' => 'search'])
-				!!} {!! Form::text('buscar', null,['class'=> 'form-control', 'placeholder' => 'Buscar']) !!}
 
-				<button type="submit" class="btn btn-primary">
-					<span class="fa fa-search"></span>
-				</button>
-				{!! Form::close() !!}
+					<input type="text" class="form-control" id="Buscar" name="Buscar">
+
+
+					<button type="submit" class="btn btn-primary">
+						<span class="fa fa-search"></span>
+					</button>
+				</form>
+
 
 				<div class="panel-heading" style="width: 100%">
 					<h4>Inmuebles</h4>

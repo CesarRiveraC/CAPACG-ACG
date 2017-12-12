@@ -125,6 +125,11 @@ Route::group(['middleware' => 'auth'], function () {
     //lo saco para poder acceder al show desde otros roles
     Route::resource('usuarios', 'UsuariosController');
     //rutas para el rol colaborador
+    Route::get('colaborador/searchCombustibles', 'ColaboradorController@searchCombustibles');
+    Route::get('colaborador/searchVehiculos', 'ColaboradorController@searchVehiculos');
+    Route::get('colaborador/searchSemovientes', 'ColaboradorController@searchSemovientes');
+    Route::get('colaborador/searchInfraestructuras', 'ColaboradorController@searchInfraestructuras');
+    Route::get('colaborador/searchInmuebles', 'ColaboradorController@searchInmuebles');
     Route::get('colaborador/inmueblesAsignados', 'ColaboradorController@inmueblesAsignados');
     Route::get('colaborador/infraestructurasAsignadas', 'ColaboradorController@infraestructurasAsignadas');
     Route::get('colaborador/semovientesAsignados', 'ColaboradorController@semovientesAsignados');
