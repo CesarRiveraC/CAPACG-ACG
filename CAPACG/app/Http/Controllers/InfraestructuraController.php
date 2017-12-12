@@ -51,13 +51,18 @@ class InfraestructuraController extends Controller
         return $colaboradores;
     }
 
-    public function searchCollaborators($infraestructura_id, $id, Request $request)
+    public function searchCollaborators($infraestructura_id, $user_id, Request $request)
     {
         $infraestructura = Infraestructura::find($infraestructura_id);
         $activo = Activo::find($infraestructura->activo_id);
+        if($activo->colaborador_id!=null){
+            $colaboradorAsignado = Colaborador::find($activo->colaborador_id);
+            $usuarioAsignado = User::find($colaboradorAsignado->user_id);
+            $colaboradorAsignado->user()->associate($usuarioAsignado);
+            $activo->colaborador()->associate($colaboradorAsignado);
+        }
         $infraestructura->activo()->associate($activo);
-
-        $colaborador = Colaborador::find($id);
+        $colaborador = Colaborador::find($user_id);
         $usuario = User::find($colaborador->user_id);
         $colaborador->user()->associate($usuario);
 

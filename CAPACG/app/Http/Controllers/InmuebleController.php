@@ -273,6 +273,12 @@ class InmuebleController extends Controller
 
         $inmueble = Inmueble::find($inmueble_id);
         $activo = Activo::find($inmueble->activo_id);
+        if($activo->colaborador_id!=null){
+            $colaboradorAsignado = Colaborador::find($activo->colaborador_id);
+            $usuarioAsignado = User::find($colaboradorAsignado->user_id);
+            $colaboradorAsignado->user()->associate($usuarioAsignado);
+            $activo->colaborador()->associate($colaboradorAsignado);
+        }
         $inmueble->activo()->associate($activo);
 
         $colaborador = Colaborador::find($id);
