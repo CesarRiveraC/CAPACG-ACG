@@ -113,10 +113,15 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="col-md-3 pull-right">
-			<br>
-			<a class="href" href="/home">
-				<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
+		<div class="row">
+			<div class="col-md-8">{{ $combustibles->appends(Request::only(['buscar','DependenciaFiltrar','Desde','Hasta','BuscarDependencia']))->links()
+				}}
+			</div>
+			<div class="col-md-3 pull-right">
+				<br>
+				<a class="href" href="/home">
+					<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
+			</div>
 		</div>
 	</div>
 </div>

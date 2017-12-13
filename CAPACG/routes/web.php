@@ -108,7 +108,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('combustibles/{id}/updatestate', 'CombustibleController@updatestate');
     Route::get('combustibles/search', 'CombustibleController@search');
     Route::get('combustibles/excel', 'CombustibleController@excel');
-
     Route::resource('combustibles', 'CombustibleController');
 
     //

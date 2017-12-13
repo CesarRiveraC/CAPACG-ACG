@@ -9,7 +9,7 @@ class DependenciaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('Administrador')->except('index');
+        $this->middleware('Administrador')->except('create');
     }
     public function index(Request $request)
     {

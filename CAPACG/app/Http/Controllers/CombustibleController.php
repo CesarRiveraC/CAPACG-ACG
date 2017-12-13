@@ -26,8 +26,8 @@ class CombustibleController extends Controller
     {
         $combustibles = DB::table('combustibles')
         ->select('combustibles.*')
-        ->where('Estado','=','1')
-        ->paginate(20);
+        ->where('Estado','=','10')
+        ->paginate(1);
 
         $usuarioActual=\Auth::user();
         if($usuarioActual->roles_id==1){
@@ -271,7 +271,8 @@ class CombustibleController extends Controller
     public function search(Request $request)
     {
         $combustibles = Combustible::buscar($request->get('buscar'))
-        ->where('combustibles.Estado','=','1')->paginate(7);
+        ->where('combustibles.Estado','=','1')
+        ->paginate(10);
 
         $usuarioActual=\Auth::user();
         if($usuarioActual->roles_id==1){
@@ -295,7 +296,7 @@ class CombustibleController extends Controller
                 return view('/combustible/listar', ['combustibles' => $combustibles]);
             }
             else{
-                return view('/combustible/listarCombustibles', ['combustibles' => $combustibles]);
+                return view('/estandar/listarCombustibles', ['combustibles' => $combustibles]);
             }
 
         
@@ -317,7 +318,7 @@ class CombustibleController extends Controller
             return view('/combustible/listar', ['combustibles' => $combustibles]);
         }
         else{
-            return view('/combustible/listarCombustibles', ['combustibles' => $combustibles]);
+            return view('/estandar/listarCombustibles', ['combustibles' => $combustibles]);
         }
         
         
@@ -374,23 +375,21 @@ class CombustibleController extends Controller
             
             Excel::create('Facturas combustibles', function($excel) {
                 
-                           $excel->sheet('Activos', function($sheet) {
+                $excel->sheet('Activos', function($sheet) {
                 
-                                $combustibles = DB::table('combustibles')
-                             //  ->join('colaboradores','combustibles.colaborador_id', '=','colaboradores.id')
-                               ->join('dependencias','combustibles.dependencia_id', '=','dependencias.id')
-                               ->select('combustibles.id','combustibles.NoVaucher','combustibles.Monto','combustibles.Numero','combustibles.Fecha','dependencias.Dependencia',
-                               'combustibles.Kilometraje','combustibles.LitrosCombustible','combustibles.FuncionarioQueHizoCompra','combustibles.CodigoDeAccionDePlanPresupuesto')
-                        
-                               
-                               ->get();
+                    $combustibles = DB::table('combustibles')
+                    //  ->join('colaboradores','combustibles.colaborador_id', '=','colaboradores.id')
+                    ->join('dependencias','combustibles.dependencia_id', '=','dependencias.id')
+                    ->select('combustibles.id','combustibles.NoVaucher','combustibles.Monto','combustibles.Numero','combustibles.Fecha','dependencias.Dependencia',
+                    'combustibles.Kilometraje','combustibles.LitrosCombustible','combustibles.FuncionarioQueHizoCompra','combustibles.CodigoDeAccionDePlanPresupuesto')                                                       
+                    ->get();
                
-                               $combustibles = json_decode(json_encode($combustibles),true);
-                               $sheet->freezeFirstRow();
-                               $sheet->fromArray($combustibles);
+                    $combustibles = json_decode(json_encode($combustibles),true);
+                    $sheet->freezeFirstRow();
+                    $sheet->fromArray($combustibles);
                 
-                           });
-                       })->export('xls');
-                 }
+                    });
+            })->export('xls');
+        }
 }
 

@@ -6,7 +6,8 @@
 		</div>
 	</div>
 </div>
-@include('modals.estado') @include('modals.detalleCombustible')
+@include('modals.estado') @include('modals.detalleCombustible') @include('modals.filtrarDependencia') 
+@include('modals.filtrarFecha') 
 
 <script src="{{ asset('js/combustible.js') }}"></script>
 <script type="text/javascript">
