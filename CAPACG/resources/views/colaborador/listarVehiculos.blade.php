@@ -4,7 +4,14 @@
 
 		<div class="col-lg-10 col-md-offset-1">
 			<br>
+			<div class="col-md-8">
 
+			</div>
+			<div class="col-md-3 pull-right">
+				<a class="href my-5" href="/home">
+
+					<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
+			</div>
 			<br>
 			<br>
 
@@ -26,7 +33,7 @@
 					<h4>Vehículos</h4>
 				</div>
 				<div class="panel-body">
-					{{ $vehiculos->links() }}
+
 					<div class="table-responsive">
 						<table class="table table-hover">
 							<thead>
@@ -61,7 +68,13 @@
 							</tbody>
 						</table>
 					</div>
-
+					<div class="col-md-8">{{ $vehiculos->appends(Request::only(['Buscar']))->links() }}
+					</div>
+					<div class="col-md-3 pull-right">
+						<br>
+						<a class="href" href="/home">
+							<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -76,5 +89,6 @@
 	$(function(){
         $('[data-toggle="tooltip"]').tooltip()
     })
+
 </script>
 @endsection

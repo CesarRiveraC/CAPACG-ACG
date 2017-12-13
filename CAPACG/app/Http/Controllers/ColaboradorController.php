@@ -11,14 +11,15 @@ class ColaboradorController extends Controller
 
     public function inmueblesAsignados(){
         
-        $usuarioActual=\Auth::user();
-        $colaborador= Colaborador::where("user_id", "=",$usuarioActual->id)->first();
+        // $usuarioActual=\Auth::user();
+        // $colaborador= Colaborador::where("user_id", "=",$usuarioActual->id)->first();
         $inmuebles = DB::table('inmuebles')
                 
         ->join('activos','inmuebles.activo_id', '=','activos.id')
             
         ->select('activos.*','inmuebles.*')
-        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','2']])
+        ->where([['activos.colaborador_id','=', '3'],['activos.Identificador','=','2']])
+        
         ->paginate(10);                                
             
         return view('/colaborador/listarInmuebles', ['inmuebles' => $inmuebles]);

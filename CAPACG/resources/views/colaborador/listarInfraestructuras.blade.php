@@ -72,7 +72,7 @@
 						</table>
 					</div>
 					<div class="row">
-						<div class="col-md-8">{{ $infraestructuras->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta','BuscarDependencia','BuscarTipo']))->links()
+						<div class="col-md-8">{{ $infraestructuras->appends(Request::only(['Buscar']))->links()
 							}}</div>
 						<div class="col-md-3 pull-right">
 							<br>

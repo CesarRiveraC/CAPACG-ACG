@@ -71,6 +71,8 @@
 							</tbody>
 						</table>
 					</div>
+					<div class="col-md-8">{{ $combustibles->appends(Request::only(['Buscar']))->links()}}
+					</div>
 					<div class="col-md-3 pull-right">
 						<br>
 						<a class="href" href="/home">

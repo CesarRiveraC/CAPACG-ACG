@@ -68,7 +68,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="col-md-8">{{ $semovientes->appends(Request::only(['TipoActivo','buscar','DependenciaFiltrar','TipoFiltrar','Desde','Hasta']))->links()
+					<div class="col-md-8">{{ $semovientes->appends(Request::only(['Buscar']))->links()
 						}}</div>
 					<div class="col-md-3 pull-right">
 						<br>
