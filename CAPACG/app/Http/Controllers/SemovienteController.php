@@ -283,8 +283,11 @@ class SemovienteController extends Controller
     {
         $semoviente = Semoviente::find($id);
         $activo = Activo::find($semoviente->activo_id);
-        $activo->Estado = 0;
-        $activo->save();
+        if ($activo->Estado == 1) {
+            $activo->Estado = 0;
+        } else if ($activo->Estado == 0) {
+            $activo->Estado = 1;
+        }        $activo->save();
 
         return redirect('/semovientes');
     }

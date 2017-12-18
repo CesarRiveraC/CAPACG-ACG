@@ -5,17 +5,24 @@ $(function () {
         let url = `/semovientes/${id}/change`;
 
         $.get(url, function (result) {
-            $('#titleModal').text("Eliminar");
-            $('#bodyModal').text("¿Está seguro de eliminar el siguiente registro?");
-            $('#btnOption').text("Eliminar");
-            $('#Placa').text(result.semoviente.activo.Placa);
+            if (result.semoviente.activo.Estado == 0) {
+                $('#titleModal').text("Restaurar");
+                $('#bodyModal').text("¿Desea restaurar nuevamente esta semoviente?");
+                $('#btnOption').text("Restaurar");
+            } else {
+                $('#titleModal').text("Eliminar");
+                $('#bodyModal').text("¿Está seguro de eliminar el siguiente registro?");
+                $('#btnOption').text("Eliminar");
+            }
             $('#role-form').attr('action', '/semovientes/' + result.semoviente.id + '/updatestate');
 
         }).fail(function () {
-            alert('algo salio mal');
+            alert('¡Algo salio mal!');
         });
 
-        $('#Estado').modal();
+        setTimeout(function () {
+            $('#Estado').modal();
+        }, 880);
     });
 });
 

@@ -117,8 +117,18 @@
 									<td class="info"> {{$inmueble->Color}} </td>
 
 									<td class="warning col-xs-2 col-xs-offset-2 ">
-										<a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Eliminar"></a>
+										@if($inmueble->Estado == 1)
+										<a class="btn btn-danger btn-xs estado" data-estado="{{$inmueble->id}}">
+											Eliminar
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</a>
+										@endif
+										@if($inmueble->Estado == 0)
+										<a class="btn btn-danger btn-xs fa fa-reply estado" data-estado="{{$inmueble->id}}">
+											Restaurar
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</a>
+										@endif
 										<a class="fa fa-eye btn btn-success btn-xs detalleInmueble" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
 										 title="Ver"></a>
 										<a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom"

@@ -20,10 +20,6 @@ class SectorTableSeeder extends Seeder
             'Estado' => '1',
         ]);
         DB::table('sectores')->insert([
-            'Sector' => 'Rincón de la Vieja',
-            'Estado' => '1',
-        ]);
-        DB::table('sectores')->insert([
             'Sector' => 'Santa María',
             'Estado' => '1',
         ]);
@@ -56,10 +52,6 @@ class SectorTableSeeder extends Seeder
             'Estado' => '1',
         ]);
         DB::table('sectores')->insert([
-            'Sector' => 'San Cristobal',
-            'Estado' => '1',
-        ]);
-        DB::table('sectores')->insert([
             'Sector' => 'Naranjo',
             'Estado' => '1',
         ]);
@@ -73,6 +65,14 @@ class SectorTableSeeder extends Seeder
         ]);
         DB::table('sectores')->insert([
             'Sector' => 'Pitilla',
+            'Estado' => '1',
+        ]);
+        DB::table('sectores')->insert([
+            'Sector' => 'San Cristóbal',
+            'Estado' => '1',
+        ]);
+        DB::table('sectores')->insert([
+            'Sector' => 'Pailas',
             'Estado' => '1',
         ]);
 

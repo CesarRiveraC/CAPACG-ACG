@@ -5,17 +5,24 @@ $(function () {
         let url = `/vehiculos/${id}/change`;
 
         $.get(url, function (result) {
-            $('#titleModal').text("Eliminar");
-            $('#bodyModal').text("¿Está seguro de eliminar el siguiente registro?");
-            $('#btnOption').text("Eliminar");
-            $('#Placa').text(result.vehiculo.inmueble.activo.Placa);
+            if (result.vehiculo.inmueble.activo.Estado == 0) {
+                $('#titleModal').text("Restaurar");
+                $('#bodyModal').text("¿Desea restaurar nuevamente esta vehiculo?");
+                $('#btnOption').text("Restaurar");
+            } else {
+                $('#titleModal').text("Eliminar");
+                $('#bodyModal').text("¿Está seguro de eliminar el siguiente registro?");
+                $('#btnOption').text("Eliminar");
+            }
             $('#role-form').attr('action', '/vehiculos/' + result.vehiculo.id + '/updatestate');
 
         }).fail(function () {
-            alert('algo salio mal');
+            alert('¡Algo salio mal!');
         });
 
-        $('#Estado').modal();
+        setTimeout(function () {
+            $('#Estado').modal();
+        }, 880);
     });
 });
 

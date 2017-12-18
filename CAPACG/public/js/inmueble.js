@@ -1,23 +1,30 @@
- $(function () {
-     $('.estado').click(function (e) {
+$(function () {
+    $('.estado').click(function (e) {
 
-         let id = $(this).attr('data-estado');
-         let url = `/inmuebles/${id}/change`;
+        let id = $(this).attr('data-estado');
+        let url = `/inmuebles/${id}/change`;
 
-         $.get(url, function (result) {
-            $('#titleModal').text("Eliminar");
-            $('#bodyModal').text("¿Está seguro de eliminar el siguiente registro?");
-            $('#btnOption').text("Eliminar");
-             $('#Placa').text(result.inmueble.activo.Placa);
-             $('#role-form').attr('action', '/inmuebles/' + result.inmueble.id + '/updatestate');
+        $.get(url, function (result) {
+            if (result.inmueble.activo.Estado == 0) {
+                $('#titleModal').text("Restaurar");
+                $('#bodyModal').text("¿Desea restaurar nuevamente este inmueble?");
+                $('#btnOption').text("Restaurar");
+            } else {
+                $('#titleModal').text("Eliminar");
+                $('#bodyModal').text("¿Está seguro de eliminar el siguiente registro?");
+                $('#btnOption').text("Eliminar");
+            }
+            $('#role-form').attr('action', '/inmuebles/' + result.inmueble.id + '/updatestate');
 
-         }).fail(function () {
-             alert('¡Algo salio mal!');
-         });
+        }).fail(function () {
+            alert('¡Algo salio mal!');
+        });
 
-         $('#Estado').modal();
-     });
- });
+        setTimeout(function () {
+            $('#Estado').modal();
+        }, 880);
+    });
+});
 
  $(function () {
      $('.detalleInmueble').click(function (e) {
@@ -135,6 +142,7 @@
 
  $('#usuarios').select({});
 
+ 
  $(function () {
     $('.asignarColaborador').click(function (e) {
 
@@ -162,7 +170,7 @@
                        $('.form-asignar').attr('action', '/inmuebles/' + result.inmueble.id + '/' + result.colaborador.id + '/asignCollaborator');
                    }   
                 }
-                 if(result.inmueble.activo.colaborador_id==null) {
+                 else {
                     $('.btnOption').removeAttr('data-dismiss');
                     $('.modal-title').text("Asignar");
                     $('.bodyModal2').text("¿Está seguro de asignar el activo a " + result.colaborador.user.name + " " + result.colaborador.user.Apellido + "?");

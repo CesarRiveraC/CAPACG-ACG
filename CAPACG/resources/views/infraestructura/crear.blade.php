@@ -83,7 +83,6 @@
 
 								<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
 						</div>
-				</div>
 				</form>
 			</div>
 			<br>

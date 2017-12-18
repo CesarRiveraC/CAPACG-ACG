@@ -326,8 +326,11 @@ class VehiculoController extends Controller
         $vehiculo = Vehiculo::find($id);
         $inmueble = Inmueble::find($vehiculo->inmueble_id);
         $activo = Activo::find($inmueble->activo_id);
-        $activo->Estado = 0;
-        $activo->save();
+        if ($activo->Estado == 1) {
+            $activo->Estado = 0;
+        } else if ($activo->Estado == 0) {
+            $activo->Estado = 1;
+        }        $activo->save();
 
         return redirect('/vehiculos');
     }

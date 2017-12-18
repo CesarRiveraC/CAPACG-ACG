@@ -74,8 +74,7 @@
 				<button type="submit" class="btn btn-primary">
 					<span class="fa fa-search"></span>
 				</button>
-				{!! Form::close() !!} 
-				@if( ! empty($usuarios))
+				{!! Form::close() !!} @if( ! empty($usuarios))
 				<div>
 					<div class="panel-heading" style="display: inline-flex">
 						<div>
@@ -123,10 +122,18 @@
 									<td class="info"> {{$infraestructura->NumeroFinca}} </td>
 
 									<td class="warning">
+										@if($infraestructura->Estado == 1)
 										<a class="btn btn-danger btn-xs estado" data-estado="{{$infraestructura->id}}">
 											Eliminar
 											<i class="fa fa-trash-o" aria-hidden="true"></i>
 										</a>
+										@endif
+										@if($infraestructura->Estado == 0)
+										<a class="btn btn-danger btn-xs fa fa-reply estado" data-estado="{{$infraestructura->id}}">
+											Restaurar
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</a>
+										@endif
 
 										<a class="btn btn-success btn-xs detalleInfraestructura" data-infraestructura="{{$infraestructura->id}}">
 											Detalle

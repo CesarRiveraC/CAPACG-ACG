@@ -109,8 +109,18 @@
 									<td class="info"> {{$vehiculo->Serie}} </td>
 
 									<td class="warning">
-										<a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado="{{$vehiculo->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Eliminar"></a>
+										@if($vehiculo->Estado == 1)
+										<a class="btn btn-danger btn-xs estado" data-estado="{{$vehiculo->id}}">
+											Eliminar
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</a>
+										@endif
+										@if($vehiculo->Estado == 0)
+										<a class="btn btn-danger btn-xs fa fa-reply estado" data-estado="{{$vehiculo->id}}">
+											Restaurar
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</a>
+										@endif
 										<a class="fa fa-eye btn btn-success btn-xs detalleVehiculo" data-vehiculo="{{$vehiculo->id}}" data-toggle="tooltip" data-placement="bottom"
 										 title="Ver"></a>
 										<a href="/vehiculos/{{$vehiculo->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom"

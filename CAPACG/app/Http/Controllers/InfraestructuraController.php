@@ -55,7 +55,7 @@ class InfraestructuraController extends Controller
     {
         $infraestructura = Infraestructura::find($infraestructura_id);
         $activo = Activo::find($infraestructura->activo_id);
-        if($activo->colaborador_id!=null){
+        if ($activo->colaborador_id != null) {
             $colaboradorAsignado = Colaborador::find($activo->colaborador_id);
             $usuarioAsignado = User::find($colaboradorAsignado->user_id);
             $colaboradorAsignado->user()->associate($usuarioAsignado);
@@ -84,33 +84,34 @@ class InfraestructuraController extends Controller
 
     }
 
-    public function asignadas(){
-        
-        $usuarioActual=\Auth::user();
-        $colaborador= Colaborador::where("user_id", "=",$usuarioActual->id)->first();
-                
+    public function asignadas()
+    {
+
+        $usuarioActual = \Auth::user();
+        $colaborador = Colaborador::where("user_id", "=", $usuarioActual->id)->first();
+
         $infraestructuras = DB::table('infraestructuras')
-                
-        ->join('activos','infraestructuras.activo_id', '=','activos.id')
-            
-        ->select('activos.*','infraestructuras.*')
-        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','1']])
-                                   
-        ->paginate(10);
+
+            ->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
+
+            ->select('activos.*', 'infraestructuras.*')
+            ->Where([['activos.colaborador_id', '=', $colaborador->id], ['activos.Identificador', '=', '1']])
+
+            ->paginate(10);
 
         $colaboradores = $this->getColaboradores();
-            
+
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras, 'usuarios' => $colaboradores]);
-        
+
     }
 
     public function filter()
-    {       
+    {
         $infraestructuras = DB::table('infraestructuras')
             ->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
             ->select('activos.*', 'infraestructuras.*')
-            ->where('activos.Estado', '=', '0')        
-            ->paginate(10);        
+            ->where('activos.Estado', '=', '0')
+            ->paginate(10);
         //el filter no debe devolver los datos de los colaboradores, a los inactivos no se asignan colaboradores
 
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras]);
@@ -138,7 +139,7 @@ class InfraestructuraController extends Controller
 
                 ->paginate(10);
         }
-        
+
         $colaboradores = $this->getColaboradores();
 
         return view('/infraestructura/listar', ['infraestructuras' => $infraestructuras, 'usuarios' => $colaboradores]);
@@ -228,9 +229,9 @@ class InfraestructuraController extends Controller
         $vehiculos = Vehiculo::all();
         $sectores = Sector::all();
 
+        // $sectores = DB::table('sectores')->pluck('Sector','id')->prepend('--Seleccione un sector--');
+
         return view('/infraestructura/crear', compact('dependencias', 'tipos', 'vehiculos', 'sectores'));
-        //return ( json_encode ($dependencias));
-        //return response()->json(['dependencias'=>$dependencias]);
 
     }
 
@@ -425,7 +426,11 @@ class InfraestructuraController extends Controller
     {
         $infraestructura = Infraestructura::find($id);
         $activo = Activo::find($infraestructura->activo_id);
-        $activo->Estado = 0;
+        if ($activo->Estado == 1) {
+            $activo->Estado = 0;
+        } else if ($activo->Estado == 0) {
+            $activo->Estado = 1;
+        }
         $activo->save();
 
         return redirect('/infraestructuras');

@@ -119,8 +119,18 @@
 									<td class="info"> {{$semoviente->Raza}} </td>
 
 									<td class="warning col-xs-2 col-xs-offset-2 ">
-										<a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado="{{$semoviente->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Eliminar"></a>
+									@if($semoviente->Estado == 1)
+										<a class="btn btn-danger btn-xs estado" data-estado="{{$semoviente->id}}">
+											Eliminar
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</a>
+										@endif
+										@if($semoviente->Estado == 0)
+										<a class="btn btn-danger btn-xs fa fa-reply estado" data-estado="{{$semoviente->id}}">
+											Restaurar
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</a>
+										@endif
 										<a class="fa fa-eye btn btn-success btn-xs detalleSemoviente" data-semoviente="{{$semoviente->id}}" data-toggle="tooltip"
 										 data-placement="bottom" title="Ver"></a>
 										<a href="/semovientes/{{$semoviente->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom"
