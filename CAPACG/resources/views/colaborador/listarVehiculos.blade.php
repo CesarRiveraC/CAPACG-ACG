@@ -5,7 +5,8 @@
 		<div class="col-lg-10 col-md-offset-1">
 			<br>
 			<div class="col-md-8">
-
+				<a class="btn btn-primary my-5" href="/colaborador/vehiculosAsignados">
+					<i class="fa fa-check" aria-hidden="true"></i> Ver mis vehículos</a>
 			</div>
 			<div class="col-md-3 pull-right">
 				<a class="href my-5" href="/home">

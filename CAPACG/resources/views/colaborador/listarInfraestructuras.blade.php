@@ -8,7 +8,8 @@
 
 
 			<div class="col-md-8">
-
+				<a class="btn btn-primary my-5" href="/colaborador/infraestructurasAsignadas">
+					<i class="fa fa-check" aria-hidden="true"></i> Ver mis infraestructuras</a>
 			</div>
 			<div class="col-md-3 pull-right">
 				<a class="href my-5" href="/home">
@@ -72,8 +73,8 @@
 						</table>
 					</div>
 					<div class="row">
-						<div class="col-md-8">{{ $infraestructuras->appends(Request::only(['Buscar']))->links()
-							}}</div>
+						<div class="col-md-8">{{ $infraestructuras->appends(Request::only(['Buscar']))->links() }}
+						</div>
 						<div class="col-md-3 pull-right">
 							<br>
 							<a class="href" href="/home">

@@ -4,57 +4,62 @@
 		@include('partials.message')
 		<div class="col-lg-10 col-md-offset-1">
 			<br>
+			<div class="col-md-8">
+				<a class="btn btn-primary my-5" href="/vehiculos/create">
+					<i class="fa fa-plus-circle" aria-hidden="true"></i>
+					</span> Crear nuevo Vehiculo</a>
+				<a class="btn btn-success my-5" href="/vehiculos/excel">
+					<i class="fa fa-download" aria-hidden="true"></i>
+					</span> Generar Reporte</a>
+				<div class="btn-group">
+					<button class="btn btn-warning dropdown-toggle my-5" type="button" data-toggle="dropdown">Filtrar Vehiculos
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
 
-			<a class="btn btn-primary my-5" href="/vehiculos/create">
-				<i class="fa fa-plus-circle" aria-hidden="true"></i>
-				</span> Crear nuevo Vehiculo</a>
-			<a class="btn btn-success my-5" href="/vehiculos/excel">
-				<i class="fa fa-download" aria-hidden="true"></i>
-				</span> Generar Reporte</a>
-			<div class="btn-group">
-				<button class="btn btn-warning dropdown-toggle my-5" type="button" data-toggle="dropdown">Filtrar Vehiculos
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
+						<li>
+							<a href="/vehiculos">
+								<i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a>
+						</li>
 
-					<li>
-						<a href="/vehiculos">
-							<i class="fa fa-check" aria-hidden="true"></i> Estado Activo</a>
-					</li>
+						<li>
+							<a class="filtrar" href="/vehiculos/filter">
+								<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
+						</li>
 
-					<li>
-						<a class="filtrar" href="/vehiculos/filter">
-							<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
-					</li>
+						<li>
+							<a class="filtarDependencia" href="" data-toggle="modal" data-target="#FiltrarDependencia">
+								<span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a>
+						</li>
 
-					<li>
-						<a class="filtarDependencia" href="" data-toggle="modal" data-target="#FiltrarDependencia">
-							<span class="fa fa-list-alt" aria-hidden="true"></span> Dependencia</a>
-					</li>
+						<li>
+							<a class="filtrarTipo" href="" data-toggle="modal" data-target="#FiltrarTipo">
+								<span class="fa fa-clone" aria-hidden="true"></span> Tipo</a>
+						</li>
 
-					<li>
-						<a class="filtrarTipo" href="" data-toggle="modal" data-target="#FiltrarTipo">
-							<span class="fa fa-clone" aria-hidden="true"></span> Tipo</a>
-					</li>
+						<li>
+							<a class="filtrarFecha" href="" data-toggle="modal" data-target="#FiltrarFecha">
+								<i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a>
+						</li>
 
-					<li>
-						<a class="filtrarFecha" href="" data-toggle="modal" data-target="#FiltrarFecha">
-							<i class="fa fa-calendar" aria-hidden="true"></i> Fecha</a>
-					</li>
+						<li>
+							<a class="filtrarSector" href="" data-toggle="modal" data-target="#FiltrarSector">
+								<i class="fa fa-location-arrow" aria-hidden="true"></i> Sector</a>
+						</li>
 
-					<li>
-						<a class="filtrarSector" href="" data-toggle="modal" data-target="#FiltrarSector">
-							<i class="fa fa-location-arrow" aria-hidden="true"></i> Sector</a>
-					</li>
+						<li>
+							<a href="/vehiculos/asignados">
+								<i class="fa fa-user-o" aria-hidden="true"></i> Asignados</a>
+						</li>
 
-					<li>
-						<a href="/vehiculos/asignados">
-							<i class="fa fa-user-o" aria-hidden="true"></i> Asignados</a>
-					</li>
-
-				</ul>
+					</ul>
+				</div>
 			</div>
+			<div class="col-md-3 pull-right">
+				<a class="href my-5" href="/home">
 
+					<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Regresar al menu principal</a>
+			</div>
 			<br>
 			<br>
 
@@ -114,8 +119,7 @@
 											Eliminar
 											<i class="fa fa-trash-o" aria-hidden="true"></i>
 										</a>
-										@endif
-										@if($vehiculo->Estado == 0 && Auth::user()->roles_id == 1)
+										@endif @if($vehiculo->Estado == 0 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs fa fa-reply estado" data-estado="{{$vehiculo->id}}">
 											Restaurar
 											<i class="fa fa-trash-o" aria-hidden="true"></i>

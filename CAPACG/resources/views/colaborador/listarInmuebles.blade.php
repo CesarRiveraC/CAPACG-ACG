@@ -7,7 +7,8 @@
 			<br>
 
 			<div class="col-md-8">
-
+				<a class="btn btn-primary my-5" href="/colaborador/inmueblesAsignados">
+					<i class="fa fa-check" aria-hidden="true"></i> Ver mis inmuebles</a>
 			</div>
 			<div class="col-md-3 pull-right">
 				<a class="href my-5" href="/home">

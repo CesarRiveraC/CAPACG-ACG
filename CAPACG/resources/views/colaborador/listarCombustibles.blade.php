@@ -1,10 +1,12 @@
 @extends('colaborador.colaborador') @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
 
+		<div class="col-lg-10 col-lg-offset-1">
+			<br>
 			<div class="col-md-8">
-				<br>
+				<a class="btn btn-primary my-5" href="/colaborador/combustiblesAsignados">
+					<i class="fa fa-check" aria-hidden="true"></i> Ver mis facturas</a>
 
 			</div>
 			<div class="col-md-3 pull-right">
@@ -91,5 +93,6 @@
 	$(function(){
         $('[data-toggle="tooltip"]').tooltip()
     })
+
 </script>
 @endsection
