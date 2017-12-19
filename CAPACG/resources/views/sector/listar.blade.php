@@ -33,8 +33,14 @@
 									<td class="info"> {{$sector->Sector}} </td>
 
 									<td class="warning">
+										@if($sector->Estado == 1 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado="{{$sector->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Eliminar"></a>
+										 title="Eliminar"> Eliminar</a>
+										@endif 
+										@if($sector->Estado == 0 && Auth::user()->roles_id == 1)
+										<a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado="{{$sector->id}}" data-toggle="tooltip" data-placement="bottom"
+										 title="Restaurar"> Restaurar</a>
+										 @endif
 										<a class="btn btn-warning btn-xs fa fa-pencil editar" data-editar="{{$sector->id}}" data-toggle="tooltip" data-placement="bottom"
 										 title="Editar"></a>
 
@@ -56,5 +62,6 @@
 	$(function(){
         $('[data-toggle="tooltip"]').tooltip()
     })
+
 </script>
 @endsection

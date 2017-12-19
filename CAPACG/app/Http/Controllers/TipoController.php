@@ -64,9 +64,12 @@ class TipoController extends Controller
     
         public function updatestate($id, Request $request)
         {
-            
             $tipo = Tipo::find($id);
-            $tipo->Estado = 0;    
+            if ($tipo->Estado == 1) {
+                $tipo->Estado = 0;
+            } else if ($tipo->Estado == 0) {
+                $tipo->Estado = 1;
+            }              
             $tipo->save();
             return redirect('/tipos');   
         }

@@ -66,7 +66,11 @@ class DependenciaController extends Controller
     {
         
         $dependencia = Dependencia::find($id);
-        $dependencia->Estado = 0;    
+        if ($dependencia->Estado == 1) {
+            $dependencia->Estado = 0;
+        } else if ($dependencia->Estado == 0) {
+            $dependencia->Estado = 1;
+        }  
         $dependencia->save();
         return redirect('/dependencias');   
     }

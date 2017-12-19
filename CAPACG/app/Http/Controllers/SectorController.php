@@ -66,7 +66,11 @@ class SectorController extends Controller
         {
             
             $sector = Sector::find($id);
-            $sector->Estado = 0;    
+            if ($sector->Estado == 1) {
+                $sector->Estado = 0;
+            } else if ($sector->Estado == 0) {
+                $sector->Estado = 1;
+            }         
             $sector->save();
             return redirect('/sectores');   
         }

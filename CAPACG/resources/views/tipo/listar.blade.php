@@ -36,8 +36,14 @@
 									<td class="info"> {{$tipo->Tipo}} </td>
 
 									<td class="warning">
+									@if($tipo->Estado == 1 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado="{{$tipo->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Eliminar"></a>
+										 title="Eliminar"> Eliminar</a>
+									@endif
+									@if($tipo->Estado == 0 && Auth::user()->roles_id == 1)
+									<a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado="{{$tipo->id}}" data-toggle="tooltip" data-placement="bottom"
+										 title="Restaurar"> Restaurar</a>
+									@endif
 										<a class="btn btn-warning btn-xs fa fa-pencil editar" data-editar="{{$tipo->id}}" data-toggle="tooltip" data-placement="bottom"
 										 title="Editar"></a>
 
