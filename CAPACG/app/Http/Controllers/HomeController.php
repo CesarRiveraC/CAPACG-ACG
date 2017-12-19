@@ -24,12 +24,12 @@ class HomeController extends Controller
     public function index()
     {
         $usuarioActual=\Auth::user();
-        if($usuarioActual->roles_id==1){
+        if($usuarioActual->roles_id==1 or $usuarioActual->roles_id==2){
             return view('home');
         }
-        else if($usuarioActual->roles_id==2){
-            return view('/estandar/home');
-        }
+        // else if($usuarioActual->roles_id==2){
+        //     return view('/estandar/home');
+        // }
         else if($usuarioActual->roles_id==3){
             return view('/colaborador/home');
         }

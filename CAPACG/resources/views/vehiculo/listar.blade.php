@@ -65,7 +65,7 @@
 				<button type="submit" class="btn btn-primary">
 					<span class="fa fa-search"></span>
 				</button>
-				{!! Form::close() !!} @if( ! empty($usuarios))
+				{!! Form::close() !!} @if( !empty($usuarios) && Auth::user()->roles_id == 1)
 				<div>
 					<div class="panel-heading" style="display: inline-flex">
 						<div>
@@ -109,13 +109,13 @@
 									<td class="info"> {{$vehiculo->Serie}} </td>
 
 									<td class="warning">
-										@if($vehiculo->Estado == 1)
+										@if($vehiculo->Estado == 1 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs estado" data-estado="{{$vehiculo->id}}">
 											Eliminar
 											<i class="fa fa-trash-o" aria-hidden="true"></i>
 										</a>
 										@endif
-										@if($vehiculo->Estado == 0)
+										@if($vehiculo->Estado == 0 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs fa fa-reply estado" data-estado="{{$vehiculo->id}}">
 											Restaurar
 											<i class="fa fa-trash-o" aria-hidden="true"></i>

@@ -21,9 +21,10 @@ class InmuebleController extends Controller
     //
     public function __construct()
     {
-        //cambio de index a show ya que es la ruta que tiene
-        //que estar disponible para todos
-        $this->middleware('Administrador')->except('show');
+        
+        $this->middleware('Administrador')->except('show','index','create','edit','store','update',
+        'search','asignados');
+        $this->middleware('Estandar')->except('show');
     }
 
     public function index(Request $request)
