@@ -96,7 +96,7 @@ class InfraestructuraController extends Controller
 
             ->select('activos.*', 'infraestructuras.*')
             ->Where([['activos.colaborador_id', '=', $colaborador->id], ['activos.Identificador', '=', '1']])
-
+            ->where('activos.Estado', '=', '1')
             ->paginate(10);
 
         $colaboradores = $this->getColaboradores();
@@ -128,7 +128,7 @@ class InfraestructuraController extends Controller
                 ->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'infraestructuras.*')
                 ->Where([['activos.dependencia_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '1']])
-
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $infraestructuras = DB::table('infraestructuras')
@@ -136,7 +136,7 @@ class InfraestructuraController extends Controller
                 ->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'infraestructuras.*')
                 ->Where([['activos.dependencia_id', '=', $name], ['activos.Identificador', '=', '1']])
-
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         }
 
@@ -155,13 +155,14 @@ class InfraestructuraController extends Controller
                 ->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'infraestructuras.*')
                 ->Where([['activos.tipo_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '1']])
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $infraestructuras = DB::table('infraestructuras')
                 ->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'infraestructuras.*')
                 ->where([['activos.tipo_id', '=', $name], ['activos.Identificador', '=', '1']])
-
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         }
         $colaboradores = $this->getColaboradores();
@@ -179,13 +180,14 @@ class InfraestructuraController extends Controller
                 ->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'infraestructuras.*')
                 ->Where([['activos.sector_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '1']])
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $infraestructuras = DB::table('infraestructuras')
                 ->join('activos', 'infraestructuras.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'infraestructuras.*')
                 ->where([['activos.sector_id', '=', $name], ['activos.Identificador', '=', '1']])
-
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         }
 
@@ -205,7 +207,7 @@ class InfraestructuraController extends Controller
             ->select('activos.*', 'infraestructuras.*')
             ->whereBetween('activos.created_at', [$desde, $hasta])
             ->where('activos.Identificador', '=', '1')
-
+            ->where('activos.Estado', '=', '1')
             ->paginate(2);
 
         $colaboradores = $this->getColaboradores();

@@ -370,6 +370,7 @@ class VehiculoController extends Controller
         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
         ->select('activos.*','inmuebles.*','vehiculos.*')
         ->where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','4']])                                    
+        ->where('activos.Estado', '=', '1')
         ->paginate(10);
 
         $colaboradores = $this->getColaboradores();
@@ -389,7 +390,7 @@ class VehiculoController extends Controller
                 ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'inmuebles.*', 'vehiculos.*')
                 ->Where([['activos.dependencia_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '4']])
-
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $vehiculos = DB::table('vehiculos')
@@ -397,6 +398,7 @@ class VehiculoController extends Controller
                 ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'inmuebles.*', 'vehiculos.*')
                 ->where([['activos.dependencia_id', '=', $name], ['activos.Identificador', '=', '4']])            
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         }
 
@@ -419,6 +421,7 @@ class VehiculoController extends Controller
 
                 ->Where([['activos.tipo_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'],
                     ['activos.Identificador', '=', '4']])
+                    ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $vehiculos = DB::table('vehiculos')
@@ -427,6 +430,7 @@ class VehiculoController extends Controller
                 ->select('activos.*', 'inmuebles.*', 'vehiculos.*')
             // ->where('activos.tipo_id','=', $name)
                 ->where([['activos.tipo_id', '=', $name], ['activos.Identificador', '=', '4']])
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         }
 
@@ -447,6 +451,7 @@ class VehiculoController extends Controller
             ->select('activos.*', 'inmuebles.*', 'vehiculos.*')
             ->whereBetween('activos.created_at', [$desde, $hasta])
             ->where('activos.Identificador', '=', '4')
+            ->where('activos.Estado', '=', '1')
             ->paginate(10);
 
         $colaboradores = $this->getColaboradores();
@@ -473,6 +478,7 @@ class VehiculoController extends Controller
                 ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
                 ->Where([['activos.sector_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'],
                     ['activos.Identificador', '=', '4']])
+                ->where('activos.Estado', '=', '1')
 
                 ->paginate(10);
         } else {
@@ -480,6 +486,7 @@ class VehiculoController extends Controller
                 ->join('inmuebles', 'vehiculos.inmueble_id', '=', 'inmuebles.id')
                 ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
                 ->where([['activos.sector_id', '=', $name], ['activos.Identificador', '=', '4']])
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         }
 
@@ -499,13 +506,18 @@ class VehiculoController extends Controller
                 $vehiculos = DB::table('vehiculos')
                     ->join('inmuebles', 'vehiculos.inmueble_id', '=', 'inmuebles.id')
                     ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
+                    
+                    // ->join('colaboradores', 'activos.colaborador_id', '=', 'colaboradores.id')
                     ->join('tipos', 'activos.tipo_id', '=', 'tipos.id')
                     ->join('sectores', 'activos.sector_id', '=', 'sectores.id')
                     ->join('dependencias', 'activos.dependencia_id', '=', 'dependencias.id')
+                    ->join('colaboradores', function ($join){
+                        $join->on('activos.colaborador_id','=','colaboradores.id');
+                    })
                     ->select('vehiculos.id', 'activos.Placa', 'activos.Descripcion', 'activos.Programa', 'sectores.Sector', 'tipos.Tipo',
                         'activos.SubPrograma', 'dependencias.Dependencia', 'activos.Color', 'inmuebles.Serie'
                         , 'inmuebles.EstadoUtilizacion', 'inmuebles.EstadoFisico', 'inmuebles.EstadoActivo',
-                        'inmuebles.Marca', 'inmuebles.Modelo', 'vehiculos.PlacaVehiculo')
+                        'inmuebles.Marca', 'inmuebles.Modelo', 'vehiculos.PlacaVehiculo', 'colaboradores.Cedula')
                     ->where([['activos.Estado', '=', '1'], ['activos.Identificador', '=', '4']])
                     ->get();
 

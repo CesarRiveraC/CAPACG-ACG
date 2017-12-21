@@ -325,7 +325,7 @@ class SemovienteController extends Controller
             
         ->select('activos.*','semovientes.*')
         ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','3']])                        
-            
+        ->where('activos.Estado', '=', '1')   
         ->paginate(10);
 
         $colaboradores = $this->getColaboradores();
@@ -345,12 +345,14 @@ class SemovienteController extends Controller
                 ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'semovientes.*')
                 ->Where([['activos.dependencia_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '3']])
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $semovientes = DB::table('semovientes')
                 ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'semovientes.*')
                 ->where([['activos.dependencia_id', '=', $name], ['activos.Identificador', '=', '3']])
+                ->where('activos.Estado', '=', '1')
             //    ->where('activos.dependencia_id','=', $name)
                 ->paginate(10);
         }
@@ -371,6 +373,7 @@ class SemovienteController extends Controller
                 ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'semovientes.*')
                 ->Where([['activos.tipo_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '3']])
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $semovientes = DB::table('semovientes')
@@ -378,6 +381,7 @@ class SemovienteController extends Controller
                 ->select('activos.*', 'semovientes.*')
             //    ->where('activos.tipo_id','=', $name)
                 ->where([['activos.tipo_id', '=', $name], ['activos.Identificador', '=', '3']])
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         }
 
@@ -397,6 +401,7 @@ class SemovienteController extends Controller
             ->select('activos.*', 'semovientes.*')
             ->whereBetween('activos.created_at', [$desde, $hasta])
             ->where('activos.Identificador', '=', '3')
+            ->where('activos.Estado', '=', '1')
             ->paginate(10);
 
             $colaboradores = $this->getColaboradores();
@@ -423,6 +428,7 @@ class SemovienteController extends Controller
                 ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'semovientes.*')
                 ->Where([['activos.sector_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '3']])
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $semovientes = DB::table('semovientes')
@@ -430,6 +436,7 @@ class SemovienteController extends Controller
                 ->select('activos.*', 'semovientes.*')
             //    ->where('activos.tipo_id','=', $name)
                 ->where([['activos.sector_id', '=', $name], ['activos.Identificador', '=', '3']])
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         }
 
@@ -450,9 +457,10 @@ class SemovienteController extends Controller
                     ->join('tipos', 'activos.tipo_id', '=', 'tipos.id')
                     ->join('sectores', 'activos.sector_id', '=', 'sectores.id')
                     ->join('dependencias', 'activos.dependencia_id', '=', 'dependencias.id')
+                    ->join('colaboradores', 'activos.colaborador_id', '=', 'colaboradores.id')
                     ->select('activos.id', 'activos.Placa', 'activos.Descripcion', 'sectores.Sector', 'tipos.Tipo', 'activos.Programa', 'dependencias.Dependencia',
                         'activos.SubPrograma', 'activos.Color', 'semovientes.Raza', 'semovientes.Edad'
-                        , 'semovientes.Peso')
+                        , 'semovientes.Peso', 'colaboradores.Cedula')
                     ->where([['activos.Estado', '=', '1'], ['activos.Identificador', '=', '3']])
                     ->get();
 

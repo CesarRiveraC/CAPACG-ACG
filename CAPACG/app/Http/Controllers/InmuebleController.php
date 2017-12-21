@@ -340,6 +340,7 @@ class InmuebleController extends Controller
             
         ->select('activos.*','inmuebles.*')
         ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','2']])
+        ->where('activos.Estado', '=', '1')
         ->paginate(10);
         
         $colaboradores = $this->getColaboradores();
@@ -371,6 +372,7 @@ class InmuebleController extends Controller
                 ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'inmuebles.*')
                 ->Where([['activos.dependencia_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '2']])
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
 
         } else {
@@ -378,7 +380,7 @@ class InmuebleController extends Controller
                 ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'inmuebles.*')
                 ->where([['activos.dependencia_id', '=', $name], ['activos.Identificador', '=', '2']])
-
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         }
 
@@ -398,13 +400,14 @@ class InmuebleController extends Controller
                 ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'inmuebles.*')
                 ->Where([['activos.tipo_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '2']])
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $inmuebles = DB::table('inmuebles')
                 ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'inmuebles.*')
                 ->where([['activos.tipo_id', '=', $name], ['activos.Identificador', '=', '2']])
-
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
 
         }
@@ -423,7 +426,7 @@ class InmuebleController extends Controller
             ->select('activos.*', 'inmuebles.*')
             ->whereBetween('activos.created_at', [$desde, $hasta])
             ->where('activos.Identificador', '=', '2')
-
+            ->where('activos.Estado', '=', '1')
             ->paginate(10);
 
         $colaboradores = $this->getColaboradores();
@@ -449,13 +452,14 @@ class InmuebleController extends Controller
                 ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'inmuebles.*')
                 ->Where([['activos.sector_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '2']])
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $inmuebles = DB::table('inmuebles')
                 ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
                 ->select('activos.*', 'inmuebles.*')
                 ->where([['activos.sector_id', '=', $name], ['activos.Identificador', '=', '2']])
-
+                ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         }
 
@@ -475,10 +479,11 @@ class InmuebleController extends Controller
                     ->join('tipos', 'activos.tipo_id', '=', 'tipos.id')
                     ->join('sectores', 'activos.sector_id', '=', 'sectores.id')
                     ->join('dependencias', 'activos.dependencia_id', '=', 'dependencias.id')
+                    ->join('colaboradores', 'activos.colaborador_id', '=', 'colaboradores.id')
                     ->select('activos.id', 'activos.Placa', 'activos.Descripcion', 'sectores.Sector', 'activos.Programa', 'tipos.Tipo', 'dependencias.Dependencia',
                         'activos.SubPrograma', 'activos.Color', 'inmuebles.Serie'
                         , 'inmuebles.EstadoUtilizacion', 'inmuebles.EstadoFisico', 'inmuebles.EstadoActivo',
-                        'inmuebles.Marca', 'inmuebles.Modelo')
+                        'inmuebles.Marca', 'inmuebles.Modelo', 'colaboradores.Cedula')
                 //  ->where('activos.Estado','=','1') //cambiar el estado para generar el reporte
                     ->where([['activos.Estado', '=', '1'], ['activos.Identificador', '=', '2']])
                     ->get();

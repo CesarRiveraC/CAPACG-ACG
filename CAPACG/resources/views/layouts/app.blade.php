@@ -80,7 +80,7 @@
 								</li>
 								<li>
 									<a id="activosDrop" tabindex="-1" href="/tipos">
-										<span class="fa fa-clone" aria-hidden="true"></span> Tipos de activo</a>
+										<span class="fa fa-clone" aria-hidden="true"></span> Categorías de activo</a>
 								</li>
 								<li>
 									<a id="activosDrop" tabindex="-1" href="/sectores">

@@ -11,15 +11,15 @@ class ColaboradorController extends Controller
 
     public function inmueblesAsignados(){
         
-        // $usuarioActual=\Auth::user();
-        // $colaborador= Colaborador::where("user_id", "=",$usuarioActual->id)->first();
+        $usuarioActual=\Auth::user();
+        $colaborador= Colaborador::where("user_id", "=",$usuarioActual->id)->first();
         $inmuebles = DB::table('inmuebles')
                 
         ->join('activos','inmuebles.activo_id', '=','activos.id')
             
         ->select('activos.*','inmuebles.*')
-        ->where([['activos.colaborador_id','=', '3'],['activos.Identificador','=','2']])
-        
+        ->where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','2']])
+        ->where('activos.Estado', '=', '1')
         ->paginate(10);                                
             
         return view('/colaborador/listarInmuebles', ['inmuebles' => $inmuebles]);
@@ -36,7 +36,7 @@ class ColaboradorController extends Controller
                     
         ->select('activos.*','inmuebles.*')
         ->where('activos.Placa', 'LIKE', '%' . $buscar . '%')
-        ->where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','2']])
+        ->where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','2'],['activos.Estado', '=', '1']])
         
         ->paginate(10);                                
                     
@@ -55,7 +55,7 @@ class ColaboradorController extends Controller
         ->select('activos.*','infraestructuras.*')
         
         ->where('activos.Placa', 'LIKE', '%' . $buscar . '%')
-        ->where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','1']])
+        ->where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','1'],['activos.Estado', '=', '1']])
         ->paginate(10);                                
         
         // return response()->json(['infraestructuras'=>$infraestructuras]);
@@ -73,7 +73,7 @@ class ColaboradorController extends Controller
         ->join('activos','semovientes.activo_id', '=','activos.id')
                     
         ->select('activos.*','semovientes.*')
-        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','3']])
+        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','3'],['activos.Estado', '=', '1']])
         ->where('activos.Placa', 'LIKE', '%' . $buscar . '%')
         ->paginate(10);                                
                     
@@ -105,7 +105,7 @@ class ColaboradorController extends Controller
         $combustibles = DB::table('combustibles')                                        
         
         ->select('combustibles.*')
-        ->where('combustibles.colaborador_id','=', $colaborador->id)  
+        ->where([['combustibles.colaborador_id','=', $colaborador->id], ['combustibles.Estado','=','1']])  
         ->where('combustibles.NoVaucher', 'LIKE', '%' . $buscar . '%')
         ->paginate(10);                                
                     
@@ -122,7 +122,7 @@ class ColaboradorController extends Controller
         ->join('activos','infraestructuras.activo_id', '=','activos.id')
                     
         ->select('activos.*','infraestructuras.*')
-        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','1']])
+        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','1'],['activos.Estado', '=', '1']])
                    
                     
                     
@@ -141,7 +141,7 @@ class ColaboradorController extends Controller
         ->join('activos','semovientes.activo_id', '=','activos.id')
                     
         ->select('activos.*','semovientes.*')
-        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','3']])                                                            
+        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','3'],['activos.Estado', '=', '1']])                                                            
         ->paginate(10);
         return view('/colaborador/listarSemovientes', ['semovientes' => $semovientes]);
                 
@@ -155,7 +155,7 @@ class ColaboradorController extends Controller
         ->join('inmuebles','vehiculos.inmueble_id', '=','inmuebles.id')
         ->join('activos', 'inmuebles.activo_id', '=', 'activos.id')
         ->select('activos.*','inmuebles.*','vehiculos.*')
-        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','4']])                                        
+        ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','4'],['activos.Estado', '=', '1']])                                        
                     
         ->paginate(10);
         return view('/colaborador/listarVehiculos', ['vehiculos' => $vehiculos]);
@@ -169,7 +169,7 @@ class ColaboradorController extends Controller
         $combustibles = DB::table('combustibles')                                        
                     
         ->select('combustibles.*')
-        ->where('combustibles.colaborador_id','=', $colaborador->id)                                                            
+        ->where([['combustibles.colaborador_id','=', $colaborador->id],['combustibles.Estado','=','1']]) 
         ->paginate(10);
         return view('/colaborador/listarCombustibles', ['combustibles' => $combustibles]);
                 

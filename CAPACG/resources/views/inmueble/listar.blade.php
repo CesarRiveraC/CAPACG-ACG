@@ -37,7 +37,7 @@
 
 						<li>
 							<a class="filtrarTipo" href="" data-toggle="modal" data-target="#FiltrarTipo">
-								<span class="fa fa-clone" aria-hidden="true"></span> Tipo</a>
+								<span class="fa fa-clone" aria-hidden="true"></span> Categoría</a>
 						</li>
 
 						<li>

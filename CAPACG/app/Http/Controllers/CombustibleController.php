@@ -26,16 +26,16 @@ class CombustibleController extends Controller
     {
         $combustibles = DB::table('combustibles')
         ->select('combustibles.*')
-        ->where('Estado','=','10')
-        ->paginate(1);
+        ->where('Estado','=','1')
+        ->paginate(10);
 
-        $usuarioActual=\Auth::user();
-        if($usuarioActual->roles_id==1){
+        // $usuarioActual=\Auth::user();
+        // if($usuarioActual->roles_id==1){
             return view('/combustible/listar', ['combustibles' => $combustibles]);
-        }
-        else{
-            return view('/estandar/listarCombustibles', ['combustibles' => $combustibles]);
-        }
+        // }
+        // else{
+        //     return view('/estandar/listarCombustibles', ['combustibles' => $combustibles]);
+        // }
                                   
     }
 
@@ -57,16 +57,16 @@ class CombustibleController extends Controller
         $vehiculos= Vehiculo:: all();
         $dependencias= Dependencia:: all();
 
-        $usuarioActual=\Auth::user();
+        // $usuarioActual=\Auth::user();
 
         $colaboradores = $this->getColaboradores();
 
-        if($usuarioActual->roles_id==1){
+        // if($usuarioActual->roles_id==1){
             return view('/combustible/crear', ['vehiculos'=>$vehiculos,'dependencias'=>$dependencias, 'usuarios'=>$colaboradores]);
-        }
-        else{
-            return view('/estandar/crearCombustible', ['vehiculos'=>$vehiculos,'dependencias'=>$dependencias,'usuarios'=>$colaboradores]);
-        }
+        // }
+        // else{
+        //     return view('/estandar/crearCombustible', ['vehiculos'=>$vehiculos,'dependencias'=>$dependencias,'usuarios'=>$colaboradores]);
+        // }
         
     }
 
@@ -142,7 +142,7 @@ class CombustibleController extends Controller
         
         $combustible = Combustible::find($id);
         $colaborador = Colaborador::find($combustible->colaborador_id);
-        $usuario = User::find($colaborador->id);    
+        $usuario = User::find($colaborador->user_id);    
         $colaborador->user()->associate($usuario);
         $combustible->colaborador()->associate($colaborador);
 
@@ -172,15 +172,15 @@ class CombustibleController extends Controller
         $combustible->vehiculo()->associate($Vehiculo);
         $Vehiculos = DB::table('vehiculos')->pluck('PlacaVehiculo', 'id');
 
-        $usuarioActual=\Auth::user();
+        // $usuarioActual=\Auth::user();
 
         $colaboradores = $this->getColaboradores();
-        if($usuarioActual->roles_id==1){
+        // if($usuarioActual->roles_id==1){
             return view('/combustible/editar',compact('combustible'), ['Dependencias' => $Dependencias,'Vehiculos' => $Vehiculos, 'usuarios'=>$colaboradores]);
-        }
-        else{
-            return view('/estandar/editarCombustible',compact('combustible'), ['Dependencias' => $Dependencias,'Vehiculos' => $Vehiculos, 'usuarios'=>$colaboradores]);
-        }
+        // }
+        // else{
+        //     return view('/estandar/editarCombustible',compact('combustible'), ['Dependencias' => $Dependencias,'Vehiculos' => $Vehiculos, 'usuarios'=>$colaboradores]);
+        // }
         
         
     }
@@ -274,13 +274,13 @@ class CombustibleController extends Controller
         ->where('combustibles.Estado','=','1')
         ->paginate(10);
 
-        $usuarioActual=\Auth::user();
-        if($usuarioActual->roles_id==1){
+        // $usuarioActual=\Auth::user();
+        // if($usuarioActual->roles_id==1){
             return view('combustible/listar',compact('combustibles'));
-        }
-        else{
-            return view('estandar/listarCombustibles',compact('combustibles'));
-        }
+        // }
+        // else{
+        //     return view('estandar/listarCombustibles',compact('combustibles'));
+        // }
         
     }
     public function filter()
@@ -291,13 +291,13 @@ class CombustibleController extends Controller
             ->where('combustibles.Estado', '=', '0')
             ->paginate(10);
 
-            $usuarioActual=\Auth::user();
-            if($usuarioActual->roles_id==1){
+            // $usuarioActual=\Auth::user();
+            // if($usuarioActual->roles_id==1){
                 return view('/combustible/listar', ['combustibles' => $combustibles]);
-            }
-            else{
-                return view('/estandar/listarCombustibles', ['combustibles' => $combustibles]);
-            }
+            // }
+            // else{
+            //     return view('/estandar/listarCombustibles', ['combustibles' => $combustibles]);
+            // }
 
         
     }
@@ -310,16 +310,16 @@ class CombustibleController extends Controller
             
         ->select('combustibles.*')
         ->where('combustibles.colaborador_id','=', $colaborador->id)                        
-            
+        ->where('combustibles.Estado','=','1')
         ->paginate(10);
 
-        $usuarioActual=\Auth::user();
-        if($usuarioActual->roles_id==1){
+        // $usuarioActual=\Auth::user();
+        // if($usuarioActual->roles_id==1){
             return view('/combustible/listar', ['combustibles' => $combustibles]);
-        }
-        else{
-            return view('/estandar/listarCombustibles', ['combustibles' => $combustibles]);
-        }
+        // }
+        // else{
+        //     return view('/estandar/listarCombustibles', ['combustibles' => $combustibles]);
+        // }
         
         
     }
@@ -332,22 +332,23 @@ class CombustibleController extends Controller
             $combustibles = DB::table('combustibles')
                 ->select('combustibles.*')
                 ->where('combustibles.dependencia_id', '=', $name)
+                ->where('combustibles.Estado','=','1')
                 ->paginate(10);
         } else {
             $combustibles = DB::table('combustibles')
                 ->select('combustibles.*')
                 ->where('combustibles.dependencia_id', '=', $name)
-
+                ->where('combustibles.Estado','=','1')
                 ->paginate(10);
         }
         
-        $usuarioActual=\Auth::user();
-        if($usuarioActual->roles_id==1){
+        // $usuarioActual=\Auth::user();
+        // if($usuarioActual->roles_id==1){
             return view('/combustible/listar', ['combustibles' => $combustibles]);
-        }
-        else{
-            return view('/combustible/listarCombustibles', ['combustibles' => $combustibles]);
-        }
+        // }
+        // else{
+        //     return view('/combustible/listarCombustibles', ['combustibles' => $combustibles]);
+        // }
         
     }
     
@@ -358,15 +359,16 @@ class CombustibleController extends Controller
         $combustibles = DB::table('combustibles')
             ->select('combustibles.*')
             ->whereBetween('combustibles.Fecha', [$desde, $hasta])
+            ->where('combustibles.Estado','=','1')
              ->paginate(10);
 
-             $usuarioActual=\Auth::user();
-             if($usuarioActual->roles_id==1){
+            //  $usuarioActual=\Auth::user();
+            //  if($usuarioActual->roles_id==1){
                  return view('/combustible/listar', ['combustibles' => $combustibles]);
-             }
-             else{
-                 return view('/combustible/listarCombustibles', ['combustibles' => $combustibles]);
-             }
+            //  }
+            //  else{
+            //      return view('/combustible/listarCombustibles', ['combustibles' => $combustibles]);
+            //  }
 
     }
 
