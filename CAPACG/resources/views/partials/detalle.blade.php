@@ -35,3 +35,7 @@
 	 height="300" width="300">
 </dd>
 <br>
+
+<dt>Colaborador a Cargo</dt>
+<dd id="lblFuncionario"></dd>
+<br>

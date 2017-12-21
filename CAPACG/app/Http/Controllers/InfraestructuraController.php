@@ -315,6 +315,14 @@ class InfraestructuraController extends Controller
     {
         $infraestructura = Infraestructura::find($id);
         $activo = Activo::find($infraestructura->activo_id);
+
+        if($activo->colaborador_id != null){
+            $colaborador = Colaborador::find($activo->colaborador_id);
+            $usuario = User::find($colaborador->user_id);    
+            $colaborador->user()->associate($usuario);
+            $activo->colaborador()->associate($colaborador);
+        }
+
         $infraestructura->activo()->associate($activo);
         $dependencia = Dependencia::find($activo->dependencia_id);
         $activo->dependencia()->associate($dependencia);

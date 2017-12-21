@@ -193,6 +193,14 @@ class VehiculoController extends Controller
         $vehiculo = Vehiculo::find($id);
         $inmueble = Inmueble::find($vehiculo->inmueble_id);
         $activo = Activo::find($inmueble->activo_id);
+
+        if($activo->colaborador_id != null){
+            $colaborador = Colaborador::find($activo->colaborador_id);
+            $usuario = User::find($colaborador->user_id);    
+            $colaborador->user()->associate($usuario);
+            $activo->colaborador()->associate($colaborador);
+        }
+
         $dependencia = Dependencia::find($activo->dependencia_id);
         $tipo = Tipo::find($activo->tipo_id);
 
@@ -200,6 +208,7 @@ class VehiculoController extends Controller
         $inmueble->activo()->associate($activo);
         $activo->dependencia()->associate($dependencia);
         $activo->tipo()->associate($tipo);
+
         $sector = Sector::find($activo->sector_id);
         $activo->sector()->associate($sector);
 

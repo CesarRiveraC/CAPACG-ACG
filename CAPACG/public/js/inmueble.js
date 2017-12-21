@@ -48,6 +48,13 @@ $(function () {
              $('#lblEstadoUtilizacion').text(result.inmueble.EstadoUtilizacion);
              $('#lblEstadoFisico').text(result.inmueble.EstadoFisico);
              $('#lblEstadoActivo').text(result.inmueble.EstadoActivo);
+             if (result.inmueble.activo.colaborador_id != null) {
+                $('#lblFuncionario').text(result.inmueble.activo.colaborador.user.name +" " + result.inmueble.activo.colaborador.user.Apellido);
+            }
+            else{
+                $('#lblFuncionario').text("Sin asignar");
+            }
+             
          }).fail(function () {
              alert('¡Algo salio mal!');
          });

@@ -141,10 +141,14 @@ class CombustibleController extends Controller
 
         
         $combustible = Combustible::find($id);
-        $colaborador = Colaborador::find($combustible->colaborador_id);
-        $usuario = User::find($colaborador->user_id);    
-        $colaborador->user()->associate($usuario);
-        $combustible->colaborador()->associate($colaborador);
+
+        if($combustible->colaborador_id != null){
+            $colaborador = Colaborador::find($combustible->colaborador_id);
+            $usuario = User::find($colaborador->user_id);    
+            $colaborador->user()->associate($usuario);
+            $combustible->colaborador()->associate($colaborador);
+        }
+        
 
         $vehiculo = Vehiculo::find($combustible->vehiculo_id);
         $combustible->vehiculo()->associate($vehiculo);

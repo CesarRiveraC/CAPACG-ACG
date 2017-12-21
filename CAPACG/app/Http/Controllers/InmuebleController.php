@@ -152,12 +152,24 @@ class InmuebleController extends Controller
 
         $inmueble = Inmueble::find($id);
         $activo = Activo::find($inmueble->activo_id);
+
+        if($activo->colaborador_id != null){
+            $colaborador = Colaborador::find($activo->colaborador_id);
+            $usuario = User::find($colaborador->user_id);    
+            $colaborador->user()->associate($usuario);
+            $activo->colaborador()->associate($colaborador);
+        }
+        
+
         $inmueble->activo()->associate($activo);
         $dependencia = Dependencia::find($activo->dependencia_id);
         $activo->dependencia()->associate($dependencia);
         $tipo = Tipo::find($activo->tipo_id);
         $activo->tipo()->associate($tipo);
-        $sector = Sector::find($activo->sector_id);
+
+        $sector= Sector::where("id", "=",$activo->sector_id)->first();
+
+        // $sector = Sector::find($activo->sector_id);
         $activo->sector()->associate($sector);
         return response()->json(['inmueble' => $inmueble]);
 

@@ -146,6 +146,7 @@ class SemovienteController extends Controller
             $activo->Color = $request['Color'];
             $activo->Estado = 1;
             $activo->Identificador = 3;
+            
 
             if ($request->hasFile('Foto')) {
 
@@ -171,6 +172,14 @@ class SemovienteController extends Controller
     {
         $semoviente = Semoviente::find($id);
         $activo = Activo::find($semoviente->activo_id);
+
+        if($activo->colaborador_id != null){
+            $colaborador = Colaborador::find($activo->colaborador_id);
+            $usuario = User::find($colaborador->user_id);    
+            $colaborador->user()->associate($usuario);
+            $activo->colaborador()->associate($colaborador);
+        }
+        
         $semoviente->activo()->associate($activo);
         $dependencia = Dependencia::find($activo->dependencia_id);
         $tipo = Tipo::find($activo->tipo_id);
