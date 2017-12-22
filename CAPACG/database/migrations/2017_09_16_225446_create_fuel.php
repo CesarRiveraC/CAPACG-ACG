@@ -33,7 +33,7 @@ class CreateFuel extends Migration
              //$table->string('Placa'); ya no se usa porque ahora las relaciones se hacen usando id
              $table->string('Kilometraje');
              $table->double('LitrosCombustible');
-             $table->string('FuncionarioQueHizoCompra');
+            //  $table->string('FuncionarioQueHizoCompra'); ya no se utiliza porque ahora se hace la referencia con el id de colaborador
              $table->binary('Foto');
              $table->string('CodigoDeAccionDePlanPresupuesto');
              $table->timestamps();

@@ -520,7 +520,7 @@ class VehiculoController extends Controller
                     ->join('tipos', 'activos.tipo_id', '=', 'tipos.id')
                     ->join('sectores', 'activos.sector_id', '=', 'sectores.id')
                     ->join('dependencias', 'activos.dependencia_id', '=', 'dependencias.id')
-                    ->join('colaboradores', function ($join){
+                    ->leftJoin('colaboradores', function ($join){
                         $join->on('activos.colaborador_id','=','colaboradores.id');
                     })
                     ->select('vehiculos.id', 'activos.Placa', 'activos.Descripcion', 'activos.Programa', 'sectores.Sector', 'tipos.Tipo',

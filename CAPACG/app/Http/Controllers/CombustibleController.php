@@ -385,9 +385,12 @@ class CombustibleController extends Controller
                 
                     $combustibles = DB::table('combustibles')
                     //  ->join('colaboradores','combustibles.colaborador_id', '=','colaboradores.id')
+                    ->join('vehiculos','combustibles.vehiculo_id','=','vehiculos.id')
                     ->join('dependencias','combustibles.dependencia_id', '=','dependencias.id')
+                    ->leftJoin('colaboradores', 'combustibles.colaborador_id', '=', 'colaboradores.id')
                     ->select('combustibles.id','combustibles.NoVaucher','combustibles.Monto','combustibles.Numero','combustibles.Fecha','dependencias.Dependencia',
-                    'combustibles.Kilometraje','combustibles.LitrosCombustible','combustibles.FuncionarioQueHizoCompra','combustibles.CodigoDeAccionDePlanPresupuesto')                                                       
+                    'combustibles.Kilometraje','combustibles.LitrosCombustible','combustibles.CodigoDeAccionDePlanPresupuesto'
+                    ,'vehiculos.PlacaVehiculo','colaboradores.Cedula')                                                       
                     ->get();
                
                     $combustibles = json_decode(json_encode($combustibles),true);

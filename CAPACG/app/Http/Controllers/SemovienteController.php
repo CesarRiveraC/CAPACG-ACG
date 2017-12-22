@@ -466,7 +466,7 @@ class SemovienteController extends Controller
                     ->join('tipos', 'activos.tipo_id', '=', 'tipos.id')
                     ->join('sectores', 'activos.sector_id', '=', 'sectores.id')
                     ->join('dependencias', 'activos.dependencia_id', '=', 'dependencias.id')
-                    ->join('colaboradores', 'activos.colaborador_id', '=', 'colaboradores.id')
+                    ->leftJoin('colaboradores', 'activos.colaborador_id', '=', 'colaboradores.id')
                     ->select('activos.id', 'activos.Placa', 'activos.Descripcion', 'sectores.Sector', 'tipos.Tipo', 'activos.Programa', 'dependencias.Dependencia',
                         'activos.SubPrograma', 'activos.Color', 'semovientes.Raza', 'semovientes.Edad'
                         , 'semovientes.Peso', 'colaboradores.Cedula')

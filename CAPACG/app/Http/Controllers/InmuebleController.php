@@ -491,7 +491,7 @@ class InmuebleController extends Controller
                     ->join('tipos', 'activos.tipo_id', '=', 'tipos.id')
                     ->join('sectores', 'activos.sector_id', '=', 'sectores.id')
                     ->join('dependencias', 'activos.dependencia_id', '=', 'dependencias.id')
-                    ->join('colaboradores', 'activos.colaborador_id', '=', 'colaboradores.id')
+                    ->leftJoin('colaboradores', 'activos.colaborador_id', '=', 'colaboradores.id')
                     ->select('activos.id', 'activos.Placa', 'activos.Descripcion', 'sectores.Sector', 'activos.Programa', 'tipos.Tipo', 'dependencias.Dependencia',
                         'activos.SubPrograma', 'activos.Color', 'inmuebles.Serie'
                         , 'inmuebles.EstadoUtilizacion', 'inmuebles.EstadoFisico', 'inmuebles.EstadoActivo',

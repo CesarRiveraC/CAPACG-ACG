@@ -1,5 +1,5 @@
 <div class="col-md-8">
-	<br>
+
 	<a class="btn btn-primary my-5" href="/combustibles/create">
 		<i class="fa fa-plus-circle" aria-hidden="true"></i> Crear nueva Factura Combustible</a>
 	<a class="btn btn-success my-5" href="/combustibles/excel">

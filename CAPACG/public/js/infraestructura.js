@@ -41,7 +41,7 @@ $(function () {
              $('#lblTipoActivo').text(result.infraestructura.activo.tipo.Tipo);
              $('#lblColor').text(result.infraestructura.activo.Color);
              $('#lblFoto').attr('src', "storage/pictures/".concat(result.infraestructura.activo.Foto));
-             $('#lblFuncionario').text(result.infraestructura.activo.colaborador.user.name +" " + result.infraestructura.activo.colaborador.user.Apellido);
+            //  $('#lblFuncionario').text(result.infraestructura.activo.colaborador.user.name +" " + result.infraestructura.activo.colaborador.user.Apellido);
              $('#lblNumeroFinca').text(result.infraestructura.NumeroFinca);
              $('#lblAreaConstruccion').text(result.infraestructura.AreaConstruccion);
              $('#lblTerreno').text(result.infraestructura.AreaTerreno);
