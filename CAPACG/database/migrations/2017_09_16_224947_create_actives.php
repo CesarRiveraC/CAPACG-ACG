@@ -26,6 +26,7 @@ class CreateActives extends Migration
              $table->string('Placa')->unique();
              $table->string('Descripcion'); // se define de tipo text por ser la descripcion del activo
              $table->integer('Identificador');
+             $table->string('Justificacion');
              $table->string('Programa');
              $table->string('SubPrograma');
              $table->string('Color');

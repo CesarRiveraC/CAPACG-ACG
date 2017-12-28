@@ -71,16 +71,16 @@
 
 									<td class="warning">
 										@if($colaborador->Estado == 1)
-										<a class="btn btn-danger btn-xs fa fa-minus estado" data-estado="{{$colaborador->id}} " data-toggle="tooltip" data-placement="bottom"
-										 title="Eliminar"></a>
+										<a class="btn btn-danger btn-xs estado" data-estado="{{$colaborador->id}} " data-toggle="tooltip" data-placement="bottom"
+										 title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i>Inactivar</a>
 										@endif @if($colaborador->Estado == 0)
-										<a class="btn btn-danger btn-xs fa fa-reply estado" data-estado="{{$colaborador->id}} " data-toggle="tooltip" data-placement="bottom"
-										 title="Restaurar"></a>
+										<a class="btn btn-danger btn-xs estado" data-estado="{{$colaborador->id}} " data-toggle="tooltip" data-placement="bottom"
+										 title="Restaurar"><i class="fa fa-reply" aria-hidden="true"></i>Restaurar</a>
 										@endif
-										<a class="fa fa-eye btn btn-success btn-xs detalleColaborador" data-colaborador="{{$colaborador->id}}" data-toggle="tooltip"
-										 data-placement="bottom" title="Ver"></a>
-										<a href="/usuarios/{{$colaborador->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom"
-										 title="Editar"></a>
+										<a class="btn btn-success btn-xs detalleColaborador" data-colaborador="{{$colaborador->id}}" data-toggle="tooltip"
+										 data-placement="bottom" title="Ver"><i class="fa fa-eye" aria-hidden="true"></i>Detalle</a>
+										<a href="/usuarios/{{$colaborador->id}}/edit" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="bottom"
+										 title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i>Editar</a>
 									</td>
 
 									</td>

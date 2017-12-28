@@ -30,6 +30,7 @@ class CreateFuel extends Migration
              $table->integer('Numero');
              $table->date('Fecha');
              $table->integer('Estado');
+             $table->string('Justificacion');
              //$table->string('Placa'); ya no se usa porque ahora las relaciones se hacen usando id
              $table->string('Kilometraje');
              $table->double('LitrosCombustible');

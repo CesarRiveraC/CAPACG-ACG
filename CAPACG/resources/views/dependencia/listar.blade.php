@@ -36,15 +36,15 @@
 
 									<td class="warning">
 										@if($dependencia->Estado == 1 && Auth::user()->roles_id == 1)
-										<a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado="{{$dependencia->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Eliminar">Eliminar</a>
+										<a class="btn btn-danger btn-xs  estado" data-estado="{{$dependencia->id}}" data-toggle="tooltip" data-placement="bottom"
+										title="Inactivar"><i class="fa fa-trash-o " aria-hidden="true"></i>Inactivar</a>
 										@endif
 										 @if($dependencia->Estado == 0 && Auth::user()->roles_id == 1)
-										<a class="btn btn-danger btn-xs fa fa-trash-o estado" data-estado="{{$dependencia->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Restaurar">Restaurar</a>
+										<a class="btn btn-danger btn-xs estado" data-estado="{{$dependencia->id}}" data-toggle="tooltip" data-placement="bottom"
+										 title="Restaurar"><i class="fa fa-reply" aria-hidden="true"></i> Restaurar</a>
 										 @endif
-										<a class="btn btn-warning btn-xs fa fa-pencil editar" data-editar="{{$dependencia->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Editar"></a>
+										<a class="btn btn-warning btn-xs editar" data-editar="{{$dependencia->id}}" data-toggle="tooltip" data-placement="bottom"
+										 title="Editar"><i class=" fa fa-pencil" aria-hidden="true"></i>Editar</a>
 
 									</td>
 

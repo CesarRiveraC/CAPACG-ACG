@@ -49,8 +49,8 @@
 
 									<td class="warning">
 
-										<a class="fa fa-eye btn btn-success btn-xs detalleColaborador" data-colaborador="{{$colaborador->id}}" data-toggle="tooltip"
-										 data-placement="bottom" title="Ver"></a>
+										<a class="btn btn-success btn-xs detalleColaborador" data-colaborador="{{$colaborador->id}}" data-toggle="tooltip"
+										 data-placement="bottom" title="Ver"><i class="fa fa-eye" aria-hidden="true"></i>Detalle</a>
 
 									</td>
 

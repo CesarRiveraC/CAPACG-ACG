@@ -60,8 +60,8 @@
 
 
 										<a class="btn btn-success btn-xs detalleInfraestructura" data-infraestructura="{{$infraestructura->id}}">
-											Detalle
-											<i class="fa fa-eye" aria-hidden="true"></i>
+											<i class="fa fa-eye" aria-hidden="true"></i>Detalle
+
 										</a>
 
 

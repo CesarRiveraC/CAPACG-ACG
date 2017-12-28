@@ -88,20 +88,19 @@
 						<td class="warning">
 							<a class="btn btn-danger btn-xs estado" data-estado="{{$combustible->id}}" data-toggle="tooltip" data-placement="bottom"
 							 title="Eliminar">
-								Eliminar
-								<i class="fa fa-trash-o" aria-hidden="true"></i>
+								<i class="fa fa-trash-o" aria-hidden="true">Inactivar</i>
 							</a>
 
 							<a class="btn btn-success btn-xs detalleCombustible" data-combustible="{{$combustible->id}}" data-toggle="tooltip" data-placement="bottom"
 							 title="Ver">
-								Detalle
 								<i class="fa fa-eye" aria-hidden="true"></i>
+								Detalle
 							</a>
 
 							<a class="btn btn-warning btn-xs editar" href="/combustibles/{{$combustible->id}}/edit" data-toggle="tooltip" data-placement="bottom"
 							 title="Editar">
-								Editar
 								<i class="fa fa-pencil" aria-hidden="true"></i>
+								Editar
 							</a>
 
 						</td>

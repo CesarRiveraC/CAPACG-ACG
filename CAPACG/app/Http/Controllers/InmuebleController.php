@@ -312,8 +312,10 @@ class InmuebleController extends Controller
         $activo = Activo::find($inmueble->activo_id);
         if ($activo->Estado == 1) {
             $activo->Estado = 0;
+            $activo->Justificacion = request('Justificacion');;
         } else if ($activo->Estado == 0) {
             $activo->Estado = 1;
+            $activo->Justificacion = request('Justificacion');
         }
         $activo->save();
 
