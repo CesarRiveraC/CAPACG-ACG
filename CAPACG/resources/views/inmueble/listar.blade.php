@@ -116,25 +116,24 @@
 									<td class="info"> {{$inmueble->SubPrograma}} </td>
 									<td class="info"> {{$inmueble->Color}} </td>
 
-									<td class="warning col-xs-2 col-xs-offset-2 ">
+									<td class="warning  ">
 										@if($inmueble->Estado == 1 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs estado" data-estado="{{$inmueble->id}}">
-											Eliminar
-											<i class="fa fa-trash-o" aria-hidden="true"></i>
+											<i class="fa fa-trash-o" aria-hidden="true"></i>Inactivar
 										</a>
 										@endif
 										@if($inmueble->Estado == 0 && Auth::user()->roles_id == 1)
-										<a class="btn btn-danger btn-xs fa fa-reply estado" data-estado="{{$inmueble->id}}">
-											Restaurar
-											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										<a class="btn btn-danger btn-xs estado" data-estado="{{$inmueble->id}}">
+											<i class="fa fa-reply" aria-hidden="true"></i>Restaurar
 										</a>
 										@endif
-										<a class="fa fa-eye btn btn-success btn-xs detalleInmueble" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Ver"></a>
-										<a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom"
-										 title="Editar"></a>
-										<a class="btn btn-info btn-xs fa fa-child asignarColaborador" style="display:none" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip"
-										 data-placement="bottom" title="Asignar responsable"></a>
+										<a class="btn btn-success btn-xs detalleInmueble" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
+										 title="Ver"><i class="fa fa-eye" aria-hidden="true"></i>Detalle</a>
+										<a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="bottom"
+										 title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i>Editar</a>
+										<a class="btn btn-info btn-xs asignarColaborador" style="display:none" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip"
+										 data-placement="bottom" title="Asignar responsable">
+										 <i class="fa fa-reply" aria-hidden="true"></i>Asignar</a>
 
 									</td>
 								</tr>

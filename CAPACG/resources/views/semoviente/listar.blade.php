@@ -118,25 +118,26 @@
 
 									<td class="info"> {{$semoviente->Raza}} </td>
 
-									<td class="warning col-xs-2 col-xs-offset-2 ">
+									<td class="warning">
 									@if($semoviente->Estado == 1 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs estado" data-estado="{{$semoviente->id}}">
-											Eliminar
 											<i class="fa fa-trash-o" aria-hidden="true"></i>
+											Inactivar
 										</a>
 										@endif
 										@if($semoviente->Estado == 0 && Auth::user()->roles_id == 1)
-										<a class="btn btn-danger btn-xs fa fa-reply estado" data-estado="{{$semoviente->id}}">
-											Restaurar
-											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										<a class="btn btn-danger btn-xs fa fa-reply estado" data-estado="{{$semoviente->id}}">	
+										<i class="fa fa-trash-o" aria-hidden="true"></i>
+										Restaurar
 										</a>
 										@endif
-										<a class="fa fa-eye btn btn-success btn-xs detalleSemoviente" data-semoviente="{{$semoviente->id}}" data-toggle="tooltip"
-										 data-placement="bottom" title="Ver"></a>
-										<a href="/semovientes/{{$semoviente->id}}/edit" class="btn btn-warning btn-xs fa fa-pencil" data-toggle="tooltip" data-placement="bottom"
-										 title="Editar"></a>
-										<a class="btn btn-info btn-xs fa fa-child asignarColaborador" style="display:none" data-semoviente="{{$semoviente->id}}"
-										 data-toggle="tooltip" data-placement="bottom" title="Asignar responsable"></a>
+										<a class="btn btn-success btn-xs detalleSemoviente" data-semoviente="{{$semoviente->id}}" data-toggle="tooltip"
+										 data-placement="bottom" title="Ver"><i class="fa fa-eye" aria-hidden="true"></i>Detalle</a>
+										<a href="/semovientes/{{$semoviente->id}}/edit" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="bottom"
+										 title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i>Editar</a>
+										<a class="btn btn-info btn-xs asignarColaborador" style="display:none" data-semoviente="{{$semoviente->id}}"
+										 data-toggle="tooltip" data-placement="bottom" title="Asignar responsable">
+										 <i class="fa fa-child" aria-hidden="true"></i>Asignar</a>
 									</td>
 								</tr>
 								@endforeach

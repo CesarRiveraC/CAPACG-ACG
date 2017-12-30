@@ -11,26 +11,30 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title" id="titleModal"></h4>
           </div>
-        
+
         <!-- Modal body -->
         <div class="modal-body">
-          
-               
-                     <dd id="bodyModal"></dd>  
+
+
+                     <dd id="bodyModal"></dd>
                      <br>
-                    
+  
+
+            <div class="form-group">
+            <label for="Justificacion">Justificación:</label>
+                <input id="Justificacion" type="text" class="form-control" name="Justificacion"  required>
+            </div>
 
         </div>
-        
+
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           <button type="submit" class="btn btn-danger" id="btnOption"></a>
-          
+
         </div>
-        
+
       </div>
     </div>
     </form>
   </div>
-  

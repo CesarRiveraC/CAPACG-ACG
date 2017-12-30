@@ -266,7 +266,13 @@ class CombustibleController extends Controller
     {
         
         $combustible = Combustible::find($id);
-        $combustible->Estado = 0;    
+        if ($combustible->Estado == 1) {
+            $combustible->Estado = 0;
+            $combustible->Justificacion = request('Justificacion');;
+        } else if ($combustible->Estado == 0) {
+            $combustible->Estado = 1;
+            $combustible->Justificacion = request('Justificacion');
+        }
         $combustible->save();
         return redirect('/combustibles');   
     }
