@@ -46,6 +46,14 @@ $(function () {
              $('#lblAreaConstruccion').text(result.infraestructura.AreaConstruccion);
              $('#lblTerreno').text(result.infraestructura.AreaTerreno);
              $('#lblAnoFabricacion').text(result.infraestructura.AnoFabricacion);
+             if(result.combustible.Justificacion==null){
+                $('#DetalleJustificacion').hide();
+            
+               }else{
+                $('#DetalleJustificacion').show();
+                $('#lblJustificacion').text(result.infraestructura.activo.Justificacion);
+              
+               }
              if (result.infraestructura.activo.colaborador_id != null) {
                 $('#lblFuncionario').text(result.infraestructura.activo.colaborador.user.name +" " + result.infraestructura.activo.colaborador.user.Apellido);
             }

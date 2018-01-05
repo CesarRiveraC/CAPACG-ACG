@@ -43,6 +43,14 @@ $(function () {
             $('#lblRaza').text(result.semoviente.Raza);
             $('#lblEdad').text(result.semoviente.Edad);
             $('#lblPeso').text(result.semoviente.Peso);
+            if(result.combustible.Justificacion==null){
+                $('#DetalleJustificacion').hide();
+            
+               }else{
+                $('#DetalleJustificacion').show();
+                $('#lblJustificacion').text(result.semoviente.activo.Justificacion);
+              
+               }
             if (result.semoviente.activo.colaborador_id != null) {
                 $('#lblFuncionario').text(result.semoviente.activo.colaborador.user.name +" " + result.semoviente.activo.colaborador.user.Apellido);
             }

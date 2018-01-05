@@ -35,6 +35,12 @@
         <dd id="lblAnoFabricacion"></dd>
         <br>
 
+        <div id="DetalleJustificacion">
+        <dt>Justificación</dt>
+        <dd id="lblJustificacion"></dd>
+        <br>
+        </div>
+
         </div>
         
         <!-- Modal footer -->

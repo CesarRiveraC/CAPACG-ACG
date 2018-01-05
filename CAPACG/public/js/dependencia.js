@@ -14,6 +14,8 @@ $(function () {
                 $('#bodyModal').text("¿Está seguro de eliminar esta dependencia?");
                 $('#btnOption').text("Eliminar");
             }
+            $('#Justificacion').text("");
+            $('#txtJustificacion').hide();
             $('#role-form').attr('action', '/dependencias/' + result.dependencia.id + '/updatestate');
 
         }).fail(function () {

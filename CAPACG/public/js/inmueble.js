@@ -48,6 +48,15 @@ $(function () {
              $('#lblEstadoUtilizacion').text(result.inmueble.EstadoUtilizacion);
              $('#lblEstadoFisico').text(result.inmueble.EstadoFisico);
              $('#lblEstadoActivo').text(result.inmueble.EstadoActivo);
+            
+             if(result.combustible.Justificacion==null){
+                $('#DetalleJustificacion').hide();
+            
+               }else{
+                $('#DetalleJustificacion').show();
+                $('#lblJustificacion').text(result.inmueble.activo.Justificacion);
+              
+               }
              if (result.inmueble.activo.colaborador_id != null) {
                 $('#lblFuncionario').text(result.inmueble.activo.colaborador.user.name +" " + result.inmueble.activo.colaborador.user.Apellido);
             }

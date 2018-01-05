@@ -9,11 +9,16 @@ $(function () {
                 $('#titleModal').text("Restaurar");
                 $('#bodyModal').text("¿Desea restaurar nuevamente este registro?");
                 $('#btnOption').text("Restaurar");
+               
             } else {
                 $('#titleModal').text("Eliminar");
                 $('#bodyModal').text("¿Está seguro de eliminar el siguiente registro?");
                 $('#btnOption').text("Eliminar");
+                       
             }
+
+            $('#Justificacion').text("");
+            $('#txtJustificacion').hide();
             $('#role-form').attr('action', '/sectores/' + result.sector.id + '/updatestate');
 
         }).fail(function () {

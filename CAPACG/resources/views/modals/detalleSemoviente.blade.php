@@ -26,7 +26,12 @@
 
         <dt>Peso</dt>
         <dd id="lblPeso"></dd>
+      
+        <div id="DetalleJustificacion">
+        <dt>Justificación</dt>
+        <dd id="lblJustificacion"></dd>
         <br>
+        </div>
 
         </div>
         

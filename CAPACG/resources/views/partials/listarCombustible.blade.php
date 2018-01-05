@@ -88,7 +88,7 @@
 						<td class="warning">
 							<a class="btn btn-danger btn-xs estado" data-estado="{{$combustible->id}}" data-toggle="tooltip" data-placement="bottom"
 							 title="Eliminar">
-								<i class="fa fa-trash-o" aria-hidden="true">Inactivar</i>
+								<i class="fa fa-trash-o" aria-hidden="true"></i>Inactivar
 							</a>
 
 							<a class="btn btn-success btn-xs detalleCombustible" data-combustible="{{$combustible->id}}" data-toggle="tooltip" data-placement="bottom"

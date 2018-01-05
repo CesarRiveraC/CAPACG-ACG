@@ -29,6 +29,7 @@ $(function () {
             $('#lblMonto').text(result.combustible.Monto);
             $('#lblNumero').text(result.combustible.Numero);
             $('#lblFecha').text(result.combustible.Fecha);
+           
             $('#lblKilometraje').text(result.combustible.Kilometraje);
             $('#lblLitrosCombustible').text(result.combustible.LitrosCombustible);
             $('#lblFuncionarioQueHizoCompra').text(result.combustible.colaborador.user.name +" " + result.combustible.colaborador.user.Apellido);
@@ -39,8 +40,14 @@ $(function () {
             $('#lblModelo').text(result.combustible.vehiculo.inmueble.Modelo);
             $('#lblMarca').text(result.combustible.vehiculo.inmueble.Marca);
             $('#lblPlacaActivo').text(result.combustible.vehiculo.inmueble.activo.Placa);
-            //    $('#lblVehiculo').text('Ver datos Vehículo');
-
+       if(result.combustible.Justificacion==null){
+        $('#DetalleJustificacion').hide();
+    
+       }else{
+        $('#DetalleJustificacion').show();
+        $('#lblJustificacion').text(result.combustible.Justificacion);
+      
+       }
         }).fail(function () {
             alert('¡Algo salio mal!');
         });

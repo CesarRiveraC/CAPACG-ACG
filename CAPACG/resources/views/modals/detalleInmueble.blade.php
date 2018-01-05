@@ -39,6 +39,12 @@
         <dt>Estado Activo:</dt>
         <dd id="lblEstadoActivo"></dd>
         <br>
+        
+        <div id="DetalleJustificacion">
+        <dt>Justificación</dt>
+        <dd id="lblJustificacion"></dd>
+        <br>
+        </div>
 
 
         </div>

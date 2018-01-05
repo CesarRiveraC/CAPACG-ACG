@@ -36,6 +36,8 @@ $(function () {
                 $('#bodyModal').text("¿Está seguro de eliminar el siguiente registro?");
                 $('#btnOption').text("Eliminar");
             }
+            $('#Justificacion').text("");
+            $('#txtJustificacion').hide();
             $('#role-form').attr('action', '/usuarios/' + result.colaborador.id + '/updatestate');
 
         }).fail(function () {

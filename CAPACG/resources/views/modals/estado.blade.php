@@ -20,9 +20,9 @@
                      <br>
   
 
-            <div class="form-group">
-            <label for="Justificacion">Justificación:</label>
-                <input id="Justificacion" type="text" class="form-control" name="Justificacion"  required>
+            <div class="form-group" id="Justificacion">
+            <label id="Justificacion" for="Justificacion">Justificación:</label>
+                <input id="txtJustificacion" type="text" class="form-control" name="Justificacion"  >
             </div>
 
         </div>

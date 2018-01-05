@@ -59,12 +59,19 @@
 						<label id="lblFuncionarioQueHizoCompra"></label>
 						<br>
 					</div>
+					<div class="col-md-8" id="DetalleJustificacion">
+						Justificación:
+						<label id="lblJustificacion"></label>
+						<br>
+					</div>
+					
 					<div class="col-md-4">
 						Dependencia:
 						<label id="lblDependencia"></label>
 						<br>
 					</div>
 				</div>
+
 				<div class="row">
 					<div class="col-md-8">
 						Foto:
