@@ -63,7 +63,7 @@
 									<td class="warning">
 
 										<a class="btn btn-success btn-xs detalleInfraestructura" data-infraestructura="{{$infraestructura->id}}">
-											<i class="fa fa-eye" aria-hidden="true"></i>Detalle
+											<i class="fa fa-eye " aria-hidden="true"></i>Detalle
 										</a>
 									</td>
 								</tr>

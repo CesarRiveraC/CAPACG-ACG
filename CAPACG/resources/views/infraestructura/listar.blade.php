@@ -28,7 +28,7 @@
 
 						<li>
 							<a class="filtrar" href="/infraestructuras/filter">
-								<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
+								<i class="fa fa-times" aria-hidden="true"></i> Eliminados</a>
 						</li>
 
 						<li>
@@ -124,25 +124,25 @@
 									<td class="warning">
 										@if($infraestructura->Estado == 1 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs estado" data-estado="{{$infraestructura->id}}">
-											<i class="fa fa-trash-o" aria-hidden="true"></i>Inactivar
+											<i class="fa fa-trash-o " aria-hidden="true"></i> Eliminar
 										</a>
 										@endif
 										@if($infraestructura->Estado == 0 && Auth::user()->roles_id == 1)
-										<a class="btn btn-danger btn-xs fa fa-reply estado" data-estado="{{$infraestructura->id}}">
-											<i class="fa fa-trash-o" aria-hidden="true"></i>Restaurar
+										<a class="btn btn-danger btn-xs estado" data-estado="{{$infraestructura->id}}">
+											<i class="fa fa-reply " aria-hidden="true"></i> Restaurar
 										</a>
 										@endif
 
 										<a class="btn btn-success btn-xs detalleInfraestructura" data-infraestructura="{{$infraestructura->id}}">
-										<i class="fa fa-eye" aria-hidden="true"></i>Detalle
+										<i class="fa fa-eye" aria-hidden="true"></i> Detalle
 										</a>
 
 										<a class="btn btn-warning btn-xs editar" href="/infraestructuras/{{$infraestructura->id}}/edit">
-										<i class="fa fa-pencil" aria-hidden="true"></i>Editar
+										<i class="fa fa-pencil" aria-hidden="true"></i> Editar
 										</a>
 										<a class="btn btn-info btn-xs asignarColaborador" style="display:none" data-infraestructura="{{$infraestructura->id}}"
 										 data-toggle="tooltip" data-placement="bottom" title="Asignar responsable">
-										 <i class=" fa fa-child" aria-hidden="true"></i>Asignar</a>
+										 <i class=" fa fa-child" aria-hidden="true"></i> Asignar</a>
 									</td>
 
 								</tr>

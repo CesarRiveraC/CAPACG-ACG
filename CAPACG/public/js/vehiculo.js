@@ -48,7 +48,7 @@ $(function () {
             $('#lblEstadoFisico').text(result.vehiculo.inmueble.EstadoFisico);
             $('#lblEstadoActivo').text(result.vehiculo.inmueble.EstadoActivo);
             $('#lblPlaca1').text(result.vehiculo.PlacaVehiculo);
-            if(result.combustible.Justificacion==null){
+            if(result.vehiculo.activo.Justificacion==null){
                 $('#DetalleJustificacion').hide();
             
                }else{

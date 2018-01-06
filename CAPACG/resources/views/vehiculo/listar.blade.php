@@ -24,7 +24,7 @@
 
 						<li>
 							<a class="filtrar" href="/vehiculos/filter">
-								<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
+								<i class="fa fa-times" aria-hidden="true"></i> Eliminados</a>
 						</li>
 
 						<li>
@@ -116,22 +116,21 @@
 									<td class="warning">
 										@if($vehiculo->Estado == 1 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs estado" data-estado="{{$vehiculo->id}}">
-											<i class="fa fa-trash-o" aria-hidden="true"></i>
-											Inactivar
+											<i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar								
 										</a>
 										@endif @if($vehiculo->Estado == 0 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs  estado" data-estado="{{$vehiculo->id}}">
-											<i class="fa fa-reply-o" aria-hidden="true"></i>
-											Restaurar
+											<i class="fa fa-reply-o" aria-hidden="true"></i> Restaurar
 										</a>
 										@endif
 										<a class="btn btn-success btn-xs detalleVehiculo" data-vehiculo="{{$vehiculo->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Ver"><i class="fa fa-eye" aria-hidden="true"></i>Detalle</a>
+										 title="Ver"><i class="fa fa-eye" aria-hidden="true"></i> Detalle</a>
+
 										<a href="/vehiculos/{{$vehiculo->id}}/edit" class="btn btn-warning btn-xs " data-toggle="tooltip" data-placement="bottom"
-										 title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i>Editar</a>
+										 title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
 										<a class="btn btn-info btn-xs asignarColaborador" style="display:none" data-vehiculo="{{$vehiculo->id}}" data-toggle="tooltip"
 										 data-placement="bottom" title="Asignar responsable">
-										 <i class="fa fa-child" aria-hidden="true"></i>Asignar</a>
+										 <i class="fa fa-child" aria-hidden="true"></i> Asignar</a>
 									</td>
 								</tr>
 								@endforeach

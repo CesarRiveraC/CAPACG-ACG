@@ -19,7 +19,7 @@
 
 					<li>
 						<a class="filtrar" href="/usuarios/filter">
-							<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
+							<i class="fa fa-times" aria-hidden="true"></i> Eliminados</a>
 					</li>
 
 				</ul>
@@ -72,15 +72,15 @@
 									<td class="warning">
 										@if($colaborador->Estado == 1)
 										<a class="btn btn-danger btn-xs estado" data-estado="{{$colaborador->id}} " data-toggle="tooltip" data-placement="bottom"
-										 title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i>Inactivar</a>
+										 title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</a>
 										@endif @if($colaborador->Estado == 0)
 										<a class="btn btn-danger btn-xs estado" data-estado="{{$colaborador->id}} " data-toggle="tooltip" data-placement="bottom"
-										 title="Restaurar"><i class="fa fa-reply" aria-hidden="true"></i>Restaurar</a>
+										 title="Restaurar"><i class="fa fa-reply" aria-hidden="true"></i> Restaurar</a>
 										@endif
 										<a class="btn btn-success btn-xs detalleColaborador" data-colaborador="{{$colaborador->id}}" data-toggle="tooltip"
-										 data-placement="bottom" title="Ver"><i class="fa fa-eye" aria-hidden="true"></i>Detalle</a>
+										 data-placement="bottom" title="Ver"><i class="fa fa-eye" aria-hidden="true"></i> Detalle</a>
 										<a href="/usuarios/{{$colaborador->id}}/edit" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="bottom"
-										 title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i>Editar</a>
+										 title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
 									</td>
 
 									</td>

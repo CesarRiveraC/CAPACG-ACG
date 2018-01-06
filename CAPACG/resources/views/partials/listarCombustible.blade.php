@@ -17,7 +17,7 @@
 
 			<li>
 				<a class="filtrar" href="/combustibles/filter">
-					<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
+					<i class="fa fa-times" aria-hidden="true"></i> Eliminados</a>
 			</li>
 
 			<li>
@@ -88,19 +88,17 @@
 						<td class="warning">
 							<a class="btn btn-danger btn-xs estado" data-estado="{{$combustible->id}}" data-toggle="tooltip" data-placement="bottom"
 							 title="Eliminar">
-								<i class="fa fa-trash-o" aria-hidden="true"></i>Inactivar
+								<i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar
 							</a>
 
 							<a class="btn btn-success btn-xs detalleCombustible" data-combustible="{{$combustible->id}}" data-toggle="tooltip" data-placement="bottom"
 							 title="Ver">
-								<i class="fa fa-eye" aria-hidden="true"></i>
-								Detalle
+								<i class="fa fa-eye" aria-hidden="true"></i> Detalle
 							</a>
 
 							<a class="btn btn-warning btn-xs editar" href="/combustibles/{{$combustible->id}}/edit" data-toggle="tooltip" data-placement="bottom"
 							 title="Editar">
-								<i class="fa fa-pencil" aria-hidden="true"></i>
-								Editar
+								<i class="fa fa-pencil" aria-hidden="true"></i> Editar
 							</a>
 
 						</td>

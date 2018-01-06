@@ -38,14 +38,14 @@
 									<td class="warning">
 									@if($tipo->Estado == 1 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs estado" data-estado="{{$tipo->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Inactivar"> <i class="fa fa-trash-o" aria-hidden="true"></i>Inactivar</a>
+										 title="Inactivar"> <i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</a>
 									@endif
 									@if($tipo->Estado == 0 && Auth::user()->roles_id == 1)
 									<a class="btn btn-danger btn-xs estado" data-estado="{{$tipo->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Restaurar"> <i class="fa fa-reply" aria-hidden="true"></i>Restaurar</a>
+										 title="Restaurar"> <i class="fa fa-reply" aria-hidden="true"></i> Restaurar</a>
 									@endif
 										<a class="btn btn-warning btn-xs  editar" data-editar="{{$tipo->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Editar"><i class="fa fa-trash-o" aria-hidden="true"></i>Editar</a>
+										 title="Editar"><i class="fa fa-trash-o" aria-hidden="true"></i> Editar</a>
 
 									</td>
 

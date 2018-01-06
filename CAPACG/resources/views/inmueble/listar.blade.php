@@ -27,7 +27,7 @@
 
 						<li>
 							<a class="filtrar" href="/inmuebles/filter">
-								<i class="fa fa-times" aria-hidden="true"></i> Estado Inactivo</a>
+								<i class="fa fa-times" aria-hidden="true"></i> Eliminados</a>
 						</li>
 
 						<li>
@@ -119,21 +119,21 @@
 									<td class="warning  ">
 										@if($inmueble->Estado == 1 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs estado" data-estado="{{$inmueble->id}}">
-											<i class="fa fa-trash-o" aria-hidden="true"></i>Inactivar
+											<i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar
 										</a>
 										@endif
 										@if($inmueble->Estado == 0 && Auth::user()->roles_id == 1)
 										<a class="btn btn-danger btn-xs estado" data-estado="{{$inmueble->id}}">
-											<i class="fa fa-reply" aria-hidden="true"></i>Restaurar
+											<i class="fa fa-reply" aria-hidden="true"></i> Restaurar
 										</a>
 										@endif
 										<a class="btn btn-success btn-xs detalleInmueble" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Ver"><i class="fa fa-eye" aria-hidden="true"></i>Detalle</a>
+										 title="Ver"><i class="fa fa-eye" aria-hidden="true"></i> Detalle</a>
 										<a href="/inmuebles/{{$inmueble->id}}/edit" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="bottom"
-										 title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i>Editar</a>
+										 title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
 										<a class="btn btn-info btn-xs asignarColaborador" style="display:none" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip"
 										 data-placement="bottom" title="Asignar responsable">
-										 <i class="fa fa-reply" aria-hidden="true"></i>Asignar</a>
+										 <i class="fa fa-reply" aria-hidden="true"></i> Asignar</a>
 
 									</td>
 								</tr>

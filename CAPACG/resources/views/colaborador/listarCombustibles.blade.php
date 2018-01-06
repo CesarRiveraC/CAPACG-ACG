@@ -62,7 +62,7 @@
 
 									<td class="warning">
 										<a class="btn btn-success btn-xs detalleCombustible" data-combustible="{{$combustible->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Ver"> <i class="fa fa-eye" aria-hidden="true"></i>
+										 title="Ver"> <i class="fa fa-eye " aria-hidden="true"></i>
 										Detalle
 											</a>
 									</td>

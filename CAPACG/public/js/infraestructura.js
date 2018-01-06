@@ -46,7 +46,7 @@ $(function () {
              $('#lblAreaConstruccion').text(result.infraestructura.AreaConstruccion);
              $('#lblTerreno').text(result.infraestructura.AreaTerreno);
              $('#lblAnoFabricacion').text(result.infraestructura.AnoFabricacion);
-             if(result.combustible.Justificacion==null){
+             if(result.infraestructura.activo.Justificacion==null){
                 $('#DetalleJustificacion').hide();
             
                }else{

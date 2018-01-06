@@ -59,7 +59,7 @@
 									<td class="warning col-xs-2 col-xs-offset-2 ">
 
 										<a class="btn btn-success btn-xs detalleInmueble" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip" data-placement="bottom"
-										 title="Ver"><i class="fa fa-eye" aria-hidden="true"></i>Detalle</a>
+										 title="Ver"><i class="fa fa-eye" aria-hidden="true"></i> Detalle</a>
 
 									</td>
 								</tr>
