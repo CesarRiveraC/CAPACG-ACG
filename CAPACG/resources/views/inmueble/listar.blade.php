@@ -133,7 +133,7 @@
 										 title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
 										<a class="btn btn-info btn-xs asignarColaborador" style="display:none" data-inmueble="{{$inmueble->id}}" data-toggle="tooltip"
 										 data-placement="bottom" title="Asignar responsable">
-										 <i class="fa fa-reply" aria-hidden="true"></i> Asignar</a>
+										 <i class="fa fa-child" aria-hidden="true"></i> Asignar</a>
 
 									</td>
 								</tr>
