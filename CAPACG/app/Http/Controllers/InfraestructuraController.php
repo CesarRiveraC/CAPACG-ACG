@@ -285,6 +285,7 @@ class InfraestructuraController extends Controller
             $activo->Color = $request['Color'];
             $activo->Estado = 1;
             $activo->Identificador = 1;
+            $activo->Justificacion = 'N/A';
             $activo->dependencia_id = $request['Dependencia'];
             $activo->tipo_id = $request['TipoActivo'];
             $activo->sector_id = $request['Sector'];

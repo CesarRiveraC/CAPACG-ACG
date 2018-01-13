@@ -43,7 +43,7 @@ $(function () {
             $('#lblRaza').text(result.semoviente.Raza);
             $('#lblEdad').text(result.semoviente.Edad);
             $('#lblPeso').text(result.semoviente.Peso);
-            if(result.semoviente.activo.Justificacion==null){
+            if(result.semoviente.activo.Justificacion=='N/A'){
                 $('#DetalleJustificacion').hide();
             
                }else{

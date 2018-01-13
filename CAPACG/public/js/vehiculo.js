@@ -48,12 +48,12 @@ $(function () {
             $('#lblEstadoFisico').text(result.vehiculo.inmueble.EstadoFisico);
             $('#lblEstadoActivo').text(result.vehiculo.inmueble.EstadoActivo);
             $('#lblPlaca1').text(result.vehiculo.PlacaVehiculo);
-            if(result.vehiculo.activo.Justificacion==null){
+            if(result.vehiculo.inmueble.activo.Justificacion=="N/A"){
                 $('#DetalleJustificacion').hide();
-            
+             
                }else{
                 $('#DetalleJustificacion').show();
-                $('#lblJustificacion').text(result.vehiculo.activo.Justificacion);
+                $('#lblJustificacion').text(result.vehiculo.inmueble.activo.Justificacion);
               
                }
             if (result.vehiculo.inmueble.activo.colaborador_id != null) {

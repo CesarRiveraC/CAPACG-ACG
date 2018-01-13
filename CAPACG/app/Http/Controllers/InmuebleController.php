@@ -119,6 +119,7 @@ class InmuebleController extends Controller
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
             $activo->dependencia_id = $request['Dependencia'];
+            $activo->Justificacion = 'N/A';
 
             $activo->Estado = 1;
             $activo->Identificador = 2;

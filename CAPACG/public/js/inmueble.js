@@ -49,7 +49,7 @@ $(function () {
              $('#lblEstadoFisico').text(result.inmueble.EstadoFisico);
              $('#lblEstadoActivo').text(result.inmueble.EstadoActivo);
             
-             if(result.inmueble.activo.Justificacion==null){
+             if(result.inmueble.activo.Justificacion=='N/A'){
                 $('#DetalleJustificacion').hide();
             
                }else{

@@ -146,6 +146,7 @@ class SemovienteController extends Controller
             $activo->Color = $request['Color'];
             $activo->Estado = 1;
             $activo->Identificador = 3;
+            $activo->Justificacion = 'N/A';
             
 
             if ($request->hasFile('Foto')) {

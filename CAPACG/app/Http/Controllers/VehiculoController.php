@@ -156,6 +156,7 @@ class VehiculoController extends Controller
             $activo->SubPrograma = $request['SubPrograma'];
             $activo->Color = $request['Color'];
             $activo->Estado = 1;
+            $activo->Justificacion = 'N/A';
             $activo->Identificador = 4;
             if ($request->hasFile('Foto')) {
 
