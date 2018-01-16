@@ -30,7 +30,7 @@ class SemovienteController extends Controller
     {
         $semovientes = DB::table('semovientes')
             ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
-            ->select('activos.*', 'semovientes.*')
+            ->select('activos.*', 'semovientes.Raza')
             ->where([['activos.Estado', '=', '1'], ['activos.Identificador', '=', '3']])
         //->where('activos.Estado','=','1')
             ->paginate(10);
@@ -310,7 +310,7 @@ class SemovienteController extends Controller
         $semovientes = Semoviente::buscar($request->get('buscar'))
             ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
         // ->where('activos.Estado','=','1')
-            ->select('activos.*', 'semovientes.*')
+            ->select('activos.*', 'semovientes.Raza')
             ->where([['activos.Estado', '=', '1'], ['activos.Identificador', '=', '3']])
             ->paginate(10);
         return view('semoviente/listar', compact('semovientes'));
@@ -321,7 +321,7 @@ class SemovienteController extends Controller
 
         $semovientes = DB::table('semovientes')
             ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
-            ->select('activos.*', 'semovientes.*')
+            ->select('activos.*', 'semovientes.Raza')
             ->where([['activos.Estado', '=', '0'], ['activos.Identificador', '=', '3']])
             ->paginate(10);
 
@@ -336,7 +336,7 @@ class SemovienteController extends Controller
                 
         ->join('activos','semovientes.activo_id', '=','activos.id')
             
-        ->select('activos.*','semovientes.*')
+        ->select('activos.*','semovientes.Raza')
         ->Where([['activos.colaborador_id','=', $colaborador->id],['activos.Identificador','=','3']])                        
         ->where('activos.Estado', '=', '1')   
         ->paginate(10);
@@ -356,14 +356,14 @@ class SemovienteController extends Controller
 
             $semovientes = DB::table('semovientes')
                 ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
-                ->select('activos.*', 'semovientes.*')
+                ->select('activos.*', 'semovientes.Raza')
                 ->Where([['activos.dependencia_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '3']])
                 ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $semovientes = DB::table('semovientes')
                 ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
-                ->select('activos.*', 'semovientes.*')
+                ->select('activos.*', 'semovientes.Raza')
                 ->where([['activos.dependencia_id', '=', $name], ['activos.Identificador', '=', '3']])
                 ->where('activos.Estado', '=', '1')
             //    ->where('activos.dependencia_id','=', $name)
@@ -384,14 +384,14 @@ class SemovienteController extends Controller
         if ($buscar != null) {
             $semovientes = DB::table('semovientes')
                 ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
-                ->select('activos.*', 'semovientes.*')
+                ->select('activos.*', 'semovientes.Raza')
                 ->Where([['activos.tipo_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '3']])
                 ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $semovientes = DB::table('semovientes')
                 ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
-                ->select('activos.*', 'semovientes.*')
+                ->select('activos.*', 'semovientes.Raza')
             //    ->where('activos.tipo_id','=', $name)
                 ->where([['activos.tipo_id', '=', $name], ['activos.Identificador', '=', '3']])
                 ->where('activos.Estado', '=', '1')
@@ -411,7 +411,7 @@ class SemovienteController extends Controller
 
         $semovientes = DB::table('semovientes')
             ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
-            ->select('activos.*', 'semovientes.*')
+            ->select('activos.*', 'semovientes.Raza')
             ->whereBetween('activos.created_at', [$desde, $hasta])
             ->where('activos.Identificador', '=', '3')
             ->where('activos.Estado', '=', '1')
@@ -439,14 +439,14 @@ class SemovienteController extends Controller
         if ($buscar != null) {
             $semovientes = DB::table('semovientes')
                 ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
-                ->select('activos.*', 'semovientes.*')
+                ->select('activos.*', 'semovientes.Raza')
                 ->Where([['activos.sector_id', '=', $name], ['activos.Placa', 'LIKE', '%' . $buscar . '%'], ['activos.Identificador', '=', '3']])
                 ->where('activos.Estado', '=', '1')
                 ->paginate(10);
         } else {
             $semovientes = DB::table('semovientes')
                 ->join('activos', 'semovientes.activo_id', '=', 'activos.id')
-                ->select('activos.*', 'semovientes.*')
+                ->select('activos.*', 'semovientes.Raza')
             //    ->where('activos.tipo_id','=', $name)
                 ->where([['activos.sector_id', '=', $name], ['activos.Identificador', '=', '3']])
                 ->where('activos.Estado', '=', '1')

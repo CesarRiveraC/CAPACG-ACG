@@ -61,7 +61,7 @@
            
       </div>
       <div class="col-md-4">
-        <p>Control de Activos para el Area de Conservación Guanacaste</p>
+        <p>Control de Activos para el Área de Conservación Guanacaste</p>
       <p>
         <a id="link" href="#home" ><i class="fa fa-arrow-up"></i>Arriba</a>
       </p>
