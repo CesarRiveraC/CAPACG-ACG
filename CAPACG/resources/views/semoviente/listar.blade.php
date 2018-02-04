@@ -125,7 +125,7 @@
 										</a>
 										@endif
 										@if($semoviente->Estado == 0 && Auth::user()->roles_id == 1)
-										<a class="btn btn-danger btn-xs fa fa-reply estado" data-estado="{{$semoviente->id}}">	
+										<a class="btn btn-danger btn-xs estado" data-estado="{{$semoviente->id}}">	
 										<i class="fa fa-trash-o" aria-hidden="true"></i> Restaurar
 										</a>
 										@endif
