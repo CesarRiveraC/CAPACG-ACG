@@ -51,7 +51,7 @@ class InfraestructuraController extends Controller
         return $colaboradores;
     }
 
-    public function searchCollaborators($infraestructura_id, $user_id, Request $request)
+    public function searchCollaborators($infraestructura_id, $id, Request $request)
     {
         $infraestructura = Infraestructura::find($infraestructura_id);
         $activo = Activo::find($infraestructura->activo_id);
@@ -62,7 +62,7 @@ class InfraestructuraController extends Controller
             $activo->colaborador()->associate($colaboradorAsignado);
         }
         $infraestructura->activo()->associate($activo);
-        $colaborador = Colaborador::find($user_id);
+        $colaborador = Colaborador::find($id);
         $usuario = User::find($colaborador->user_id);
         $colaborador->user()->associate($usuario);
 

@@ -17,7 +17,7 @@ class DependenciaController extends Controller
     $dependencias = DB::table('dependencias')
     ->select('dependencias.*')
     ->where('dependencias.Estado','=','1')
-    ->paginate(7); // este paginate no esta funcionando ?
+    ->paginate(10); // este paginate no esta funcionando ?
   return view('/dependencia/listar', ['dependencias' => $dependencias]);
     }
 

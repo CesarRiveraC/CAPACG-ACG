@@ -16,7 +16,7 @@ class SectorController extends Controller
         $sectores = DB::table('sectores')
         ->select('sectores.*')
         ->where('sectores.Estado','=','1')
-        ->paginate(7);
+        ->paginate(10);
       return view('/sector/listar', ['sectores' => $sectores]);
     }
 

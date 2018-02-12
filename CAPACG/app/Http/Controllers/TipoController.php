@@ -16,7 +16,7 @@ class TipoController extends Controller
         $tipos = DB::table('tipos')
         ->select('tipos.*')
         ->where('tipos.Estado','=','1')
-        ->paginate(7);
+        ->paginate(10);
       return view('/tipo/listar', ['tipos' => $tipos]);
     }
 

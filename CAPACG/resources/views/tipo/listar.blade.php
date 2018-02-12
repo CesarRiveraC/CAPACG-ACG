@@ -19,6 +19,7 @@
 
 				</div>
 				<div class="panel-body">
+					{{ $tipos->links() }}
 
 					<div class="table-responsive">
 						<table class="table table-hover">

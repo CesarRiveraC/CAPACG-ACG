@@ -16,6 +16,7 @@
 
 				</div>
 				<div class="panel-body">
+					{{ $sectores->links() }}
 
 					<div class="table-responsive">
 						<table class="table table-hover">

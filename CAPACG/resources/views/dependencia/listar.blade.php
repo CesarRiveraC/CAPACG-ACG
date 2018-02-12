@@ -17,6 +17,7 @@
 
 				</div>
 				<div class="panel-body">
+					{{ $dependencias->links() }}
 
 					<div class="table-responsive">
 						<table class="table table-hover">
