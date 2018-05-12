@@ -13,7 +13,7 @@ class CreateInmovable extends Migration
      */
      public function up()
      {
-         Schema::create('Inmuebles',function(Blueprint $table){
+         Schema::create('inmuebles',function(Blueprint $table){
              $table->increments('id');
              $table->string('Serie');
              $table->integer('activo_id')->unsigned()->nullable();
@@ -37,6 +37,6 @@ class CreateInmovable extends Migration
       */
      public function down()
      {
-         Schema::dropIfExists('Inmuebles');
+         Schema::dropIfExists('inmuebles');
      }
 }

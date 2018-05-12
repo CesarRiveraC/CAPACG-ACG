@@ -13,7 +13,7 @@ class CreateActives extends Migration
      */
      public function up()
      {
-         Schema::create('Activos',function(Blueprint $table){
+         Schema::create('activos',function(Blueprint $table){
              $table->increments('id'); 
              $table->integer('colaborador_id')->unsigned()->nullable();
              $table->foreign('colaborador_id')->references('id')->on('colaboradores');
@@ -45,7 +45,7 @@ class CreateActives extends Migration
       */
      public function down()
      {
-         Schema::dropIfExists('Activos');
+         Schema::dropIfExists('activos');
      }
  
 }

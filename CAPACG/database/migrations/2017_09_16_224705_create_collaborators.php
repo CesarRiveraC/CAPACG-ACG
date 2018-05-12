@@ -13,7 +13,7 @@ class CreateCollaborators extends Migration
      */
      public function up()
      {
-         Schema::create('Colaboradores', function(Blueprint $table){
+         Schema::create('colaboradores', function(Blueprint $table){
              $table->increments('id');
              $table->integer('user_id')->unsigned()->nullable();
              $table->foreign('user_id')->references('id')->on('users');
@@ -25,7 +25,7 @@ class CreateCollaborators extends Migration
              $table->timestamps();
          });
 
-         Schema::create('Dependencias',function(Blueprint $table){
+         Schema::create('dependencias',function(Blueprint $table){
             $table->increments('id'); 
             // $table->integer('activo_id')->unsigned()->nullable();
             // $table->foreign('activo_id')->references('id')->on('activos');
@@ -35,7 +35,7 @@ class CreateCollaborators extends Migration
             $table->timestamps();
         });
 
-        Schema::create('Tipos',function(Blueprint $table){
+        Schema::create('tipos',function(Blueprint $table){
             $table->increments('id'); 
             
             $table->string('Tipo')->unique();
@@ -43,7 +43,7 @@ class CreateCollaborators extends Migration
            
             $table->timestamps();
         });
-        Schema::create('Sectores',function(Blueprint $table){
+        Schema::create('sectores',function(Blueprint $table){
             $table->increments('id'); 
             
             $table->string('Sector')->unique();
@@ -59,10 +59,10 @@ class CreateCollaborators extends Migration
       */
      public function down()
      {
-         Schema::dropIfExists('Colaboradores');
-         Schema::dropIfExists('Dependencias');
-         Schema::dropIfExists('Tipos');
-         Schema::dropIfExists('Sectores');
+         Schema::dropIfExists('colaboradores');
+         Schema::dropIfExists('dependencias');
+         Schema::dropIfExists('tipos');
+         Schema::dropIfExists('sectores');
          
      }
  

@@ -13,7 +13,7 @@ class CreateInfraestructure extends Migration
      */
      public function up()
      {
-         Schema::create('Infraestructuras',function(Blueprint $table){
+         Schema::create('infraestructuras',function(Blueprint $table){
              $table->increments('id');
              $table->integer('activo_id')->unsigned()->nullable();
              $table->foreign('activo_id')->references('id')->on('activos');
@@ -33,6 +33,6 @@ class CreateInfraestructure extends Migration
       */
      public function down()
      {
-         Schema::dropIfExists('Infraestructuras');
+         Schema::dropIfExists('infraestructuras');
      }
 }

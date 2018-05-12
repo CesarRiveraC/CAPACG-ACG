@@ -13,7 +13,7 @@ class CreateVehicles extends Migration
      */
      public function up()
      {
-         Schema::create('Vehiculos',function(Blueprint $table){
+         Schema::create('vehiculos',function(Blueprint $table){
              $table->increments('id');
              $table->integer('inmueble_id')->unsigned()->nullable();
              $table->foreign('inmueble_id')->references('id')->on('inmuebles');
@@ -31,6 +31,6 @@ class CreateVehicles extends Migration
       */
      public function down()
      {
-         Schema::dropIfExists('Vehiculos');
+         Schema::dropIfExists('vehiculos');
      }
 }

@@ -13,7 +13,7 @@ class CreateLivestocks extends Migration
      */
      public function up()
      {
-         Schema::create('Semovientes',function(Blueprint $table){
+         Schema::create('semovientes',function(Blueprint $table){
              $table->increments('id');
              $table->integer('activo_id')->unsigned()->nullable();
              $table->foreign('activo_id')->references('id')->on('activos');
@@ -33,6 +33,6 @@ class CreateLivestocks extends Migration
      public function down()
      {
          
-         Schema::dropIfExists('Semovientes');
+         Schema::dropIfExists('semovientes');
      }
 }
